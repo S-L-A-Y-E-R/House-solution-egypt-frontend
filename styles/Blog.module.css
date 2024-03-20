@@ -1,0 +1,44 @@
+.blogText {
+    list-style-type:initial;
+    table-layout: initial;
+    padding: initial;
+    margin:initial;
+    text-align: initial;
+    font-size: 1em;
+    font-family: inherit;
+    padding-bottom:1.5rem;
+    color:black !important;
+    margin-inline-end:.5rem;
+}
+.blogText a:not([role="button"]) {
+    color:rgb(1, 113, 199);
+    text-decoration: underline dotted rgb(1, 113, 199);
+    text-shadow: 0px 0px .5px darkblue;
+    font-weight: 200;
+}
+.blogText table tr td ,.blogText th{
+    border:1px solid rgb(61, 136, 161);
+}
+.blogText ul,.blogText ol {
+    padding-inline-start: 2em;
+    list-style: initial;
+}
+.blogText h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+.blogText h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.blogText h3 {
+    font-size: 1.25;
+}
+.blogText ol {
+    list-style-type:decimal;
+}
+
+.blogText img {
+    border-radius:15px;
+    box-shadow:0px 0px 5px;
+}

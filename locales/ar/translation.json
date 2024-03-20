@@ -1,0 +1,139 @@
+{
+  "general": {
+    "components": {
+      "searchbar": {
+        "rent": "إيجار",
+        "sale": "بيع",
+        "location_searchbar_placeholder": "أبحث عن منطقة",
+        "no_options": "لم يتم العثور علي منطقة",
+        "all_property_type": "كل أنواع العقارات",
+        "property_type": "نوع العقار",
+        "bed": "غرفه",
+        "bath": "حمام",
+        "beds": "غرف",
+        "baths": "حمام",
+        "reset": "إعاده الضبط",
+        "prices": "الاسعار",
+        "finish_level": "مستوي التشطيب",
+        "all_finish_level": "كل مستويات التشطيب",
+        "search": "أبحث",
+        "advanced_search": "بحث متقدم",
+        "show": "عرض",
+        "result": "نتيجة",
+        "minprice": "أقل سعر بالجنيه",
+        "maxprice": "أقصي سعر بالجنية"
+      },
+      "navbar": {
+        "home": "الرئيسية",
+        "rent": "إيجار",
+        "sale": "بيع",
+        "contact": "تواصل معنا",
+        "blogs": "مقالات",
+        "favorite": "مفضلة"
+      },
+      "property_card": {
+        "sqm": "م",
+        "egp": "جنية مصري",
+        "bedrooms": "غرفة نوم",
+        "bathrooms": "حمام",
+        "for": "لل",
+        "refnum": "رقم الأعلان:",
+        "month": "شهريا",
+        "share_property": "شارك هذا العقار",
+        "whatsapp_property": "تواصل معنا عبر الواتساب",
+        "favorite_property": "أضف الي المفضلة"
+      },
+      "footer": {
+        "about_us": "من نحن",
+        "new_links": "روابط جديدة"
+      }
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "أعثر علي منزلك الجديد في القاهرة ، مصر"
+    },
+    "favorite": {
+      "favorite": "المفضلة",
+      "unauth_user": "برجاء تسجيل الدخول",
+      "empty_favorite": "لا يوجد وحدات في المفضلة"
+    },
+    "property": {
+      "components": {
+        "title": {
+          "ref_num": "رقم الأعلان",
+          "last_updated": "أخر تحديث"
+        },
+        "property_desc": {
+          "description": "الوصف",
+          "sqm": "متر مربع",
+          "bedroom": "غرفة نوم",
+          "bathroom": "حمام",
+          "amentias": "أدوات الراحة",
+          "tags": "إشعارات",
+          "hdf": "HDF",
+          "air_condition": "مكيف هواء",
+          "central_air_condition": "مكيف هواء مركزي",
+          "ceramic": "أرضية من السراميك",
+          "cac": "قريب من المدرسة الامريكية",
+          "french": "قريب من المدرسة الفرنسية",
+          "gym": "صالة رياضية",
+          "metro": "مترو",
+          "restaurant": "قريبة من المطاعم",
+          "school": "مدرسة",
+          "compound": "كمباوند",
+          "master_bedroom": "غرفة نوم",
+          "internet": "أنترنت",
+          "jacuzzi": "جاكوزي",
+          "kitchen": "وسائل المطبخ",
+          "laundry": "غرفة الغسيل",
+          "maid": "غرفة الخدم",
+          "marble": "رخام",
+          "balcony": "بلاكونة",
+          "parquet": "أرضية خشبية",
+          "porcelain": "بورسلين",
+          "private_entrance": "مدخل خاص",
+          "private_garden": "حديقة خاصة",
+          "private_swimmingpool": "حمام سباحة خاص",
+          "security": "أفراد أمن",
+          "shopping": "منطقة تسوق",
+          "use_swimmingpool": "دخول حمام سباحة",
+          "transportation": "مواصلات",
+          "quiet_area": "مساحة هادئة",
+          "office_room": "غرفة مكتب",
+          "wardrobe": "خزانة",
+          "elevator": "مصعد",
+          "studyroom": "غرفة دراسة",
+          "terrace": "شرفة",
+          "surveillance": "مراقبة",
+          "covered_parking": "موقف مغطي",
+          "storage": "مخزن",
+          "shared_swimming": "حمام سباحة مشترك",
+          "pets_allowed": "الحيوانات الاليفة مسموحة"
+        },
+        "contact_us": {
+          "request_property": "اطلب العقار",
+          "call": "أتصال",
+          "email": "بريد",
+          "whatsapp": "واتساب"
+        },
+        "related": {
+          "related_properties": "عقارات مشابهه"
+        }
+      }
+    },
+    "blog": {
+      "title": "المقالات",
+      "min": " دقيقة",
+      "writter": "كتب بواسطة ",
+      "read_more": "المزيد",
+      "topics": "موضوعات المقالات",
+      "tags": "وسوم المقالات",
+      "related_properties": "عقارات مشابهه",
+      "share": "مشاركة",
+      "topic": "الموضوع",
+      "read": "قراءة",
+      "authby": " بقلم "
+    }
+  }
+}
