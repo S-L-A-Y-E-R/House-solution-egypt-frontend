@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import Head from "next/head";
 import { WEBSITE_BASE_URL } from "@/config";
 
-const FilterSearch = ({ type, propertyType, location, title, subArea }) => {
+const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, home }) => {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
   const orgSchema = {
@@ -71,14 +71,14 @@ const FilterSearch = ({ type, propertyType, location, title, subArea }) => {
     });
   }
   return (
-    <div className="flex flex-col flex-wrap md:flex-row text-xs md:text-base">
+    <div className="flex flex-col flex-wrap md:flex-row text-xs md:text-base w-full px-20" dir={isArabic ? "rtl":"ltr"}>
       <Head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
       </Head>
-      <div className="flex items-center my-1 text-xs md:text-base text-slate-800">
+      <div className="flex items-center my-1 text-xs md:text-base text-slate-800" >
         <Link className="underline" href={`/`}>
           <FaHome />
         </Link>
@@ -94,6 +94,17 @@ const FilterSearch = ({ type, propertyType, location, title, subArea }) => {
                   txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
                 );
               })}
+            </Link>
+          </div>
+        )}
+        
+        {home && (
+          <div className="flex items-center">
+            {isArabic && <FaChevronLeft className="w-2 mx-1" />}
+            {!isArabic && <FaChevronRight className="w-2 mx-1" />}
+
+            <Link href={`/`}>
+              {isArabic ? "الرئيسية":"Home"}
             </Link>
           </div>
         )}
@@ -165,6 +176,14 @@ const FilterSearch = ({ type, propertyType, location, title, subArea }) => {
           })}
         </div>
       )}
+      {unTitle && (
+          <div className="flex items-center">
+            {isArabic && <FaChevronLeft className="w-2 mx-1" />}
+            {!isArabic && <FaChevronRight className="w-2 mx-1" />}
+
+            <p>Properties</p>
+          </div>
+        )}
     </div>
   );
 };

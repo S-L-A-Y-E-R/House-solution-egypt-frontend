@@ -119,11 +119,10 @@ function BlogDetails({
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75",
   };
   
-  
   return (
     <>
       <Head>
-        <title>{`${metaTitle && "articles | " + metaTitle}`}</title>
+        <title>{`${metaTitle && "articles | " + metaTitle.slice(0,10)}`}</title>
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/articles"}
@@ -149,7 +148,7 @@ function BlogDetails({
           }
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={WEBSITE_BASE_URL} />
+        <meta property="og:url" content={WEBSITE_BASE_URL + '/articles'} />
         <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />
         <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL} />
         <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar`} />
@@ -186,9 +185,9 @@ function BlogDetails({
         <QR />
         <div className="w-full px-6">
           <div>
-            <h4 className="my-2 text-xl uppercase lg:text-3xl font-heading" style={{fontWeight:'bolder',letterSpacing:'1px'}}>
+            <div className="my-2 text-xl uppercase lg:text-3xl font-heading" style={{fontWeight:'bolder',letterSpacing:'1px'}}>
               {blogData.title}
-            </h4>
+            </div>
           </div>
           <hr />
 

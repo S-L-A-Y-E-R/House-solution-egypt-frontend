@@ -17,7 +17,7 @@ import PaginationSlide from "@/components/Pagination";
 
 
 export async function getServerSideProps(context) {
-  let link = `/articles`;
+  let link = `/reads`;
   const { locale } = context;
   if (locale == "ar") link = "/ar" + link;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
@@ -111,18 +111,18 @@ function Index(props) {
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75",
   };
-
+  
   return (
     <>
       <Head>
         <title>{`${meta.title}`} </title>
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + isArabic ? '/ar/articles' : "/articles"}
+          href={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : "/reads"}
           key="canonical"
         />
         <meta name='keywords' content={meta.keywords} />
-        <meta name="description" content={meta && meta.description} />
+        <meta name="description" content={meta && meta.description.slice(0,160)} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -195,9 +195,9 @@ function Index(props) {
                   <h1 className="ltr:text-left rtl:text-right order-1 mb-4 font-sans text-lg font-semibold sm:text-xl md:text-2xl lg:text-4xl border-b border-gray-300 pb-4">
                     {isArabic ? titles[0]?.titleAr : titles[0]?.title}
                   </h1>
-                  <h2 className="ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg">
+                  <p className="ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg">
                     {isArabic ? titles[1]?.titleAr : titles[1]?.title}
-                  </h2>
+                  </p>
                 </>
               )}
               <div className={blogStyle.container}>

@@ -121,7 +121,7 @@ function Index(props) {
           href={WEBSITE_BASE_URL + isArabic ? '/ar/articles' : "/articles"}
           key="canonical"
         />
-        <meta name='keywords' content={meta.keywords} />
+        <meta name='keywords' content={meta?.keywords} />
         <meta name="description" content={meta && meta.description} />
         <script
           type="application/ld+json"

@@ -213,7 +213,7 @@ const TypePage = ({
             <title>
               {count +
                 " " +
-                `${meta ? meta.title : isArabic ? titleAR : titleEN}`}
+                `${meta ? meta.title : isArabic ? titleAR.slice(0,60) : titleEN.slice(0,60)}`}
             </title>
             <meta
               name="description"
@@ -273,7 +273,7 @@ const TypePage = ({
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}
             />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={WEBSITE_BASE_URL} />
+            <meta property="og:url" content={WEBSITE_BASE_URL + `${isArabic ? "/ar/" : "/"}${type}`} />
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:site" content="@HousePointE" />
             <meta name="twitter:title" content={isArabic ? titleAR : titleEN} />
@@ -300,7 +300,7 @@ const TypePage = ({
         <Navbar url={changeLang} />
         <QR />
         <div className="flex flex-col items-center w-full h-full p-4 font-sans text-black bg-white bg-center bg-cover">
-          <BreadCrumbs type={type} />
+          <BreadCrumbs type={type} home={"Home"} unTitle={"Properties"} />
           <Searchbar />
         </div>
 
