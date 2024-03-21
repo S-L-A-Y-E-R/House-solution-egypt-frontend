@@ -13,15 +13,15 @@ const Article = (props) => {
         <div className={`${style.post}`} key={post._id} >
             <div className={`${style.head}`}>
                 <p>{t('pages.blog.topic')}: </p> 
-                <a href={`reads/topics/${post.topic}`} alt={post.topic}>{post.topic} </a>
+                <a href={`articles/topics/${post.topic}`} alt={post.topic}>{post.topic} </a>
             </div>
             <div className={`${style.center}`} onClick={()=> {
             router.push(
                 {
-                    pathname: `/reads/${post.title.replaceAll(' ', '-').replaceAll('?', '_qm_')}`,
+                    pathname: `/articles/${post.title.replaceAll(' ', '-').replaceAll('?', '_qm_')}`,
                     query: {bid: post._id, title: post.title}
                 },
-                `/reads/${post.title.replaceAll(' ', '-').replaceAll('?', '_qm_')}`
+                `/articles/${post.title.replaceAll(' ', '-').replaceAll('?', '_qm_')}`
             )
         }}>
                 <div className={`${style.postCenter} ${style.image}`}>
@@ -36,10 +36,10 @@ const Article = (props) => {
                 <div className={`${style.postCenter} ${style.btn}`}>
                     <Link className={`${style.readMoreBtn}`} 
                     href={{
-                        pathname: `/reads/${post.title.replaceAll('-', '_da_').replaceAll('?', '_qm_').replaceAll(' ', '-')}`,
+                        pathname: `/articles/${post.title.replaceAll('-', '_da_').replaceAll('?', '_qm_').replaceAll(' ', '-')}`,
                         query: {bid: post._id}
                     }}
-                    as={`/reads/${post.title.replaceAll(' ', '-').replaceAll('?', '_qm_')}`}
+                    as={`/articles/${post.title.replaceAll(' ', '-').replaceAll('?', '_qm_')}`}
                     data-ur1313m3t="true">
                         <span>{t('pages.blog.read_more')}</span>
                         <span className={`${style.symbole} ${isArabic ? style.symboleAr : ''}`}>

@@ -184,7 +184,7 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           <div className="w-full px-6 flex flex-col lg:flex-row flex-1">
             <div className="flex-1">
             <h1 className="ltr:text-left rtl:text-right order-1 mb-4 font-sans text-lg font-semibold sm:text-xl md:text-2xl lg:text-4xl border-b border-gray-300 pb-4">
-              Articles about {tag.replaceAll('-', ' ').replaceAll('_qm_', '?')}
+              reads about {tag.replaceAll('-', ' ').replaceAll('_qm_', '?')}
               </h1>
               <p className="ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg">
                 {titles && titles.length > 0 ? titles[0]: null}

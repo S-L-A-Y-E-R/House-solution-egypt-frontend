@@ -117,7 +117,7 @@ const Navbar = ({ url }) => {
                 {t("general.components.navbar.sale")}
               </span>
             </Link>
-            <Link href="/reads">
+            <Link href="/articles">
               <span
                 className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${
                   isArabic ? "text-right" : ""
@@ -126,7 +126,7 @@ const Navbar = ({ url }) => {
                 {t("general.components.navbar.blogs")}
               </span>
             </Link>
-            <Link href="/favorite">
+            {/* <Link href="/favorite">
               <span
                 className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${
                   isArabic ? "text-right" : ""
@@ -134,7 +134,7 @@ const Navbar = ({ url }) => {
               >
                 {t("general.components.navbar.favorite")}
               </span>
-            </Link>
+            </Link> */}
             <Link href="/contact">
               <span
                 className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${
@@ -289,7 +289,7 @@ const Navbar = ({ url }) => {
                 </Link>
               </li>
               <li>
-                <Link href="/reads">
+                <Link href="/articles">
                   <span
                     className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${
                       isArabic ? "text-right" : ""
@@ -299,7 +299,7 @@ const Navbar = ({ url }) => {
                   </span>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/favorite">
                   <span
                     className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-3 py-2 ${
@@ -309,7 +309,7 @@ const Navbar = ({ url }) => {
                     {t("general.components.navbar.favorite")}
                   </span>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/contact">
                   <span

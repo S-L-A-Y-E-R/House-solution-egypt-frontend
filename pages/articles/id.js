@@ -4,63 +4,21 @@ import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import axios from "axios";
-import { API_BASE_URL, BLOG_IMAGE_BASE_URL, WEBSITE_BASE_URL } from "@/config";
+import { API_BASE_URL, BLOG_IMAGE_BASE_URL } from "@/config";
 import QR from "@/components/Home/QR";
 import Head from "next/head";
 import PropertyCard from "@/components/PropertyCard";
 import styles from '@/styles/Blog.module.css'
 
-export async function getServerSideProps(context) {
-  const { locale } = context;
-  const { title } = context.query;
-  const getData = await fetch((`${API_BASE_URL}/blog/title/${title}`), {
-    headers: {
-      'Content-Type': 'application/json',
-      'accept-language': locale === "en" ? "ar" : "en",
-    }
-  }).then((res) => {
-    return res.json()
-
-  }).then((data) => {
-    return data
-  })
-
-  return {
-    props: {
-      locale: getData.lang,
-      metaTitle: getData.title,
-      metaDesc: getData.topic,
-      metaImage: getData.image,
-      metaKeywords: getData.keywords,
-      metaTags: getData.tag,
-      metaTopic: getData.topic,
-      metaAuthor: getData.writter,
-      metaUri: title,
-      getData: getData
-
-    }
-  }
-
-}
-function BlogDetails({
-  metaAuthor,
-  metaDesc,
-  metaImage,
-  metaKeywords,
-  metaTags,
-  metaTitle,
-  metaTopic,
-  metaUri
-  ,getData
-}) {
+function BlogDetails() {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
-  const {title} = router.query
-  const [blogData, setBlogData] = useState(getData);
+  const id  = router.query.bid;
+  const [blogData, setBlogData] = useState(null);
   const [relatedProperties, setRelatedProperties] = useState([]);
   const [liveCurrency, setLiveCurrency] = useState({ USD: 1, EUR: 1 });
-
+  console.log(id)
   useEffect((e) => {
     async function fetchCurrency() {
       try {
@@ -76,22 +34,17 @@ function BlogDetails({
   useEffect(() => {
     const fetchBlogDetails = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/blog/title/${title}`);
+        const response = await axios.get(`${API_BASE_URL}/blog/${id}`);
         setBlogData(response.data);
       } catch (error) {
         console.log(error);
       }
     };
 
-    if (title) {
-      fetchBlogDetails();
-    }
-  }, [title]);
-  useEffect(() => {
     const fetchRelatedProperties = async () => {
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/blog/relatedProperties/${blogData._id}`
+          `${API_BASE_URL}/blog/relatedProperties/${id}`
         );
         const relatedProperties = response.data;
         setRelatedProperties(relatedProperties);
@@ -99,94 +52,28 @@ function BlogDetails({
         console.error("Error fetching related properties:", error);
       }
     };
-    if(blogData) fetchRelatedProperties()
 
-  },[blogData])
+    if (id) {
+      fetchBlogDetails();
+      fetchRelatedProperties();
+    }
+  }, [id]);
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": WEBSITE_BASE_URL,
-    mainEntity: {
-      "@id": "mainEntity",
-    },
-  };
-  const orgSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "House Point Egypt - Real Estate",
-    url: WEBSITE_BASE_URL,
-    logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75",
-  };
-  
-  
+  if (!blogData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Head>
-        <title>{`${metaTitle && "Articles | " + metaTitle}`}</title>
-        <link
-          rel="canonical"
-          href={WEBSITE_BASE_URL + "/articles"}
-          key="canonical"
-        />
-        <meta name="description" content={metaDesc + ' | ' + metaTitle} />
-        <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDesc + ' | ' + metaTitle} />
-        <meta
-          property="og:image"
-          content={
-            BLOG_IMAGE_BASE_URL+metaImage
-          }
-        />
-        <meta
-          property="og:image:alt"
-          content="House Point Egypt - Real Estate | Logo"
-        />
-        <meta
-          property="og:image:secure_url"
-          content={
-            BLOG_IMAGE_BASE_URL+metaImage
-          }
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />
-        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar`} />
-
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@HousePointE" />
-        <meta name="twitter:title" content={metaTitle} />
-        <meta name="twitter:creator" content="@HousePointE" />
-        <meta name="twitter:domain" content={WEBSITE_BASE_URL} />
-        <meta name="twitter:description" content={metaTopic} />
-        <meta name='author' content={metaAuthor} />
-        <meta name='keywords' content={metaKeywords} />
-        <meta
-          name="twitter:image"
-          content={
-            BLOG_IMAGE_BASE_URL+metaImage
-          }
-        />
-        <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-            />
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></link>
-
-        <meta name="robots" content="index, follow" />
+        <title>{blogData?.title && "Blogs | " + blogData?.title}</title>
       </Head>
-      { blogData &&
       <div dir={isArabic ? "rtl" : "ltr"}>
         <Navbar />
         <QR />
         <div className="w-full px-6">
           <div>
-            <h4 className="my-2 text-xl uppercase lg:text-3xl font-heading" style={{fontWeight:'bolder',letterSpacing:'1px'}}>
+            <h4 className="my-2 text-xl uppercase lg:text-3xl font-heading">
               {blogData.title}
             </h4>
           </div>
@@ -456,7 +343,6 @@ function BlogDetails({
         </div>
         <Footer />
       </div>
-      }
     </>
   );
 }

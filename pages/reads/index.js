@@ -17,7 +17,7 @@ import PaginationSlide from "@/components/Pagination";
 
 
 export async function getServerSideProps(context) {
-  let link = `/reads`;
+  let link = `/articles`;
   const { locale } = context;
   if (locale == "ar") link = "/ar" + link;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
@@ -118,7 +118,7 @@ function Index(props) {
         <title>{`${meta.title}`} </title>
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : "/reads"}
+          href={WEBSITE_BASE_URL + isArabic ? '/ar/articles' : "/articles"}
           key="canonical"
         />
         <meta name='keywords' content={meta.keywords} />

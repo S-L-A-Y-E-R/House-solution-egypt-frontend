@@ -18,7 +18,7 @@ import PaginationSlide from "@/components/Pagination";
 
 export async function getServerSideProps(context) {
   const { locale, params } = context;
-  let link = `/articles/topics/${params.tag}`;
+  let link = `/articles/topics/${params.topic}`;
   if (locale == "ar") link = "/ar" + link;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
   const changeLangResponse = await axios.post(
@@ -30,8 +30,20 @@ export async function getServerSideProps(context) {
       },
     }
   );
+
+  const fetchTitles = await axios.get(
+    `${API_BASE_URL}/title/single?link=${link}`,
+    {
+      headers: {
+        "accept-language": locale === "en" ? "en" : "ar",
+      },
+    }
+  );
+
+  i18n.changeLanguage(locale);
+
   const countPosts = await axios
-  .get(`${API_BASE_URL}/blog/tags/${params.tag}`, {
+  .get(`${API_BASE_URL}/blog/topics/${params.topic}`, {
     headers: {
       "accept-language": locale,
     },
@@ -45,19 +57,6 @@ export async function getServerSideProps(context) {
   })
   .catch((error) => console.log(error));
 
-  const fetchTitles = await axios.get(
-    `${API_BASE_URL}/title/single?link=${link}`,
-    {
-      headers: {
-        "accept-language": locale === "en" ? "en" : "ar",
-      },
-    }
-  );
-
-  i18n.changeLanguage(locale);
-
-
-
   return {
     props: {
       meta: response.data.meta,
@@ -70,19 +69,19 @@ export async function getServerSideProps(context) {
   };
 }
 
-function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
-  const router = useRouter()
+function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
+  const router = useRouter();
   let page = router.query.page && router.query.page > 0 ? Number(router.query.page) : 1
   const [currentPage, setCurrentPage] = useState(page)
   const { t, i18n } = useTranslation();
-  const { tag } = router.query;
+  const { topic } = router.query;
   const [blogPosts, setBlogPosts] = useState([]);
   const locale = initialLocale || router.locale;
 
   useEffect(() => {
     // Fetch blog post data from the API
     axios
-      .get(`${API_BASE_URL}/blog/tags/${tag}?page=${currentPage}&limit=9`, {
+      .get(`${API_BASE_URL}/blog/topics/${topic}?page=${currentPage}&limit=9`, {
         headers: {
           "accept-language": locale,
         },
@@ -91,12 +90,11 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
         setBlogPosts(response.data);
       })
       .catch((error) => console.log(error));
-  }, [currentPage]);
+  }, [currentPage ]);
 
   if (!blogPosts) {
     return <div>Loading...</div>;
   }
-  console.log(router)
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -116,7 +114,7 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   return (
     <>
       <Head>
-        <title>{tag && "Blogs | " + tag}</title>
+        <title>{topic && "Blogs | " + topic}</title>
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/contact"}
@@ -184,7 +182,7 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           <div className="w-full px-6 flex flex-col lg:flex-row flex-1">
             <div className="flex-1">
             <h1 className="ltr:text-left rtl:text-right order-1 mb-4 font-sans text-lg font-semibold sm:text-xl md:text-2xl lg:text-4xl border-b border-gray-300 pb-4">
-              Articles about {tag.replaceAll('-', ' ').replaceAll('_qm_', '?')}
+              reads about {topic.replaceAll('-', ' ').replaceAll('_qm_', '?')}
               </h1>
               <p className="ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg">
                 {titles && titles.length > 0 ? titles[0]: null}
@@ -204,7 +202,7 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           </div>
         </div>
         {
-          pages && page && <PaginationSlide currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages} page={page} queryParam={tag} />
+          pages && page && <PaginationSlide currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages} page={page} queryParam={topic} />
         }
         <div className="mt-auto">
           <Footer />
@@ -214,5 +212,5 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   );
 }
 
-export default Tag;
+export default Topic;
 

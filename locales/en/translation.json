@@ -28,7 +28,7 @@
         "rent":"Rent",
         "sale":"Sale",
         "contact":"Contact Us",
-        "blogs":"Articles",
+        "blogs":"articles",
         "favorite": "Favorites"
       },
       "property_card":{
@@ -125,12 +125,12 @@
       }
     },
     "blog":{
-      "title": "OUR Articles",
+      "title": "OUR articles",
       "min": "MIN",
       "writter": "Written by ",
       "read_more": "Read More",
-      "topics": "Articles Topics",
-      "tags": "Articles Tags",
+      "topics": "articles Topics",
+      "tags": "articles Tags",
       "related_properties": "Related Properties",
       "share": "Share",
       "topic": "Topic",

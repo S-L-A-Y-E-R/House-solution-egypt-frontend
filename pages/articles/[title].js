@@ -123,7 +123,7 @@ function BlogDetails({
   return (
     <>
       <Head>
-        <title>{`${metaTitle && "Articles | " + metaTitle}`}</title>
+        <title>{`${metaTitle && "articles | " + metaTitle}`}</title>
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/articles"}
