@@ -250,7 +250,7 @@ const LocationPage = ({
               key="canonical"
             />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
-            <meta property="og:site_name" content="House Point Egypt" />
+            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
 
             {isArabic && (
               <link

@@ -82,8 +82,8 @@ export default function Home({
       {meta && (
         <>
           <Head>
-            <title>{meta.title}</title>
-            <link rel="canonical" href={WEBSITE_BASE_URL + "/images/logohouse.png"} key="canonical" />
+            <title>{meta?.title.slice(0,60)}</title>
+            <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
             <meta name="description" content={meta.description} />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
 
@@ -112,7 +112,7 @@ export default function Home({
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}
             />
             <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="House Point Egypt" />
+            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
 
             <meta property="og:url" content={WEBSITE_BASE_URL} />
             <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />

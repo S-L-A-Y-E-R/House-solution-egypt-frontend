@@ -359,7 +359,7 @@ function PropertyDetails({
               property="og:image:alt"
               content="House Point Egypt - Real Estate | Logo"
             />
-            <meta property="og:site_name" content="House Point Egypt" />
+            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
 
             <meta
               property="og:image:secure_url"

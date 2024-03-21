@@ -227,7 +227,7 @@ const PropertyTypePage = ({
                   : titleEN)
               }
             />
-            <meta property="og:site_name" content="House Point Egypt" />
+            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
 
             <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
             <meta name="keywords" content={meta ? meta.keywords : ""} />

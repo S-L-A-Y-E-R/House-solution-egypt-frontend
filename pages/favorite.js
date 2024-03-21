@@ -236,7 +236,7 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
               property="og:image"
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}
             />
-            <meta property="og:site_name" content="House Point Egypt" />
+            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
 
             <meta
               property="og:image:alt"
