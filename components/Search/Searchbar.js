@@ -6,7 +6,7 @@ import { FaAngleDown, FaCheckCircle } from "react-icons/fa";
 import { Fragment } from "react";
 import { Combobox, Transition, Listbox, Popover } from "@headlessui/react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-
+import { CiFilter } from "react-icons/ci";
 import { API_BASE_URL } from "@/config";
 import { PulseLoader } from "react-spinners";
 import Image from "next/legacy/image";
@@ -15,6 +15,7 @@ function Searchbar() {
   const [query, setQuery] = useState("");
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
   const [selectedPropertyLocation, setSelectedPropertyLocation] = useState("");
@@ -312,7 +313,7 @@ function Searchbar() {
 
         <div className="px-4 mx-auto sm:items-center sm:px-6 lg:px-8">
           <form onSubmit={handleSearchSubmit}>
-            <div className="mt-5 md:row md:flex">
+            <div className="mt-5 md:row md:flex  ">
               <div className="relative mx-1">
                 <Combobox onChange={handleAreaAndSubAreaChange}>
                   <div className="relative !h-full mt-1 ">
@@ -359,7 +360,7 @@ function Searchbar() {
                             {t("general.components.searchbar.no_options")}
                           </div>
                         ) : (
-                          filteredLocations.map((location,i) => {
+                          filteredLocations.map((location, i) => {
                             return (
                               <div key={i}>
                                 <Combobox.Option
@@ -489,7 +490,7 @@ function Searchbar() {
                   </div>
                 </Combobox>
               </div>
-              <div className="relative mx-1">
+              <div className="relative mx-1 hidden lg:block">
                 <div className="relative w-full !h-full font-heading ">
                   <Listbox
                     onChange={(e) => {
@@ -561,7 +562,7 @@ function Searchbar() {
                 </div>
               </div>
 
-              <div className="relative flex-grow mx-1">
+              <div className="relative flex-grow mx-1 hidden lg:block">
                 <div className="relative flex items-center w-full !h-full mt-1 font-heading">
                   <Popover className="relative w-full !h-full">
                     {({ open }) => (
@@ -670,7 +671,7 @@ function Searchbar() {
                 </div>
               </div>
 
-              <div className="relative flex-grow mx-1">
+              <div className="relative flex-grow mx-1 hidden lg:block">
                 <div className="relative flex items-center w-full !h-full mt-1">
                   <Popover className="relative w-full !h-full ">
                     {({ open, close }) => (
@@ -842,7 +843,7 @@ function Searchbar() {
                   </Popover>
                 </div>
               </div>
-              <div className="relative flex-grow mx-1">
+              <div className="relative flex-grow mx-1 hidden lg:block">
                 <div className="relative flex items-center w-full !h-full">
                   <Listbox
                     value={selectedFinishingLevel}
@@ -913,7 +914,7 @@ function Searchbar() {
                 type="submit"
                 onClick={handleSearchSubmit}
                 disabled={loading}
-                className="w-full md:w-16 py-1 mt-1 font-medium text-white bg-[#095668] border-white border rounded-lg hover:bg-white hover:text-custom-blue focus:ring-4 focus:outline-none flex items-center justify-center disabled:bg-custom-slate-800 text-sm"
+                className="hidden w-full md:w-16 py-1 mt-1 font-medium text-white bg-[#095668] border-white border rounded-lg hover:bg-white hover:text-custom-blue focus:ring-4 focus:outline-none lg:flex items-center justify-center disabled:bg-custom-slate-800 text-sm"
               >
                 {loading && (
                   <div className="mx-1">
@@ -927,7 +928,7 @@ function Searchbar() {
         </div>
 
         {/* Advanced Search */}
-        <div>
+        <div className="hidden lg:block">
           <div className="flex justify-end px-4 mt-3 sm:px-6 lg:px-8">
             <button
               className="text-sm font-medium text-white border-b border-white"
@@ -955,10 +956,560 @@ function Searchbar() {
             </div>
           )}
         </div>
+        {/* more Filter */}
+        <div>
+          <>
+            <button
+              className=" max-lg:flex border-2 hidden text-white font-bold uppercase text-sm px-6  py-2 mx-auto rounded shadow hover:shadow-lg outline-none focus:outline-none my-2 ease-linear transition-all duration-150"
+              type="button"
+              onClick={() => setShowModal(true)}
+            >
+              <CiFilter size={"25"} />
+              {isArabic ? "تصفيةاكتر":"More Filter"}
+            </button>
+            {showModal ? (
+              <>
+                <div className=" px-6 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 mt-20 outline-none focus:outline-none">
+                  <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                    {/*content*/}
+                    <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                      {/*header*/}
+                      <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t font-bold">
+                        {isArabic ? "تصفيةاكتر":"More Filter"}
+                      </div>
+                      {/*body*/}
+                      <div className="relative p-6 flex-auto">
+                        <div className="relative mx-1">
+                          <div className="relative w-full !h-full font-heading ">
+                            <Listbox
+                              onChange={(e) => {
+                                setSelectedPropertyType(e);
+                                setCountState(!countState);
+                              }}
+                            >
+                              <div className="relative !h-full mt-1 hover:cursor-pointer">
+                                <Listbox.Button
+                                  className="relative flex justify-between items-center w-full !h-full px-2 py-4 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm lg:w-44"
+                                  aria-label="DropDownPropertyType"
+                                  name="DropDownPropertyType"
+                                >
+                                  <span className="block font-semibold truncate">
+                                    {selectedPropertyType ||
+                                      t(
+                                        "general.components.searchbar.all_property_type"
+                                      )}
+                                  </span>
+                                  <span className="flex pr-2 pointer-events-none ">
+                                    <FaAngleDown name="DropDownPropertyType" />
+                                  </span>
+                                </Listbox.Button>
+                                <Transition
+                                  as={Fragment}
+                                  leave="transition ease-in duration-100"
+                                  leaveFrom="opacity-100"
+                                  leaveTo="opacity-0"
+                                >
+                                  <Listbox.Options className="absolute z-20 w-full mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                    {propertyTypes.map(
+                                      (propertyType, personIdx) => (
+                                        <Listbox.Option
+                                          key={personIdx}
+                                          className={({ active }) =>
+                                            `relative  mb-[1px] cursor-default pl-8 select-none py-2  pr-4 ${
+                                              active
+                                                ? "bg-teal-700 text-white"
+                                                : "bg-gray-700 text-white"
+                                            }`
+                                          }
+                                          value={
+                                            isArabic
+                                              ? propertyType.nameAr
+                                              : propertyType.name
+                                          }
+                                        >
+                                          {({ selected }) => (
+                                            <>
+                                              <span
+                                                className={`block truncate text-sm ${
+                                                  selected
+                                                    ? "font-medium"
+                                                    : "font-semibold"
+                                                }`}
+                                              >
+                                                {isArabic
+                                                  ? propertyType.nameAr
+                                                  : propertyType.name}
+                                              </span>
+                                              {selected ? (
+                                                <span className="absolute inset-y-0 left-0 flex items-center text-teal-600">
+                                                  <FaCheckCircle className="text-teal-700" />
+                                                </span>
+                                              ) : null}
+                                            </>
+                                          )}
+                                        </Listbox.Option>
+                                      )
+                                    )}
+                                  </Listbox.Options>
+                                </Transition>
+                              </div>
+                            </Listbox>
+                          </div>
+                        </div>
+
+                        <div className="relative flex-grow mx-1">
+                          <div className="relative flex items-center w-full !h-full mt-1 font-heading">
+                            <Popover className="relative w-full !h-full">
+                              {({ open }) => (
+                                <>
+                                  <Popover.Button
+                                    aria-label="DropDownPropertyBedBath"
+                                    name="DropDownPropertyBedBath"
+                                    className={`
+                ${open ? "" : "text-opacity-90"}
+                !w-full !h-full flex justify-between items-center rounded-md bg-white px-2 py-4 sm:text-sm hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 shadow-md lg:w-32`}
+                                  >
+                                    <span className="font-semibold">
+                                      {selectedBedroom}{" "}
+                                      {t("general.components.searchbar.bed")}
+                                      {" & "}
+                                      {selectedBathroom}{" "}
+                                      {t("general.components.searchbar.bath")}
+                                    </span>
+                                    <FaAngleDown
+                                      className={`${
+                                        open
+                                          ? "text-opacity-70"
+                                          : "text-opacity-100"
+                                      }
+                    transition duration-150 ease-in-out group-hover:text-opacity-100`}
+                                      aria-hidden="true"
+                                    />
+                                  </Popover.Button>
+                                  <Transition
+                                    as={Fragment}
+                                    enter="transition ease-out duration-200"
+                                    enterFrom="opacity-0 translate-y-1"
+                                    enterTo="opacity-100 translate-y-0"
+                                    leave="transition ease-in duration-150"
+                                    leaveFrom="opacity-100 translate-y-0"
+                                    leaveTo="opacity-0 translate-y-1"
+                                  >
+                                    <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0 lg:max-w-3xl">
+                                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                                        <div className="relative bg-white p-7 ">
+                                          <div className="grid gap-8 lg:grid-cols-2">
+                                            <div className="py-1" role="none">
+                                              <h6 className="px-4 py-2 text-lg font-semibold text-gray-700">
+                                                {t(
+                                                  "general.components.searchbar.beds"
+                                                )}
+                                              </h6>
+                                              <div className="flex flex-wrap px-4 py-1">
+                                                {[1, 2, 3, 4, 5, 6].map(
+                                                  (number) => (
+                                                    <button
+                                                      key={number}
+                                                      type="button"
+                                                      value={number}
+                                                      className={`btn-sm mx-1 rounded px-3 py-2 transition-all ${
+                                                        selectedBedroom ===
+                                                        number
+                                                          ? "bg-custom-blue text-white"
+                                                          : "bg-white text-slate-800"
+                                                      }`}
+                                                      onClick={() =>
+                                                        handleBedroomSelection(
+                                                          number
+                                                        )
+                                                      }
+                                                    >
+                                                      {number}
+                                                    </button>
+                                                  )
+                                                )}
+                                              </div>
+                                            </div>
+                                            <div className="py-1" role="none">
+                                              <h6 className="px-4 py-2 text-lg font-semibold text-gray-700">
+                                                {t(
+                                                  "general.components.searchbar.baths"
+                                                )}
+                                              </h6>
+                                              <div className="flex flex-wrap px-4 py-1">
+                                                {[1, 2, 3, 4, 5, 6].map(
+                                                  (number) => (
+                                                    <button
+                                                      key={number}
+                                                      type="button"
+                                                      value={number}
+                                                      className={`btn-sm mx-1 rounded px-3 py-2 transition-all ${
+                                                        selectedBathroom ===
+                                                        number
+                                                          ? "bg-custom-blue text-white"
+                                                          : "bg-white text-slate-800"
+                                                      }`}
+                                                      onClick={() =>
+                                                        handleBathroomSelection(
+                                                          number
+                                                        )
+                                                      }
+                                                    >
+                                                      {number}
+                                                    </button>
+                                                  )
+                                                )}
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <button
+                                            type="button"
+                                            onClick={(e) => {
+                                              setSelectedBathroom("");
+                                              setSelectedBedroom("");
+                                            }}
+                                            className="px-4 text-right underline text-custom-blue hover:text-blue-800"
+                                          >
+                                            {t(
+                                              "general.components.searchbar.reset"
+                                            )}
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </Popover.Panel>
+                                  </Transition>
+                                </>
+                              )}
+                            </Popover>
+                          </div>
+                        </div>
+
+                        <div className="relative flex-grow mx-1">
+                          <div className="relative flex items-center w-full !h-full mt-1">
+                            <Popover className="relative w-full !h-full ">
+                              {({ open, close }) => (
+                                <>
+                                  <Popover.Button
+                                    className={`
+                ${open ? "" : "text-opacity-90"}
+                !w-full !h-full flex justify-between items-center rounded-md bg-white py-4 px-2 sm:text-sm hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 shadow-md lg:w-32`}
+                                  >
+                                    {minPrice === "" || maxPrice === "" ? (
+                                      <span className="font-semibold">
+                                        {t(
+                                          "general.components.searchbar.prices"
+                                        )}
+                                      </span>
+                                    ) : (
+                                      <span className="font-semibold">{`[${minPrice} - ${maxPrice}] EGP`}</span>
+                                    )}
+                                    <FaAngleDown
+                                      className={`${
+                                        open
+                                          ? "text-opacity-70"
+                                          : "text-opacity-100"
+                                      }
+                    transition duration-150 ease-in-out group-hover:text-opacity-100`}
+                                      aria-hidden="true"
+                                      aria-label="DropDownPropertyArea"
+                                      name="DropDownPropertyArea"
+                                    />
+                                  </Popover.Button>
+                                  <Transition
+                                    as={Fragment}
+                                    enter="transition ease-out duration-200"
+                                    enterFrom="opacity-0 translate-y-1"
+                                    enterTo="opacity-100 translate-y-0"
+                                    leave="transition ease-in duration-150"
+                                    leaveFrom="opacity-100 translate-y-0"
+                                    leaveTo="opacity-0 translate-y-1"
+                                  >
+                                    <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-1/2 rounded left-1/2 sm:px-0 lg:max-w-fit ">
+                                      <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                                        <div className="relative flex bg-white p-7 ">
+                                          <div
+                                            className="px-2 py-4"
+                                            role="none"
+                                          >
+                                            <h6 className="text-lg font-semibold text-gray-700">
+                                              {t(
+                                                "general.components.searchbar.prices"
+                                              )}
+                                            </h6>
+                                            <div className="mt-2">
+                                              <div className="flex gap-2">
+                                                <div className="">
+                                                  <div className="form-floating">
+                                                    <select
+                                                      placeholder="Min. Price EGP"
+                                                      type="number"
+                                                      style={{ width: "160px" }}
+                                                      id="min_price"
+                                                      name="min_price"
+                                                      className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm form-select focus:outline-none sm:text-sm"
+                                                      value={minPrice}
+                                                      onChange={
+                                                        handleMinPriceChange
+                                                      }
+                                                    >
+                                                      <option value="">
+                                                        {t(
+                                                          "general.components.searchbar.minprice"
+                                                        )}
+                                                      </option>
+                                                      {type ===
+                                                        t(
+                                                          "general.components.searchbar.sale"
+                                                        ) &&
+                                                        pricesSale.map(
+                                                          (e, index) => {
+                                                            return (
+                                                              <option
+                                                                value={e}
+                                                                key={index}
+                                                              >
+                                                                {e}
+                                                              </option>
+                                                            );
+                                                          }
+                                                        )}
+                                                      {type ===
+                                                        t(
+                                                          "general.components.searchbar.rent"
+                                                        ) &&
+                                                        pricesRent.map(
+                                                          (e, index) => {
+                                                            return (
+                                                              <option
+                                                                value={e}
+                                                                key={index}
+                                                              >
+                                                                {e}
+                                                              </option>
+                                                            );
+                                                          }
+                                                        )}
+                                                    </select>
+                                                  </div>
+                                                </div>
+                                                <div className="">
+                                                  <div className="form-floating">
+                                                    <select
+                                                      placeholder="Max. Price EGP"
+                                                      type="number"
+                                                      style={{ width: "160px" }}
+                                                      id="max_price"
+                                                      name="max_price"
+                                                      className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm form-select focus:outline-none sm:text-sm"
+                                                      value={maxPrice}
+                                                      onChange={(e) => {
+                                                        handleMaxPriceChange(e);
+                                                        if (minPrice !== "") {
+                                                          close();
+                                                        }
+                                                      }}
+                                                    >
+                                                      <option value="">
+                                                        {t(
+                                                          "general.components.searchbar.maxprice"
+                                                        )}
+                                                      </option>
+                                                      {type ===
+                                                        t(
+                                                          "general.components.searchbar.sale"
+                                                        ) &&
+                                                        pricesSale
+                                                          .filter((e) => {
+                                                            return minPrice
+                                                              ? e > minPrice
+                                                              : e;
+                                                          })
+                                                          .map((e, i) => {
+                                                            return (
+                                                              <option
+                                                                value={e}
+                                                                key={i}
+                                                              >
+                                                                {e}
+                                                              </option>
+                                                            );
+                                                          })}
+                                                      {type ===
+                                                        t(
+                                                          "general.components.searchbar.rent"
+                                                        ) &&
+                                                        pricesRent
+                                                          .filter((e) => {
+                                                            return minPrice
+                                                              ? e > minPrice
+                                                              : e;
+                                                          })
+                                                          .map((e, i) => {
+                                                            return (
+                                                              <option
+                                                                value={e}
+                                                                key={i}
+                                                              >
+                                                                {e}
+                                                              </option>
+                                                            );
+                                                          })}
+                                                      {properties
+                                                        .filter(
+                                                          (property) =>
+                                                            property.price >
+                                                              minPrice ||
+                                                            minPrice === ""
+                                                        )
+                                                        .map((property) => (
+                                                          <option
+                                                            key={property._id}
+                                                            value={
+                                                              property.price
+                                                            }
+                                                          >
+                                                            {property.price}
+                                                          </option>
+                                                        ))}
+                                                    </select>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </Popover.Panel>
+                                  </Transition>
+                                </>
+                              )}
+                            </Popover>
+                          </div>
+                        </div>
+                        <div className="relative flex-grow mx-1">
+                          <div className="relative flex items-center w-full !h-full">
+                            <Listbox
+                              value={selectedFinishingLevel}
+                              onChange={(e) => {
+                                setSelectedFinishingLevel(e);
+                                setCountState(!countState);
+                              }}
+                            >
+                              <div className="relative w-full !h-full mt-1 hover:cursor-pointer">
+                                <Listbox.Button
+                                  className="relative flex items-center !h-full justify-between w-full px-1 py-4 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
+                                  aria-label="DropDownPropertyFinish"
+                                  name="DropDownPropertyFinish"
+                                >
+                                  <span className="block font-semibold truncate">
+                                    {selectedFinishingLevel ||
+                                      t(
+                                        "general.components.searchbar.all_finish_level"
+                                      )}
+                                  </span>
+                                  <span className="inset-y-0 right-0 flex items-center pointer-events-none">
+                                    <FaAngleDown />
+                                  </span>
+                                </Listbox.Button>
+                                <Transition
+                                  as={Fragment}
+                                  leave="transition ease-in duration-100"
+                                  leaveFrom="opacity-100"
+                                  leaveTo="opacity-0"
+                                >
+                                  <Listbox.Options className="absolute z-20 w-full mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                    {finishingLevel.map((property) => (
+                                      <Listbox.Option
+                                        key={property._id}
+                                        className={({ active }) =>
+                                          `relative cursor-default select-none py-2 pl-8 pr-4 ${
+                                            active
+                                              ? "bg-teal-700 text-white"
+                                              : "bg-gray-700 text-white mb-[1px]"
+                                          }`
+                                        }
+                                        value={
+                                          isArabic
+                                            ? property.nameAr
+                                            : property.name
+                                        }
+                                      >
+                                        {({ selected }) => (
+                                          <>
+                                            <span
+                                              className={`block truncate ${
+                                                selected
+                                                  ? "font-medium"
+                                                  : "font-normal"
+                                              }`}
+                                            >
+                                              {isArabic
+                                                ? property.nameAr
+                                                : property.name}
+                                            </span>
+                                            {selected ? (
+                                              <span className="absolute inset-y-0 left-0 flex items-center text-teal-600">
+                                                <FaCheckCircle className="text-teal-700" />
+                                              </span>
+                                            ) : null}
+                                          </>
+                                        )}
+                                      </Listbox.Option>
+                                    ))}
+                                  </Listbox.Options>
+                                </Transition>
+                              </div>
+                            </Listbox>
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap justify-center mt-3">
+                          {/* Area Dropdown */}
+                          <div className="flex flex-col gap-2 md:flex-row md:justify-center">
+                            <input
+                              type="number"
+                              placeholder="Min Area (sqm)"
+                              onChange={(e) =>
+                                setSelectedMinPropertyArea(e.target.value)
+                              }
+                            />
+                            <input
+                              type="number"
+                              placeholder="Max Area (sqm)"
+                              onChange={(e) =>
+                                setSelectedMaxPropertyArea(e.target.value)
+                              }
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {/*footer*/}
+                      <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                        <button
+                          className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                          type="button"
+                          onClick={() => setShowModal(false)}
+                        >
+                          {isArabic ? "الغاء" : "Close"}
+                        </button>
+                        <button
+                          className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                          type="button"
+                          onClick={(e) => {setShowModal(false); handleSearchSubmit(e);} }
+                        >
+                          {isArabic ? "تأكيد" : "Search"}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+              </>
+            ) : null}
+          </>
+        </div>
       </div>
     </div>
   );
 }
 
 export default Searchbar;
-

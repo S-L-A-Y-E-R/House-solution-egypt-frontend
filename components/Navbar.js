@@ -267,7 +267,7 @@ const Navbar = ({ url }) => {
               } flex lg:pt-0 list-reset`}
             >
               <li>
-                <Link href={isArabic ? "/إيجار" : "/rent"}>
+                <Link href={isArabic ? "/إيجار" : "/rent/properties"}>
                   <span
                     className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${
                       isArabic ? "text-right" : ""
@@ -278,7 +278,7 @@ const Navbar = ({ url }) => {
                 </Link>
               </li>
               <li>
-                <Link href={isArabic ? "/بيع" : "/sale"}>
+                <Link href={isArabic ? "/بيع" : "/sale/properties"}>
                   <span
                     className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${
                       isArabic ? "text-right" : ""

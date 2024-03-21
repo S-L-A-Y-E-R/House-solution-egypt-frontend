@@ -32,7 +32,7 @@ function SideSectionBlog() {
 
   return (
     <div className="mb-3 row" dir={isArabic ? "rtl" : "ltr"}>
-      <h4 className="font-semibold text-2xl">{t("pages.blog.topics")}</h4>
+      <h2 className="font-semibold text-2xl">{t("pages.blog.topics")}</h2>
       <div className="mt-4 flex flex-col">
         {Array.from(uniqueTopics.values()).map(
           (selectedBlog) =>
@@ -55,7 +55,7 @@ function SideSectionBlog() {
       </div>
 
       <div className="mt-2 p-2">
-        <h4 className="font-semibold text-2xl">{t("pages.blog.tags")}</h4>
+        <h2 className="font-semibold text-2xl">{t("pages.blog.tags")}</h2>
         <div className="mt-4 flex flex-wrap">
           {blogsData.map((blog) => {
             // Split keywords into an array

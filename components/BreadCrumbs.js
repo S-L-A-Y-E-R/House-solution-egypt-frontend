@@ -71,7 +71,7 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
     });
   }
   return (
-    <div className="flex flex-col flex-wrap md:flex-row text-xs md:text-base w-full px-20" dir={isArabic ? "rtl":"ltr"}>
+    <div className="flex flex-col flex-wrap md:flex-row text-xs md:text-base w-full  px-0 lg:px-20" dir={isArabic ? "rtl":"ltr"}>
       <Head>
         <script
           type="application/ld+json"
