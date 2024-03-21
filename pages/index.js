@@ -83,7 +83,7 @@ export default function Home({
         <>
           <Head>
             <title>{meta.title}</title>
-            <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
+            <link rel="canonical" href={WEBSITE_BASE_URL + "/images/logohouse.png"} key="canonical" />
             <meta name="description" content={meta.description} />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
 

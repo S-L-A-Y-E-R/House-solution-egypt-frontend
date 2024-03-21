@@ -118,7 +118,7 @@ function Index(props) {
         <title>{`${meta.title}`} </title>
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : "/reads"}
+          href={WEBSITE_BASE_URL }
           key="canonical"
         />
         <meta name='keywords' content={meta.keywords} />

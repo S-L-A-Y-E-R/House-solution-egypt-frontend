@@ -229,14 +229,7 @@ const PropertyTypePage = ({
             />
             <meta property="og:site_name" content="House Point Egypt" />
 
-            <link
-              rel="canonical"
-              href={
-                WEBSITE_BASE_URL +
-                `${isArabic ? "/ar/" : "/"}${type}/${propertyType}`
-              }
-              key="canonical"
-            />
+            <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
 
             {isArabic && (
