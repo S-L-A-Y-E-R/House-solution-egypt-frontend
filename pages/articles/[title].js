@@ -123,6 +123,7 @@ function BlogDetails({
     <>
       <Head>
         <title>{`${metaTitle && "articles | " + metaTitle.slice(0,10)}`}</title>
+        <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/articles"}

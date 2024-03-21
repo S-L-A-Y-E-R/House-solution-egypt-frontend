@@ -58,7 +58,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles }) {
   useEffect(() => {
     // Fetch blog post data from the API
     axios
-      .get(`${API_BASE_URL}/blog/topics/${topic.replaceAll('-',' ')}`, {
+      .get(`${API_BASE_URL}/blog/topics/${topic.replaceAll('-', ' ')}`, {
         headers: {
           "accept-language": locale,
         },
@@ -93,6 +93,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles }) {
     <>
       <Head>
         <title>{topic && "Blogs | " + topic}</title>
+        <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/contact"}

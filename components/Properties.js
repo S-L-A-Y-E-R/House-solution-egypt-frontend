@@ -52,7 +52,9 @@ function Properties() {
               <div className="relative cursor-zoom-in">
                 <div className="aspect-[3/2] relative z-auto">
                   <div data-rmiz-wrap="visible" style={{ width: "100%", height: "100%" }}>
-                    <Link href={`/properties/${type}/${property._id}`}>
+                    <Link href={`/properties/${type}/${property._id}`}
+                      rel="noopener noreferrer"
+                    >
                       <img
                         src={property.images}
                         alt="Property Photo"
@@ -76,7 +78,9 @@ function Properties() {
                         refNumber: {property.refNumber}
                       </span>
                     </div>
-                    <Link href={`/properties/${property._id}`}>
+                    <Link href={`/properties/${property._id}`}
+                      rel="noopener noreferrer"
+                    >
                       <div className="flex items-center">
                         {[...Array(5)].map((_, index) => (
                           <svg
@@ -168,17 +172,23 @@ function Properties() {
               <div className="relative">
                 <div className="px-5 py-5 flex items-center justify-between bg-[#095668]">
                   <div>
-                    <Link href={`/properties/${property._id}`}>
+                    <Link href={`/properties/${property._id}`}
+                      rel="noopener noreferrer"
+                    >
                       <h3 className="text-lg font-semibold w-30">{isArabic ? property.titleAr : property.title}</h3>
                     </Link>
-                    <Link href={`/properties/${property._id}`}>
+                    <Link href={`/properties/${property._id}`}
+                      rel="noopener noreferrer"
+                    >
                       <p className="truncate w-20 mt-1 text-sm text-gray-500">
                         {isArabic ? property.locationAr : property.location}
                       </p>
                     </Link>
                   </div>
                   <div>
-                    <Link href={`/properties/${property._id}`}>
+                    <Link href={`/properties/${property._id}`}
+                      rel="noopener noreferrer"
+                    >
                       <button className="bg-[#c5b59e] text-[#095668] mr-16 mb-4 flex flex-col items-center justify-center px-2 py-1.5 w-20 h-20 text-sm font-medium ml-3  transition-colors duration-200 transform border rounded-full border-[#c5b59e]">
                         <span>{property.price.toLocaleString()}</span>
                         <span className="text-xs">EGP</span>
@@ -190,7 +200,9 @@ function Properties() {
 
               {/* Property Features */}
               <div className="flex text-sm border-t bg-[#095668] border-[#c5b59e] divide-x divide-gray-200">
-                <Link href={`/properties/${property._id}`}>
+                <Link href={`/properties/${property._id}`}
+                  rel="noopener noreferrer"
+                >
                   <div className="flex font-semibold items-center justify-center flex-1 ml-2 mr-4 px-2 py-3 text-black">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +216,9 @@ function Properties() {
                   </div>
                 </Link>
 
-                <Link href={`/properties/${property._id}`}>
+                <Link href={`/properties/${property._id}`}
+                  rel="noopener noreferrer"
+                >
                   <div className="flex font-semibold items-center justify-center flex-1 mx-4 px-2 py-3 text-black">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M96 77.3c0-7.3 5.9-13.3 13.3-13.3c3.5 0 6.9 1.4 9.4 3.9l14.9 14.9C130 91.8 128 101.7 128 112c0 19.9 7.2 38 19.2 52c-5.3 9.2-4 21.1 3.8 29c9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9c-7.9-7.9-19.8-9.1-29-3.8C246 39.2 227.9 32 208 32c-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0C66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3zM32 352v16c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V464H384v16c0 17.7 14.3 32 32 32s32-14.3 32-32V439.6c19.6-17.6 32-43.1 32-71.6V352H32z" /></svg>
 
@@ -212,7 +226,9 @@ function Properties() {
                   </div>
                 </Link>
 
-                <Link href={`/properties/${property._id}`}>
+                <Link href={`/properties/${property._id}`}
+                  rel="noopener noreferrer"
+                >
                   <div className="flex font-semibold items-center justify-center flex-1 mx-4 px-2 py-3 text-black">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -248,8 +264,8 @@ function Properties() {
               <button
                 key={index + 1}
                 className={`flex items-center justify-center w-10 h-10 rounded-md ${currentPage === index + 1
-                    ? "text-white bg-[#095668]"
-                    : "text-[#095668] bg-gray-400"
+                  ? "text-white bg-[#095668]"
+                  : "text-[#095668] bg-gray-400"
                   } focus:outline-none`}
                 onClick={() => handlePageChange(index + 1)}
               >

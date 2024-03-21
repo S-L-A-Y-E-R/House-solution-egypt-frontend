@@ -124,6 +124,7 @@ function BlogDetails({
     <>
       <Head>
         <title>{`${metaTitle && "Articles | " + metaTitle}`}</title>
+        <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/articles"}

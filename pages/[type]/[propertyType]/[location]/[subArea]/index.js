@@ -240,6 +240,7 @@ const LocationPage = ({
                 " " +
                 `${meta ? meta.title : isArabic ? titleAR : titleEN}`}
             </title>
+            <meta name="robots" content="index, follow" />
             <meta property="og:site_name" content="House Point Egypt - Real Estate" />
 
             <meta

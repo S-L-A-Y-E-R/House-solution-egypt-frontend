@@ -73,7 +73,9 @@ export default function ContactUs({
         <button className="flex items-center w-1/3 gap-1 px-1 py-1 font-semibold text-white rounded bg-custom-blue">
           {" "}
           <Image src="/assets/phone.png" alt="phone" width="25" height="25" />
-          <Link href={"tel:+201221409530"}>
+          <Link href={"tel:+201221409530"}
+            rel="noreferrer noopener"
+          >
             {t("pages.property.components.contact_us.call")}
           </Link>
         </button>
@@ -95,11 +97,12 @@ export default function ContactUs({
                     <img
                       src={PROPERTY_BASE_URL + propertyImage.image}
                       className="w-1/3"
+                      alt="property"
                     />
                     <div className="flex flex-col items-start gap-2">
                       <h5 className="text-start">{propertyTitle}</h5>
                       <p className="text-lg font-semibold">
-                        {}
+                        { }
                         {currency == "USD" &&
                           Number(
                             propertyPrice * liveCurrency.USD
@@ -156,9 +159,8 @@ export default function ContactUs({
                 </Popover.Panel>
               </Transition>
               <Popover.Button
-                className={`${
-                  open ? "" : "text-opacity-90"
-                } flex gap-1 items-center hover:text-opacity-100 focus:outline-none focus-visible:ring-2 h-full focus-visible:ring-white focus-visible:ring-opacity-75 px-1 py-1 font-semibold text-white rounded w-full bg-custom-blue`}
+                className={`${open ? "" : "text-opacity-90"
+                  } flex gap-1 items-center hover:text-opacity-100 focus:outline-none focus-visible:ring-2 h-full focus-visible:ring-white focus-visible:ring-opacity-75 px-1 py-1 font-semibold text-white rounded w-full bg-custom-blue`}
                 key="Email Button"
               >
                 <Image

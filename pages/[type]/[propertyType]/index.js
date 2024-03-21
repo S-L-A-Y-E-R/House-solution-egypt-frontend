@@ -126,69 +126,62 @@ const PropertyTypePage = ({
       });
   }, []);
 
-  const titleEN = `${
-    propertyType && propertyType !== "properties"
+  const titleEN = `${propertyType && propertyType !== "properties"
       ? t(
-          propertyType.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        )
-      : "Property Types"
-  } ${
-    type && type !== "for-rent-or-sale"
-      ? " For " +
-        type.replace(/\w\S*/g, function (txt) {
+        propertyType.replace(/\w\S*/g, function (txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         })
+      )
+      : "Property Types"
+    } ${type && type !== "for-rent-or-sale"
+      ? " For " +
+      type.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
       : ""
-  }
-    ${
-      location && location !== "location"
-        ? " In " +
-          location.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        : ""
     }
-    ${
-      subArea
-        ? " , " +
-          subArea.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        : ""
+    ${location && location !== "location"
+      ? " In " +
+      location.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
+    }
+    ${subArea
+      ? " , " +
+      subArea.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
     } In Cairo, Egypt`;
   const titleAR = `${t(
     propertyType && propertyType !== "عقارات"
       ? propertyType.replace(/\w\S*/g, function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        })
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
       : "عقارات"
   )}
-    ${
-      type && type !== "للإيجار أو البيع"
-        ? " لل" +
-          type.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        : ""
+    ${type && type !== "للإيجار أو البيع"
+      ? " لل" +
+      type.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
     }
-      ${
-        location && location !== "منطقة"
-          ? " في " +
-            location.replace(/\w\S*/g, function (txt) {
-              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            })
-          : ""
-      }
-      ${
-        subArea
-          ? " في " +
-            subArea.replace(/\w\S*/g, function (txt) {
-              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            })
-          : ""
-      } في القاهرة و مصر`;
+      ${location && location !== "منطقة"
+      ? " في " +
+      location.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
+    }
+      ${subArea
+      ? " في " +
+      subArea.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
+    } في القاهرة و مصر`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -215,6 +208,7 @@ const PropertyTypePage = ({
                 " " +
                 `${meta ? meta.title : isArabic ? titleAR : titleEN}`}
             </title>
+            <meta name="robots" content="index, follow" />
             <meta
               name="description"
               content={
@@ -223,8 +217,8 @@ const PropertyTypePage = ({
                 (meta && meta.description
                   ? meta.description
                   : isArabic
-                  ? titleAR
-                  : titleEN)
+                    ? titleAR
+                    : titleEN)
               }
             />
             <meta property="og:site_name" content="House Point Egypt - Real Estate" />

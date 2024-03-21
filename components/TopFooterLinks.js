@@ -35,7 +35,9 @@ function TopFooterLinks() {
       <div className="grid w-full grid-cols-2">
         {links.map((link, index) => (
           <div key={index} className="w-full pl-2 pr-2 " title={isArabic ? link.titleAr : link.title}>
-            <Link href={isArabic ? link.linkAr : link.link} className="flex items-center gap-2 hover:underline w-fit">
+            <Link href={isArabic ? link.linkAr : link.link} className="flex items-center gap-2 hover:underline w-fit"
+              rel='noreferrer noopener'
+            >
               <FaLink />
               <span className="font-semibold text-custom-blue w-fit">
                 {isArabic ? link.titleAr : link.title}

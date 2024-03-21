@@ -117,6 +117,7 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
     <>
       <Head>
         <title>{tag && "Blogs | " + tag}</title>
+        <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/contact"}

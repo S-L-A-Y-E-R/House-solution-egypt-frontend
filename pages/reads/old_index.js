@@ -91,6 +91,7 @@ function Index(props) {
     <>
       <Head>
         <title>{`${meta.title}`} </title>
+        <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : "/reads"}
