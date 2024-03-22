@@ -91,7 +91,6 @@ export async function getServerSideProps(context) {
       properties: filteredProperties,
       metaProperties: responseProperties.data.meta,
       link,
-      article: response.data.article,
     },
   };
 }

@@ -77,7 +77,6 @@ function Index(props) {
 
 
 
-
   useEffect(() => {
     // Fetch blog post data from the API
     fetch(`${API_BASE_URL}/blog/?page=${currentPage}&limit=9`, {
