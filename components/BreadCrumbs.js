@@ -20,6 +20,15 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
         item: WEBSITE_BASE_URL,
       },
     ],
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
   if (type) {
     orgSchema.itemListElement.push({

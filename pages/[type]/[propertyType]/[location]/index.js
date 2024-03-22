@@ -143,69 +143,62 @@ const LocationPage = ({
       });
   }, []);
 
-  const titleEN = `${
-    propertyType && propertyType !== "properties"
+  const titleEN = `${propertyType && propertyType !== "properties"
       ? t(
-          propertyType.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        )
-      : "Property Types"
-  } ${
-    type && type !== "for-rent-or-sale"
-      ? " For " +
-        type.replace(/\w\S*/g, function (txt) {
+        propertyType.replace(/\w\S*/g, function (txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         })
+      )
+      : "Property Types"
+    } ${type && type !== "for-rent-or-sale"
+      ? " For " +
+      type.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
       : ""
-  }
-    ${
-      location && location !== "location"
-        ? " In " +
-          location.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        : ""
     }
-    ${
-      subArea
-        ? " , " +
-          subArea.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        : ""
+    ${location && location !== "location"
+      ? " In " +
+      location.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
+    }
+    ${subArea
+      ? " , " +
+      subArea.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
     } In Cairo, Egypt`;
   const titleAR = `${t(
     propertyType && propertyType !== "عقارات"
       ? propertyType.replace(/\w\S*/g, function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        })
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
       : "عقارات"
   )}
-    ${
-      type && type !== "للإيجار أو البيع"
-        ? " لل" +
-          type.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        : ""
+    ${type && type !== "للإيجار أو البيع"
+      ? " لل" +
+      type.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
     }
-      ${
-        location && location !== "منطقة"
-          ? " في " +
-            location.replace(/\w\S*/g, function (txt) {
-              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            })
-          : ""
-      }
-      ${
-        subArea
-          ? " في " +
-            subArea.replace(/\w\S*/g, function (txt) {
-              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            })
-          : ""
-      } في القاهرة و مصر`;
+      ${location && location !== "منطقة"
+      ? " في " +
+      location.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
+    }
+      ${subArea
+      ? " في " +
+      subArea.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
+    } في القاهرة و مصر`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -221,6 +214,15 @@ const LocationPage = ({
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75",
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
 
   return (
