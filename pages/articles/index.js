@@ -12,9 +12,8 @@ import Head from "next/head";
 import { WEBSITE_BASE_URL } from "@/config";
 import i18n from "@/i18n";
 import Article from "@/components/Blog/Article";
-import blogStyle from '@/styles/BlogIndex.module.css'
+import blogStyle from "@/styles/BlogIndex.module.css";
 import PaginationSlide from "@/components/Pagination";
-
 
 export async function getServerSideProps(context) {
   let link = `/reads`;
@@ -42,17 +41,19 @@ export async function getServerSideProps(context) {
 
   const countPosts = await fetch(`${API_BASE_URL}/blog/count`, {
     headers: {
-      "accept-langunage": locale === "ar" ? "ar" : "en"
+      "accept-langunage": locale === "ar" ? "ar" : "en",
     },
-  }).then((res) => {
-    return res.json()
-  }).then((data) => {
-    let arr = []
-        for(let i =1; i <= Math.ceil(data.count / 9); i++) {
-          arr.push(i)
-        }
-    return arr
   })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      let arr = [];
+      for (let i = 1; i <= Math.ceil(data.count / 9); i++) {
+        arr.push(i);
+      }
+      return arr;
+    });
 
   i18n.changeLanguage(locale);
 
@@ -70,31 +71,28 @@ export async function getServerSideProps(context) {
 
 function Index(props) {
   const router = useRouter();
-  let page = router.query.page && router.query.page > 0 ? Number(router.query.page) : 1
+  let page =
+    router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
   const { t, i18n } = useTranslation();
   const [blogPosts, setBlogPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(page)
-  const { meta, initialLocale, changeLang, isArabic, titles, pages } = props
+  const [currentPage, setCurrentPage] = useState(page);
+  const { meta, initialLocale, changeLang, isArabic, titles, pages } = props;
   const locale = initialLocale || router.locale;
-  
-
-
 
   useEffect(() => {
     // Fetch blog post data from the API
     fetch(`${API_BASE_URL}/blog/?page=${currentPage}&limit=9`, {
       headers: {
         "accept-language": locale,
-      }
-    }).then((res) => {
-      return res.json()
-    }).then((data) => {
-      setBlogPosts(data);
+      },
     })
-  },[currentPage])
-
-
-  
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setBlogPosts(data);
+      });
+  }, [currentPage]);
 
   const schema = {
     "@context": "https://schema.org",
@@ -109,20 +107,20 @@ function Index(props) {
     "@type": "Organization",
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
-    logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75",
+    logo:
+      WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75",
   };
-  
+
   return (
     <>
       <Head>
         <title>{`${meta.title}`} </title>
-        <link
-          rel="canonical"
-          href={WEBSITE_BASE_URL }
-          key="canonical"
+        <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
+        <meta name="keywords" content={meta.keywords} />
+        <meta
+          name="description"
+          content={meta && meta.description.slice(0, 160)}
         />
-        <meta name='keywords' content={meta.keywords} />
-        <meta name="description" content={meta && meta.description.slice(0,160)} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -171,14 +169,14 @@ function Index(props) {
           }
         />
         <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-            />
-        
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+
         <meta name="robots" content="index, follow" />
       </Head>
       <div
@@ -201,9 +199,10 @@ function Index(props) {
                 </>
               )}
               <div className={blogStyle.container}>
-                {blogPosts && blogPosts.map((post,index) => (
-                  <Article key={index} post={post} isArabic={isArabic} />
-                ))}
+                {blogPosts &&
+                  blogPosts.map((post, index) => (
+                    <Article key={index} post={post} isArabic={isArabic} />
+                  ))}
               </div>
             </div>
 
@@ -216,11 +215,16 @@ function Index(props) {
             )}
           </div>
         </div>
-        {
-          pages && page && <PaginationSlide currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages} page={page} />
-        }
+        {pages && page && (
+          <PaginationSlide
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            pages={pages}
+            page={page}
+          />
+        )}
+        <div className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto" dangerouslySetInnerHTML={{__html:meta?.article }}/>
         <div className="mt-auto">
-        
           <Footer />
         </div>
       </div>
@@ -229,4 +233,3 @@ function Index(props) {
 }
 
 export default Index;
-

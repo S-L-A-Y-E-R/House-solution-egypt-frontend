@@ -11,10 +11,8 @@ import QR from "@/components/Home/QR";
 import Head from "next/head";
 import i18n from "@/i18n";
 import Article from "@/components/Blog/Article";
-import blogStyle from '@/styles/BlogIndex.module.css'
+import blogStyle from "@/styles/BlogIndex.module.css";
 import PaginationSlide from "@/components/Pagination";
-
-
 
 export async function getServerSideProps(context) {
   const { locale, params } = context;
@@ -43,19 +41,19 @@ export async function getServerSideProps(context) {
   i18n.changeLanguage(locale);
 
   const countPosts = await axios
-  .get(`${API_BASE_URL}/blog/topics/${params.topic}`, {
-    headers: {
-      "accept-language": locale,
-    },
-  })
-  .then((response) => {
-    let arr = []
-    for(let i =1; i <= Math.ceil(response.data.length / 9); i++) {
-      arr.push(i)
-    }
-    return arr
-  })
-  .catch((error) => console.log(error));
+    .get(`${API_BASE_URL}/blog/topics/${params.topic}`, {
+      headers: {
+        "accept-language": locale,
+      },
+    })
+    .then((response) => {
+      let arr = [];
+      for (let i = 1; i <= Math.ceil(response.data.length / 9); i++) {
+        arr.push(i);
+      }
+      return arr;
+    })
+    .catch((error) => console.log(error));
 
   return {
     props: {
@@ -71,8 +69,9 @@ export async function getServerSideProps(context) {
 
 function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   const router = useRouter();
-  let page = router.query.page && router.query.page > 0 ? Number(router.query.page) : 1
-  const [currentPage, setCurrentPage] = useState(page)
+  let page =
+    router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
+  const [currentPage, setCurrentPage] = useState(page);
   const { t, i18n } = useTranslation();
   const { topic } = router.query;
   const [blogPosts, setBlogPosts] = useState([]);
@@ -87,10 +86,11 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
         },
       })
       .then((response) => {
+        console.log(response);
         setBlogPosts(response.data);
       })
       .catch((error) => console.log(error));
-  }, [currentPage ]);
+  }, [currentPage]);
 
   if (!blogPosts) {
     return <div>Loading...</div>;
@@ -181,11 +181,11 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
         <div className="w-full h-full bg-cover bg-center py-4 text-black flex flex-col items-center font-sans flex-1">
           <div className="w-full px-6 flex flex-col lg:flex-row flex-1">
             <div className="flex-1">
-            <h1 className="ltr:text-left rtl:text-right order-1 mb-4 font-sans text-lg font-semibold sm:text-xl md:text-2xl lg:text-4xl border-b border-gray-300 pb-4">
-              reads about {topic.replaceAll('-', ' ').replaceAll('_qm_', '?')}
+              <h1 className="ltr:text-left rtl:text-right order-1 mb-4 font-sans text-lg font-semibold sm:text-xl md:text-2xl lg:text-4xl border-b border-gray-300 pb-4">
+                reads about {topic.replaceAll("-", " ").replaceAll("_qm_", "?")}
               </h1>
               <p className="ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg">
-                {titles && titles.length > 0 ? titles[0]: null}
+                {titles && titles.length > 0 ? titles[0] : null}
               </p>
               <div className={blogStyle.container}>
                 {blogPosts.map((post, index) => (
@@ -201,9 +201,20 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
             </div>
           </div>
         </div>
-        {
-          pages && page && <PaginationSlide currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages} page={page} queryParam={topic} />
-        }
+        {pages && page && (
+          <PaginationSlide
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            pages={pages}
+            page={page}
+            queryParam={topic}
+          />
+        )}
+        <div
+          className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto"
+          dangerouslySetInnerHTML={{ __html: meta?.article }}
+        />
+
         <div className="mt-auto">
           <Footer />
         </div>
@@ -213,4 +224,3 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
 }
 
 export default Topic;
-

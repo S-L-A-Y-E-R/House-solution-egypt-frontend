@@ -22,6 +22,8 @@ export async function getServerSideProps(context) {
 
   if (locale == "ar") link += `ar`;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
+  
+
   const fetchSale = await axios.get(
     `${API_BASE_URL}/property/getproperties?type=sale`
   );
@@ -59,6 +61,7 @@ export default function Home({
   const { t, i18n: ii18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(initialLocale);
+    
   }, []);
 
   const schema = {
@@ -177,10 +180,11 @@ export default function Home({
           title={i18n.language === "en" ? titles[2]?.title : titles[2]?.titleAr}
           type="sale"
         />
+        <div className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto" dangerouslySetInnerHTML={{__html:meta.article }}/>
         <LatestBlogs />
         <TopFooterLinks />
         <PrimeLocations />
-
+        
         <div className="mt-32">
           <Footer />
         </div>

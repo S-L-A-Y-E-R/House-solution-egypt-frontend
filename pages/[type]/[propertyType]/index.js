@@ -81,7 +81,6 @@ export async function getServerSideProps(context) {
   const url = `${API_BASE_URL}/property/getproperties?${queryParams.join("&")}`;
   const responseProperties = await axios.get(url);
   const filteredProperties = responseProperties.data.properties;
-
   return {
     props: {
       meta: response.data.meta,
@@ -92,6 +91,7 @@ export async function getServerSideProps(context) {
       properties: filteredProperties,
       metaProperties: responseProperties.data.meta,
       link,
+      article: response.data.article,
     },
   };
 }
@@ -227,7 +227,10 @@ const PropertyTypePage = ({
                   : titleEN)
               }
             />
-            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
+            <meta
+              property="og:site_name"
+              content="House Point Egypt - Real Estate"
+            />
 
             <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
@@ -312,6 +315,11 @@ const PropertyTypePage = ({
           title={i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr}
           meta={metaProperties}
         />
+        <div
+          className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto"
+          dangerouslySetInnerHTML={{ __html: meta?.article }}
+        />
+
         <div className="mt-16">
           <Footer />
         </div>
