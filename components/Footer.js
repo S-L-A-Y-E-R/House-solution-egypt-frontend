@@ -83,7 +83,7 @@ const Footer = () => {
                 height="35"
               />
             </a>
-            <a href="https://www.linkedin.com/" title="Linkedin">
+            <a href="https://www.linkedin.com/in/housepointegyptrealestate" title="Linkedin">
               <Image
                 src="/assets/linkedin.png"
                 alt="linkedin icon"
@@ -139,7 +139,7 @@ const Footer = () => {
             {footerLinks.map((link, index) => (
               <li key={index} className="flex items-center underline">
                 <a
-                  href={isArabic && link ? '/ar/'+link.linkAr : link.link}
+                  href={isArabic && link ? '/ar/' + link.linkAr : link.link}
                   className="flex items-center gap-2"
                 >
                   <Image
