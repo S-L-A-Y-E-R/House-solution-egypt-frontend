@@ -39,6 +39,7 @@ export default function ContactUs({
   const [email, setEmail] = useState(``);
   const [mobile, setMobile] = useState(``);
   const [loading, setLoading] = useState(false);
+  console.log(API_BASE_URL);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
