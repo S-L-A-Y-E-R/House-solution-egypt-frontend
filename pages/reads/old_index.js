@@ -12,7 +12,7 @@ import Head from "next/head";
 import { WEBSITE_BASE_URL } from "@/config";
 import i18n from "@/i18n";
 import Article from "@/components/Blog/Article";
-import blogStyle from '@/styles/BlogIndex.module.css'
+import blogStyle from '@/styles/BlogIndex.module.css';
 
 export async function getServerSideProps(context) {
   let link = `/articles`;
@@ -54,7 +54,7 @@ export async function getServerSideProps(context) {
 function Index(props) {
   const { t, i18n } = useTranslation();
   const [blogPosts, setBlogPosts] = useState([]);
-  const { meta, initialLocale, changeLang, isArabic, titles } = props
+  const { meta, initialLocale, changeLang, isArabic, titles } = props;
   const router = useRouter();
   const locale = initialLocale || router.locale;
 
@@ -86,11 +86,21 @@ function Index(props) {
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75",
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
   return (
     <>
       <Head>
         <title>{`${meta.title}`} </title>
+        <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : "/reads"}
@@ -146,14 +156,14 @@ function Index(props) {
           }
         />
         <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-            />
-        
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+
         <meta name="robots" content="index, follow" />
       </Head>
       <div
@@ -176,7 +186,7 @@ function Index(props) {
                 </>
               )}
               <div className={blogStyle.container}>
-                {blogPosts.map((post,index) => (
+                {blogPosts.map((post, index) => (
                   <Article key={index} post={post} isArabic={isArabic} />
                 ))}
               </div>

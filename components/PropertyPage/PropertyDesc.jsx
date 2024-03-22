@@ -553,7 +553,9 @@ export default function PropertyDesc({
                 return (
                   <div className="px-2 text-white rounded hover:underline bg-custom-blue">
                     {
-                      <Link href={tag.link} className="hover:underline">
+                      <Link href={tag.link} className="hover:underline"
+                        rel="noopener noreferrer"
+                      >
                         #
                         {tag.name
                           .split("-")
@@ -586,7 +588,9 @@ export default function PropertyDesc({
                 return (
                   <div className="px-2 text-white rounded bg-custom-blue">
                     {
-                      <Link href={tag.linkAr} className="hover:underline">
+                      <Link href={tag.linkAr} className="hover:underline"
+                        rel="noopener noreferrer"
+                      >
                         #
                         {tag.nameAr
                           .split("-")

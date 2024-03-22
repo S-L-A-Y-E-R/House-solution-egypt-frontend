@@ -11,7 +11,7 @@ import QR from "@/components/Home/QR";
 import Head from "next/head";
 import i18n from "@/i18n";
 import Article from "@/components/Blog/Article";
-import blogStyle from "@/styles/BlogIndex.module.css";
+import blogStyle from '@/styles/BlogIndex.module.css'
 import PaginationSlide from "@/components/Pagination";
 
 export async function getServerSideProps(context) {
@@ -109,12 +109,22 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75",
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
 
   return (
     <>
       <Head>
         <title>{topic && "Blogs | " + topic}</title>
+        <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/contact"}

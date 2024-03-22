@@ -102,6 +102,15 @@ function PropertyDetails({
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75",
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
   const realSchema = {
     "@context": "https://schema.org",
@@ -114,22 +123,18 @@ function PropertyDetails({
     "@id": "mainEntity",
     name: isArabic ? propertyDetails.titleAr : propertyDetails.title,
     description: propertyDetails && propertyDetails.descriptionAr ?
-    isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
-    : isArabic ? propertyDetails.titleAr : propertyDetails.title,
-    image: WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image+'&w=3840&q=30',
+      isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
+      : isArabic ? propertyDetails.titleAr : propertyDetails.title,
+    image: WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image + '&w=3840&q=30',
     url:
       WEBSITE_BASE_URL +
-      `${
-        isArabic ? "/ar" : ""
-      }/${type}/${propertyType}/${location}/${subArea}/${
-        isArabic ? propertyDetails.titleAr : propertyDetails.title
+      `${isArabic ? "/ar" : ""
+      }/${type}/${propertyType}/${location}/${subArea}/${isArabic ? propertyDetails.titleAr : propertyDetails.title
       }`,
     tourBookingPage:
       WEBSITE_BASE_URL +
-      `${
-        isArabic ? "/ar" : ""
-      }/${type}/${propertyType}/${location}/${subArea}/${
-        isArabic ? propertyDetails.titleAr : propertyDetails.title
+      `${isArabic ? "/ar" : ""
+      }/${type}/${propertyType}/${location}/${subArea}/${isArabic ? propertyDetails.titleAr : propertyDetails.title
       }`,
     numberOfBathroomsTotal: propertyDetails.baths,
     numberOfBedrooms: propertyDetails.beds,
@@ -351,9 +356,10 @@ function PropertyDetails({
         <>
           <Head>
             <meta property="og:url" content={fullUrl} />
+            <meta name="robots" content="index, follow" />
             <meta
               property="og:image"
-              content={WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image+'&w=3840&q=30'}
+              content={WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image + '&w=3840&q=30'}
             />
             <meta
               property="og:image:alt"
@@ -363,7 +369,7 @@ function PropertyDetails({
 
             <meta
               property="og:image:secure_url"
-              content={WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image+'&w=3840&q=30'}
+              content={WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image + '&w=3840&q=30'}
             />
             <meta name="keywords" content={keywordsOfPropeties} />
 
@@ -374,8 +380,8 @@ function PropertyDetails({
               name="description"
               content={
                 propertyDetails && propertyDetails.descriptionAr ?
-                isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
-                : isArabic ? propertyDetails.titleAr : propertyDetails.title
+                  isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
+                  : isArabic ? propertyDetails.titleAr : propertyDetails.title
               }
             />
             <link rel="canonical" href={fullUrl} key="canonical" />
@@ -430,8 +436,8 @@ function PropertyDetails({
               property="og:description"
               content={
                 propertyDetails && propertyDetails.descriptionAr ?
-                isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
-                : isArabic ? propertyDetails.titleAr : propertyDetails.title
+                  isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
+                  : isArabic ? propertyDetails.titleAr : propertyDetails.title
               }
             />
 
@@ -452,13 +458,13 @@ function PropertyDetails({
               name="twitter:description"
               content={
                 propertyDetails && propertyDetails.descriptionAr ?
-                isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
-                : isArabic ? propertyDetails.titleAr : propertyDetails.title
+                  isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
+                  : isArabic ? propertyDetails.titleAr : propertyDetails.title
               }
             />
             <meta
               name="twitter:image"
-              content={WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image+'&w=3840&q=30'}
+              content={WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image + '&w=3840&q=30'}
             />
 
             <meta name="robots" content="index, follow" />

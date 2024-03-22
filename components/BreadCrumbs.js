@@ -20,6 +20,15 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
         item: WEBSITE_BASE_URL,
       },
     ],
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
   if (type) {
     orgSchema.itemListElement.push({
@@ -71,7 +80,7 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
     });
   }
   return (
-    <div className="flex flex-col flex-wrap md:flex-row text-xs md:text-base w-full  px-0 lg:px-20" dir={isArabic ? "rtl":"ltr"}>
+    <div className="flex flex-col flex-wrap md:flex-row text-xs md:text-base w-full  px-0 lg:px-20" dir={isArabic ? "rtl" : "ltr"}>
       <Head>
         <script
           type="application/ld+json"
@@ -79,7 +88,9 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
         />
       </Head>
       <div className="flex items-center my-1 text-xs md:text-base text-slate-800" >
-        <Link className="underline" href={`/`}>
+        <Link className="underline" href={`/`}
+          rel="home"
+        >
           <FaHome />
         </Link>
 
@@ -88,7 +99,9 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
             {isArabic && <FaChevronLeft className="w-2 mx-1" />}
             {!isArabic && <FaChevronRight className="w-2 mx-1" />}
 
-            <Link className="underline" href={`/${type.toLowerCase()}`}>
+            <Link className="underline" href={`/${type.toLowerCase()}`}
+              rel="home"
+            >
               {type.toLowerCase().replace(/\w\S*/g, function (txt) {
                 return (
                   txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
@@ -97,14 +110,16 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
             </Link>
           </div>
         )}
-        
+
         {home && (
           <div className="flex items-center">
             {isArabic && <FaChevronLeft className="w-2 mx-1" />}
             {!isArabic && <FaChevronRight className="w-2 mx-1" />}
 
-            <Link href={`/`}>
-              {isArabic ? "الرئيسية":"Home"}
+            <Link href={`/`}
+              rel="home"
+            >
+              {isArabic ? "الرئيسية" : "Home"}
             </Link>
           </div>
         )}
@@ -177,13 +192,13 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
         </div>
       )}
       {unTitle && (
-          <div className="flex items-center">
-            {isArabic && <FaChevronLeft className="w-2 mx-1" />}
-            {!isArabic && <FaChevronRight className="w-2 mx-1" />}
+        <div className="flex items-center">
+          {isArabic && <FaChevronLeft className="w-2 mx-1" />}
+          {!isArabic && <FaChevronRight className="w-2 mx-1" />}
 
-            <p>Properties</p>
-          </div>
-        )}
+          <p>Properties</p>
+        </div>
+      )}
     </div>
   );
 };

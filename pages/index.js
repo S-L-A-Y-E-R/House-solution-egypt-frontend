@@ -79,13 +79,23 @@ export default function Home({
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75",
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
   return (
     <>
       {meta && (
         <>
           <Head>
-            <title>{meta?.title.slice(0,60)}</title>
+            <title>{meta?.title.slice(0, 60)}</title>
+            <meta name="robots" content="index, follow" />
             <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
             <meta name="description" content={meta.description} />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
@@ -115,7 +125,7 @@ export default function Home({
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}
             />
             <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
+            <meta property="og:site_name" content="house point egypt real estate" />
 
             <meta property="og:url" content={WEBSITE_BASE_URL} />
             <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />

@@ -164,7 +164,9 @@ export default function RelatedProperties({
           );
         })}
       </Swiper>
-      <Link href={`/${type}/${propertyType}/${location}`} className="mt-4">
+      <Link href={`/${type}/${propertyType}/${location}`} className="mt-4"
+        rel="noopener noreferrer"
+      >
         <button className="px-3 py-2 text-xl font-semibold text-white rounded bg-custom-blue">
           {isArabic && (
             <>

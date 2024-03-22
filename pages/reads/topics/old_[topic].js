@@ -58,7 +58,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles }) {
   useEffect(() => {
     // Fetch blog post data from the API
     axios
-      .get(`${API_BASE_URL}/blog/topics/${topic.replaceAll('-',' ')}`, {
+      .get(`${API_BASE_URL}/blog/topics/${topic.replaceAll('-', ' ')}`, {
         headers: {
           "accept-language": locale,
         },
@@ -87,12 +87,22 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles }) {
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75",
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
 
   return (
     <>
       <Head>
         <title>{topic && "Blogs | " + topic}</title>
+        <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/contact"}

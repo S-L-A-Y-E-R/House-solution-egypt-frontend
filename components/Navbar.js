@@ -53,11 +53,13 @@ const Navbar = ({ url }) => {
       className={`w-full transition-all sticky top-0 z-100`}
       dir={isArabic ? "rtl" : "ltr"} // Set direction based on language
       id="navbarID"
-      style={{zIndex:'999'}}
+      style={{ zIndex: '999' }}
     >
       <nav className="flex items-center justify-between mx-auto bg-gray-200 lg:justify-around z-999">
         <div className="relative flex flex-wrap items-center justify-between w-full md:w-fit">
-          <Link href="/">
+          <Link href="/"
+            rel="home"
+          >
             <span>
               <Image
                 src="/images/HPlogo.png"
@@ -71,8 +73,7 @@ const Navbar = ({ url }) => {
           </Link>
           <button
             className={
-              `absolute top-8 px-2 py-1 rounded-md text-white md:hidden hover:text-[#095668] focus:text-[#095668] focus:bg-primary-dark focus:outline-none ${
-                isArabic ? "left-4" : "right-4"
+              `absolute top-8 px-2 py-1 rounded-md text-white md:hidden hover:text-[#095668] focus:text-[#095668] focus:bg-primary-dark focus:outline-none ${isArabic ? "left-4" : "right-4"
               }` // Adjust margin based on language
             }
             onClick={toggleMenu}
@@ -94,34 +95,36 @@ const Navbar = ({ url }) => {
             </svg>
           </button>
           <div
-            className={`flex text-lg flex-col w-full my-5 md:hidden ${
-              menuOpen ? "" : "hidden"
-            }`}
+            className={`flex text-lg flex-col w-full my-5 md:hidden ${menuOpen ? "" : "hidden"
+              }`}
             id="headlessui-disclosure-panel"
           >
-            <Link href={isArabic ? "/إيجار" : "/rent"}>
+            <Link href={isArabic ? "/إيجار" : "/rent"}
+              rel="noopener noreferrer"
+            >
               <span
-                className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${
-                  isArabic ? "text-right" : ""
-                }`}
+                className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${isArabic ? "text-right" : ""
+                  }`}
               >
                 {t("general.components.navbar.rent")}
               </span>
             </Link>
-            <Link href="/sale">
+            <Link href="/sale"
+              rel="noopener noreferrer"
+            >
               <span
-                className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-cyan-500 transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${
-                  isArabic ? "text-right" : ""
-                }`}
+                className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-cyan-500 transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${isArabic ? "text-right" : ""
+                  }`}
               >
                 {t("general.components.navbar.sale")}
               </span>
             </Link>
-            <Link href="/articles">
+            <Link href="/articles"
+              rel="noopener noreferrer"
+            >
               <span
-                className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${
-                  isArabic ? "text-right" : ""
-                }`}
+                className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${isArabic ? "text-right" : ""
+                  }`}
               >
                 {t("general.components.navbar.blogs")}
               </span>
@@ -135,11 +138,12 @@ const Navbar = ({ url }) => {
                 {t("general.components.navbar.favorite")}
               </span>
             </Link> */}
-            <Link href="/contact">
+            <Link href="/contact"
+              rel="noopener noreferrer"
+            >
               <span
-                className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${
-                  isArabic ? "text-right" : ""
-                }`}
+                className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${isArabic ? "text-right" : ""
+                  }`}
               >
                 {t("general.components.navbar.contact")}
               </span>
@@ -262,38 +266,40 @@ const Navbar = ({ url }) => {
         <div className="items-center hidden md:flex">
           <div className="text-center">
             <ul
-              className={`items-center justify-${
-                isArabic ? "start" : "end"
-              } flex lg:pt-0 list-reset`}
+              className={`items-center justify-${isArabic ? "start" : "end"
+                } flex lg:pt-0 list-reset`}
             >
               <li>
-                <Link href={isArabic ? "/إيجار" : "/rent/properties"}>
+                <Link href={isArabic ? "/إيجار" : "/rent/properties"}
+                  rel="noopener noreferrer"
+                >
                   <span
-                    className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${
-                      isArabic ? "text-right" : ""
-                    }`}
+                    className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${isArabic ? "text-right" : ""
+                      }`}
                   >
                     {t("general.components.navbar.rent")}
                   </span>
                 </Link>
               </li>
               <li>
-                <Link href={isArabic ? "/بيع" : "/sale/properties"}>
+                <Link href={isArabic ? "/بيع" : "/sale/properties"}
+                  rel="noopener noreferrer"
+                >
                   <span
-                    className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${
-                      isArabic ? "text-right" : ""
-                    }`}
+                    className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${isArabic ? "text-right" : ""
+                      }`}
                   >
                     {t("general.components.navbar.sale")}
                   </span>
                 </Link>
               </li>
               <li>
-                <Link href="/articles">
+                <Link href="/articles"
+                  rel="noopener noreferrer"
+                >
                   <span
-                    className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${
-                      isArabic ? "text-right" : ""
-                    }`}
+                    className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${isArabic ? "text-right" : ""
+                      }`}
                   >
                     {t("general.components.navbar.blogs")}
                   </span>
@@ -311,11 +317,12 @@ const Navbar = ({ url }) => {
                 </Link>
               </li> */}
               <li>
-                <Link href="/contact">
+                <Link href="/contact"
+                  rel="noopener noreferrer"
+                >
                   <span
-                    className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 li whitespace-nowrap ${
-                      isArabic ? "text-right" : ""
-                    }`}
+                    className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 li whitespace-nowrap ${isArabic ? "text-right" : ""
+                      }`}
                   >
                     {t("general.components.navbar.contact")}
                   </span>
@@ -327,7 +334,9 @@ const Navbar = ({ url }) => {
               </li>
               <li>
                 {logged === "" && (
-                  <Link href="/login">
+                  <Link href="/login"
+                    rel="noopener noreferrer"
+                  >
                     <button className="px-6 py-2 mx-4 md:mx-2 text-sm font-semibold bg-white rounded text-[#095668]">
                       {t("Login")}
                     </button>

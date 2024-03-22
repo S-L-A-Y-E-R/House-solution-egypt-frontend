@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Link from "next/link";
 import SideSectionBlog from "@/components/SideSectionBlog";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { API_BASE_URL, BLOG_IMAGE_BASE_URL } from "@/config";
+import { API_BASE_URL } from "@/config";
 import QR from "@/components/Home/QR";
 import Head from "next/head";
 import { WEBSITE_BASE_URL } from "@/config";
 import i18n from "@/i18n";
 import Article from "@/components/Blog/Article";
-import blogStyle from "@/styles/BlogIndex.module.css";
+import blogStyle from '@/styles/BlogIndex.module.css';
 import PaginationSlide from "@/components/Pagination";
 
 export async function getServerSideProps(context) {
@@ -43,17 +42,15 @@ export async function getServerSideProps(context) {
     headers: {
       "accept-langunage": locale === "ar" ? "ar" : "en",
     },
-  })
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      let arr = [];
-      for (let i = 1; i <= Math.ceil(data.count / 9); i++) {
-        arr.push(i);
-      }
-      return arr;
-    });
+  }).then((res) => {
+    return res.json();
+  }).then((data) => {
+    let arr = [];
+    for (let i = 1; i <= Math.ceil(data.count / 9); i++) {
+      arr.push(i);
+    }
+    return arr;
+  });
 
   i18n.changeLanguage(locale);
 
@@ -71,28 +68,31 @@ export async function getServerSideProps(context) {
 
 function Index(props) {
   const router = useRouter();
-  let page =
-    router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
+  let page = router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
   const { t, i18n } = useTranslation();
   const [blogPosts, setBlogPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(page);
   const { meta, initialLocale, changeLang, isArabic, titles, pages } = props;
   const locale = initialLocale || router.locale;
 
+
+
+
   useEffect(() => {
     // Fetch blog post data from the API
     fetch(`${API_BASE_URL}/blog/?page=${currentPage}&limit=9`, {
       headers: {
         "accept-language": locale,
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setBlogPosts(data);
-      });
+      }
+    }).then((res) => {
+      return res.json();
+    }).then((data) => {
+      setBlogPosts(data);
+    });
   }, [currentPage]);
+
+
+
 
   const schema = {
     "@context": "https://schema.org",
@@ -107,20 +107,30 @@ function Index(props) {
     "@type": "Organization",
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
-    logo:
-      WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75",
+    logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75",
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
 
   return (
     <>
       <Head>
         <title>{`${meta.title}`} </title>
-        <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
-        <meta name="keywords" content={meta.keywords} />
-        <meta
-          name="description"
-          content={meta && meta.description.slice(0, 160)}
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href={WEBSITE_BASE_URL + '/articles'}
+          key="canonical"
         />
+        <meta name='keywords' content={meta.keywords} />
+        <meta name="description" content={meta && meta.description.slice(0, 160)} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -199,10 +209,9 @@ function Index(props) {
                 </>
               )}
               <div className={blogStyle.container}>
-                {blogPosts &&
-                  blogPosts.map((post, index) => (
-                    <Article key={index} post={post} isArabic={isArabic} />
-                  ))}
+                {blogPosts && blogPosts.map((post, index) => (
+                  <Article key={index} post={post} isArabic={isArabic} />
+                ))}
               </div>
             </div>
 
@@ -225,6 +234,7 @@ function Index(props) {
         )}
         <div className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto" dangerouslySetInnerHTML={{__html:meta?.article }}/>
         <div className="mt-auto">
+
           <Footer />
         </div>
       </div>

@@ -96,7 +96,9 @@ export default function PropertyCard({
         />
       </Head>
 
-      <Link href={propertyLink.toLowerCase().split(" ").join("-")}>
+      <Link href={propertyLink.toLowerCase().split(" ").join("-")}
+        rel="noopener noreferrer"
+      >
         <div
           key={id}
           className="flex flex-col overflow-hidden transition-all duration-150 ease-out bg-white rounded shadow-lg shadow-gray-300"
@@ -276,10 +278,9 @@ export default function PropertyCard({
                     className="absolute flex items-center justify-center h-16 ltr:right-2 rtl:left-2 top-25 bottom-10 w-18"
                     onClick={(e) =>
                       window.open(
-                        `https://api.whatsapp.com/send?phone=+2001221409530&text=${
-                          message +
-                          origin +
-                          propertyLink.toLowerCase().split(" ").join("-")
+                        `https://api.whatsapp.com/send?phone=+2001221409530&text=${message +
+                        origin +
+                        propertyLink.toLowerCase().split(" ").join("-")
                         }`
                       )
                     }

@@ -11,7 +11,7 @@ import QR from "@/components/Home/QR";
 import Head from "next/head";
 import i18n from "@/i18n";
 import Article from "@/components/Blog/Article";
-import blogStyle from "@/styles/BlogIndex.module.css";
+import blogStyle from '@/styles/BlogIndex.module.css';
 import PaginationSlide from "@/components/Pagination";
 
 export async function getServerSideProps(context) {
@@ -68,8 +68,7 @@ export async function getServerSideProps(context) {
 
 function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   const router = useRouter();
-  let page =
-    router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
+  let page = router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
   const [currentPage, setCurrentPage] = useState(page);
   const { t, i18n } = useTranslation();
   const { tag } = router.query;
@@ -108,12 +107,22 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75",
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
 
   return (
     <>
       <Head>
         <title>{tag && "Blogs | " + tag}</title>
+        <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/contact"}
@@ -181,7 +190,7 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           <div className="w-full px-6 flex flex-col lg:flex-row flex-1">
             <div className="flex-1">
               <h1 className="ltr:text-left rtl:text-right order-1 mb-4 font-sans text-lg font-semibold sm:text-xl md:text-2xl lg:text-4xl border-b border-gray-300 pb-4">
-                reads about {tag.replaceAll("-", " ").replaceAll("_qm_", "?")}
+                reads about {tag.replaceAll('-', ' ').replaceAll('_qm_', '?')}
               </h1>
               <p className="ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg">
                 {titles && titles.length > 0 ? titles[0] : null}

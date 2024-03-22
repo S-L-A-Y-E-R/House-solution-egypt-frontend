@@ -48,7 +48,7 @@ function LatestBlogs() {
           <div className="grid max-w-6xl gap-10 mx-auto mt-10 md:grid-cols-2 lg:grid-cols-3">
             {loading && (
               <>
-                {[1, 2, 3].map((e,i) => {
+                {[1, 2, 3].map((e, i) => {
                   return (
                     <div key={i}>
                       <Skeleton className="block p-4 h-96" />
@@ -62,53 +62,55 @@ function LatestBlogs() {
               latestBlogs.length > 0 &&
               latestBlogs.map((post) => (
                 <div className="bg-gray-200 p-2 rounded" key={post._id}>
-                  <Link href={`/reads/${post._id}`} data-ur1313m3t="true">
+                  <Link href={`/reads/${post._id}`} data-ur1313m3t="true"
+                    rel="noopener noreferrer"
+                  >
                     <div className="relative transition-all aspect-square hover:-translate-y-2 hover:shadow-2xl">
-                     
-                        <div className="relative transition-all aspect-square hover:-translate-y-2 hover:shadow-2xl">
-                          <span
+
+                      <div className="relative transition-all aspect-square hover:-translate-y-2 hover:shadow-2xl">
+                        <span
+                          style={{
+                            boxSizing: "border-box",
+                            display: "block",
+                            overflow: "hidden",
+                            width: "initial",
+                            height: "initial",
+                            background: "none",
+                            opacity: 1,
+                            border: "0px",
+                            margin: "0px",
+                            padding: "0px",
+                            position: "absolute",
+                            inset: "0px",
+                          }}
+                        >
+                          <img
+                            // sizes="500vw"
+                            alt="image"
+                            className="rounded"
+                            src={BLOG_IMAGE_BASE_URL + post.image}
+                            decoding="async"
+                            data-nimg="fill"
+                            height={0}
+                            width={0}
                             style={{
-                              boxSizing: "border-box",
-                              display: "block",
-                              overflow: "hidden",
-                              width: "initial",
-                              height: "initial",
-                              background: "none",
-                              opacity: 1,
-                              border: "0px",
-                              margin: "0px",
-                              padding: "0px",
                               position: "absolute",
                               inset: "0px",
+                              boxSizing: "border-box",
+                              padding: "0px",
+                              border: "none",
+                              margin: "auto",
+                              display: "block",
+                              minWidth: "100%",
+                              maxWidth: "100%",
+                              minHeight: "100%",
+                              maxHeight: "100%",
+                              objectFit: "fill",
                             }}
-                          >
-                            <img
-                              // sizes="500vw"
-                              alt="image"
-                              className="rounded"
-                              src={BLOG_IMAGE_BASE_URL + post.image}
-                              decoding="async"
-                              data-nimg="fill"
-                              height={0}
-                              width={0}
-                              style={{
-                                position: "absolute",
-                                inset: "0px",
-                                boxSizing: "border-box",
-                                padding: "0px",
-                                border: "none",
-                                margin: "auto",
-                                display: "block",
-                                minWidth: "100%",
-                                maxWidth: "100%",
-                                minHeight: "100%",
-                                maxHeight: "100%",
-                                objectFit: "fill",
-                              }}
-                            />
-                            <noscript></noscript>
-                          </span>
-                        </div>
+                          />
+                          <noscript></noscript>
+                        </span>
+                      </div>
                     </div>
                   </Link>
                   <div className="p-2">
@@ -142,7 +144,9 @@ function LatestBlogs() {
                       </div>
                     </div>
 
-                    <Link href={`/reads/${post._id}`}>
+                    <Link href={`/reads/${post._id}`}
+                      rel="noopener noreferrer"
+                    >
                       <button className="mt-3 font-medium text-white rounded-full bg-[#095668] px-5 py-1">
                         <h3 className="inline-block text-sm font-medium text-white">
                           {t("pages.blog.read_more")}

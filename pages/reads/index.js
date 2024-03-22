@@ -12,12 +12,12 @@ import Head from "next/head";
 import { WEBSITE_BASE_URL } from "@/config";
 import i18n from "@/i18n";
 import Article from "@/components/Blog/Article";
-import blogStyle from '@/styles/BlogIndex.module.css'
+import blogStyle from '@/styles/BlogIndex.module.css';
 import PaginationSlide from "@/components/Pagination";
 
 
 export async function getServerSideProps(context) {
-  let link = `/articles`;
+  let link = `/reads`;
   const { locale } = context;
   if (locale == "ar") link = "/ar" + link;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
@@ -45,14 +45,14 @@ export async function getServerSideProps(context) {
       "accept-langunage": locale === "ar" ? "ar" : "en"
     },
   }).then((res) => {
-    return res.json()
+    return res.json();
   }).then((data) => {
-    let arr = []
-        for(let i =1; i <= Math.ceil(data.count / 9); i++) {
-          arr.push(i)
-        }
-    return arr
-  })
+    let arr = [];
+    for (let i = 1; i <= Math.ceil(data.count / 9); i++) {
+      arr.push(i);
+    }
+    return arr;
+  });
 
   i18n.changeLanguage(locale);
 
@@ -70,13 +70,13 @@ export async function getServerSideProps(context) {
 
 function Index(props) {
   const router = useRouter();
-  let page = router.query.page && router.query.page > 0 ? Number(router.query.page) : 1
+  let page = router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
   const { t, i18n } = useTranslation();
   const [blogPosts, setBlogPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(page)
-  const { meta, initialLocale, changeLang, isArabic, titles, pages } = props
+  const [currentPage, setCurrentPage] = useState(page);
+  const { meta, initialLocale, changeLang, isArabic, titles, pages } = props;
   const locale = initialLocale || router.locale;
-  
+
 
 
 
@@ -87,14 +87,14 @@ function Index(props) {
         "accept-language": locale,
       }
     }).then((res) => {
-      return res.json()
+      return res.json();
     }).then((data) => {
       setBlogPosts(data);
-    })
-  },[currentPage])
+    });
+  }, [currentPage]);
 
 
-  
+
 
   const schema = {
     "@context": "https://schema.org",
@@ -110,15 +110,25 @@ function Index(props) {
     name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75",
+    sameAs: [
+      "https://www.facebook.com/House-Point-Egypt-112529918222923",
+      "https://www.instagram.com/housepointegypt/",
+      "https://www.linkedin.com/in/housepointegyptrealestate",
+      "https://twitter.com/Housep0integypt",
+      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
+      "https://t.me/housepointegypt",
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+    ],
   };
 
   return (
     <>
       <Head>
         <title>{`${meta.title}`} </title>
+        <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + isArabic ? '/ar/articles' : "/articles"}
+          href={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : "/reads"}
           key="canonical"
         />
         <meta name='keywords' content={meta?.keywords} />
@@ -171,14 +181,14 @@ function Index(props) {
           }
         />
         <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-            />
-        
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+
         <meta name="robots" content="index, follow" />
       </Head>
       <div
@@ -201,7 +211,7 @@ function Index(props) {
                 </>
               )}
               <div className={blogStyle.container}>
-                {blogPosts && blogPosts.map((post,index) => (
+                {blogPosts && blogPosts.map((post, index) => (
                   <Article key={index} post={post} isArabic={isArabic} />
                 ))}
               </div>
@@ -220,7 +230,7 @@ function Index(props) {
           pages && page && <PaginationSlide currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages} page={page} />
         }
         <div className="mt-auto">
-        
+
           <Footer />
         </div>
       </div>
