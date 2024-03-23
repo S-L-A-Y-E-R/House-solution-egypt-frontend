@@ -99,7 +99,7 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
           }
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={WEBSITE_BASE_URL} />
+        <meta property="og:url" content={WEBSITE_BASE_URL + '/contact'} />
         <link rel="alternate" hreflang="en" href={WEBSITE_BASE_URL + `/`} />
         <link rel="alternate" hreflang="x-default" href={WEBSITE_BASE_URL} />
         <link rel="alternate" hreflang="ar" href={WEBSITE_BASE_URL + `/ar`} />

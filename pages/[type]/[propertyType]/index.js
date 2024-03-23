@@ -234,7 +234,7 @@ const PropertyTypePage = ({
               content="House Point Egypt - Real Estate"
             />
 
-            <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
+            <link rel="canonical" href={WEBSITE_BASE_URL + `/${type}/${propertyType}`} key="canonical" />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
 
             {isArabic && (
@@ -280,7 +280,7 @@ const PropertyTypePage = ({
             />
 
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={WEBSITE_BASE_URL} />
+            <meta property="og:url" content={WEBSITE_BASE_URL + `/${type}/${propertyType}`} />
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:site" content="@HousePointE" />
             <meta name="twitter:title" content={isArabic ? titleAR : titleEN} />
