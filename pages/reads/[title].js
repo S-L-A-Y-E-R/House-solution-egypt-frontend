@@ -139,9 +139,9 @@ function BlogDetails({
           href={WEBSITE_BASE_URL + "/articles"}
           key="canonical"
         />
-        <meta name="description" content={metaDesc + ' | ' + metaTitle} />
+        <meta name="description" content={metaDesc.slice(0,160) + ' | ' + metaTitle} />
         <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDesc + ' | ' + metaTitle} />
+        <meta property="og:description" content={metaDesc.slice(0,160) + ' | ' + metaTitle} />
         <meta
           property="og:image"
           content={

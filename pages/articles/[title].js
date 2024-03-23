@@ -130,18 +130,18 @@ function BlogDetails({
   return (
     <>
       <Head>
-        <title>{`${metaTitle && "articles | " + metaTitle.slice(0,10)}`}</title>
+        <title>{`${metaTitle && "articles | " + metaTitle.slice(0, 10)}`}</title>
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
           href={WEBSITE_BASE_URL + "/articles"}
           key="canonical"
         />
-        <meta name="description" content={metaDesc + " | " + metaTitle} />
+        <meta name="description" content={metaDesc.slice(0, 160) + " | " + metaTitle} />
         <meta property="og:title" content={metaTitle} />
         <meta
           property="og:description"
-          content={metaDesc + " | " + metaTitle}
+          content={metaDesc.slice(0,160) + " | " + metaTitle}
         />
         <meta property="og:image" content={BLOG_IMAGE_BASE_URL + metaImage} />
         <meta
@@ -201,9 +201,9 @@ function BlogDetails({
             <div className="flex gap-1 items-center mt-4">
               <Link href={`/articles/topics/${getData?.topic}`} className="underline text-blue-400" >{getData.topic}</Link>
               <div className="text-gray-500"> | {getData?.readTime} MIN READ</div>
-              <div className="text-gray-500"> | updated At {getData?.updatedAt.slice(0,10)} </div>
+              <div className="text-gray-500"> | updated At {getData?.updatedAt.slice(0, 10)} </div>
               <div className="text-gray-500"> | Written By {getData?.writter} </div>
-              
+
             </div>
             <div className="mt-8">
               <div className="flex flex-col lg:flex-row gap-4 mt-12 lg:px-0">

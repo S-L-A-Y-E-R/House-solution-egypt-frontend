@@ -105,12 +105,12 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
   }, []);
 
   const titleEN = `${propertyType && propertyType !== "properties"
-      ? t(
-        propertyType.replace(/\w\S*/g, function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        })
-      )
-      : "Property Types"
+    ? t(
+      propertyType.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+    )
+    : "Property Types"
     } ${type && type !== "for-rent-or-sale"
       ? " For " +
       type.replace(/\w\S*/g, function (txt) {
@@ -196,7 +196,7 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
             </title>
             <meta
               name="description"
-              content={`${meta ? meta.description : isArabic ? titleAR : titleEN
+              content={`${meta ? meta.description.slice(0, 160) : isArabic ? titleAR : titleEN
                 }`}
             />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
@@ -248,7 +248,7 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}
             />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={WEBSITE_BASE_URL} />
+            <meta property="og:url" content={WEBSITE_BASE_URL + `${isArabic ? "/ar/" : "/"}${type}`} />
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:site" content="@HousePointE" />
             <meta name="twitter:title" content={isArabic ? titleAR : titleEN} />
@@ -271,7 +271,7 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
         </>
       }
 
-      <div>
+      <h1>
         <Navbar url={changeLang} />
         <QR />
 
@@ -397,7 +397,7 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
         >
           <Footer />
         </div>
-      </div>
+      </h1>
     </>
   );
 };

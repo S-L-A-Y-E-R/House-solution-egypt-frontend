@@ -223,7 +223,7 @@ const PropertyTypePage = ({
                 count +
                 " " +
                 (meta && meta.description
-                  ? meta.description
+                  ? meta.description.slice(0, 160)
                   : isArabic
                     ? titleAR
                     : titleEN)

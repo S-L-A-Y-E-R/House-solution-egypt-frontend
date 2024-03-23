@@ -142,12 +142,12 @@ const LocationPage = ({
   }, []);
 
   const titleEN = `${propertyType && propertyType !== "properties"
-      ? t(
-        propertyType.replace(/\w\S*/g, function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        })
-      )
-      : "Property Types"
+    ? t(
+      propertyType.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+    )
+    : "Property Types"
     } ${type && type !== "for-rent-or-sale"
       ? " For " +
       type.replace(/\w\S*/g, function (txt) {
@@ -250,7 +250,7 @@ const LocationPage = ({
               content={
                 count +
                 " " +
-                `${meta ? meta.description : isArabic ? titleAR : titleEN}`
+                `${meta ? meta.description.slice(0, 160) : isArabic ? titleAR : titleEN}`
               }
             />
             <link
@@ -353,7 +353,7 @@ const LocationPage = ({
           title={i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr}
           meta={metaProperties}
         />
-        <div className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto" dangerouslySetInnerHTML={{__html:meta?.article }}/>
+        <div className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto" dangerouslySetInnerHTML={{ __html: meta?.article }} />
         <div className="mt-16">
           <Footer />
         </div>

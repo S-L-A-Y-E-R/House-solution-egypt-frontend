@@ -132,7 +132,7 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           href={WEBSITE_BASE_URL + "/contact"}
           key="canonical"
         />
-        <meta name="description" content={meta && meta.description} />
+        <meta name="description" content={meta && meta.description.slice(0, 160)} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -142,7 +142,7 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
         <meta property="og:title" content={meta && meta.title} />
-        <meta property="og:description" content={meta && meta.description} />
+        <meta property="og:description" content={meta && meta.description.slice(0, 160)} />
         <meta
           property="og:image"
           content={

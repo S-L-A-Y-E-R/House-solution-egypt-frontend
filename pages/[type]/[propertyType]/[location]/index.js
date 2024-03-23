@@ -241,7 +241,7 @@ const LocationPage = ({
               content={
                 count +
                 " " +
-                `${meta ? meta.description : isArabic ? titleAR : titleEN}`
+                `${meta ? meta.description.slice(0, 160): isArabic ? titleAR : titleEN}`
               }
             />
             <link

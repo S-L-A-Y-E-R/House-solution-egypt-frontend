@@ -97,7 +97,7 @@ export default function Home({
             <title>{meta?.title.slice(0, 60)}</title>
             <meta name="robots" content="index, follow" />
             <link rel="canonical" href={WEBSITE_BASE_URL} key="canonical" />
-            <meta name="description" content={meta.description} />
+            <meta name="description" content={meta.description.slice(0, 160)} />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
 
             <script
@@ -110,7 +110,7 @@ export default function Home({
             />
 
             <meta property="og:title" content={meta.title} />
-            <meta property="og:description" content={meta.description} />
+            <meta property="og:description" content={meta.description.slice(0, 160)} />
             <meta
               property="og:image"
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}

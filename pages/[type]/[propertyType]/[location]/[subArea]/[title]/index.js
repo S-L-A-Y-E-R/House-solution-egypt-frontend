@@ -380,7 +380,7 @@ function PropertyDetails({
               name="description"
               content={
                 propertyDetails && propertyDetails.descriptionAr ?
-                  isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
+                  isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ').slice(0, 160) : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ').slice(0, 160)
                   : isArabic ? propertyDetails.titleAr : propertyDetails.title
               }
             />
