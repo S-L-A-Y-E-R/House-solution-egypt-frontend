@@ -9,6 +9,7 @@ import QR from "@/components/Home/QR";
 import Head from "next/head";
 import PropertyCard from "@/components/PropertyCard";
 import styles from "@/styles/Blog.module.css";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
   const { locale } = context;
@@ -197,6 +198,13 @@ function BlogDetails({
               </div>
             </div>
             <hr />
+            <div className="flex gap-1 items-center mt-4">
+              <Link href={`/articles/topics/${getData?.topic}`} className="underline text-blue-400" >{getData.topic}</Link>
+              <div className="text-gray-500"> | {getData?.readTime} MIN READ</div>
+              <div className="text-gray-500"> | updated At {getData?.updatedAt.slice(0,10)} </div>
+              <div className="text-gray-500"> | Written By {getData?.writter} </div>
+              
+            </div>
             <div className="mt-8">
               <div className="flex flex-col lg:flex-row gap-4 mt-12 lg:px-0">
                 {relatedProperties.length > 0 ? (
