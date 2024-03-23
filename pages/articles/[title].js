@@ -24,7 +24,6 @@ export async function getServerSideProps(context) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
       return data;
     });
 
