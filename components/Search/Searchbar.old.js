@@ -32,16 +32,16 @@ function Searchbar() {
     query === ""
       ? propertyLocation
       : propertyLocation.filter((location) =>
-          !isArabic
-            ? location.name
-                .toLowerCase()
-                .replace(/\s+/g, "")
-                .includes(query.toLowerCase().replace(/\s+/g, ""))
-            : location.nameAr
-                .toLowerCase()
-                .replace(/\s+/g, "")
-                .includes(query.toLowerCase().replace(/\s+/g, ""))
-        );
+        !isArabic
+          ? location.name
+            .toLowerCase()
+            .replace(/\s+/g, "")
+            .includes(query.toLowerCase().replace(/\s+/g, ""))
+          : location.nameAr
+            .toLowerCase()
+            .replace(/\s+/g, "")
+            .includes(query.toLowerCase().replace(/\s+/g, ""))
+      );
   const [propertyTypes, setPropertyTypes] = useState([]);
   const [properties, setProperties] = useState([]);
   const [finishingLevel, setFinishingLevel] = useState([]);
@@ -179,15 +179,13 @@ function Searchbar() {
       if (selectedMaxPropertyArea)
         queryStr.maxPropertyArea = selectedMaxPropertyArea;
       // if (tag) queryStr.tag = tag
-      let pathName = `/${
-        type ? type : isArabic ? "إيجار-أو-بيع" : "for-rent-or-sale"
-      }/${
-        trimmedPropertyType?.split(" ").join("-")
+      let pathName = `/${type ? type : isArabic ? "إيجار-أو-بيع" : "for-rent-or-sale"
+        }/${trimmedPropertyType?.split(" ").join("-")
           ? trimmedPropertyType?.split(" ").join("-")
           : isArabic
-          ? "عقارات"
-          : "properties"
-      }`;
+            ? "عقارات"
+            : "properties"
+        }`;
 
       if (selectedSubArea) {
         filteredLocations.map((location) => {
@@ -278,21 +276,19 @@ function Searchbar() {
           <div className="flex gap-2">
             <button
               onClick={handleClickRent}
-              className={`text ${
-                type == t("general.components.searchbar.rent")
-                  ? "bg-custom-blue-darker  border-2 border-custom-blue text-white"
-                  : "bg-white text-custom-blue"
-              } hover:shadow-lg shadow text-lg border-white border font-semibold px-5 py-1 rounded-lg`}
+              className={`text ${type == t("general.components.searchbar.rent")
+                ? "bg-custom-blue-darker  border-2 border-custom-blue text-white"
+                : "bg-white text-custom-blue"
+                } hover:shadow-lg shadow text-lg border-white border font-semibold px-5 py-1 rounded-lg`}
               value={t("general.components.searchbar.rent")}
             >
               {t("general.components.searchbar.rent")}
             </button>
             <button
-              className={`text  text-lg capitalize ${
-                type == t("general.components.searchbar.sale")
-                  ? "bg-custom-blue-darker  border-2 border-custom-blue text-white"
-                  : "bg-white text-custom-blue"
-              } hover:shadow-lg shadow border-white border rounded-lg font-semibold px-5 py-1`}
+              className={`text  text-lg capitalize ${type == t("general.components.searchbar.sale")
+                ? "bg-custom-blue-darker  border-2 border-custom-blue text-white"
+                : "bg-white text-custom-blue"
+                } hover:shadow-lg shadow border-white border rounded-lg font-semibold px-5 py-1`}
               value={t("general.components.searchbar.sale")}
               onClick={handleClickSale}
             >
@@ -318,18 +314,17 @@ function Searchbar() {
                   <div className="relative !h-full mt-1 ">
                     <div className="relative flex w-full !h-full px-2 py-2 overflow-hidden text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                       <Combobox.Input
-                        className={`w-full py-2 text-sm leading-5 text-gray-900 border-none focus:ring-0 ${
-                          selectedPropertyLocation || selectedSubArea
-                            ? "placeholder:text-gray-900"
-                            : ""
-                        }`}
+                        className={`w-full py-2 text-sm leading-5 text-gray-900 border-none focus:ring-0 ${selectedPropertyLocation || selectedSubArea
+                          ? "placeholder:text-gray-900"
+                          : ""
+                          }`}
                         onChange={(event) => setQuery(event.target.value)}
                         placeholder={
                           selectedSubArea
                             ? selectedSubArea
                             : selectedPropertyLocation
-                            ? selectedPropertyLocation
-                            : t(
+                              ? selectedPropertyLocation
+                              : t(
                                 "general.components.searchbar.location_searchbar_placeholder"
                               )
                         }
@@ -359,16 +354,15 @@ function Searchbar() {
                             {t("general.components.searchbar.no_options")}
                           </div>
                         ) : (
-                          filteredLocations.map((location,index) => {
+                          filteredLocations.map((location, index) => {
                             return (
                               <div key={index}>
                                 <Combobox.Option
                                   key={location._id}
                                   className={({ active }) =>
-                                    `relative cursor-default select-none py-2 pl-5  pr-4 ${
-                                      active
-                                        ? "bg-teal-800 text-white"
-                                        : "bg-gray-700 text-white"
+                                    `relative cursor-default select-none py-2 pl-5  pr-4 ${active
+                                      ? "bg-teal-800 text-white"
+                                      : "bg-gray-700 text-white"
                                     }`
                                   }
                                   value={
@@ -383,17 +377,17 @@ function Searchbar() {
                                   {({ selected, active }) => (
                                     <>
                                       <span
-                                        className={`truncate flex gap-1 items-center ${
-                                          selected
-                                            ? "font-medium"
-                                            : "font-normal"
-                                        }`}
+                                        className={`truncate flex gap-1 items-center ${selected
+                                          ? "font-medium"
+                                          : "font-normal"
+                                          }`}
                                       >
                                         <Image
                                           src="/assets/pin-location.png"
                                           width="20"
                                           height="20"
                                           alt="Pin"
+                                          title="Pin"
                                         />
                                         {i18n.language === "en"
                                           ? location.name
@@ -401,18 +395,16 @@ function Searchbar() {
                                       </span>
                                       {selected ? (
                                         <span
-                                          className={`absolute inset-y-0 left-0 flex items-center ${
-                                            active
-                                              ? "text-white"
-                                              : "text-teal-700"
-                                          }`}
+                                          className={`absolute inset-y-0 left-0 flex items-center ${active
+                                            ? "text-white"
+                                            : "text-teal-700"
+                                            }`}
                                         >
                                           <FaCheckCircle
-                                            className={`ml-1 ${
-                                              active
-                                                ? "text-white"
-                                                : "text-teal-600"
-                                            }`}
+                                            className={`ml-1 ${active
+                                              ? "text-white"
+                                              : "text-teal-600"
+                                              }`}
                                           />
                                         </span>
                                       ) : null}
@@ -424,10 +416,9 @@ function Searchbar() {
                                     <Combobox.Option
                                       key={subArea._id}
                                       className={({ active }) =>
-                                        `relative cursor-default select-none py-2 pl-9 pr-4 ${
-                                          active
-                                            ? "bg-teal-600 text-white"
-                                            : "bg-gray-700 text-white mb-[1px]"
+                                        `relative cursor-default select-none py-2 pl-9 pr-4 ${active
+                                          ? "bg-teal-600 text-white"
+                                          : "bg-gray-700 text-white mb-[1px]"
                                         }`
                                       }
                                       value={
@@ -442,17 +433,17 @@ function Searchbar() {
                                       {({ selected, active }) => (
                                         <>
                                           <span
-                                            className={`truncate flex gap-1 items-center ${
-                                              selected
-                                                ? "font-medium"
-                                                : "font-normal"
-                                            }`}
+                                            className={`truncate flex gap-1 items-center ${selected
+                                              ? "font-medium"
+                                              : "font-normal"
+                                              }`}
                                           >
                                             <Image
                                               src="/assets/pin-location.png"
                                               width="20"
                                               height="20"
                                               alt="pin"
+                                              title="pin"
                                             />
                                             {i18n.language === "en"
                                               ? subArea.name
@@ -460,18 +451,16 @@ function Searchbar() {
                                           </span>
                                           {selected ? (
                                             <span
-                                              className={`absolute inset-y-0 left-0 flex items-center ${
-                                                active
-                                                  ? "text-white"
-                                                  : "text-teal-600"
-                                              }`}
+                                              className={`absolute inset-y-0 left-0 flex items-center ${active
+                                                ? "text-white"
+                                                : "text-teal-600"
+                                                }`}
                                             >
                                               <FaCheckCircle
-                                                className={`ml-1 ${
-                                                  active
-                                                    ? "text-white"
-                                                    : "text-teal-600"
-                                                }`}
+                                                className={`ml-1 ${active
+                                                  ? "text-white"
+                                                  : "text-teal-600"
+                                                  }`}
                                               />
                                             </span>
                                           ) : null}
@@ -522,10 +511,9 @@ function Searchbar() {
                             <Listbox.Option
                               key={personIdx}
                               className={({ active }) =>
-                                `relative  mb-[1px] cursor-default pl-8 select-none py-2  pr-4 ${
-                                  active
-                                    ? "bg-teal-700 text-white"
-                                    : "bg-gray-700 text-white"
+                                `relative  mb-[1px] cursor-default pl-8 select-none py-2  pr-4 ${active
+                                  ? "bg-teal-700 text-white"
+                                  : "bg-gray-700 text-white"
                                 }`
                               }
                               value={
@@ -537,9 +525,8 @@ function Searchbar() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate text-sm ${
-                                      selected ? "font-medium" : "font-semibold"
-                                    }`}
+                                    className={`block truncate text-sm ${selected ? "font-medium" : "font-semibold"
+                                      }`}
                                   >
                                     {isArabic
                                       ? propertyType.nameAr
@@ -581,9 +568,8 @@ function Searchbar() {
                             {t("general.components.searchbar.bath")}
                           </span>
                           <FaAngleDown
-                            className={`${
-                              open ? "text-opacity-70" : "text-opacity-100"
-                            }
+                            className={`${open ? "text-opacity-70" : "text-opacity-100"
+                              }
                     transition duration-150 ease-in-out group-hover:text-opacity-100`}
                             aria-hidden="true"
                           />
@@ -611,11 +597,10 @@ function Searchbar() {
                                           key={number}
                                           type="button"
                                           value={number}
-                                          className={`btn-sm mx-1 rounded px-3 py-2 transition-all ${
-                                            selectedBedroom === number
-                                              ? "bg-custom-blue text-white"
-                                              : "bg-white text-slate-800"
-                                          }`}
+                                          className={`btn-sm mx-1 rounded px-3 py-2 transition-all ${selectedBedroom === number
+                                            ? "bg-custom-blue text-white"
+                                            : "bg-white text-slate-800"
+                                            }`}
                                           onClick={() =>
                                             handleBedroomSelection(number)
                                           }
@@ -635,11 +620,10 @@ function Searchbar() {
                                           key={number}
                                           type="button"
                                           value={number}
-                                          className={`btn-sm mx-1 rounded px-3 py-2 transition-all ${
-                                            selectedBathroom === number
-                                              ? "bg-custom-blue text-white"
-                                              : "bg-white text-slate-800"
-                                          }`}
+                                          className={`btn-sm mx-1 rounded px-3 py-2 transition-all ${selectedBathroom === number
+                                            ? "bg-custom-blue text-white"
+                                            : "bg-white text-slate-800"
+                                            }`}
                                           onClick={() =>
                                             handleBathroomSelection(number)
                                           }
@@ -688,9 +672,8 @@ function Searchbar() {
                             <span className="font-semibold">{`[${minPrice} - ${maxPrice}] EGP`}</span>
                           )}
                           <FaAngleDown
-                            className={`${
-                              open ? "text-opacity-70" : "text-opacity-100"
-                            }
+                            className={`${open ? "text-opacity-70" : "text-opacity-100"
+                              }
                     transition duration-150 ease-in-out group-hover:text-opacity-100`}
                             aria-hidden="true"
                             aria-label="DropDownPropertyArea"
@@ -876,10 +859,9 @@ function Searchbar() {
                             <Listbox.Option
                               key={property._id}
                               className={({ active }) =>
-                                `relative cursor-default select-none py-2 pl-8 pr-4 ${
-                                  active
-                                    ? "bg-teal-700 text-white"
-                                    : "bg-gray-700 text-white mb-[1px]"
+                                `relative cursor-default select-none py-2 pl-8 pr-4 ${active
+                                  ? "bg-teal-700 text-white"
+                                  : "bg-gray-700 text-white mb-[1px]"
                                 }`
                               }
                               value={isArabic ? property.nameAr : property.name}
@@ -887,9 +869,8 @@ function Searchbar() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${
-                                      selected ? "font-medium" : "font-normal"
-                                    }`}
+                                    className={`block truncate ${selected ? "font-medium" : "font-normal"
+                                      }`}
                                   >
                                     {isArabic ? property.nameAr : property.name}
                                   </span>

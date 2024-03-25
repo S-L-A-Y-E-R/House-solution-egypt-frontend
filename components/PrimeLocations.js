@@ -22,7 +22,7 @@ function PrimeLocations() {
       try {
         // Fetch areas data
         const areaResponse = await axios.get(API_BASE_URL + '/area');
-        const areaData = await areaResponse.data.areas
+        const areaData = await areaResponse.data.areas;
         setAreas(areaData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -66,7 +66,9 @@ function PrimeLocations() {
               onClick={() => handleAreaClick({ name: area.name, nameAr: area.nameAr, type: "area" })}
             >
               <span className="flex items-center">
-                <Image src="/assets/pin.png" width="20" height="20" alt="pin" />
+                <Image src="/assets/pin.png" width="20" height="20" alt="pin"
+                  title='pin'
+                />
                 <span className='text-custom-blue'>{isArabic ? area.nameAr : area.name}</span>
               </span>
               <span className="flex justify-end px-2 border rounded-md badge bg-brand rounded-pill bg-secondary-color">
@@ -83,16 +85,18 @@ function PrimeLocations() {
                   onClick={() => handleAreaClick({ name: subArea.subarea.name, area: area.name, nameAr: subArea.subarea.nameAr, areaAr: area.nameAr, type: "subarea" })}
                 >
                   <span className="flex items-center">
-                    <Image src="/assets/pin.png" width="20" height="20" alt="pin" />
+                    <Image src="/assets/pin.png" width="20" height="20" alt="pin"
+                      title='pin'
+                    />
                     <span className='text-custom-blue'>{isArabic ? subArea.subarea.nameAr : subArea.subarea.name}</span>
                   </span>
                   <span className="flex justify-end px-2 border rounded-md badge bg-brand rounded-pill bg-secondary-color">
                     {subArea.count || 0}
                   </span>
-                </li>
+                </li>;
               })
             }
-          </div>
+          </div>;
         })}
       </ul>
     </div>

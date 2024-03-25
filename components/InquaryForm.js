@@ -146,7 +146,7 @@ export default function InquaryForm({ refNumber }) {
               href={`https://api.whatsapp.com/send?phone=1234567890&text=${message}`}
               className="text-gray-600 hover:text-gray-800"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="social"
             >
               <FaWhatsapp className="w-6 h-6" />
               <span className="ml-2">WhatsApp</span>

@@ -166,6 +166,7 @@ function listingPage() {
                       alt="Property Photo"
                       layout="fill"
                       objectFit="cover"
+                      title="Property Photo"
                     />
                     <button
                       aria-label="Zoom image"

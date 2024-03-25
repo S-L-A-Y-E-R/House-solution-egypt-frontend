@@ -119,6 +119,7 @@ export default function PropertyCard({
                     placeholder="blur"
                     width={1200}
                     height={900}
+                    title="Property Photo"
                   />
                 }
               </div>
@@ -149,6 +150,7 @@ export default function PropertyCard({
                         width="20"
                         height="20"
                         alt="pin"
+                        title="pin"
                       />
                       {location.replace(/\w\S*/g, function (txt) {
                         return (
@@ -225,6 +227,7 @@ export default function PropertyCard({
                               alt="facebook icon"
                               width="35"
                               height="35"
+                              title="Share on Facebook"
                             />
                           </FacebookShareButton>
                           {/* <a href="https://www.instagram.com/housepointegypt/" title="Instagram">
@@ -241,6 +244,7 @@ export default function PropertyCard({
                               alt="twitter icon"
                               width="35"
                               height="35"
+                              title="Share on Twitter"
                             />
                           </TwitterShareButton>
                           <LinkedinShareButton
@@ -254,6 +258,7 @@ export default function PropertyCard({
                               alt="linkedin icon"
                               width="35"
                               height="35"
+                              title="Share on Linkedin"
                             />
                           </LinkedinShareButton>
                         </Popover.Panel>
@@ -266,7 +271,7 @@ export default function PropertyCard({
                   href="https://api.whatsapp.com/send?phone=+201221409530"
                   className="text-white hover:text-green-600"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="social"
                   title={t(
                     "general.components.property_card.whatsapp_property"
                   )}
@@ -319,6 +324,7 @@ export default function PropertyCard({
                     alt="bed"
                     width="25"
                     height="25"
+                    title="bed"
                   />{" "}
                   {beds} {t("general.components.property_card.bedrooms")}
                 </span>
@@ -328,6 +334,7 @@ export default function PropertyCard({
                     alt="bath"
                     width="25"
                     height="25"
+                    title="bath"
                   />{" "}
                   {bathrooms} {t("general.components.property_card.bathrooms")}
                 </span>
@@ -339,6 +346,7 @@ export default function PropertyCard({
                     alt="surface"
                     width="25"
                     height="25"
+                    title="surface"
                   />
                   {area}{" "}
                   <span>
@@ -352,6 +360,7 @@ export default function PropertyCard({
                     alt="couch"
                     width="25"
                     height="25"
+                    title="couch"
                   />
                   {furnitureStatus}{" "}
                 </span>

@@ -78,6 +78,7 @@ export default function PropertyDesc({
             alt="surface"
             width="25"
             height="25"
+            title="surface icon"
           />
           <p>
             <span className="text-lg font-semibold">{area}</span>{" "}
@@ -85,21 +86,27 @@ export default function PropertyDesc({
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Image src="/assets/bed.png" alt="bed" width="25" height="25" />
+          <Image src="/assets/bed.png" alt="bed" width="25" height="25"
+            title="bed icon"
+          />
           <p>
             <span className="text-lg font-semibold">{bedrooms}</span>{" "}
             {t("pages.property.components.property_desc.bedroom")}
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Image src="/assets/bath.png" alt="bath" width="25" height="25" />
+          <Image src="/assets/bath.png" alt="bath" width="25" height="25"
+            title="bath icon"
+          />
           <p>
             <span className="text-lg font-semibold">{bathrooms}</span>{" "}
             {t("pages.property.components.property_desc.bathroom")}
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Image src="/assets/couch.png" alt="couch" width="25" height="25" />
+          <Image src="/assets/couch.png" alt="couch" width="25" height="25"
+            title="couch icon"
+          />
           <p>
             <span>{furnitureStatus}</span>
           </p>
@@ -121,25 +128,33 @@ export default function PropertyDesc({
       <div className="grid grid-cols-1 gap-4 p-2 my-2 sm:grid-cols-2 lg:grid-cols-3 sm:flex-row">
         {HDF && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/hdf.png" alt="hdf" width="25" height="25" />
+            <Image src="/assets/hdf.png" alt="hdf" width="25" height="25"
+              title="hdf icon"
+            />
             {t("pages.property.components.property_desc.hdf")}
           </div>
         )}
         {airConditioning && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/air.png" alt="air" width="25" height="25" />
+            <Image src="/assets/air.png" alt="air" width="25" height="25"
+              title="air icon"
+            />
             {t("pages.property.components.property_desc.air_condition")}
           </div>
         )}
         {centralAirCondition && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/air.png" alt="air" width="25" height="25" />
+            <Image src="/assets/air.png" alt="air" width="25" height="25"
+              title="air icon"
+            />
             {t("pages.property.components.property_desc.central_air_condition")}
           </div>
         )}
         {ceramics && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/tile.png" alt="tile" width="25" height="25" />
+            <Image src="/assets/tile.png" alt="tile" width="25" height="25"
+              title="tile icon"
+            />
             {t("pages.property.components.property_desc.ceramic")}
           </div>
         )}
@@ -150,6 +165,7 @@ export default function PropertyDesc({
               alt="cac school"
               width="25"
               height="25"
+              title="cac school icon"
             />
             {t("pages.property.components.property_desc.cac")}
           </div>
@@ -158,22 +174,27 @@ export default function PropertyDesc({
           <div className="flex items-center gap-2">
             <Image
               src="/assets/school.png"
-              alt="french school"
+              alt="french school" s
               width="25"
               height="25"
+              title="french school icon"
             />
             {t("pages.property.components.property_desc.french")}
           </div>
         )}
         {closetoGym && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/gym.png" alt="gym" width="25" height="25" />
+            <Image src="/assets/gym.png" alt="gym" width="25" height="25"
+              title="gym icon"
+            />
             {t("pages.property.components.property_desc.gym")}
           </div>
         )}
         {closetoMetroStation && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/metro.png" alt="metro" width="25" height="25" />
+            <Image src="/assets/metro.png" alt="metro" width="25" height="25"
+              title="metro icon"
+            />
             {t("pages.property.components.property_desc.metro")}
           </div>
         )}
@@ -184,6 +205,7 @@ export default function PropertyDesc({
               alt="restaurant"
               width="25"
               height="25"
+              title="restaurant icon" s
             />
             {t("pages.property.components.property_desc.restaurant")}
           </div>
@@ -195,6 +217,7 @@ export default function PropertyDesc({
               alt="school"
               width="25"
               height="25"
+              title="school icon"
             />
             {t("pages.property.components.property_desc.school")}
           </div>
@@ -206,13 +229,16 @@ export default function PropertyDesc({
               alt="compound"
               width="25"
               height="25"
+              title="compound icon"
             />
             {t("pages.property.components.property_desc.compound")}
           </div>
         )}
         {fourMasterBedroom && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/bed.png" alt="bed" width="25" height="25" />4{" "}
+            <Image src="/assets/bed.png" alt="bed" width="25" height="25"
+              title="bed icon"
+            />4{" "}
             {t("pages.property.components.property_desc.master_bedroom")}
           </div>
         )}
@@ -223,6 +249,7 @@ export default function PropertyDesc({
               alt="internet"
               width="25"
               height="25"
+              title="internet icon"
             />
             {t("pages.property.components.property_desc.internet")}
           </div>
@@ -246,6 +273,7 @@ export default function PropertyDesc({
               alt="kitchen"
               width="25"
               height="25"
+              title="kitchen icon"
             />{" "}
             {t("pages.property.components.property_desc.kitchen")}
           </div>
@@ -257,20 +285,25 @@ export default function PropertyDesc({
               alt="laundry"
               width="25"
               height="25"
+              title="laundry icons"
             />
             {t("pages.property.components.property_desc.laundry")}
           </div>
         )}
         {maidsRoom && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/maid.png" alt="maid" width="25" height="25" />
+            <Image src="/assets/maid.png" alt="maid" width="25" height="25"
+              title="maid icon"
+            />
             {t("pages.property.components.property_desc.maid")}
           </div>
         )}
         {marble && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/tile.png" alt="marble" width="25" height="25" />
-            {t("pages.property.components.property_desc.marble")}
+            <Image src="/assets/tile.png" alt="marble" width="25" height="25"
+              title="marble icon"
+            />
+            {t("pages.property.components.property_desc.marble")}s
           </div>
         )}
         {oneBalconyView && (
@@ -280,13 +313,16 @@ export default function PropertyDesc({
               alt="balcony"
               width="25"
               height="25"
+              title="balcony icon"
             />
             1 {t("pages.property.components.property_desc.balcony")}
           </div>
         )}
         {oneMasterBedroom && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/bed.png" alt="bed" width="25" height="25" />1{" "}
+            <Image src="/assets/bed.png" alt="bed" width="25" height="25"
+              title="bed icon"
+            />1{" "}
             {t("pages.property.components.property_desc.master_bedroom")}
           </div>
         )}
@@ -297,6 +333,7 @@ export default function PropertyDesc({
               alt="parquet"
               width="25"
               height="25"
+              title="parquet icon"
             />
             {t("pages.property.components.property_desc.parquet")}
           </div>
@@ -308,6 +345,7 @@ export default function PropertyDesc({
               alt="porcelain"
               width="25"
               height="25"
+              title="porcelain icons"
             />
             {t("pages.property.components.property_desc.porcelain")}
           </div>
@@ -319,6 +357,7 @@ export default function PropertyDesc({
               alt="entrance"
               width="25"
               height="25"
+              title="entrance icon"
             />
             {t("pages.property.components.property_desc.private_entrance")}
           </div>
@@ -330,13 +369,16 @@ export default function PropertyDesc({
               alt="garden"
               width="25"
               height="25"
+              title="garden icon"
             />
             {t("pages.property.components.property_desc.private_garden")}
           </div>
         )}
         {privateSwimmingPool && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/pool.png" alt="pool" width="25" height="25" />
+            <Image src="/assets/pool.png" alt="pool" width="25" height="25"
+              title="pool icon"
+            />
             {t("pages.property.components.property_desc.private_swimmingpool")}
           </div>
         )}
@@ -347,6 +389,7 @@ export default function PropertyDesc({
               alt="security"
               width="25"
               height="25"
+              title="security icon"
             />
             {t("pages.property.components.property_desc.security")}
           </div>
@@ -358,19 +401,24 @@ export default function PropertyDesc({
               alt="shopping"
               width="25"
               height="25"
+              title="shopping icon"
             />
             {t("pages.property.components.property_desc.shopping")}
           </div>
         )}
         {swimmingpoolUse && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/pool.png" alt="pool" width="25" height="25" />
+            <Image src="/assets/pool.png" alt="pool" width="25" height="25"
+              title="pool icon"
+            />
             {t("pages.property.components.property_desc.use_swimmingpool")}
           </div>
         )}
         {threeMasterBedroom && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/bed.png" alt="bed" width="25" height="25" />3{" "}
+            <Image src="/assets/bed.png" alt="bed" width="25" height="25"
+              title="bed icon"
+            />3{" "}
             {t("pages.property.components.property_desc.master_bedroom")}
           </div>
         )}
@@ -381,6 +429,7 @@ export default function PropertyDesc({
               alt="transportation"
               width="25"
               height="25"
+              title="transportation icon"
             />
             {t("pages.property.components.property_desc.transportation")}
           </div>
@@ -392,13 +441,16 @@ export default function PropertyDesc({
               alt="balcony"
               width="25"
               height="25"
+              title="balcony icon"
             />
             2 {t("pages.property.components.property_desc.balcony")}
           </div>
         )}
         {twoMasterBedroom && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/bed.png" alt="bed" width="25" height="25" />2{" "}
+            <Image src="/assets/bed.png" alt="bed" width="25" height="25"
+              title="bed icon"
+            />2{" "}
             {t("pages.property.components.property_desc.master_bedroom")}
           </div>
         )}
@@ -409,6 +461,7 @@ export default function PropertyDesc({
               alt="quiet icon"
               width="25"
               height="25"
+              title="quiet icon"
             />
             {t("pages.property.components.property_desc.quiet_area")}
           </div>
@@ -420,6 +473,7 @@ export default function PropertyDesc({
               alt="office icon"
               width="25"
               height="25"
+              title="office icon"
             />
             {t("pages.property.components.property_desc.office_room")}
           </div>
@@ -431,6 +485,7 @@ export default function PropertyDesc({
               alt="wardrobe icon"
               width="25"
               height="25"
+              title="wardrobe icon"
             />
             {t("pages.property.components.property_desc.wardrobe")}
           </div>
@@ -442,6 +497,7 @@ export default function PropertyDesc({
               alt="internet icon"
               width="25"
               height="25"
+              title="internet icon"
             />
             {t("pages.property.components.property_desc.internet")}
           </div>
@@ -453,6 +509,7 @@ export default function PropertyDesc({
               alt="elevator icon"
               width="25"
               height="25"
+              title="elevator icon"
             />
             {t("pages.property.components.property_desc.elevator")}
           </div>
@@ -464,6 +521,7 @@ export default function PropertyDesc({
               alt="study room icon"
               width="25"
               height="25"
+              title="study room icon"
             />
             {t("pages.property.components.property_desc.studyroom")}
           </div>
@@ -475,6 +533,7 @@ export default function PropertyDesc({
               alt="terrace icon"
               width="25"
               height="25"
+              title="terrace icon"
             />
             {t("pages.property.components.property_desc.terrace")}
           </div>
@@ -486,6 +545,7 @@ export default function PropertyDesc({
               alt="surveillance icon"
               width="25"
               height="25"
+              title="surveillance icon"
             />
             {t("pages.property.components.property_desc.surveillance")}
           </div>
@@ -497,6 +557,7 @@ export default function PropertyDesc({
               alt="covered parking icon"
               width="25"
               height="25"
+              title="covered parking icon"
             />
             {t("pages.property.components.property_desc.covered_parking")}
           </div>
@@ -508,6 +569,7 @@ export default function PropertyDesc({
               alt="storage icon"
               width="25"
               height="25"
+              title="storage icon"
             />
             {t("pages.property.components.property_desc.storage")}
           </div>
@@ -519,13 +581,16 @@ export default function PropertyDesc({
               alt="pool icon"
               width="25"
               height="25"
+              title="pool icon"
             />
             {t("pages.property.components.property_desc.shared_swimming")}
           </div>
         )}
         {petsAllowed && (
           <div className="flex items-center gap-2">
-            <Image src="/assets/pets.png" alt="pets" width="25" height="25" />
+            <Image src="/assets/pets.png" alt="pets" width="25" height="25"
+              title="pets icon"
+            />
             {t("pages.property.components.property_desc.pets_allowed")}
           </div>
         )}

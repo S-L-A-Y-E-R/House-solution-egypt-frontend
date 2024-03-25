@@ -10,6 +10,7 @@ export default function QR() {
         height="130"
         className="shadow-outline shadow-2xl border-8 border-white rounded shadow-black"
         alt="QRCode"
+        title="QRCode"
       />
     </div>
   );

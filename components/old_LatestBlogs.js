@@ -87,6 +87,7 @@ function LatestBlogs() {
                           <img
                             // sizes="500vw"
                             alt="image"
+                            title="image"
                             className="rounded"
                             src={BLOG_IMAGE_BASE_URL + post.image}
                             decoding="async"

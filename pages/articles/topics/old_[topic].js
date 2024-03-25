@@ -182,9 +182,13 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles }) {
               <div className="grid max-w-6xl gap-5 mx-auto md:grid-cols-2 lg:grid-cols-3">
                 {blogPosts.map((post) => (
                   <div className="bg-gray-200 p-2 rounded" key={post._id}>
-                    <Link href={`//${post.title.replaceAll(' ', '-').replaceAll('?', '_qm')}`} data-ur1313m3t="true">
+                    <Link href={`//${post.title.replaceAll(' ', '-').replaceAll('?', '_qm')}`} data-ur1313m3t="true"
+                      rel="noopener noreferrer"
+                    >
                       <div className="relative transition-all aspect-square hover:-translate-y-2 hover:shadow-2xl">
-                        <Link href={`//${post.title.replaceAll(' ', '-').replaceAll('?', '_qm')}`} data-ur1313m3t="true">
+                        <Link href={`//${post.title.replaceAll(' ', '-').replaceAll('?', '_qm')}`} data-ur1313m3t="true"
+                          rel="noopener noreferrer"
+                        >
                           <div className="relative transition-all aspect-square hover:-translate-y-2 hover:shadow-2xl">
                             <span
                               style={{
@@ -205,6 +209,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles }) {
                               <img
                                 // sizes="500vw"
                                 alt="image"
+                                title="image"
                                 className="rounded"
                                 src={BLOG_IMAGE_BASE_URL + post.image}
                                 decoding="async"
@@ -264,7 +269,9 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles }) {
                         </div>
                       </div>
 
-                      <Link href={`//${post._id}`}>
+                      <Link href={`//${post._id}`}
+                        rel="noopener noreferrer"
+                      >
                         <button className="mt-3 font-medium text-white rounded-full bg-[#095668] px-5 py-1">
                           <h3 className="inline-block text-sm font-medium text-white">
                             {t("pages.blog.read_more")}

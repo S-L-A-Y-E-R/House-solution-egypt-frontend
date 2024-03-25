@@ -141,7 +141,7 @@ function BlogDetails({
         <meta property="og:title" content={metaTitle} />
         <meta
           property="og:description"
-          content={metaDesc.slice(0,160) + " | " + metaTitle}
+          content={metaDesc.slice(0, 160) + " | " + metaTitle}
         />
         <meta property="og:image" content={BLOG_IMAGE_BASE_URL + metaImage} />
         <meta
@@ -199,7 +199,9 @@ function BlogDetails({
             </div>
             <hr />
             <div className="flex gap-1 items-center mt-4">
-              <Link href={`/articles/topics/${getData?.topic}`} className="underline text-blue-400" >{getData.topic}</Link>
+              <Link href={`/articles/topics/${getData?.topic}`} className="underline text-blue-400"
+                rel="noopener noreferrer"
+              >{getData.topic}</Link>
               <div className="text-gray-500"> | {getData?.readTime} MIN READ</div>
               <div className="text-gray-500"> | updated At {getData?.updatedAt.slice(0, 10)} </div>
               <div className="text-gray-500"> | Written By {getData?.writter} </div>

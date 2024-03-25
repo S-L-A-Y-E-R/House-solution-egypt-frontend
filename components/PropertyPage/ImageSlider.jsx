@@ -49,6 +49,7 @@ export default function ImageSlider({ mainimage, images, title }) {
                   style={{ objectFit: "contain" }}
                   width={1600}
                   height={1200}
+                  title="Image_Of_Property"
                 />
               </SwiperSlide>
             );
@@ -70,11 +71,10 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
               <div className="w-full bg-gray-800 p-1 pb-0 rounded">
                 <div className="flex gap-1">
                   <div
-                    className={`${
-                      images.length < 2
-                        ? "flex w-full"
-                        : "w-1/2 space-y-0.5 lg:space-y-0"
-                    }`}
+                    className={`${images.length < 2
+                      ? "flex w-full"
+                      : "w-1/2 space-y-0.5 lg:space-y-0"
+                      }`}
                   >
                     {!imageError ? (
                       <Image
@@ -86,6 +86,8 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                         className="rounded"
                         blurDataURL={mainimage.placeholder}
                         onError={() => setImageError(true)}
+                        alt="Image_Of_Property" s
+                        title="Image_Of_Property"
                       />
                     ) : (
                       <Image
@@ -96,6 +98,7 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                         placeholder="blur"
                         className="rounded"
                         blurDataURL={mainimage.placeholder}
+                        title="Image_Of_Property"
                       />
                     )}
                     {images[0] && (
@@ -108,6 +111,8 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                           placeholder="blur"
                           className="rounded"
                           blurDataURL={images[0].placeholder}
+                          alt="Image_Of_Property"
+                          title="Image_Of_Property"
                         />
                       </div>
                     )}
@@ -116,16 +121,18 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                     {images[1] && (
                       <Image
                         src={PROPERTY_BASE_URL + images[1].image}
+                        alt="Image_Of_Property"
+                        title="Image_Of_Property"
                         placeholder="blur"
                         // objectFit="cover"
-                        className="rounded"
+                        className="rounded" s
                         width={1600}
                         height={
                           images.length < 3
                             ? 2400
                             : images.length < 4
-                            ? 1220
-                            : 810
+                              ? 1220
+                              : 810
                         }
                         blurDataURL={images[1].placeholder}
                       />
@@ -140,6 +147,8 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                         width={1600}
                         height={images.length < 4 ? 1220 : 810}
                         blurDataURL={images[2].placeholder}
+                        alt="Image_Of_Property"
+                        title="Image_Of_Property"
                       />
                     )}
 
@@ -161,6 +170,8 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                           width={1600}
                           height={810}
                           blurDataURL={images[3].placeholder}
+                          alt="Image_Of_Property" s
+                          title="Image_Of_Property"
                         />
                       </div>
                     )}
@@ -197,7 +208,9 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                     className="absolute pt-1 top-1/2 right-2 -translate-y-1/2 z-50"
                     onClick={(e) => close()}
                   >
-                    <Image src="/assets/close.png" width={40} height={40} />
+                    <Image src="/assets/close.png" width={40} height={40} alt="close"
+                      title="close"
+                    />
                   </button>
                 </div>
                 {!select ? (
@@ -217,6 +230,7 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                             className="object-contain rounded"
                             width={1600}
                             height={1200}
+                            title="Image_Of_Property"
                           />
                         </div>
                       ))}
@@ -280,6 +294,7 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                               style={{ objectFit: "contain" }}
                               width={1000}
                               height={600}
+                              title="Image_Of_Property"
                             />
                           </SwiperSlide>
                         );
@@ -306,11 +321,10 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                           onClick={() => {
                             setSelectedImageIndex(index);
                           }}
-                          className={`rounded overflow-hidden ${
-                            selectedImageIndex === index
-                              ? "border-4 border-custom-blue"
-                              : "m-1 opacity-[50%] contrast-[100%] grayscale-[100%]"
-                          }`}
+                          className={`rounded overflow-hidden ${selectedImageIndex === index
+                            ? "border-4 border-custom-blue"
+                            : "m-1 opacity-[50%] contrast-[100%] grayscale-[100%]"
+                            }`}
                         >
                           <Image
                             src={PROPERTY_BASE_URL + image?.image}
@@ -318,6 +332,7 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                             className="object-cover !w-full !h-full"
                             layout="fill"
                             onClick={() => thumbsSwiper.slideTo(index)}
+                            title="Thumbnail_Image_Of_Property"
                           />
                         </SwiperSlide>
                       ))}
@@ -332,7 +347,9 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                       className="absolute pt-1 top-1/2 right-2 -translate-y-1/2 z-50"
                       onClick={(e) => close()}
                     >
-                      <Image src="/assets/close.png" width={30} height={30} />
+                      <Image src="/assets/close.png" width={30} height={30} alt="close"
+                        title="close"
+                      />
                     </button>
                   </div>
                   {images.map((image, index) => {
@@ -346,6 +363,7 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                           style={{ objectFit: "contain", maxWidth: "100%" }}
                           width={1600}
                           height={1200}
+                          title="Image_Of_Property"
                         />
                       </div>
                     );

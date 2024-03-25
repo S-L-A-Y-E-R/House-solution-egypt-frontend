@@ -73,7 +73,9 @@ export default function ContactUs({
       <div className="flex justify-between gap-1 px-2 py-4 my-1">
         <button className="flex items-center w-1/3 gap-1 px-1 py-1 font-semibold text-white rounded bg-custom-blue">
           {" "}
-          <Image src="/assets/phone.png" alt="phone" width="25" height="25" />
+          <Image src="/assets/phone.png" alt="phone" width="25" height="25"
+            title="phone"
+          />
           <Link href={"tel:+201221409530"}
             rel="noreferrer noopener"
           >
@@ -99,6 +101,7 @@ export default function ContactUs({
                       src={PROPERTY_BASE_URL + propertyImage.image}
                       className="w-1/3"
                       alt="property"
+                      title="property"
                     />
                     <div className="flex flex-col items-start gap-2">
                       <h5 className="text-start">{propertyTitle}</h5>
@@ -169,6 +172,7 @@ export default function ContactUs({
                   alt="email"
                   width="25"
                   height="25"
+                  title="email"
                 />
                 <span>{t("pages.property.components.contact_us.email")}</span>
               </Popover.Button>
@@ -180,7 +184,7 @@ export default function ContactUs({
             message
           )} ${isArabic ? WEBSITE_BASE_URL + "/ar" + asPath : fullUrl}`}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="social"
           className="w-1/3"
         >
           <button className="flex justify-center w-full gap-1 px-1 py-1 font-semibold text-white bg-green-500 rounded">
@@ -189,6 +193,7 @@ export default function ContactUs({
               alt="whatsapp"
               width="25"
               height="25"
+              title="whatsapp"
             />
           </button>
         </a>

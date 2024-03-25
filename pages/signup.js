@@ -56,12 +56,13 @@ function Login() {
       <div className="grid h-screen w-screen place-items-center bg-[#095668] px-4 text-sm font-medium">
         <div className="w-full max-w-sm bg-white rounded-lg shadow">
           <div className="mt-4">
-            <Link href="/">
+            <Link href="/" rel="home">
               <span>
                 <img
                   src="/images/HPlogo.png"
                   alt="Logo"
                   className="flex justify-center mt-2 px-10 cursor-pointer"
+                  title="House Point Egypt Logo"
                 />
               </span>
             </Link>
@@ -127,6 +128,7 @@ function Login() {
               <Link
                 href="/login"
                 className="py-2 text-center text-white rounded bg-custom-blue"
+                rel="noopener noreferrer"
               >
                 Login
               </Link>
@@ -134,11 +136,10 @@ function Login() {
 
             {alertMessage && (
               <div
-                className={`${
-                  alertMessage.includes("success")
-                    ? "bg-green-200 text-green-800"
-                    : "bg-red-200 text-red-800"
-                } p-2 rounded mt-3`}
+                className={`${alertMessage.includes("success")
+                  ? "bg-green-200 text-green-800"
+                  : "bg-red-200 text-red-800"
+                  } p-2 rounded mt-3`}
               >
                 {alertMessage}
               </div>

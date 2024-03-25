@@ -133,6 +133,7 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
                 .toLowerCase()
                 .split("-")
                 .join(" ")}`}
+              rel="propertyType"
             >
               {propertyType.toLowerCase().replace(/\w\S*/g, function (txt) {
                 return (
@@ -152,6 +153,7 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
                 .toLowerCase()
                 .split("-")
                 .join(" ")}/${location.toLowerCase()}`}
+              rel="location"
             >
               {location.toLowerCase().replace(/\w\S*/g, function (txt) {
                 return (
@@ -168,6 +170,7 @@ const FilterSearch = ({ type, propertyType, location, title, subArea, unTitle, h
             <Link
               className="underline"
               href={`/${type.toLowerCase()}/${propertyType.toLowerCase()}/${location.toLowerCase()}/${subArea.toLowerCase()}`}
+              rel="subArea"
             >
               {subArea
                 .toLowerCase()

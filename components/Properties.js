@@ -61,6 +61,7 @@ function Properties() {
                         layout="fill"
                         style={{ width: "100%", height: "100%" }}
                         objectFit="cover"
+                        title="Property Photo"
                       />
                     </Link>
                     <button aria-label="Zoom image" data-rmiz-btn-open="true"></button>
@@ -103,7 +104,7 @@ function Properties() {
                       href="https://api.whatsapp.com/send?phone=1234567890"
                       className="text-gray-600 hover:text-gray-800"
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="social"
                     >
                       <button
                         type="button"
@@ -133,7 +134,7 @@ function Properties() {
                       href="https://api.whatsapp.com/send?phone=1234567890"
                       className="text-green-600 hover:text-green-800"
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="social"
                     >
                       <button
                         type="button"

@@ -25,7 +25,9 @@ const Article = (props) => {
                 );
             }}>
                 <div className={`${style.postCenter} ${style.image}`}>
-                    <img className={`${style.postImage}`} src={BLOG_IMAGE_BASE_URL + post.image} alt={post.title} />
+                    <img className={`${style.postImage}`} src={BLOG_IMAGE_BASE_URL + post.image} alt={post.title}
+                        title="image"
+                    />
                 </div>
                 <div className={`${style.postCenter} ${style.title}`}>
                     <p className={`${style.postTitle}`}>

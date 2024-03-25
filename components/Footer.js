@@ -56,50 +56,58 @@ const Footer = () => {
             <a
               href="https://www.facebook.com/House-Point-Egypt-112529918222923"
               title="Facebook"
+              rel="social"
             >
               <Image
                 src="/assets/face.png"
                 alt="facebook icon"
                 width="35"
                 height="35"
+                title="House Point Egypt Facebook"
               />
             </a>
             <a
               href="https://www.instagram.com/housepointegypt/"
               title="Instagram"
+              rel="social"
             >
               <Image
                 src="/assets/instagram.png"
                 alt="instagram icon"
                 width="35"
                 height="35"
+                title="House Point Egypt Instagram"
               />
             </a>
-            <a href="https://twitter.com/Housep0integypt" title="Twitter">
+            <a href="https://twitter.com/Housep0integypt" title="Twitter" rel="social">
               <Image
                 src="/assets/twitter.png"
                 alt="twitter icon"
                 width="35"
                 height="35"
+                title="House Point Egypt Twitter" s
               />
             </a>
-            <a href="https://www.linkedin.com/in/housepointegyptrealestate" title="Linkedin">
+            <a href="https://www.linkedin.com/in/housepointegyptrealestate" title="Linkedin" rel="social">
               <Image
                 src="/assets/linkedin.png"
                 alt="linkedin icon"
                 width="35"
                 height="35"
+                title="House Point Egypt Linkedin"
               />
             </a>
             <a
               href="https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU"
               title="Youtube"
+              rel="social"
             >
               <Image
                 src="/assets/youtube.png"
                 alt="youtube icon"
                 width="35"
                 height="35"
+                title="House Point Egypt Youtube"
               />
             </a>
             <a
@@ -107,18 +115,21 @@ const Footer = () => {
               target="_blank"
               title="Telegram"
               className="mt-1"
+              rel="social"
             >
               <Image
                 src="/assets/telegram.png"
                 alt="Telegram Icon"
                 width="27"
                 height="27"
+                title="House Point Egypt Telegram"
               />
             </a>
             <a
               href="https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
               title="Tiktok"
               target="_blank"
+              rel="social"
             >
               <Image
                 src="/assets/tiktok.webp"
@@ -126,6 +137,7 @@ const Footer = () => {
                 alt="Tiktok Icon"
                 width="28"
                 height="28"
+                title="House Point Egypt Tiktok"
               />
             </a>
           </div>
@@ -147,6 +159,7 @@ const Footer = () => {
                     alt="search"
                     width="25"
                     height="25"
+                    title="House Point Egypt Search Icon"
                   />
                   <span>{isArabic ? link.titleAr : link.title}</span>
                 </a>

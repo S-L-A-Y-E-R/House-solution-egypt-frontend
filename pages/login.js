@@ -57,6 +57,7 @@ function Login() {
                   src="/images/HPlogo.png"
                   alt="Logo"
                   className="px-10 flex justify-center mt-2 cursor-pointer"
+                  title="House Point Egypt Logo"
                 />
               </span>
             </Link>
@@ -110,6 +111,7 @@ function Login() {
               <Link
                 href="/signup"
                 className="py-2 text-center text-white rounded bg-custom-blue"
+                rel="noopener noreferrer"
               >
                 Sign Up
               </Link>
@@ -117,11 +119,10 @@ function Login() {
 
             {alertMessage && (
               <div
-                className={`${
-                  alertMessage.includes("success")
-                    ? "bg-green-200 text-green-800"
-                    : "bg-red-200 text-red-800"
-                } p-2 rounded mt-3`}
+                className={`${alertMessage.includes("success")
+                  ? "bg-green-200 text-green-800"
+                  : "bg-red-200 text-red-800"
+                  } p-2 rounded mt-3`}
               >
                 {alertMessage}
               </div>
