@@ -144,12 +144,12 @@ const LocationPage = ({
   }, []);
 
   const titleEN = `${propertyType && propertyType !== "properties"
-      ? t(
-        propertyType.replace(/\w\S*/g, function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        })
-      )
-      : "Property Types"
+    ? t(
+      propertyType.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+    )
+    : "Property Types"
     } ${type && type !== "for-rent-or-sale"
       ? " For " +
       type.replace(/\w\S*/g, function (txt) {
@@ -233,7 +233,7 @@ const LocationPage = ({
             <title>
               {count +
                 " " +
-                `${meta ? meta.title : isArabic ? titleAR : titleEN}`}
+                `${meta ? meta.title : isArabic ? titleAR.slice(0, 60) : titleEN.slice(0, 60)}`}
             </title>
             <meta name="robots" content="index, follow" />
             <meta
@@ -241,7 +241,7 @@ const LocationPage = ({
               content={
                 count +
                 " " +
-                `${meta ? meta.description.slice(0, 160): isArabic ? titleAR : titleEN}`
+                `${meta ? meta.description.slice(0, 160) : isArabic ? titleAR : titleEN}`
               }
             />
             <link

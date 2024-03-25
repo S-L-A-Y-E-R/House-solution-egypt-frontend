@@ -374,7 +374,7 @@ function PropertyDetails({
             <meta name="keywords" content={keywordsOfPropeties} />
 
             <title>
-              {isArabic ? propertyDetails.titleAr : propertyDetails.title}
+              {isArabic ? propertyDetails.titleAr.slice(0, 60) : propertyDetails.title.slice(0, 60)}
             </title>
             <meta
               name="description"

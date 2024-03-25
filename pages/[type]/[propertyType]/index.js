@@ -214,7 +214,7 @@ const PropertyTypePage = ({
             <title>
               {count +
                 " " +
-                `${meta ? meta.title : isArabic ? titleAR : titleEN}`}
+                `${meta ? meta.title : isArabic ? titleAR.slice(0, 60) : titleEN.slice(0, 60)}`}
             </title>
             <meta name="robots" content="index, follow" />
             <meta
