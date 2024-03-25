@@ -196,9 +196,9 @@ function BlogDetails({
           <QR />
           <div className="w-full px-6">
             <div>
-              <h4 className="my-2 text-xl uppercase lg:text-3xl font-heading" style={{ fontWeight: 'bolder', letterSpacing: '1px' }}>
+              <h1 className="my-2 text-xl uppercase lg:text-3xl font-heading" style={{ fontWeight: 'bolder', letterSpacing: '1px' }}>
                 {blogData.title}
-              </h4>
+              </h1>
             </div>
             <hr />
 

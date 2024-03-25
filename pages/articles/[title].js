@@ -126,7 +126,6 @@ function BlogDetails({
       "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
     ],
   };
-
   return (
     <>
       <Head>
@@ -190,12 +189,12 @@ function BlogDetails({
           <QR />
           <div className="w-full px-6">
             <div>
-              <div
+              <h1
                 className="my-2 text-xl uppercase lg:text-3xl font-heading"
                 style={{ fontWeight: "bolder", letterSpacing: "1px" }}
               >
                 {blogData.title}
-              </div>
+              </h1>
             </div>
             <hr />
             <div className="flex gap-1 items-center mt-4">
