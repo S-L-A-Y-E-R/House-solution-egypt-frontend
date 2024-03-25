@@ -97,6 +97,15 @@ const Footer = () => {
                 title="House Point Egypt Linkedin"
               />
             </a>
+            <a href="https://www.pinterest.com/housepointegypt2/" title="Pinterest" rel="social">
+              <Image
+                src="/assets/pinterest.svg"
+                alt="Pinterest icon"
+                width="35"
+                height="35"
+                title="House Point Egypt Pinterest"
+              />
+            </a>
             <a
               href="https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU"
               title="Youtube"
