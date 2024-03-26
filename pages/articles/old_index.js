@@ -15,7 +15,7 @@ import Article from "@/components/Blog/Article";
 import blogStyle from '@/styles/BlogIndex.module.css';
 
 export async function getServerSideProps(context) {
-  let link = `/articles`;
+  let link = `/reads`;
   const { locale } = context;
   if (locale == "ar") link = "/ar" + link;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
@@ -103,7 +103,7 @@ function Index(props) {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + isArabic ? '/ar/articles' : "/articles"}
+          href={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : "/reads"}
           key="canonical"
         />
         <meta name='keywords' content={meta.keywords} />

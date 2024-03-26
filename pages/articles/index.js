@@ -117,7 +117,7 @@ function Index(props) {
       "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
     ],
   };
-
+  
   return (
     <>
       <Head>
@@ -125,7 +125,7 @@ function Index(props) {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + '/articles'}
+          href={WEBSITE_BASE_URL + '/reads'}
           key="canonical"
         />
         <meta name='keywords' content={meta.keywords} />
@@ -159,10 +159,10 @@ function Index(props) {
           }
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={WEBSITE_BASE_URL + '/articles'} />
-        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/articles`} />
-        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL + `/articles`} />
-        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/articles`} />
+        <meta property="og:url" content={WEBSITE_BASE_URL + '/reads'} />
+        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/reads`} />
+        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL + '/reads'} />
+        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/reads`} />
 
         <meta name="twitter:card" content="summary" />s
         <meta name="twitter:site" content="@HousePointE" />

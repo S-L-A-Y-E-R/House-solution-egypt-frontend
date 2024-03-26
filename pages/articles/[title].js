@@ -133,7 +133,7 @@ function BlogDetails({
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + "/articles"}
+          href={WEBSITE_BASE_URL + "/reads"}
           key="canonical"
         />
         <meta name="description" content={metaDesc.slice(0, 160) + " | " + metaTitle} />
@@ -198,7 +198,7 @@ function BlogDetails({
             </div>
             <hr />
             <div className="flex gap-1 items-center mt-4">
-              <Link href={`/articles/topics/${getData?.topic}`} className="underline text-blue-400"
+              <Link href={`/reads/topics/${getData?.topic}`} className="underline text-blue-400"
                 rel="noopener noreferrer"
               >{getData.topic}</Link>
               <div className="text-gray-500"> | {getData?.readTime} MIN READ</div>

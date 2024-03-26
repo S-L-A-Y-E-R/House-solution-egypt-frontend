@@ -124,7 +124,7 @@ function Index(props) {
   return (
     <>
       <Head>
-        <title>{`${meta.title}`} </title>
+        <title>{`${meta?.title}`} </title>
         <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"

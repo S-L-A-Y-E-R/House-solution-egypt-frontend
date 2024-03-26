@@ -112,7 +112,7 @@ function PropertyDetails({
       "https://twitter.com/Housep0integypt",
       "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
       "https://t.me/housepointegypt",
-      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1",
     ],
   };
   const realSchema = {
@@ -125,19 +125,39 @@ function PropertyDetails({
     "@type": "Accommodation",
     "@id": "mainEntity",
     name: isArabic ? propertyDetails.titleAr : propertyDetails.title,
-    description: propertyDetails && propertyDetails.descriptionAr ?
-      isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
-      : isArabic ? propertyDetails.titleAr : propertyDetails.title,
-    image: WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image + '&w=3840&q=30',
+    description:
+      propertyDetails && propertyDetails.descriptionAr
+        ? isArabic
+          ? propertyDetails.descriptionAr
+              .replaceAll("<p>", "")
+              .replaceAll("</p>", "")
+              .replaceAll("&nbsp;", " ")
+          : propertyDetails.description
+              .replaceAll("<p>", "")
+              .replaceAll("</p>", "")
+              .replaceAll("&nbsp;", " ")
+        : isArabic
+        ? propertyDetails.titleAr
+        : propertyDetails.title,
+    image:
+      WEBSITE_BASE_URL +
+      "/_next/image?url=" +
+      PROPERTY_BASE_URL +
+      propertyDetails.images[0].image +
+      "&w=3840&q=30",
     url:
       WEBSITE_BASE_URL +
-      `${isArabic ? "/ar" : ""
-      }/${type}/${propertyType}/${location}/${subArea}/${isArabic ? propertyDetails.titleAr : propertyDetails.title
+      `${
+        isArabic ? "/ar" : ""
+      }/${type}/${propertyType}/${location}/${subArea}/${
+        isArabic ? propertyDetails.titleAr : propertyDetails.title
       }`,
     tourBookingPage:
       WEBSITE_BASE_URL +
-      `${isArabic ? "/ar" : ""
-      }/${type}/${propertyType}/${location}/${subArea}/${isArabic ? propertyDetails.titleAr : propertyDetails.title
+      `${
+        isArabic ? "/ar" : ""
+      }/${type}/${propertyType}/${location}/${subArea}/${
+        isArabic ? propertyDetails.titleAr : propertyDetails.title
       }`,
     numberOfBathroomsTotal: propertyDetails.baths,
     numberOfBedrooms: propertyDetails.beds,
@@ -353,6 +373,7 @@ function PropertyDetails({
       } else return "-";
     })
     .filter((e) => e != "-");
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       {
@@ -362,29 +383,58 @@ function PropertyDetails({
             <meta name="robots" content="index, follow" />
             <meta
               property="og:image"
-              content={WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image + '&w=3840&q=30'}
+              content={
+                WEBSITE_BASE_URL +
+                "/_next/image?url=" +
+                PROPERTY_BASE_URL +
+                propertyDetails.images[0].image +
+                "&w=3840&q=30"
+              }
             />
             <meta
               property="og:image:alt"
               content="House Point Egypt - Real Estate | Logo"
             />
-            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
+            <meta
+              property="og:site_name"
+              content="House Point Egypt - Real Estate"
+            />
 
             <meta
               property="og:image:secure_url"
-              content={WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image + '&w=3840&q=30'}
+              content={
+                WEBSITE_BASE_URL +
+                "/_next/image?url=" +
+                PROPERTY_BASE_URL +
+                propertyDetails.images[0].image +
+                "&w=3840&q=30"
+              }
             />
             <meta name="keywords" content={keywordsOfPropeties} />
 
             <title>
-              {isArabic ? propertyDetails.titleAr.slice(0, 60) : propertyDetails.title.slice(0, 60)}
+              {isArabic
+                ? propertyDetails.titleAr.slice(0, 60)
+                : propertyDetails.title.slice(0, 60)}
             </title>
             <meta
               name="description"
               content={
-                propertyDetails && propertyDetails.descriptionAr ?
-                  isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ').slice(0, 160) : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ').slice(0, 160)
-                  : isArabic ? propertyDetails.titleAr : propertyDetails.title
+                propertyDetails && propertyDetails.descriptionAr
+                  ? isArabic
+                    ? propertyDetails.descriptionAr
+                        .replaceAll("<p>", "")
+                        .replaceAll("</p>", "")
+                        .replaceAll("&nbsp;", " ")
+                        .slice(0, 160)
+                    : propertyDetails.description
+                        .replaceAll("<p>", "")
+                        .replaceAll("</p>", "")
+                        .replaceAll("&nbsp;", " ")
+                        .slice(0, 160)
+                  : isArabic
+                  ? propertyDetails.titleAr
+                  : propertyDetails.title
               }
             />
             <link rel="canonical" href={fullUrl} key="canonical" />
@@ -438,9 +488,19 @@ function PropertyDetails({
             <meta
               property="og:description"
               content={
-                propertyDetails && propertyDetails.descriptionAr ?
-                  isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
-                  : isArabic ? propertyDetails.titleAr : propertyDetails.title
+                propertyDetails && propertyDetails.descriptionAr
+                  ? isArabic
+                    ? propertyDetails.descriptionAr
+                        .replaceAll("<p>", "")
+                        .replaceAll("</p>", "")
+                        .replaceAll("&nbsp;", " ")
+                    : propertyDetails.description
+                        .replaceAll("<p>", "")
+                        .replaceAll("</p>", "")
+                        .replaceAll("&nbsp;", " ")
+                  : isArabic
+                  ? propertyDetails.titleAr
+                  : propertyDetails.title
               }
             />
 
@@ -460,295 +520,322 @@ function PropertyDetails({
             <meta
               name="twitter:description"
               content={
-                propertyDetails && propertyDetails.descriptionAr ?
-                  isArabic ? propertyDetails.descriptionAr.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ') : propertyDetails.description.replaceAll('<p>', '').replaceAll('</p>', '').replaceAll('&nbsp;', ' ')
-                  : isArabic ? propertyDetails.titleAr : propertyDetails.title
+                propertyDetails && propertyDetails.descriptionAr
+                  ? isArabic
+                    ? propertyDetails.descriptionAr
+                        .replaceAll("<p>", "")
+                        .replaceAll("</p>", "")
+                        .replaceAll("&nbsp;", " ")
+                    : propertyDetails.description
+                        .replaceAll("<p>", "")
+                        .replaceAll("</p>", "")
+                        .replaceAll("&nbsp;", " ")
+                  : isArabic
+                  ? propertyDetails.titleAr
+                  : propertyDetails.title
               }
             />
             <meta
               name="twitter:image"
-              content={WEBSITE_BASE_URL + '/_next/image?url=' + PROPERTY_BASE_URL + propertyDetails.images[0].image + '&w=3840&q=30'}
+              content={
+                WEBSITE_BASE_URL +
+                "/_next/image?url=" +
+                PROPERTY_BASE_URL +
+                propertyDetails.images[0].image +
+                "&w=3840&q=30"
+              }
             />
 
             <meta name="robots" content="index, follow" />
           </Head>
         </>
       }
-      <div>
-        <Navbar url={changeLang} />
-        <QR />
-        <div className="p-2 my-1">
-          <div className="p-2 md:hidden">
-            <BreadCrumbs
-              type={type}
-              propertyType={propertyType}
-              location={location}
-              subArea={subArea}
-              title={isArabic ? propertyDetails.titleAr : propertyDetails.title}
-            />
-          </div>
-          <div className="px-2 py-4 mx-2 text-white rounded-md bg-custom-blue font-openSans">
-            <div className="flex flex-row flex-wrap justify-center lg:justify-between w-full mt-4">
-              <div className="w-full text-center md:w-3/4 md:text-start">
-                <h1 className="text-2xl lg:text-4xl">
-                  {isArabic ? propertyDetails.titleAr : propertyDetails.title}
-                </h1>
-                <div className="hidden md:block">
-                  {!isArabic && (
-                    <h2 className="text-xs text-center lg:text-base md:text-start">
-                      {`${propertyType} for ${type} in ${location} ${subArea} Area: ${propertyDetails.propertyArea}`.replace(
-                        /\w\S*/g,
-                        function (txt) {
-                          return (
-                            txt.charAt(0).toUpperCase() +
-                            txt.substr(1).toLowerCase()
-                          );
-                        }
-                      )}{" "}
-                      m<sup>2</sup> consists of{" "}
-                      {`${propertyDetails.beds} bedrooms ${propertyDetails.baths} bathrooms ${propertyDetails.furnitureStatus.name} 5 stars`.replace(
-                        /\w\S*/g,
-                        function (txt) {
-                          return (
-                            txt.charAt(0).toUpperCase() +
-                            txt.substr(1).toLowerCase()
-                          );
-                        }
-                      )}
-                    </h2>
-                  )}
-                  {isArabic && (
-                    <h2 className="text-xs text-center lg:text-base md:text-start">
-                      {`${propertyType} لل${type} في ${location} ${subArea} مساحة: ${propertyDetails.propertyArea}`.replace(
-                        /\w\S*/g,
-                        function (txt) {
-                          return (
-                            txt.charAt(0).toUpperCase() +
-                            txt.substr(1).toLowerCase()
-                          );
-                        }
-                      )}{" "}
-                      متر مربع تتكون من{" "}
-                      {`${propertyDetails.beds} غرف نوم ${propertyDetails.baths} حمام ${propertyDetails.furnitureStatus.nameAr} 5 نجوم`.replace(
-                        /\w\S*/g,
-                        function (txt) {
-                          return (
-                            txt.charAt(0).toUpperCase() +
-                            txt.substr(1).toLowerCase()
-                          );
-                        }
-                      )}
-                    </h2>
-                  )}
-                </div>
-              </div>
-              <hr className="w-full my-2 lg:hidden block" />
-              <div className="w-full md:w-auto">
-                <div className="text-center md:text-start">
-                  <span className="mr-4 text-xl">
-                    <span className="text-3xl font-semibold">
-                      {propertyDetails.currency == "USD" &&
-                        Number(
-                          propertyDetails.price * liveCurrency.USD
-                        ).toLocaleString()}
-                      {propertyDetails.currency == "EUR" &&
-                        Number(
-                          propertyDetails.price * liveCurrency.EUR
-                        ).toLocaleString()}
-                      {propertyDetails.currency == "EGP" &&
-                        Number(propertyDetails.price).toLocaleString()}
-                    </span>
-                    {isArabic && <>جنية</>}
-                    {!isArabic && <>EGP</>}
-                    {propertyDetails.type == "rent" && (
-                      <span>
-                        {!isArabic && <span>/ Month</span>}
-                        {isArabic && <span>/ شهريا</span>}
-                      </span>
-                    )}
-                  </span>
-                </div>
-                <div className="block md:hidden">
-                  <hr className="w-full my-2 lg:hidden sm:block" />
-
-                  {!isArabic && (
-                    <h2 className="text-xs text-center lg:text-base md:text-start">
-                      {`${propertyType} for ${type} in ${location} ${subArea} Area: ${propertyDetails.propertyArea}`.replace(
-                        /\w\S*/g,
-                        function (txt) {
-                          return (
-                            txt.charAt(0).toUpperCase() +
-                            txt.substr(1).toLowerCase()
-                          );
-                        }
-                      )}{" "}
-                      m<sup>2</sup> consists of{" "}
-                      {`${propertyDetails.beds} bedrooms ${propertyDetails.baths} bathrooms ${propertyDetails.furnitureStatus.name} 5 stars`.replace(
-                        /\w\S*/g,
-                        function (txt) {
-                          return (
-                            txt.charAt(0).toUpperCase() +
-                            txt.substr(1).toLowerCase()
-                          );
-                        }
-                      )}
-                    </h2>
-                  )}
-                  {isArabic && (
-                    <h2 className="text-xs text-center lg:text-base md:text-start">
-                      {`${propertyType} لل${type} في ${location} ${subArea} مساحة: ${propertyDetails.propertyArea}`.replace(
-                        /\w\S*/g,
-                        function (txt) {
-                          return (
-                            txt.charAt(0).toUpperCase() +
-                            txt.substr(1).toLowerCase()
-                          );
-                        }
-                      )}{" "}
-                      متر مربع تتكون من{" "}
-                      {`${propertyDetails.beds} غرف نوم ${propertyDetails.baths} حمام ${propertyDetails.furnitureStatus.nameAr} 5 نجوم`.replace(
-                        /\w\S*/g,
-                        function (txt) {
-                          return (
-                            txt.charAt(0).toUpperCase() +
-                            txt.substr(1).toLowerCase()
-                          );
-                        }
-                      )}
-                    </h2>
-                  )}
-                </div>
-                <div className="w-full text-center md:w-auto md:text-start">
-                  {t("pages.property.components.title.last_updated")}:{" "}
-                  {isArabic ? dateOfPropAr : dateOfProp}
-                </div>
-                <div className="w-full mt-2 text-2xl font-semibold text-center xs:w-full lg:text-right">
-                  <small>
-                    {t("pages.property.components.title.ref_num")} :{" "}
-                    {propertyDetails.refNumber}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="hidden p-2 md:block">
-            <BreadCrumbs
-              type={type}
-              propertyType={propertyType}
-              location={location}
-              subArea={subArea}
-              title={isArabic ? propertyDetails.titleAr : propertyDetails.title}
-            />
-          </div>
-          <div className="mx-2 my-4">
-            <ImageSlider
-              mainimage={propertyDetails.mainimage}
-              images={propertyDetails.images}
-              title={isArabic ? propertyDetails.titleAr : propertyDetails.title}
-            />
-          </div>
-          <div className="flex flex-col w-full gap-2 mt-1 md:flex-row">
-            <div className="md:sticky z-40 transition-all fixed h-fit bg-white  bottom-0 md:w-1/3 w-full md:top-[20%]">
-              <ContactUs
-                propertyImage={propertyDetails.images[0]}
-                propertyTitle={propertyDetails.title}
-                propertyPrice={propertyDetails.price}
-                propertyRef={propertyDetails.refNumber}
-                isArabic={isArabic}
-                liveCurrency={liveCurrency}
-                currency={propertyDetails.currency}
-              />
-            </div>
-            <div className="w-full px-2 md:w-2/3">
-              <PropertyDesc
-                tagsDefault={tagsDefault}
+      {!showModal && (
+        <div>
+          <Navbar url={changeLang} />
+          <QR />
+          <div className="p-2 my-1">
+            <div className="p-2 md:hidden">
+              <BreadCrumbs
                 type={type}
                 propertyType={propertyType}
                 location={location}
                 subArea={subArea}
-                area={propertyDetails.propertyArea}
-                bedrooms={propertyDetails.beds}
-                bathrooms={propertyDetails.baths}
-                furnitureStatus={
-                  isArabic
-                    ? propertyDetails.furnitureStatus.nameAr
-                    : propertyDetails.furnitureStatus.name
-                }
                 title={
                   isArabic ? propertyDetails.titleAr : propertyDetails.title
                 }
-                description={
-                  isArabic
-                    ? propertyDetails.descriptionAr
-                    : propertyDetails.description
-                }
-                HDF={propertyDetails.HDF}
-                airConditioning={propertyDetails.airConditioning}
-                centralAirCondition={propertyDetails.centralAirCondition}
-                ceramics={propertyDetails.ceramics}
-                closetoCAC={propertyDetails.closetoCAC}
-                closetoFrenchSchool={propertyDetails.closetoFrenchSchool}
-                closetoGym={propertyDetails.closetoGym}
-                closetoMetroStation={propertyDetails.closetoMetroStation}
-                closetoRestaurant={propertyDetails.closetoRestaurants}
-                closetoSchools={propertyDetails.closetoSchools}
-                compound={propertyDetails.compound}
-                fourMasterBedroom={propertyDetails.fourMasterBedroom}
-                internet={propertyDetails.internet}
-                jacuzzi={propertyDetails.jacuzzi}
-                kitchenAppliances={propertyDetails.kitchenAppliances}
-                laundryRoom={propertyDetails.laundryRoom}
-                maidsRoom={propertyDetails.maidsRoom}
-                marble={propertyDetails.marble}
-                oneBalconyView={propertyDetails.oneBalconyView}
-                oneMasterBedroom={propertyDetails.oneMasterBedroom}
-                parquet={propertyDetails.parquet}
-                porcelain={propertyDetails.porcelain}
-                privateEntrance={propertyDetails.privateEntrance}
-                privateGarden={propertyDetails.privateGarden}
-                privateSwimmingPool={propertyDetails.privateSwimmingPool}
-                security={propertyDetails.security}
-                shoppingNerdy={propertyDetails.shoppingNerdy}
-                swimmingpoolUse={propertyDetails.swimmingpoolUse}
-                threeMasterBedroom={propertyDetails.threeMasterBedroom}
-                transportNerdy={propertyDetails.transportNerdy}
-                twoBalconyView={propertyDetails.twoBalconyView}
-                twoMasterBedroom={propertyDetails.twoMasterBedroom}
-                walkinCloset={propertyDetails.walkinCloset}
-                tags={propertyDetails.tags}
-                tagsAr={propertyDetails.tagsAr}
-                quietArea={propertyDetails.quietArea}
-                officeRoom={propertyDetails.officeRoom}
-                builtinWardrobe={propertyDetails.builtinWardrobe}
-                internetAccess={propertyDetails.internetAccess}
-                elevator={propertyDetails.elevator}
-                studyroom={propertyDetails.studyroom}
-                terrace={propertyDetails.terrace}
-                surveillance={propertyDetails.surveillance}
-                coveredParking={propertyDetails.coveredParking}
-                storage={propertyDetails.storage}
-                sharedSwimmingPool={propertyDetails.sharedSwimmingPool}
-                petsAllowed={propertyDetails.petsAllowed}
               />
             </div>
-          </div>
-          <div className="px-2 mx-auto my-4">
-            <RelatedProperties
-              type={type}
-              propertyType={propertyType}
-              location={location}
-              subArea={subArea}
-              isArabic={isArabic}
-            />
-          </div>
-          <div className="p-2">
-            <Searchbar />
-          </div>
-        </div>
-        {/* <div className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto" dangerouslySetInnerHTML={{__html:meta?.article }}/> */}
+            <div className="px-2 py-4 mx-2 text-white rounded-md bg-custom-blue font-openSans">
+              <div className="flex flex-row flex-wrap justify-center lg:justify-between w-full mt-4">
+                <div className="w-full text-center md:w-3/4 md:text-start">
+                  <h1 className="text-2xl lg:text-4xl">
+                    {isArabic ? propertyDetails.titleAr : propertyDetails.title}
+                  </h1>
+                  <div className="hidden md:block">
+                    {!isArabic && (
+                      <h2 className="text-xs text-center lg:text-base md:text-start">
+                        {`${propertyType} for ${type} in ${location} ${subArea} Area: ${propertyDetails.propertyArea}`.replace(
+                          /\w\S*/g,
+                          function (txt) {
+                            return (
+                              txt.charAt(0).toUpperCase() +
+                              txt.substr(1).toLowerCase()
+                            );
+                          }
+                        )}{" "}
+                        m<sup>2</sup> consists of{" "}
+                        {`${propertyDetails.beds} bedrooms ${propertyDetails.baths} bathrooms ${propertyDetails.furnitureStatus.name} 5 stars`.replace(
+                          /\w\S*/g,
+                          function (txt) {
+                            return (
+                              txt.charAt(0).toUpperCase() +
+                              txt.substr(1).toLowerCase()
+                            );
+                          }
+                        )}
+                      </h2>
+                    )}
+                    {isArabic && (
+                      <h2 className="text-xs text-center lg:text-base md:text-start">
+                        {`${propertyType} لل${type} في ${location} ${subArea} مساحة: ${propertyDetails.propertyArea}`.replace(
+                          /\w\S*/g,
+                          function (txt) {
+                            return (
+                              txt.charAt(0).toUpperCase() +
+                              txt.substr(1).toLowerCase()
+                            );
+                          }
+                        )}{" "}
+                        متر مربع تتكون من{" "}
+                        {`${propertyDetails.beds} غرف نوم ${propertyDetails.baths} حمام ${propertyDetails.furnitureStatus.nameAr} 5 نجوم`.replace(
+                          /\w\S*/g,
+                          function (txt) {
+                            return (
+                              txt.charAt(0).toUpperCase() +
+                              txt.substr(1).toLowerCase()
+                            );
+                          }
+                        )}
+                      </h2>
+                    )}
+                  </div>
+                </div>
+                <hr className="w-full my-2 lg:hidden block" />
+                <div className="w-full md:w-auto">
+                  <div className="text-center md:text-start">
+                    <span className="mr-4 text-xl">
+                      <span className="text-3xl font-semibold">
+                        {propertyDetails.currency == "USD" &&
+                          Number(
+                            propertyDetails.price * liveCurrency.USD
+                          ).toLocaleString()}
+                        {propertyDetails.currency == "EUR" &&
+                          Number(
+                            propertyDetails.price * liveCurrency.EUR
+                          ).toLocaleString()}
+                        {propertyDetails.currency == "EGP" &&
+                          Number(propertyDetails.price).toLocaleString()}
+                      </span>
+                      {isArabic && <>جنية</>}
+                      {!isArabic && <>EGP</>}
+                      {propertyDetails.type == "rent" && (
+                        <span>
+                          {!isArabic && <span>/ Month</span>}
+                          {isArabic && <span>/ شهريا</span>}
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                  <div className="block md:hidden">
+                    <hr className="w-full my-2 lg:hidden sm:block" />
 
-        <Footer />
-      </div>
+                    {!isArabic && (
+                      <h2 className="text-xs text-center lg:text-base md:text-start">
+                        {`${propertyType} for ${type} in ${location} ${subArea} Area: ${propertyDetails.propertyArea}`.replace(
+                          /\w\S*/g,
+                          function (txt) {
+                            return (
+                              txt.charAt(0).toUpperCase() +
+                              txt.substr(1).toLowerCase()
+                            );
+                          }
+                        )}{" "}
+                        m<sup>2</sup> consists of{" "}
+                        {`${propertyDetails.beds} bedrooms ${propertyDetails.baths} bathrooms ${propertyDetails.furnitureStatus.name} 5 stars`.replace(
+                          /\w\S*/g,
+                          function (txt) {
+                            return (
+                              txt.charAt(0).toUpperCase() +
+                              txt.substr(1).toLowerCase()
+                            );
+                          }
+                        )}
+                      </h2>
+                    )}
+                    {isArabic && (
+                      <h2 className="text-xs text-center lg:text-base md:text-start">
+                        {`${propertyType} لل${type} في ${location} ${subArea} مساحة: ${propertyDetails.propertyArea}`.replace(
+                          /\w\S*/g,
+                          function (txt) {
+                            return (
+                              txt.charAt(0).toUpperCase() +
+                              txt.substr(1).toLowerCase()
+                            );
+                          }
+                        )}{" "}
+                        متر مربع تتكون من{" "}
+                        {`${propertyDetails.beds} غرف نوم ${propertyDetails.baths} حمام ${propertyDetails.furnitureStatus.nameAr} 5 نجوم`.replace(
+                          /\w\S*/g,
+                          function (txt) {
+                            return (
+                              txt.charAt(0).toUpperCase() +
+                              txt.substr(1).toLowerCase()
+                            );
+                          }
+                        )}
+                      </h2>
+                    )}
+                  </div>
+                  <div className="w-full text-center md:w-auto md:text-start">
+                    {t("pages.property.components.title.last_updated")}:{" "}
+                    {isArabic ? dateOfPropAr : dateOfProp}
+                  </div>
+                  <div className="w-full mt-2 text-2xl font-semibold text-center xs:w-full lg:text-right">
+                    <small>
+                      {t("pages.property.components.title.ref_num")} :{" "}
+                      {propertyDetails.refNumber}
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="hidden p-2 md:block">
+              <BreadCrumbs
+                type={type}
+                propertyType={propertyType}
+                location={location}
+                subArea={subArea}
+                title={
+                  isArabic ? propertyDetails.titleAr : propertyDetails.title
+                }
+              />
+            </div>
+            <div className="mx-2 my-4">
+              <ImageSlider
+                mainimage={propertyDetails.mainimage}
+                images={propertyDetails.images}
+                title={
+                  isArabic ? propertyDetails.titleAr : propertyDetails.title
+                }
+              />
+            </div>
+            <div className="flex flex-col w-full gap-2 mt-1 md:flex-row">
+              <div className="md:sticky z-40 transition-all fixed h-fit bg-white  bottom-0 md:w-1/3 w-full md:top-[20%]">
+                <ContactUs
+                  propertyImage={propertyDetails.images[0]}
+                  propertyTitle={propertyDetails.title}
+                  propertyPrice={propertyDetails.price}
+                  propertyRef={propertyDetails.refNumber}
+                  isArabic={isArabic}
+                  liveCurrency={liveCurrency}
+                  currency={propertyDetails.currency}
+                />
+              </div>
+              <div className="w-full px-2 md:w-2/3">
+                <PropertyDesc
+                  tagsDefault={tagsDefault}
+                  type={type}
+                  propertyType={propertyType}
+                  location={location}
+                  subArea={subArea}
+                  area={propertyDetails.propertyArea}
+                  bedrooms={propertyDetails.beds}
+                  bathrooms={propertyDetails.baths}
+                  furnitureStatus={
+                    isArabic
+                      ? propertyDetails.furnitureStatus.nameAr
+                      : propertyDetails.furnitureStatus.name
+                  }
+                  title={
+                    isArabic ? propertyDetails.titleAr : propertyDetails.title
+                  }
+                  description={
+                    isArabic
+                      ? propertyDetails.descriptionAr
+                      : propertyDetails.description
+                  }
+                  HDF={propertyDetails.HDF}
+                  airConditioning={propertyDetails.airConditioning}
+                  centralAirCondition={propertyDetails.centralAirCondition}
+                  ceramics={propertyDetails.ceramics}
+                  closetoCAC={propertyDetails.closetoCAC}
+                  closetoFrenchSchool={propertyDetails.closetoFrenchSchool}
+                  closetoGym={propertyDetails.closetoGym}
+                  closetoMetroStation={propertyDetails.closetoMetroStation}
+                  closetoRestaurant={propertyDetails.closetoRestaurants}
+                  closetoSchools={propertyDetails.closetoSchools}
+                  compound={propertyDetails.compound}
+                  fourMasterBedroom={propertyDetails.fourMasterBedroom}
+                  internet={propertyDetails.internet}
+                  jacuzzi={propertyDetails.jacuzzi}
+                  kitchenAppliances={propertyDetails.kitchenAppliances}
+                  laundryRoom={propertyDetails.laundryRoom}
+                  maidsRoom={propertyDetails.maidsRoom}
+                  marble={propertyDetails.marble}
+                  oneBalconyView={propertyDetails.oneBalconyView}
+                  oneMasterBedroom={propertyDetails.oneMasterBedroom}
+                  parquet={propertyDetails.parquet}
+                  porcelain={propertyDetails.porcelain}
+                  privateEntrance={propertyDetails.privateEntrance}
+                  privateGarden={propertyDetails.privateGarden}
+                  privateSwimmingPool={propertyDetails.privateSwimmingPool}
+                  security={propertyDetails.security}
+                  shoppingNerdy={propertyDetails.shoppingNerdy}
+                  swimmingpoolUse={propertyDetails.swimmingpoolUse}
+                  threeMasterBedroom={propertyDetails.threeMasterBedroom}
+                  transportNerdy={propertyDetails.transportNerdy}
+                  twoBalconyView={propertyDetails.twoBalconyView}
+                  twoMasterBedroom={propertyDetails.twoMasterBedroom}
+                  walkinCloset={propertyDetails.walkinCloset}
+                  tags={propertyDetails.tags}
+                  tagsAr={propertyDetails.tagsAr}
+                  quietArea={propertyDetails.quietArea}
+                  officeRoom={propertyDetails.officeRoom}
+                  builtinWardrobe={propertyDetails.builtinWardrobe}
+                  internetAccess={propertyDetails.internetAccess}
+                  elevator={propertyDetails.elevator}
+                  studyroom={propertyDetails.studyroom}
+                  terrace={propertyDetails.terrace}
+                  surveillance={propertyDetails.surveillance}
+                  coveredParking={propertyDetails.coveredParking}
+                  storage={propertyDetails.storage}
+                  sharedSwimmingPool={propertyDetails.sharedSwimmingPool}
+                  petsAllowed={propertyDetails.petsAllowed}
+                />
+              </div>
+            </div>
+            <div className="px-2 mx-auto my-4">
+              <RelatedProperties
+                type={type}
+                propertyType={propertyType}
+                location={location}
+                subArea={subArea}
+                isArabic={isArabic}
+              />
+            </div>
+            <div className="p-2">
+              <Searchbar setShowModal={setShowModal} showModal={showModal} />
+            </div>
+          </div>
+          {/* <div className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto" dangerouslySetInnerHTML={{__html:meta?.article }}/> */}
+
+          <Footer />
+        </div>
+      )}
+      {showModal && (
+        <Searchbar setShowModal={setShowModal} showModal={showModal} />
+      )}
     </>
   );
 }

@@ -143,62 +143,69 @@ const LocationPage = ({
       });
   }, []);
 
-  const titleEN = `${propertyType && propertyType !== "properties"
-    ? t(
-      propertyType.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-    )
-    : "Property Types"
-    } ${type && type !== "for-rent-or-sale"
+  const titleEN = `${
+    propertyType && propertyType !== "properties"
+      ? t(
+          propertyType.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        )
+      : "Property Types"
+  } ${
+    type && type !== "for-rent-or-sale"
       ? " For " +
-      type.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
+        type.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
       : ""
+  }
+    ${
+      location && location !== "location"
+        ? " In " +
+          location.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ""
     }
-    ${location && location !== "location"
-      ? " In " +
-      location.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    }
-    ${subArea
-      ? " , " +
-      subArea.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
+    ${
+      subArea
+        ? " , " +
+          subArea.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ""
     } In Cairo, Egypt`;
   const titleAR = `${t(
     propertyType && propertyType !== "عقارات"
       ? propertyType.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
       : "عقارات"
   )}
-    ${type && type !== "للإيجار أو البيع"
-      ? " لل" +
-      type.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
+    ${
+      type && type !== "للإيجار أو البيع"
+        ? " لل" +
+          type.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ""
     }
-      ${location && location !== "منطقة"
-      ? " في " +
-      location.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    }
-      ${subArea
-      ? " في " +
-      subArea.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    } في القاهرة و مصر`;
+      ${
+        location && location !== "منطقة"
+          ? " في " +
+            location.replace(/\w\S*/g, function (txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            })
+          : ""
+      }
+      ${
+        subArea
+          ? " في " +
+            subArea.replace(/\w\S*/g, function (txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            })
+          : ""
+      } في القاهرة و مصر`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -221,9 +228,10 @@ const LocationPage = ({
       "https://twitter.com/Housep0integypt",
       "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
       "https://t.me/housepointegypt",
-      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1",
     ],
   };
+  const [showModal,setShowModal] = useState(false)
 
   return (
     <>
@@ -233,7 +241,13 @@ const LocationPage = ({
             <title>
               {count +
                 " " +
-                `${meta ? meta.title : isArabic ? titleAR.slice(0, 60) : titleEN.slice(0, 60)}`}
+                `${
+                  meta
+                    ? meta.title
+                    : isArabic
+                    ? titleAR.slice(0, 60)
+                    : titleEN.slice(0, 60)
+                }`}
             </title>
             <meta name="robots" content="index, follow" />
             <meta
@@ -241,7 +255,13 @@ const LocationPage = ({
               content={
                 count +
                 " " +
-                `${meta ? meta.description.slice(0, 160) : isArabic ? titleAR : titleEN}`
+                `${
+                  meta
+                    ? meta.description.slice(0, 160)
+                    : isArabic
+                    ? titleAR
+                    : titleEN
+                }`
               }
             />
             <link
@@ -325,31 +345,38 @@ const LocationPage = ({
           </Head>
         </>
       }
-      <div>
-        <Navbar url={changeLang} />
-        <QR />
-        <div className="flex flex-col items-center w-full h-full p-4 mb-4 font-sans text-black bg-center bg-cover ">
-          <BreadCrumbs
-            type={type}
-            propertyType={propertyType}
-            location={location}
+      {!showModal && (
+        <div>
+          <Navbar url={changeLang} />
+          <QR />
+          <div className="flex flex-col items-center w-full h-full p-4 mb-4 font-sans text-black bg-center bg-cover ">
+            <BreadCrumbs
+              type={type}
+              propertyType={propertyType}
+              location={location}
+            />
+            <Searchbar showModal={false} setShowModal={setShowModal} />
+          </div>
+          <FilteredProperties
+            properties={properties}
+            title={
+              i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr
+            }
+            meta={metaProperties}
           />
-          <Searchbar />
-        </div>
-        <FilteredProperties
-          properties={properties}
-          title={i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr}
-          meta={metaProperties}
-        />
-        <div
-          className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto"
-          dangerouslySetInnerHTML={{ __html: meta.article }}
-        />
+          <div
+            className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto"
+            dangerouslySetInnerHTML={{ __html: meta.article }}
+          />
 
-        <div className="mt-16">
-          <Footer />
+          <div className="mt-16">
+            <Footer />
+          </div>
         </div>
-      </div>
+      )}
+      {
+        showModal && <Searchbar showModal={false} setShowModal={setShowModal} />
+      }
     </>
   );
 };

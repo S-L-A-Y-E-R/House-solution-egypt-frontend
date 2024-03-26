@@ -10,7 +10,7 @@ import PropertySection from "@/components/Home/PropertySection";
 import axios from "axios";
 import { API_BASE_URL, WEBSITE_BASE_URL } from "@/config";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import i18n from "@/i18n";
 export async function getServerSideProps(context) {
   context.res.setHeader(
@@ -22,7 +22,6 @@ export async function getServerSideProps(context) {
 
   if (locale == "ar") link += `ar`;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
-
 
   const fetchSale = await axios.get(
     `${API_BASE_URL}/property/getproperties?type=sale`
@@ -61,7 +60,6 @@ export default function Home({
   const { t, i18n: ii18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(initialLocale);
-
   }, []);
 
   const schema = {
@@ -86,9 +84,10 @@ export default function Home({
       "https://twitter.com/Housep0integypt",
       "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
       "https://t.me/housepointegypt",
-      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1",
     ],
   };
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       {meta && (
@@ -110,7 +109,10 @@ export default function Home({
             />
 
             <meta property="og:title" content={meta.title} />
-            <meta property="og:description" content={meta.description.slice(0, 160)} />
+            <meta
+              property="og:description"
+              content={meta.description.slice(0, 160)}
+            />
             <meta
               property="og:image"
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}
@@ -125,7 +127,10 @@ export default function Home({
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}
             />
             <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
+            <meta
+              property="og:site_name"
+              content="House Point Egypt - Real Estate"
+            />
 
             <meta property="og:url" content={WEBSITE_BASE_URL} />
             <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />
@@ -158,47 +163,61 @@ export default function Home({
           </Head>
         </>
       )}
-      <Navbar />
-      <QR />
-      <div
-        className={
-          "relative flex flex-col items-center justify-center h-fit p-2 md:py-8 text-black md:min-h-fit from-secondary-color to-custom-blue-light bg-gradient-to-r bg-custom-blue md:h-auto "
-        }
-      >
-        {/* <Image src="/images/bghome.jpg" layout="fill" objectFit="cover" className="hidden opacity-60 md:block" alt="HomeBG" /> */}
+      {!showModal && (
+        <>
+          <Navbar />
+          <QR />
+          <div
+            className={
+              "relative flex flex-col items-center justify-center h-fit p-2 md:py-8 text-black md:min-h-fit from-secondary-color to-custom-blue-light bg-gradient-to-r bg-custom-blue md:h-auto "
+            }
+          >
+            {/* <Image src="/images/bghome.jpg" layout="fill" objectFit="cover" className="hidden opacity-60 md:block" alt="HomeBG" /> */}
 
-        <div className="flex flex-col items-center justify-center w-full h-full">
-          <h1 className="text-4xl font-bold leading-none tracking-tight text-center md:text-5xl lg:text-6xl text-white z-[1]">
-            {/* {t("pages.home.title")} */}
-            {i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr}
-          </h1>
-          <div className="relative w-full px-4 mt-4">
-            <Searchbar />
+            <div className="flex flex-col items-center justify-center w-full h-full">
+              <h1 className="text-4xl font-bold leading-none tracking-tight text-center md:text-5xl lg:text-6xl text-white z-[1]">
+                {/* {t("pages.home.title")} */}
+                {i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr}
+              </h1>
+              <div className="relative w-full px-4 mt-4">
+                <Searchbar showModal={showModal} setShowModal={setShowModal} />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="w-full bg-white">
-        {/* <PropertySection type="rent" />
+          <div className="w-full bg-white">
+            {/* <PropertySection type="rent" />
         <PropertySection type="sale" /> */}
-        <PropertySection
-          data={rentProperties}
-          title={i18n.language === "en" ? titles[1]?.title : titles[1]?.titleAr}
-          type="rent"
-        />
-        <PropertySection
-          data={saleProperties}
-          title={i18n.language === "en" ? titles[2]?.title : titles[2]?.titleAr}
-          type="sale"
-        />
-        <div className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto" dangerouslySetInnerHTML={{ __html: meta.article }} />
-        <LatestBlogs />
-        <TopFooterLinks />
-        <PrimeLocations />
+            <PropertySection
+              data={rentProperties}
+              title={
+                i18n.language === "en" ? titles[1]?.title : titles[1]?.titleAr
+              }
+              type="rent"
+            />
+            <PropertySection
+              data={saleProperties}
+              title={
+                i18n.language === "en" ? titles[2]?.title : titles[2]?.titleAr
+              }
+              type="sale"
+            />
+            <div
+              className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto"
+              dangerouslySetInnerHTML={{ __html: meta.article }}
+            />
+            <LatestBlogs />
+            <TopFooterLinks />
+            <PrimeLocations />
 
-        <div className="mt-32">
-          <Footer />
-        </div>
-      </div>
+            <div className="mt-32">
+              <Footer />
+            </div>
+          </div>
+        </>
+      )}
+      {showModal && (
+        <Searchbar showModal={showModal} setShowModal={setShowModal} />
+      )}
     </>
   );
 }

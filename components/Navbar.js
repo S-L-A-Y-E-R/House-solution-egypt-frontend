@@ -99,7 +99,7 @@ const Navbar = ({ url }) => {
               }`}
             id="headlessui-disclosure-panel"
           >
-            <Link href={isArabic ? "/إيجار" : "/rent"}
+            <Link href={isArabic ? "/إيجار" : "/rent/properties"}
               rel="noopener noreferrer"
             >
               <span
@@ -109,7 +109,7 @@ const Navbar = ({ url }) => {
                 {t("general.components.navbar.rent")}
               </span>
             </Link>
-            <Link href="/sale"
+            <Link href="/sale/properties"
               rel="noopener noreferrer"
             >
               <span
@@ -119,7 +119,7 @@ const Navbar = ({ url }) => {
                 {t("general.components.navbar.sale")}
               </span>
             </Link>
-            <Link href="/articles"
+            <Link href="/reads"
               rel="noopener noreferrer"
             >
               <span
@@ -294,7 +294,7 @@ const Navbar = ({ url }) => {
                 </Link>
               </li>
               <li>
-                <Link href="/articles"
+                <Link href="/reads"
                   rel="noopener noreferrer"
                 >
                   <span
