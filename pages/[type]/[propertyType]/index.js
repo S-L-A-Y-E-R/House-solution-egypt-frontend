@@ -214,6 +214,7 @@ const PropertyTypePage = ({
     ],
   };
   const [showModal, setShowModal] = useState(false);
+  console.log('xxxxxxxxxxxxx');
   return (
     <>
       {

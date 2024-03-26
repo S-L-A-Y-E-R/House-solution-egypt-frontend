@@ -42,13 +42,16 @@ function SideSectionBlog() {
                 className="col-12 p-[.25rem] mt-1 text-light badge bg-card text-decoration-none mb-1 text-white bg-[#095668] hover:opacity-70 rounded"
                 href={
                   i18n.language === "ar"
-                    ? `/ar/reads/topics/${selectedBlog.topic.replaceAll(' ', '-')}`
-                    : `/reads/topics/${selectedBlog.topic.replaceAll(' ', '-')}`
+                    ? `/ar/reads/topics/${selectedBlog.topic.replaceAll(
+                        " ",
+                        "-"
+                      )}`
+                    : `/reads/topics/${selectedBlog.topic.replaceAll(" ", "-")}`
                 }
                 data-ur1313m3t="true"
-                style={{textAlign:'center'}}
+                style={{ textAlign: "center" }}
               >
-                <span className="fs-6">{selectedBlog.topic}</span>
+                <h3 className="fs-6">{selectedBlog.topic}</h3>
               </a>
             )
         )}
@@ -76,13 +79,34 @@ function SideSectionBlog() {
                 <a
                   key={blog._id}
                   className="bg-[#095668] text-white hover:opacity-70 rounded col text-light badge bg-card me-1 mb-1 text-start text-decoration-none border border-[#yourbordercolor]"
-                //   href={`/reads/${blog._id.toLowerCase().replace(/ /g, "-")}`}
-                href={`/reads/tags/${uniqueKeywordsArray.join(", ").replaceAll(' ', '-').replaceAll('?', '_qm_')}`}
+                  //   href={`/reads/${blog._id.toLowerCase().replace(/ /g, "-")}`}
+                  href={`/reads/tags/${uniqueKeywordsArray
+                    .join(", ")
+                    .replaceAll(" ", "-")
+                    .replaceAll("?", "_qm_")}`}
                   data-ur1313m3t="true"
-                  style={{display:'flex',justifyContent:'center',alignItems:'center'}}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
                 >
-                  <span style={{fontSize: '12px', padding:'.1rem .5rem'}}># {uniqueKeywordsArray.join(", ")} <span className={'text-thin'}>[<b>{blogsData.filter((blog) => blog.tag.toLowerCase() === uniqueKeywordsArray.join(", ").toLowerCase()).length}</b>]</span></span>
-
+                  <h3 style={{ fontSize: "12px", padding: ".1rem .5rem" }}>
+                    # {uniqueKeywordsArray.join(", ")}{" "}
+                    <span className={"text-thin"}>
+                      [
+                      <b>
+                        {
+                          blogsData.filter(
+                            (blog) =>
+                              blog.tag.toLowerCase() ===
+                              uniqueKeywordsArray.join(", ").toLowerCase()
+                          ).length
+                        }
+                      </b>
+                      ]
+                    </span>
+                  </h3>
                 </a>
               )
             );
@@ -94,4 +118,3 @@ function SideSectionBlog() {
 }
 
 export default SideSectionBlog;
-
