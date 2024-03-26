@@ -396,14 +396,14 @@ function PropertyDetails({
                 `/${type}/${propertyType}/${location}/${subArea}/${propertyDetails.title}`
               }
             />
-            <link
+            {/* <link
               rel="alternate"
               hrefLang="ar"
               href={
                 WEBSITE_BASE_URL +
                 `/ar/${type}/${propertyType}/${location}/${subArea}/${propertyDetails.title}`
               }
-            />
+            /> */}
             <link
               rel="alternate"
               hrefLang="x-default"
