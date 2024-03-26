@@ -99,7 +99,7 @@ const Navbar = ({ url }) => {
               }`}
             id="headlessui-disclosure-panel"
           >
-            <Link href={isArabic ? "/إيجار" : "/rent/properties"}
+            <Link href={isArabic ? "/إيجار/عقارات" : "/rent/properties"}
               rel="noopener noreferrer"
             >
               <span
@@ -109,7 +109,7 @@ const Navbar = ({ url }) => {
                 {t("general.components.navbar.rent")}
               </span>
             </Link>
-            <Link href="/sale/properties"
+            <Link href={isArabic ? "/بيع/عقارات" : "/sale/properties"}
               rel="noopener noreferrer"
             >
               <span
@@ -270,7 +270,7 @@ const Navbar = ({ url }) => {
                 } flex lg:pt-0 list-reset`}
             >
               <li>
-                <Link href={isArabic ? "/إيجار" : "/rent/properties"}
+                <Link href={isArabic ? "/إيجار/عقارات" : "/rent/properties"}
                   rel="noopener noreferrer"
                 >
                   <span
@@ -282,7 +282,7 @@ const Navbar = ({ url }) => {
                 </Link>
               </li>
               <li>
-                <Link href={isArabic ? "/بيع" : "/sale/properties"}
+                <Link href={isArabic ? "/بيع/عقارات" : "/sale/properties"}
                   rel="noopener noreferrer"
                 >
                   <span
