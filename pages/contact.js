@@ -98,11 +98,11 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
             "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75"
           }
         />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="website" />s
         <meta property="og:url" content={WEBSITE_BASE_URL + '/contact'} />
-        <link rel="alternate" hreflang="en" href={WEBSITE_BASE_URL + `/`} />
-        <link rel="alternate" hreflang="x-default" href={WEBSITE_BASE_URL} />
-        <link rel="alternate" hreflang="ar" href={WEBSITE_BASE_URL + `/ar`} />
+        <link rel="alternate" hreflang="en" href={WEBSITE_BASE_URL + `/contact`} />
+        <link rel="alternate" hreflang="x-default" href={WEBSITE_BASE_URL + '/contact'} />
+        <link rel="alternate" hreflang="ar" href={WEBSITE_BASE_URL + `/ar/contact`} />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@HousePointE" />

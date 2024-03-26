@@ -73,6 +73,8 @@ function PropertyDetails({
   dateOfPropAr,
   isArabic,
 }) {
+  // console.log(propertyDetails);
+  // console.log(changeLang);
   const router = useRouter();
   const { asPath } = useRouter();
   const origin =
@@ -86,6 +88,7 @@ function PropertyDetails({
     ii18n.changeLanguage(initialLocale);
   }, []);
   const { type, propertyType, location, title, subArea } = router.query;
+  // console.log(propertyType);
 
   const schema = {
     "@context": "https://schema.org",
@@ -393,14 +396,14 @@ function PropertyDetails({
                 `/${type}/${propertyType}/${location}/${subArea}/${propertyDetails.title}`
               }
             />
-            <link
+            {/* <link
               rel="alternate"
               hrefLang="ar"
               href={
                 WEBSITE_BASE_URL +
                 `/ar/${type}/${propertyType}/${location}/${subArea}/${propertyDetails.title}`
               }
-            />
+            /> */}
             <link
               rel="alternate"
               hrefLang="x-default"

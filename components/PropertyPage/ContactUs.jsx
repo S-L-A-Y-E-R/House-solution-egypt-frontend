@@ -66,9 +66,9 @@ export default function ContactUs({
   }, []);
   return (
     <div className="border shadow ">
-      <h6 className="px-2 py-1 font-bold text-center text-white rounded-sm bg-custom-blue">
+      <h3 className="px-2 py-1 font-bold text-center text-white rounded-sm bg-custom-blue">
         {t("pages.property.components.contact_us.request_property")}
-      </h6>
+      </h3>
       {/* <h5 className="my-3 text-xl font-bold text-slate-800">Inquiry Property</h5> */}
       <div className="flex justify-between gap-1 px-2 py-4 my-1">
         <button className="flex items-center w-1/3 gap-1 px-1 py-1 font-semibold text-white rounded bg-custom-blue">

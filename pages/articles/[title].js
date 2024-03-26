@@ -152,10 +152,10 @@ function BlogDetails({
           content={BLOG_IMAGE_BASE_URL + metaImage}
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={WEBSITE_BASE_URL + "/reads"} />
-        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />
-        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar`} />
+        <meta property="og:url" content={WEBSITE_BASE_URL + "/articles"} />
+        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/articles/${title}`} />
+        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL + `/articles/${title}`} />
+        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/articles/${title}`} />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@HousePointE" />
