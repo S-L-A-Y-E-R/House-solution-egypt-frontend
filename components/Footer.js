@@ -43,9 +43,9 @@ const Footer = () => {
     <footer className="bg-[#095668] text-white p-8">
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="md:w-2/5">
-          <h4 className="mb-4 text-2xl">
+          <div className="mb-4 text-2xl">
             {t("general.components.footer.about_us")}
-          </h4>
+          </div>
           <div
             className="text-sm whitespace-wrap"
             dangerouslySetInnerHTML={{
@@ -153,9 +153,9 @@ const Footer = () => {
         </div>
 
         <div className="md:w-3/5">
-          <h4 className="mb-4 text-2xl">
+          <div className="mb-4 text-2xl">
             {t("general.components.footer.new_links")}
-          </h4>
+          </div>
           <ul className="grid grid-cols-2 gap-1 font-semibold lg:grid-cols-3">
             {footerLinks.map((link, index) => (
               <li key={index} className="flex items-center underline">

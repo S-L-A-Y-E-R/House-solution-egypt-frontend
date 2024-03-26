@@ -89,6 +89,7 @@ function Index(props) {
     }).then((res) => {
       return res.json();
     }).then((data) => {
+      console.log(data);
       setBlogPosts(data);
     });
   }, [currentPage]);
@@ -210,6 +211,9 @@ function Index(props) {
                   </p>
                 </>
               )}
+              
+              <h2 className="font-bold text-2xl">{!isArabic? "Explore our Topics":"استكشف مقالاتنا" }</h2>
+              <hr className="my-2"/>
               <div className={blogStyle.container}>
                 {blogPosts && blogPosts.map((post, index) => (
                   <Article key={index} post={post} isArabic={isArabic} />
