@@ -62,11 +62,11 @@ function LatestBlogs() {
               latestBlogs.length > 0 &&
               latestBlogs.map((post) => (
                 <div className="bg-gray-200 p-2 rounded" key={post._id}>
-                  <Link href={`/articles/${post._id}`} data-ur1313m3t="true"
+                  <Link href={`/reads/${post._id}`} data-ur1313m3t="true"
                     rel="noopener noreferrer"
                   >
                     <div className="relative transition-all aspect-square hover:-translate-y-2 hover:shadow-2xl">
-                      <Link href={`/articles/${post._id}`} data-ur1313m3t="true"
+                      <Link href={`/reads/${post._id}`} data-ur1313m3t="true"
                         rel="noopener noreferrer"
                       >
                         <div className="relative transition-all aspect-square hover:-translate-y-2 hover:shadow-2xl">
@@ -122,7 +122,7 @@ function LatestBlogs() {
 
                     <div className="mt-1 flex justify-between text-xs font-semibold text-gray-600">
                       <a
-                        href={`/articles/topics/${post.topic}`}
+                        href={`/reads/topics/${post.topic}`}
                         className="text-blue-600 underline text-sm font-semibold"
                       >
                         {post.topic}
@@ -148,7 +148,7 @@ function LatestBlogs() {
                       </div>
                     </div>
 
-                    <Link href={`/articles/${post._id}`}
+                    <Link href={`/reads/${post._id}`}
                       rel="noopener noreferrer"
                     >
                       <button className="mt-3 font-medium text-white rounded-full bg-[#095668] px-5 py-1">

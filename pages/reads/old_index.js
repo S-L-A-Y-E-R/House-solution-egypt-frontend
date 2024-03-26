@@ -15,7 +15,7 @@ import Article from "@/components/Blog/Article";
 import blogStyle from '@/styles/BlogIndex.module.css';
 
 export async function getServerSideProps(context) {
-  let link = `/articles`;
+  let link = `/reads`;
   const { locale } = context;
   if (locale == "ar") link = "/ar" + link;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });

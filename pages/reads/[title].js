@@ -136,7 +136,7 @@ function BlogDetails({
         <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + "/articles"}
+          href={WEBSITE_BASE_URL + "/reads"}
           key="canonical"
         />
         <meta name="description" content={metaDesc.slice(0,160) + ' | ' + metaTitle} />

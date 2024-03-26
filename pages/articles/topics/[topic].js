@@ -16,7 +16,7 @@ import PaginationSlide from "@/components/Pagination";
 
 export async function getServerSideProps(context) {
   const { locale, params } = context;
-  let link = `/articles/topics/${params.topic}`;
+  let link = `/reads/topics/${params.topic}`;
   if (locale == "ar") link = "/ar" + link;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
   const changeLangResponse = await axios.post(

@@ -125,62 +125,69 @@ const PropertyTypePage = ({
       });
   }, []);
 
-  const titleEN = `${propertyType && propertyType !== "properties"
-    ? t(
-      propertyType.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-    )
-    : "Property Types"
-    } ${type && type !== "for-rent-or-sale"
+  const titleEN = `${
+    propertyType && propertyType !== "properties"
+      ? t(
+          propertyType.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        )
+      : "Property Types"
+  } ${
+    type && type !== "for-rent-or-sale"
       ? " For " +
-      type.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
+        type.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
       : ""
+  }
+    ${
+      location && location !== "location"
+        ? " In " +
+          location.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ""
     }
-    ${location && location !== "location"
-      ? " In " +
-      location.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    }
-    ${subArea
-      ? " , " +
-      subArea.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
+    ${
+      subArea
+        ? " , " +
+          subArea.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ""
     } In Cairo, Egypt`;
   const titleAR = `${t(
     propertyType && propertyType !== "عقارات"
       ? propertyType.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
       : "عقارات"
   )}
-    ${type && type !== "للإيجار أو البيع"
-      ? " لل" +
-      type.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
+    ${
+      type && type !== "للإيجار أو البيع"
+        ? " لل" +
+          type.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ""
     }
-      ${location && location !== "منطقة"
-      ? " في " +
-      location.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    }
-      ${subArea
-      ? " في " +
-      subArea.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    } في القاهرة و مصر`;
+      ${
+        location && location !== "منطقة"
+          ? " في " +
+            location.replace(/\w\S*/g, function (txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            })
+          : ""
+      }
+      ${
+        subArea
+          ? " في " +
+            subArea.replace(/\w\S*/g, function (txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            })
+          : ""
+      } في القاهرة و مصر`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -203,131 +210,155 @@ const PropertyTypePage = ({
       "https://twitter.com/Housep0integypt",
       "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
       "https://t.me/housepointegypt",
-      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1",
     ],
   };
-  return (
-    <>
-      {
-        <>
-          <Head>
-            <title>
-              {count +
-                " " +
-                `${meta ? meta.title : isArabic ? titleAR.slice(0, 60) : titleEN.slice(0, 60)}`}
-            </title>
-            <meta name="robots" content="index, follow" />
-            <meta
-              name="description"
-              content={
-                count +
-                " " +
-                (meta && meta.description
-                  ? meta.description.slice(0, 160)
-                  : isArabic
+  const [showModal, setShowModal] = useState(false);
+  if (!showModal)
+    return (
+      <>
+        {
+          <>
+            <Head>
+              <title>
+                {count +
+                  " " +
+                  `${
+                    meta
+                      ? meta.title
+                      : isArabic
+                      ? titleAR.slice(0, 60)
+                      : titleEN.slice(0, 60)
+                  }`}
+              </title>
+              <meta name="robots" content="index, follow" />
+              <meta
+                name="description"
+                content={
+                  count +
+                  " " +
+                  (meta && meta.description
+                    ? meta.description.slice(0, 160)
+                    : isArabic
                     ? titleAR
                     : titleEN)
-              }
-            />
-            <meta
-              property="og:site_name"
-              content="House Point Egypt - Real Estate"
-            />
+                }
+              />
+              <meta
+                property="og:site_name"
+                content="House Point Egypt - Real Estate"
+              />
 
-            <link rel="canonical" href={WEBSITE_BASE_URL + `/${type}/${propertyType}`} key="canonical" />
-            <meta name="keywords" content={meta ? meta.keywords : ""} />
-
-            {isArabic && (
               <link
-                rel="alternate"
-                hreflang="en"
+                rel="canonical"
                 href={WEBSITE_BASE_URL + `/${type}/${propertyType}`}
+                key="canonical"
               />
-            )}
-            {!isArabic && (
-              <link
-                rel="alternate"
-                hreflang="ar"
-                href={WEBSITE_BASE_URL + `/ar/${type}/${propertyType}`}
-              />
-            )}
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-            />
+              <meta name="keywords" content={meta ? meta.keywords : ""} />
 
-            <meta property="og:title" content={isArabic ? titleAR : titleEN} />
-            <meta
-              property="og:description"
-              content={isArabic ? titleAR : titleEN}
-            />
-            <meta
-              property="og:image"
-              content={WEBSITE_BASE_URL + "/images/logohouse.png"}
-            />
-            <meta
-              property="og:image:alt"
-              content="House Point Egypt - Real Estate | Logo
+              {isArabic && (
+                <link
+                  rel="alternate"
+                  hreflang="en"
+                  href={WEBSITE_BASE_URL + `/${type}/${propertyType}`}
+                />
+              )}
+              {!isArabic && (
+                <link
+                  rel="alternate"
+                  hreflang="ar"
+                  href={WEBSITE_BASE_URL + `/ar/${type}/${propertyType}`}
+                />
+              )}
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+              />
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+              />
+
+              <meta
+                property="og:title"
+                content={isArabic ? titleAR : titleEN}
+              />
+              <meta
+                property="og:description"
+                content={isArabic ? titleAR : titleEN}
+              />
+              <meta
+                property="og:image"
+                content={WEBSITE_BASE_URL + "/images/logohouse.png"}
+              />
+              <meta
+                property="og:image:alt"
+                content="House Point Egypt - Real Estate | Logo
 "
-            />
-            <meta
-              property="og:image:secure_url"
-              content={WEBSITE_BASE_URL + "/images/logohouse.png"}
-            />
+              />
+              <meta
+                property="og:image:secure_url"
+                content={WEBSITE_BASE_URL + "/images/logohouse.png"}
+              />
 
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={WEBSITE_BASE_URL + `/${type}/${propertyType}`} />
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:site" content="@HousePointE" />
-            <meta name="twitter:title" content={isArabic ? titleAR : titleEN} />
-            <meta name="twitter:creator" content="@HousePointE" />
-            <meta name="twitter:domain" content={WEBSITE_BASE_URL} />
-            <meta
-              name="twitter:description"
-              content={isArabic ? titleAR : titleEN}
-            />
-            <meta
-              name="twitter:image"
-              content={
-                WEBSITE_BASE_URL +
-                "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75"
-              }
-            />
+              <meta property="og:type" content="website" />
+              <meta
+                property="og:url"
+                content={WEBSITE_BASE_URL + `/${type}/${propertyType}`}
+              />
+              <meta name="twitter:card" content="summary" />
+              <meta name="twitter:site" content="@HousePointE" />
+              <meta
+                name="twitter:title"
+                content={isArabic ? titleAR : titleEN}
+              />
+              <meta name="twitter:creator" content="@HousePointE" />
+              <meta name="twitter:domain" content={WEBSITE_BASE_URL} />
+              <meta
+                name="twitter:description"
+                content={isArabic ? titleAR : titleEN}
+              />
+              <meta
+                name="twitter:image"
+                content={
+                  WEBSITE_BASE_URL +
+                  "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75"
+                }
+              />
 
-            <meta name="robots" content="index, follow" />
-          </Head>
-        </>
-      }
+              <meta name="robots" content="index, follow" />
+            </Head>
+          </>
+        }
 
-      <div>
-        <Navbar url={changeLang} />
-        <QR />
-        <div className="flex flex-col items-center w-full h-full p-4 mb-4 font-sans text-black bg-center bg-cover">
-          <BreadCrumbs type={type} propertyType={propertyType} />
-          <Searchbar />
+        <div>
+          <Navbar url={changeLang} />
+          <QR />
+          <div className="flex flex-col items-center w-full h-full p-4 mb-4 font-sans text-black bg-center bg-cover">
+            <BreadCrumbs type={type} propertyType={propertyType} />
+            <Searchbar showModal={showModal} setShowModal={setShowModal} />
+          </div>
+
+          {/* Pass the "type" prop to the FilteredProperties component */}
+          <FilteredProperties
+            properties={properties}
+            title={
+              i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr
+            }
+            meta={metaProperties}
+          />
+          <div
+            className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto"
+            dangerouslySetInnerHTML={{ __html: meta?.article }}
+          />
+
+          <div className="mt-16">
+            <Footer />
+          </div>
         </div>
-
-        {/* Pass the "type" prop to the FilteredProperties component */}
-        <FilteredProperties
-          properties={properties}
-          title={i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr}
-          meta={metaProperties}
-        />
-        <div
-          className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto"
-          dangerouslySetInnerHTML={{ __html: meta?.article }}
-        />
-
-        <div className="mt-16">
-          <Footer />
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
+    else return <Searchbar showModal={showModal} setShowModal={setShowModal}/>
 };
 
 export default PropertyTypePage;

@@ -21,6 +21,7 @@ export async function getServerSideProps(context) {
   const { locale } = context;
   if (locale == "ar") link = "/ar" + link;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
+  console.log('xxxxxx',response.data);
   const changeLangResponse = await axios.post(
     `${API_BASE_URL}/utils/changelang`,
     context.query,
@@ -124,7 +125,7 @@ function Index(props) {
   return (
     <>
       <Head>
-        <title>{`${meta.title}`} </title>
+        <title>{`${meta?.title}`} </title>
         <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
