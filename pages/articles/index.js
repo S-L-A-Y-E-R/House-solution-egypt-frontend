@@ -117,7 +117,7 @@ function Index(props) {
       "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
     ],
   };
-
+  
   return (
     <>
       <Head>

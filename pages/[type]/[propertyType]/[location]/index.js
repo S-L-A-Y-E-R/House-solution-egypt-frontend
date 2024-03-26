@@ -232,7 +232,6 @@ const LocationPage = ({
     ],
   };
   const [showModal,setShowModal] = useState(false)
-  console.log('xxxxxxxxxxxxxx',showModal);
 
   return (
     <>
@@ -356,7 +355,6 @@ const LocationPage = ({
               propertyType={propertyType}
               location={location}
             />
-            {console.log(showModal)}
             <Searchbar showModal={false} setShowModal={setShowModal} />
           </div>
           <FilteredProperties
@@ -376,6 +374,9 @@ const LocationPage = ({
           </div>
         </div>
       )}
+      {
+        showModal && <Searchbar showModal={false} setShowModal={setShowModal} />
+      }
     </>
   );
 };

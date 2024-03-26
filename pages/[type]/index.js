@@ -125,62 +125,69 @@ const TypePage = ({
       });
   }, []);
 
-  const titleEN = `${propertyType && propertyType !== "properties"
-    ? t(
-      propertyType.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-    )
-    : "Property Types"
-    } ${type && type !== "for-rent-or-sale"
+  const titleEN = `${
+    propertyType && propertyType !== "properties"
+      ? t(
+          propertyType.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        )
+      : "Property Types"
+  } ${
+    type && type !== "for-rent-or-sale"
       ? " For " +
-      type.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
+        type.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
       : ""
+  }
+    ${
+      location && location !== "location"
+        ? " In " +
+          location.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ""
     }
-    ${location && location !== "location"
-      ? " In " +
-      location.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    }
-    ${subArea
-      ? " , " +
-      subArea.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
+    ${
+      subArea
+        ? " , " +
+          subArea.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ""
     } In Cairo, Egypt`;
   const titleAR = `${t(
     propertyType && propertyType !== "عقارات"
       ? propertyType.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
       : "عقارات"
   )}
-    ${type && type !== "للإيجار أو البيع"
-      ? " لل" +
-      type.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
+    ${
+      type && type !== "للإيجار أو البيع"
+        ? " لل" +
+          type.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ""
     }
-      ${location && location !== "منطقة"
-      ? " في " +
-      location.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    }
-      ${subArea
-      ? " في " +
-      subArea.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    } في القاهرة و مصر`;
+      ${
+        location && location !== "منطقة"
+          ? " في " +
+            location.replace(/\w\S*/g, function (txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            })
+          : ""
+      }
+      ${
+        subArea
+          ? " في " +
+            subArea.replace(/\w\S*/g, function (txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            })
+          : ""
+      } في القاهرة و مصر`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -203,10 +210,10 @@ const TypePage = ({
       "https://twitter.com/Housep0integypt",
       "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
       "https://t.me/housepointegypt",
-      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1",
     ],
   };
-
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       {
@@ -215,7 +222,13 @@ const TypePage = ({
             <title>
               {count +
                 " " +
-                `${meta ? meta.title : isArabic ? titleAR.slice(0, 60) : titleEN.slice(0, 60)}`}
+                `${
+                  meta
+                    ? meta.title
+                    : isArabic
+                    ? titleAR.slice(0, 60)
+                    : titleEN.slice(0, 60)
+                }`}
             </title>
             <meta name="robots" content="index, follow" />
             <meta
@@ -223,7 +236,13 @@ const TypePage = ({
               content={
                 count +
                 " " +
-                `${meta ? meta.description.slice(0, 160) : isArabic ? titleAR : titleEN}`
+                `${
+                  meta
+                    ? meta.description.slice(0, 160)
+                    : isArabic
+                    ? titleAR
+                    : titleEN
+                }`
               }
             />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
@@ -264,7 +283,10 @@ const TypePage = ({
               property="og:image"
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}
             />
-            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
+            <meta
+              property="og:site_name"
+              content="House Point Egypt - Real Estate"
+            />
 
             <meta
               property="og:image:alt"
@@ -276,7 +298,10 @@ const TypePage = ({
               content={WEBSITE_BASE_URL + "/images/logohouse.png"}
             />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={WEBSITE_BASE_URL + `${isArabic ? "/ar/" : "/"}${type}`} />
+            <meta
+              property="og:url"
+              content={WEBSITE_BASE_URL + `${isArabic ? "/ar/" : "/"}${type}`}
+            />
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:site" content="@HousePointE" />
             <meta name="twitter:title" content={isArabic ? titleAR : titleEN} />
@@ -298,25 +323,32 @@ const TypePage = ({
           </Head>
         </>
       }
+      {showModal && (
+        <div className="relative">
+          <Navbar url={changeLang} />
+          <QR />
+          <div className="flex flex-col items-center w-full h-full p-4 font-sans text-black bg-white bg-center bg-cover">
+            <BreadCrumbs type={type} home={"Home"} unTitle={"Properties"} />
+            <Searchbar showModal={showModal} setShowModal={setShowModal}/>
+          </div>
 
-      <div className="relative">
-        <Navbar url={changeLang} />
-        <QR />
-        <div className="flex flex-col items-center w-full h-full p-4 font-sans text-black bg-white bg-center bg-cover">
-          <BreadCrumbs type={type} home={"Home"} unTitle={"Properties"} />
-          <Searchbar />
+          <FilteredProperties
+            properties={properties}
+            title={
+              i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr
+            }
+            meta={metaProperties}
+          />
+          <div
+            className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto"
+            dangerouslySetInnerHTML={{ __html: meta?.article }}
+          />
+          <div className="mt-16">
+            <Footer />
+          </div>
         </div>
-
-        <FilteredProperties
-          properties={properties}
-          title={i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr}
-          meta={metaProperties}
-        />
-        <div className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto" dangerouslySetInnerHTML={{ __html: meta?.article }} />
-        <div className="mt-16">
-          <Footer />
-        </div>
-      </div>
+      )}
+      {showModal && <Searchbar showModal={showModal} setShowModal={setShowModal}/>}
     </>
   );
 };

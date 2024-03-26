@@ -214,123 +214,116 @@ const PropertyTypePage = ({
     ],
   };
   const [showModal, setShowModal] = useState(false);
-  if (!showModal)
-    return (
-      <>
-        {
-          <>
-            <Head>
-              <title>
-                {count +
-                  " " +
-                  `${
-                    meta
-                      ? meta.title
-                      : isArabic
-                      ? titleAR.slice(0, 60)
-                      : titleEN.slice(0, 60)
-                  }`}
-              </title>
-              <meta name="robots" content="index, follow" />
-              <meta
-                name="description"
-                content={
-                  count +
-                  " " +
-                  (meta && meta.description
-                    ? meta.description.slice(0, 160)
+  return (
+    <>
+      {
+        <>
+          <Head>
+            <title>
+              {count +
+                " " +
+                `${
+                  meta
+                    ? meta.title
                     : isArabic
-                    ? titleAR
-                    : titleEN)
-                }
-              />
-              <meta
-                property="og:site_name"
-                content="House Point Egypt - Real Estate"
-              />
+                    ? titleAR.slice(0, 60)
+                    : titleEN.slice(0, 60)
+                }`}
+            </title>
+            <meta name="robots" content="index, follow" />
+            <meta
+              name="description"
+              content={
+                count +
+                " " +
+                (meta && meta.description
+                  ? meta.description.slice(0, 160)
+                  : isArabic
+                  ? titleAR
+                  : titleEN)
+              }
+            />
+            <meta
+              property="og:site_name"
+              content="House Point Egypt - Real Estate"
+            />
 
+            <link
+              rel="canonical"
+              href={WEBSITE_BASE_URL + `/${type}/${propertyType}`}
+              key="canonical"
+            />
+            <meta name="keywords" content={meta ? meta.keywords : ""} />
+
+            {isArabic && (
               <link
-                rel="canonical"
+                rel="alternate"
+                hreflang="en"
                 href={WEBSITE_BASE_URL + `/${type}/${propertyType}`}
-                key="canonical"
               />
-              <meta name="keywords" content={meta ? meta.keywords : ""} />
+            )}
+            {!isArabic && (
+              <link
+                rel="alternate"
+                hreflang="ar"
+                href={WEBSITE_BASE_URL + `/ar/${type}/${propertyType}`}
+              />
+            )}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+            />
 
-              {isArabic && (
-                <link
-                  rel="alternate"
-                  hreflang="en"
-                  href={WEBSITE_BASE_URL + `/${type}/${propertyType}`}
-                />
-              )}
-              {!isArabic && (
-                <link
-                  rel="alternate"
-                  hreflang="ar"
-                  href={WEBSITE_BASE_URL + `/ar/${type}/${propertyType}`}
-                />
-              )}
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-              />
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-              />
-
-              <meta
-                property="og:title"
-                content={isArabic ? titleAR : titleEN}
-              />
-              <meta
-                property="og:description"
-                content={isArabic ? titleAR : titleEN}
-              />
-              <meta
-                property="og:image"
-                content={WEBSITE_BASE_URL + "/images/logohouse.png"}
-              />
-              <meta
-                property="og:image:alt"
-                content="House Point Egypt - Real Estate | Logo
+            <meta property="og:title" content={isArabic ? titleAR : titleEN} />
+            <meta
+              property="og:description"
+              content={isArabic ? titleAR : titleEN}
+            />
+            <meta
+              property="og:image"
+              content={WEBSITE_BASE_URL + "/images/logohouse.png"}
+            />
+            <meta
+              property="og:image:alt"
+              content="House Point Egypt - Real Estate | Logo
 "
-              />
-              <meta
-                property="og:image:secure_url"
-                content={WEBSITE_BASE_URL + "/images/logohouse.png"}
-              />
+            />
+            <meta
+              property="og:image:secure_url"
+              content={WEBSITE_BASE_URL + "/images/logohouse.png"}
+            />
 
-              <meta property="og:type" content="website" />
-              <meta
-                property="og:url"
-                content={WEBSITE_BASE_URL + `/${type}/${propertyType}`}
-              />
-              <meta name="twitter:card" content="summary" />
-              <meta name="twitter:site" content="@HousePointE" />
-              <meta
-                name="twitter:title"
-                content={isArabic ? titleAR : titleEN}
-              />
-              <meta name="twitter:creator" content="@HousePointE" />
-              <meta name="twitter:domain" content={WEBSITE_BASE_URL} />
-              <meta
-                name="twitter:description"
-                content={isArabic ? titleAR : titleEN}
-              />
-              <meta
-                name="twitter:image"
-                content={
-                  WEBSITE_BASE_URL +
-                  "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75"
-                }
-              />
+            <meta property="og:type" content="website" />
+            <meta
+              property="og:url"
+              content={WEBSITE_BASE_URL + `/${type}/${propertyType}`}
+            />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:site" content="@HousePointE" />
+            <meta name="twitter:title" content={isArabic ? titleAR : titleEN} />
+            <meta name="twitter:creator" content="@HousePointE" />
+            <meta name="twitter:domain" content={WEBSITE_BASE_URL} />
+            <meta
+              name="twitter:description"
+              content={isArabic ? titleAR : titleEN}
+            />
+            <meta
+              name="twitter:image"
+              content={
+                WEBSITE_BASE_URL +
+                "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75"
+              }
+            />
 
-              <meta name="robots" content="index, follow" />
-            </Head>
-          </>
-        }
-
+            <meta name="robots" content="index, follow" />
+          </Head>
+        </>
+      }
+      {!showModal && (
         <div>
           <Navbar url={changeLang} />
           <QR />
@@ -356,9 +349,12 @@ const PropertyTypePage = ({
             <Footer />
           </div>
         </div>
-      </>
-    );
-    else return <Searchbar showModal={showModal} setShowModal={setShowModal}/>
+      )}
+      {showModal && (
+        <Searchbar showModal={showModal} setShowModal={setShowModal} />
+      )}
+    </>
+  );
 };
 
 export default PropertyTypePage;
