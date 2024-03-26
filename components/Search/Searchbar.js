@@ -1000,7 +1000,7 @@ function Searchbar({ showModal, setShowModal }) {
   else {
     return (
       <div className="flex flex-col w-full z-50 overflow-auto">
-        <div className="flex justify-between mt-2 px-2">
+        <div className="flex justify-between px-2 fixed top-0 bg-white z-10 w-full p-2">
           <div className="flex gap-2 ">
             <IoFilter className="mt-2" />
             <div className="text-xl font-semibold">
@@ -1015,7 +1015,7 @@ function Searchbar({ showModal, setShowModal }) {
           </div>
         </div>
         <hr className="font-bold my-2" />
-        <div className="flex gap-2 justify-between px-2 my-2">
+        <div className="flex gap-2 justify-between px-2 my-2 mt-14">
           <button
             onClick={handleClickRent}
             className={`text w-[50%] ${
@@ -1050,14 +1050,19 @@ function Searchbar({ showModal, setShowModal }) {
           {propertyTypes?.map((propertyType, personIdx) => {
             return (
               <div
-                style={{ width: "200px !important" }}
+                key={personIdx}
+                onClick={(e) => {
+                  setSelectedPropertyType(e);
+                  setCountState(!countState);
+                }}
                 className="border-2 border-b-4 whitespace-nowrap p-2 hover:text-white text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-2"
               >
-                {propertyType.name}
+                {isArabic ? propertyType.nameAr : propertyType.name}
               </div>
             );
           })}
         </div>
+        <hr className="font-bold my-2" />
         <div className="flex px-4">
           <FaBed className="my-auto mr-2" />
           <h1 className="font-semibold">
@@ -1067,27 +1072,37 @@ function Searchbar({ showModal, setShowModal }) {
         <div className="flex gap-1 overflow-auto px-2 my-2">
           {[1, 2, 3, 4, 5, 6]?.map((propertyType, personIdx) => {
             return (
-              <div className="border-2 whitespace-nowrap hover:text-white text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-3 py-2">
+              <div
+                onClick={() => handleBedroomSelection(propertyType)}
+                key={personIdx}
+                className="border-2 whitespace-nowrap hover:text-white text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-3 py-2"
+              >
                 {propertyType}
               </div>
             );
           })}
         </div>
+        <hr className="font-bold my-2" />
         <div className="flex px-4">
           <FaBath className="my-auto mr-2" />
           <h1 className="font-semibold">
-            {selectedBedroom || t("general.components.searchbar.bath")}
+            {t("general.components.searchbar.bath")}
           </h1>
         </div>
         <div className="flex gap-1 overflow-auto px-2 my-2">
           {[1, 2, 3, 4, 5, 6]?.map((propertyType, personIdx) => {
             return (
-              <div className="border-2 hover:text-white text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-3 py-2">
+              <div
+                key={personIdx}
+                onClick={() => handleBathroomSelection(propertyType)}
+                className="border-2 hover:text-white text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-3 py-2"
+              >
                 {propertyType}
               </div>
             );
           })}
         </div>
+        <hr className="font-bold my-2" />
         <div className="flex px-4">
           <FaMoneyBillWave className="my-auto mr-2" />
           <h1 className="font-semibold">
@@ -1096,26 +1111,29 @@ function Searchbar({ showModal, setShowModal }) {
         </div>
         <div className="flex gap-1 px-2 my-1">
           <div class=" relative mt-2 rounded-md shadow-sm">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
               <span class="text-gray-500 sm:text-sm">$</span>
             </div>
             <input
-              type="text"
-              class="w-[98%] rounded-md border-0 py-2 px-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+              type="number"
+              class="w-[98%] rounded-md border-0  py-2 px-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
               placeholder="Min.Price EGP"
+              onChange={handleMinPriceChange}
             />
           </div>
           <div class="relative mt-2 rounded-md shadow-sm">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
               <span class="text-gray-500 sm:text-sm">$</span>
             </div>
             <input
-              type="text"
+              type="number"
               class="w-[98%] rounded-md border-0 py-2 px-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
               placeholder="Max.Price EGP"
+              onChange={handleMaxPriceChange}
             />
           </div>
         </div>
+        <hr className="my-2" />
         <div className="flex px-4">
           <IoBed className="my-auto mr-2" />
           <h1 className="font-semibold">
@@ -1125,27 +1143,57 @@ function Searchbar({ showModal, setShowModal }) {
         <div className="flex gap-1 overflow-auto px-2 my-2">
           {finishingLevel?.map((propertyType, personIdx) => {
             return (
-              <div className="border-2 border-b-4 hover:text-white w-fit whitespace-nowrap text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-3 py-2">
-                {propertyType.name}
+              <div
+                onClick={(e) => {
+                  setSelectedFinishingLevel(propertyType);
+                  setCountState(!countState);
+                }}
+                key={personIdx}
+                className="border-2 border-b-4 hover:text-white w-fit whitespace-nowrap text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-3 py-2"
+              >
+                {!isArabic ? propertyType.name : propertyType.nameAr}
               </div>
             );
           })}
         </div>
+        <hr className="my-2" />
         <div className="flex px-4">
           <IoBed className="my-auto mr-2" />
           <h1 className="font-semibold">Property Area</h1>
         </div>
-        <div className="flex gap-1 px-2 my-2">
+        <div className="flex gap-1 px-2 my-2 mb-14">
           <input
             type="text"
             class="w-[50%] rounded-md border-0 py-2 px-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
             placeholder="Min. Area (sqm)"
+            onChange={(e) => setSelectedMinPropertyArea(e.target.value)}
           />
           <input
             type="text"
             class="w-[50%] rounded-md border-0 py-2 px-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
             placeholder="Max. Area (sqm)"
+            onChange={(e) => setSelectedMaxPropertyArea(e.target.value)}
           />
+        </div>
+        <div className="flex justify-between px-4 gap-3 bg-white fixed bottom-0 w-full">
+          <button
+            type="button"
+            onClick={(e) => {
+              setSelectedBathroom("");
+              setSelectedBedroom("");
+            }}
+            className="w-[45%] py-2 text-center rounded-lg bg-[#cccc] "
+          >
+            {t("general.components.searchbar.reset")}
+          </button>
+          
+          <button
+            type="button"
+            onClick={handleSearchSubmit}
+            className="w-[45%] py-2 text-white text-center rounded-lg bg-custom-blue-dark "
+          >
+            show ({countProperties})
+          </button>
         </div>
       </div>
     );
