@@ -17,7 +17,7 @@ export async function getServerSideProps(context) {
   const { locale } = context;
 
   let link = `/`;
-  if (locale == "ar") link += `ar/`;
+  if (locale == "ar") link = "/ar" + link;
   if (type) link = link + type;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
 
@@ -125,69 +125,62 @@ const TypePage = ({
       });
   }, []);
 
-  const titleEN = `${
-    propertyType && propertyType !== "properties"
+  const titleEN = `${propertyType && propertyType !== "properties"
       ? t(
-          propertyType.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        )
-      : "Property Types"
-  } ${
-    type && type !== "for-rent-or-sale"
-      ? " For " +
-        type.replace(/\w\S*/g, function (txt) {
+        propertyType.replace(/\w\S*/g, function (txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         })
+      )
+      : "Property Types"
+    } ${type && type !== "for-rent-or-sale"
+      ? " For " +
+      type.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
       : ""
-  }
-    ${
-      location && location !== "location"
-        ? " In " +
-          location.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        : ""
     }
-    ${
-      subArea
-        ? " , " +
-          subArea.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        : ""
+    ${location && location !== "location"
+      ? " In " +
+      location.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
+    }
+    ${subArea
+      ? " , " +
+      subArea.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
     } In Cairo, Egypt`;
   const titleAR = `${t(
     propertyType && propertyType !== "عقارات"
       ? propertyType.replace(/\w\S*/g, function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        })
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
       : "عقارات"
   )}
-    ${
-      type && type !== "للإيجار أو البيع"
-        ? " لل" +
-          type.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          })
-        : ""
+    ${type && type !== "للإيجار أو البيع"
+      ? " لل" +
+      type.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
     }
-      ${
-        location && location !== "منطقة"
-          ? " في " +
-            location.replace(/\w\S*/g, function (txt) {
-              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            })
-          : ""
-      }
-      ${
-        subArea
-          ? " في " +
-            subArea.replace(/\w\S*/g, function (txt) {
-              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            })
-          : ""
-      } في القاهرة و مصر`;
+      ${location && location !== "منطقة"
+      ? " في " +
+      location.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
+    }
+      ${subArea
+      ? " في " +
+      subArea.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      })
+      : ""
+    } في القاهرة و مصر`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -222,10 +215,9 @@ const TypePage = ({
             <title>
               {count +
                 " " +
-                `${
-                  meta
-                    ? meta.title
-                    : isArabic
+                `${meta
+                  ? meta.title
+                  : isArabic
                     ? titleAR.slice(0, 60)
                     : titleEN.slice(0, 60)
                 }`}
@@ -236,10 +228,9 @@ const TypePage = ({
               content={
                 count +
                 " " +
-                `${
-                  meta
-                    ? meta.description.slice(0, 160)
-                    : isArabic
+                `${meta
+                  ? meta.description.slice(0, 160)
+                  : isArabic
                     ? titleAR
                     : titleEN
                 }`
@@ -329,7 +320,7 @@ const TypePage = ({
           <QR />
           <div className="flex flex-col items-center w-full h-full p-4 font-sans text-black bg-white bg-center bg-cover">
             <BreadCrumbs type={type} home={"Home"} unTitle={"Properties"} />
-            <Searchbar showModal={showModal} setShowModal={setShowModal}/>
+            <Searchbar showModal={showModal} setShowModal={setShowModal} />
           </div>
 
           <FilteredProperties
@@ -348,7 +339,7 @@ const TypePage = ({
           </div>
         </div>
       )}
-      {showModal && <Searchbar showModal={showModal} setShowModal={setShowModal}/>}
+      {showModal && <Searchbar showModal={showModal} setShowModal={setShowModal} />}
     </>
   );
 };

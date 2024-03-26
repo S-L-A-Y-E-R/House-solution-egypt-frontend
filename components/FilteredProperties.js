@@ -88,7 +88,7 @@ const FilteredProperties = ({
               <h1 className="px-6 text-3xl font-medium text-center md:px-0 md:text-start font-openSans">
                 {title ? title : ""}
               </h1>
-              <h2 className='px-6 text-2xl font-medium text-center md:px-0 md:text-start font-openSans mt-2'>
+              <h2 className='px-6 text-xl text-center md:px-0 md:text-start font-openSans mt-3'>
                 {!isArabic ? 'All Price, All Bedrooms, All Bathrooms, All Finishing Levels' : 'جميع الأسعار, جميع غرف نوم, جميع حمامات, جميع مستويات التشطيب'}
               </h2>
 

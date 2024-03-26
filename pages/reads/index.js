@@ -162,10 +162,10 @@ function Index(props) {
           }
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />
+        <meta property="og:url" content={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : "/reads"} />
+        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/reads`} />
         <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar`} />
+        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/reads`} />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@HousePointE" />
