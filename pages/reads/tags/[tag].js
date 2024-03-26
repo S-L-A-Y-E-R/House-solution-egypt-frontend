@@ -125,7 +125,7 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   return (
     <>
       <Head>
-        <title>{tag && "Blogs | " + tag}</title>
+        <title>{meta?.title}</title>
         <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"

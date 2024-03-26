@@ -132,7 +132,7 @@ function BlogDetails({
   return (
     <>
       <Head>
-        <title>{`${metaTitle && "Articles | " + metaTitle}`}</title>
+        <title>{metaTitle}</title>
         <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"

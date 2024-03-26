@@ -79,6 +79,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   const locale = initialLocale || router.locale;
 
   useEffect(() => {
+    console.log(meta);
     // Fetch blog post data from the API
     axios
       .get(`${API_BASE_URL}/blog/topics/${topic}?page=${currentPage}&limit=9`, {
@@ -123,7 +124,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   return (
     <>
       <Head>
-        <title>{topic && "Blogs | " + topic}</title>
+        <title>{meta?.title}</title>
         <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
