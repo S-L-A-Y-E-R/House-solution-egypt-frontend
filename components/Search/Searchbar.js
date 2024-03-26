@@ -1008,7 +1008,7 @@ function Searchbar({ showModal, setShowModal }) {
             </div>
           </div>
           <div
-            className="text-gray-400 hover:text-black text-xl"
+            className="text-gray-400 hover:text-black text-2xl"
             onClick={() => setShowModal(false)}
           >
             X

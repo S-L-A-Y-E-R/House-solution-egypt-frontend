@@ -21,7 +21,6 @@ export async function getServerSideProps(context) {
   const { locale } = context;
   if (locale == "ar") link = "/ar" + link;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
-  console.log('xxxxxx',response.data);
   const changeLangResponse = await axios.post(
     `${API_BASE_URL}/utils/changelang`,
     context.query,
