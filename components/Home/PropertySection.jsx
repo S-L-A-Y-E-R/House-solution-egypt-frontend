@@ -80,7 +80,7 @@ const PropertySection = ({
 
                 return (
                   <PropertyCard
-		    key={property._id}
+                    key={property._id}
                     id={property._id}
                     propertyLink={propertyLink}
                     image={property.mainimage}

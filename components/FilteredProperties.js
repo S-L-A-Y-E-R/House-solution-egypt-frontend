@@ -88,7 +88,10 @@ const FilteredProperties = ({
               <h1 className="px-6 text-3xl font-medium text-center md:px-0 md:text-start font-openSans">
                 {title ? title : ""}
               </h1>
-              
+              <h2 className='px-6 text-2xl font-medium text-center md:px-0 md:text-start font-openSans mt-2'>
+                {!isArabic ? 'All Price, All Bedrooms, All Bathrooms, All Finishing Levels' : 'جميع الأسعار, جميع غرف نوم, جميع حمامات, جميع مستويات التشطيب'}
+              </h2>
+
               <div className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                 {properties.map((property) => {
                   let propertyLink = `/`;

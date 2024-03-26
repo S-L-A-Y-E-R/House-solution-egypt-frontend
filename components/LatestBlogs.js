@@ -6,7 +6,7 @@ import { API_BASE_URL, BLOG_IMAGE_BASE_URL } from "@/config";
 import Link from "next/link";
 import Image from "next/legacy/image";
 import Article from "./Blog/Article";
-import blogStyle from '@/styles/BlogIndex.module.css'
+import blogStyle from '@/styles/BlogIndex.module.css';
 
 
 function LatestBlogs() {
@@ -51,7 +51,7 @@ function LatestBlogs() {
           <div className={`grid max-w-6xl gap-2 mx-auto mt-10 ${blogStyle.container}`}>
             {loading && (
               <>
-                {[1, 2, 3].map((e,i) => {
+                {[1, 2, 3].map((e, i) => {
                   return (
                     <div key={i}>
                       <Skeleton className="block p-4 h-96" />

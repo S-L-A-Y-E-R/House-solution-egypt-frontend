@@ -121,7 +121,7 @@ function Index(props) {
   return (
     <>
       <Head>
-        <title>{`${meta.title}`} </title>
+        <title>{`${isArabic ? 'مقالات' : 'articles'}`} </title>
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
