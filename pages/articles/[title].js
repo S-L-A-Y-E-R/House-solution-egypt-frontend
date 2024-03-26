@@ -153,9 +153,9 @@ function BlogDetails({
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={WEBSITE_BASE_URL + "/articles"} />
-        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/${blogData.title}`} />
-        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL + `/${blogData.title}`} />
-        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/${blogData.title}`} />
+        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/articles/${title}`} />
+        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL + `/articles/${title}`} />
+        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/articles/${title}`} />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@HousePointE" />
