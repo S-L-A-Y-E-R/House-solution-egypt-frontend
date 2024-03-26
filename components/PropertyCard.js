@@ -104,9 +104,9 @@ export default function PropertyCard({
           className="flex flex-col overflow-hidden transition-all duration-150 ease-out bg-white rounded shadow-lg shadow-gray-300"
           title={title}
         >
-          <h3 className="flex items-center justify-center h-20 px-2 py-1 overflow-hidden text-base font-semibold text-center text-white text-ellipsis bg-custom-blue w-30">
+          <h2 className="flex items-center justify-center h-20 px-2 py-1 overflow-hidden text-base font-semibold text-center text-white text-ellipsis bg-custom-blue w-30">
             {title}
-          </h3>
+          </h2>
 
           <div className="relative">
             <div className="aspect-[3/2]">
@@ -127,14 +127,14 @@ export default function PropertyCard({
             <div className="absolute inset-0">
               <div className="flex flex-col justify-between h-full py-2 bg-gradient-to-t from-transparent-5 to-transparent">
                 <div className="flex justify-between">
-                  <span className="absolute left-0 px-2 py-1 text-sm font-bold tracking-wider text-white transition-all bg-opacity-50 top-2 font-openSans bg-custom-blue">
+                  <h2 className="absolute left-0 px-2 py-1 text-sm font-bold tracking-wider text-white transition-all bg-opacity-50 top-2 font-openSans bg-custom-blue">
                     {propertyType.replace(/\w\S*/g, function (txt) {
                       return (
                         txt.charAt(0).toUpperCase() +
                         txt.substr(1).toLowerCase()
                       );
                     })}
-                  </span>
+                  </h2>
                 </div>
                 <div className="flex flex-col gap-1 mb-4">
                   <div className="flex px-2">

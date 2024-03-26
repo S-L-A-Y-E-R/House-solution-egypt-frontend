@@ -68,9 +68,9 @@ export default function PropertyDesc({
 
   return (
     <div className="w-full border-b border-l border-r text-slate-500">
-      <h6 className="w-full px-2 py-1 font-bold text-center text-white rounded-sm bg-custom-blue">
+      <h3 className="w-full px-2 py-1 font-bold text-center text-white rounded-sm bg-custom-blue">
         {t("pages.property.components.property_desc.description")}
-      </h6>
+      </h3>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 px-2 py-3">
         <div className="flex items-center gap-2">
           <Image

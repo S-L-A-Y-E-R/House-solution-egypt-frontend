@@ -11,7 +11,7 @@ import { API_BASE_URL } from "@/config";
 import { PulseLoader } from "react-spinners";
 import Image from "next/legacy/image";
 
-function Searchbar() {
+function Searchbar({ TestProps }) {
   const [query, setQuery] = useState("");
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";

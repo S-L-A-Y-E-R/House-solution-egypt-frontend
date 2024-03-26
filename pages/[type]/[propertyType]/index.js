@@ -214,7 +214,7 @@ const PropertyTypePage = ({
             <title>
               {count +
                 " " +
-                `${meta ? meta.title : isArabic ? titleAR.slice(0, 60) : titleEN.slice(0, 60)}`}
+                `${meta ? meta.title.slice(0, 60) : isArabic ? titleAR.slice(0, 60) : titleEN.slice(0, 60)}`}
             </title>
             <meta name="robots" content="index, follow" />
             <meta
@@ -236,8 +236,11 @@ const PropertyTypePage = ({
 
             <link rel="canonical" href={WEBSITE_BASE_URL + `/${type}/${propertyType}`} key="canonical" />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
+            <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/${type === 'sale' || type === 'بيع' ? 'sale/properties' : 'rent/properties'}`} />
+            <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/${type === 'sale' || type === 'بيع' ? 'بيع/عقارات' : 'إيجار/عقارات'}`} />
+            <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL + `/${type === 'sale' || type === 'بيع' ? 'sale/properties' : 'rent/properties'}`} />
 
-            {isArabic && (
+            {/* {isArabic && (
               <link
                 rel="alternate"
                 hreflang="en"
@@ -247,10 +250,10 @@ const PropertyTypePage = ({
             {!isArabic && (
               <link
                 rel="alternate"
-                hreflang="ar"
-                href={WEBSITE_BASE_URL + `/ar/${type}/${propertyType}`}
+                hreflang="en"
+                href={WEBSITE_BASE_URL + `/en/${type}/${propertyType}`}
               />
-            )}
+            )} */}
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

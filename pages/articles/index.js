@@ -160,9 +160,9 @@ function Index(props) {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={WEBSITE_BASE_URL + '/articles'} />
-        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />
-        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar`} />
+        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/articles`} />
+        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL + `/articles`} />
+        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/articles`} />
 
         <meta name="twitter:card" content="summary" />s
         <meta name="twitter:site" content="@HousePointE" />
@@ -202,9 +202,9 @@ function Index(props) {
                   <h1 className="ltr:text-left rtl:text-right order-1 mb-4 font-sans text-lg font-semibold sm:text-xl md:text-2xl lg:text-4xl border-b border-gray-300 pb-4">
                     {isArabic ? titles[0]?.titleAr : titles[0]?.title}
                   </h1>
-                  <p className="ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg">
+                  <h2 className="ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg">
                     {isArabic ? titles[1]?.titleAr : titles[1]?.title}
-                  </p>
+                  </h2>
                 </>
               )}
               <div className={blogStyle.container}>

@@ -5,9 +5,9 @@
 
 // export const PROPERTY_BASE_URL = 'https://housepoint-nodejs-backend.onrender.com/uploads/properties/';
 
-//  export const API_BASE_URL = 'http://localhost:8000/api';
-// export const PROPERTY_BASE_URL = `http://localhost:8000/api/uploads/properties/`;
-// export const BLOG_IMAGE_BASE_URL = `http://localhost:8000/api/uploads/blogs/`;
+// export const API_BASE_URL = 'http://localhost:8000/api';
+// export const PROPERTY_BASE_URL = `http://localhost:8000/api/uploads/properties`;
+// export const BLOG_IMAGE_BASE_URL = `http://localhost:8000/api/uploads/blogs`;
 // export const WEBSITE_BASE_URL = "http://localhost:3000";
 
 
