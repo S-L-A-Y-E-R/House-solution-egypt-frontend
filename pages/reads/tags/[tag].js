@@ -125,11 +125,11 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   return (
     <>
       <Head>
-        <title>{tag && "Blogs | " + tag}</title>
+        <title>{meta?.title}</title>
         <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + "/contact"}
+          href={WEBSITE_BASE_URL + `/reads/tags/${tag}`}
           key="canonical"
         />
         <meta name="description" content={meta && meta.description.slice(0, 160)} />
@@ -163,10 +163,10 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           }
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />
-        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar`} />
+        <meta property="og:url" content={WEBSITE_BASE_URL + `/reads/tags/${tag}`} />
+        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/reads/tags/${tag}`} />
+        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL + `/reads/tags/${tag}`} />
+        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/reads/tags/${tag}`} />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@HousePointE" />

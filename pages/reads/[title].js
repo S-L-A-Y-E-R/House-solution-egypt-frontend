@@ -132,16 +132,16 @@ function BlogDetails({
   return (
     <>
       <Head>
-        <title>{`${metaTitle && "Articles | " + metaTitle}`}</title>
+        <title>{metaTitle}</title>
         <meta name="robots" content="noindex, nofollow" />
         <link
           rel="canonical"
-          href={WEBSITE_BASE_URL + "/reads"}
+          href={WEBSITE_BASE_URL + `/reads/${title}`}
           key="canonical"
         />
-        <meta name="description" content={metaDesc.slice(0,160) + ' | ' + metaTitle} />
+        <meta name="description" content={metaDesc.slice(0, 160) + ' | ' + metaTitle} />
         <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDesc.slice(0,160) + ' | ' + metaTitle} />
+        <meta property="og:description" content={metaDesc.slice(0, 160) + ' | ' + metaTitle} />
         <meta
           property="og:image"
           content={
@@ -159,10 +159,10 @@ function BlogDetails({
           }
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/`} />
-        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL} />
-        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar`} />
+        <meta property="og:url" content={WEBSITE_BASE_URL + `/reads/${title}`} />
+        <link rel="alternate" hrefLang="en" href={WEBSITE_BASE_URL + `/reads/${title}`} />
+        <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL + `/reads/${title}`} />
+        <link rel="alternate" hrefLang="ar" href={WEBSITE_BASE_URL + `/ar/reads/${title}`} />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@HousePointE" />

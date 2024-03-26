@@ -248,20 +248,21 @@ const PropertyTypePage = ({
             />
             <meta name="keywords" content={meta ? meta.keywords : ""} />
 
-            {isArabic && (
-              <link
-                rel="alternate"
-                hreflang="en"
-                href={WEBSITE_BASE_URL + `/${type}/${propertyType}`}
-              />
-            )}
-            {!isArabic && (
-              <link
-                rel="alternate"
-                hreflang="ar"
-                href={WEBSITE_BASE_URL + `/ar/${type}/${propertyType}`}
-              />
-            )}
+            <link
+              rel="alternate"
+              hreflang="ar"
+              href={WEBSITE_BASE_URL + `/ar/${type === 'sale' || type === 'بيع' ? 'بيع/عقارات' : 'إيجار/عقارات'}`}
+            />
+            <link
+              rel="alternate"
+              hreflang="en"
+              href={WEBSITE_BASE_URL + `/${type === 'rent' || type === 'إيجار' ? 'rent/properties' : 'sale/properties'}`}
+            />
+            <link
+              rel="alternate"
+              hreflang="x-default"
+              href={WEBSITE_BASE_URL + `/${type === 'rent' || type === 'إيجار' ? 'rent/properties' : 'sale/properties'}`}
+            />
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

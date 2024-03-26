@@ -1175,7 +1175,7 @@ function Searchbar({ showModal, setShowModal }) {
             onChange={(e) => setSelectedMaxPropertyArea(e.target.value)}
           />
         </div>
-        <div className="flex justify-between px-4 gap-3 bg-white fixed bottom-0 w-full">
+        <div className="flex justify-between px-4 py-2 gap-3 bg-white fixed bottom-0 w-full">
           <button
             type="button"
             onClick={(e) => {
