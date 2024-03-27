@@ -4,6 +4,9 @@
       "searchbar": {
         "rent": "إيجار",
         "sale": "بيع",
+        "searchRent":"مشاهدة المزيد من عقارات للإيجار في القاهرة ، مصر",
+        "searchSale":"مشاهدة المزيد من عقارات للبيع في القاهرة ، مصر",
+        "searchArticles":"مشاهدة المزيد من المقالات ",
         "location_searchbar_placeholder": "أبحث عن منطقة",
         "no_options": "لم يتم العثور علي منطقة",
         "all_property_type": "كل أنواع العقارات",

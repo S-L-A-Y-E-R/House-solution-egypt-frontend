@@ -12,6 +12,7 @@ import { API_BASE_URL, WEBSITE_BASE_URL } from "@/config";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import i18n from "@/i18n";
+import Link from "next/link";
 export async function getServerSideProps(context) {
   context.res.setHeader(
     "Cache-Control",
@@ -194,6 +195,7 @@ export default function Home({
               }
               type="rent"
             />
+            
             <PropertySection
               data={saleProperties}
               title={

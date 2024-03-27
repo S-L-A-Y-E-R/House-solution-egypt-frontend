@@ -31,7 +31,7 @@ function TopFooterLinks() {
 
   return (
     <div className='flex flex-col items-center p-4 mx-2 border rounded border-secondary-color'>
-      <h3 className='text-xl font-medium font-openSans text-custom-blue'>Most Popular Searches</h3>
+      <h4 className='text-xl font-medium font-openSans text-custom-blue'>Most Popular Searches</h4>
       <div className="grid w-full grid-cols-2">
         {links.map((link, index) => (
           <div key={index} className="w-full pl-2 pr-2 " title={isArabic ? link.titleAr : link.title}>

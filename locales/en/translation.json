@@ -4,6 +4,9 @@
       "searchbar":{
         "rent":"Rent",
         "sale":"Sale",
+        "searchRent":"Explore More Properties For Rent in Cairo, Egypt",
+        "searchSale":"Explore More Properties For Sale in Cairo, Egypt",
+        "searchArticles":"Explore More Articles ",
         "location_searchbar_placeholder":"Search Location",
         "no_options":"Nothing found.",
         "all_property_type":"All Property Types",
