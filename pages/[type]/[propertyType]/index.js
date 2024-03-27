@@ -215,7 +215,6 @@ const PropertyTypePage = ({
     ],
   };
   const [showModal, setShowModal] = useState(false);
-  console.log("xxxxxxxxxxxxx");
   return (
     <>
       {
@@ -261,14 +260,15 @@ const PropertyTypePage = ({
             <meta name="keywords" content={meta ? meta.keywords : ""} />
 
             <link
-              rel="alternate"
-              hreflang="en"
+
+              rel='alternate'
+              hreflang='ar'
               href={
                 WEBSITE_BASE_URL +
                 `/${
-                  type === "rent" || type === "إيجار"
-                    ? "rent/properties"
-                    : "sale/properties"
+                  type === 'rent' || type === 'إيجار'
+                    ? 'ar/إيجار/عقارات'
+                    : 'ar/بيع/عقارات'
                 }`
               }
             />

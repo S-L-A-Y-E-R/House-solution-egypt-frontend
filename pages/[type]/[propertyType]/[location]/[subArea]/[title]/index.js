@@ -8,7 +8,7 @@ import BreadCrumbs from '@/components/BreadCrumbs';
 import ImageSlider from '@/components/PropertyPage/ImageSlider';
 import PropertyDesc from '@/components/PropertyPage/PropertyDesc';
 import { API_BASE_URL, PROPERTY_BASE_URL, WEBSITE_BASE_URL } from '@/config';
-import moment from 'moment';
+import moment, { locale } from 'moment';
 import ContactUs from '@/components/PropertyPage/ContactUs';
 import Searchbar from '@/components/Search/Searchbar';
 import RelatedProperties from '@/components/PropertyPage/RelatedProperties';
@@ -38,6 +38,7 @@ export async function getServerSideProps(context) {
       },
     }
   );
+  // console.log(changeLangResponse.data.url);
 
   const response = await axios.get(
     `${API_BASE_URL}/property/${titleSplit.join(' ')}/${refNumber}`
@@ -73,8 +74,6 @@ function PropertyDetails({
   dateOfPropAr,
   isArabic,
 }) {
-  // console.log(propertyDetails);
-  // console.log(changeLang);
   const router = useRouter();
   const { asPath } = useRouter();
   const origin =
@@ -85,10 +84,11 @@ function PropertyDetails({
   const { t, i18n: ii18n } = useTranslation();
   // const isArabic = i18n.language === 'ar';
   useEffect(() => {
-    ii18n.changeLanguage(initialLocale);
+    if (initialLocale === 'ar') {
+      i18n.changeLanguage(initialLocale);
+    }
   }, []);
   const { type, propertyType, location, title, subArea } = router.query;
-  // console.log(propertyType);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -440,18 +440,22 @@ function PropertyDetails({
             <link rel='canonical' href={fullUrl} key='canonical' />
             <link
               rel='alternate'
-              hrefLang='en'
+              hrefLang='ar'
               href={
-                WEBSITE_BASE_URL +
-                `/${type}/${propertyType}/${location}/${subArea}/${propertyDetails.title}`
+                initialLocale === 'ar'
+                  ? `${WEBSITE_BASE_URL}/ar` +
+                    `/${type}/${propertyType}/${location}/${subArea}/${title}`
+                  : `${WEBSITE_BASE_URL}/ar` + changeLang
               }
             />
             <link
               rel='alternate'
               hrefLang='x-default'
               href={
-                WEBSITE_BASE_URL +
-                `/${type}/${propertyType}/${location}/${subArea}/${propertyDetails.title}`
+                initialLocale === 'en'
+                  ? WEBSITE_BASE_URL +
+                    `/${type}/${propertyType}/${location}/${subArea}/${title}`
+                  : WEBSITE_BASE_URL + changeLang
               }
             />
             <script

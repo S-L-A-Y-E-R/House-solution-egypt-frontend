@@ -90,7 +90,7 @@ function Index(props) {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setBlogPosts(data);
       });
   }, [currentPage]);
@@ -173,9 +173,9 @@ function Index(props) {
           content={WEBSITE_BASE_URL + isArabic ? "/ar/reads" : "/reads"}
         />
         <link
-          rel="alternate"
-          hrefLang="en"
-          href={WEBSITE_BASE_URL + `/reads`}
+          rel='alternate'
+          hrefLang='ar'
+          href={WEBSITE_BASE_URL + `/ar/reads`}
         />
         <link rel="alternate" hrefLang="x-default" href={WEBSITE_BASE_URL} />
         <meta name="twitter:card" content="summary" />
