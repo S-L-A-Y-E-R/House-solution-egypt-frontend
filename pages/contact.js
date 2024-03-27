@@ -7,6 +7,7 @@ import ContactHeader from '@/components/ContactPage/ContactHeader';
 import Head from 'next/head';
 import { API_BASE_URL, WEBSITE_BASE_URL } from '@/config';
 import i18n from '@/i18n';
+import Link from 'next/link';
 
 export async function getServerSideProps(context) {
   let link = `/contact`;
@@ -135,6 +136,11 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
       <div>
         <Navbar />
         <ContactHeader />
+        <Link className="px-4 mb-4" href={"https://www.google.com/maps/place/House+Point+Egypt/@29.951497,31.265416,16z/data=!4m6!3m5!1s0x14583807cabfbd7d:0x81e98f6ddff99809!8m2!3d29.951497!4d31.2654163!16s%2Fg%2F11scfpyfrp?hl=ar&entry=ttu"}>
+          <h4 className="rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 ">
+              { t("general.components.searchbar.searchContact")}
+          </h4>
+        </Link>
         <Footer />
       </div>
     </>

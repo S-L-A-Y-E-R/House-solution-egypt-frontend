@@ -255,6 +255,11 @@ function Index(props) {
             page={page}
           />
         )}
+        <Link className='px-4 mb-4' href={'/'}>
+          <h4 className='rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 '>
+            {t('general.components.searchbar.searchReads')}
+          </h4>
+        </Link>
         <div className='mt-auto'>
           <Footer />
         </div>
