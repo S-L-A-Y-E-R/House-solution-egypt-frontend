@@ -172,8 +172,8 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
         />
         <link
           rel='alternate'
-          hrefLang='en'
-          href={WEBSITE_BASE_URL + `/reads/topics/${topic}`}
+          hrefLang='ar'
+          href={WEBSITE_BASE_URL + `/ar/reads/topics/${topic}`}
         />
         <link
           rel='alternate'

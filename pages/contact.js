@@ -108,8 +108,8 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
         <meta property='og:url' content={WEBSITE_BASE_URL + '/contact'} />
         <link
           rel='alternate'
-          hreflang='en'
-          href={WEBSITE_BASE_URL + `/contact`}
+          hreflang='ar'
+          href={WEBSITE_BASE_URL + `/ar/contact`}
         />
         <link
           rel='alternate'

@@ -179,8 +179,8 @@ function Tag({ initialLocale, changeLang, isArabic, titles, pages }) {
         />
         <link
           rel='alternate'
-          hrefLang='en'
-          href={WEBSITE_BASE_URL + `/reads/tags/${tag}`}
+          hrefLang='ar'
+          href={WEBSITE_BASE_URL + `/ar/reads/tags/${tag}`}
         />
         <link
           rel='alternate'

@@ -162,8 +162,8 @@ function BlogDetails({
         />
         <link
           rel='alternate'
-          hrefLang='en'
-          href={WEBSITE_BASE_URL + `/reads/${title}`}
+          hrefLang='ar'
+          href={WEBSITE_BASE_URL + `/ar/reads/${title}`}
         />
         <link
           rel='alternate'
