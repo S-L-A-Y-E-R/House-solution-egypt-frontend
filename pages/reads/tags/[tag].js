@@ -187,11 +187,6 @@ function Tag({ initialLocale, changeLang, isArabic, titles, pages }) {
           hrefLang='x-default'
           href={WEBSITE_BASE_URL + `/reads/tags/${tag}`}
         />
-        <link
-          rel='alternate'
-          hrefLang='ar'
-          href={WEBSITE_BASE_URL + `/ar/reads/tags/${tag}`}
-        />
 
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:site' content='@HousePointE' />
