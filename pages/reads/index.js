@@ -177,7 +177,11 @@ function Index(props) {
           hrefLang='ar'
           href={WEBSITE_BASE_URL + `/ar/reads`}
         />
-        <link rel='alternate' hrefLang='x-default' href={WEBSITE_BASE_URL} />
+        <link
+          rel='alternate'
+          hrefLang='x-default'
+          href={WEBSITE_BASE_URL + '/reads'}
+        />
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:site' content='@HousePointE' />
         <meta name='twitter:title' content={meta && meta.title} />
