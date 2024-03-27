@@ -55,7 +55,7 @@ function PrimeLocations() {
   };
   return (
     <div className="flex flex-col items-center p-4 mx-2 my-3 border rounded border-secondary-color">
-      <h3 className="text-xl font-medium font-openSans text-custom-blue">Prime Locations</h3>
+      <h4 className="text-xl font-medium font-openSans text-custom-blue">Prime Locations</h4>
       <ul className="w-full">
         {areas.map((area) => {
           return <div key={area._id}>

@@ -19,7 +19,6 @@ const PropertySection = ({
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
   const [liveCurrency, setLiveCurrency] = useState({ USD: 1, EUR: 1 });
-  console.log(title);
   useEffect((e) => {
     async function fetchCurrency() {
       try {
@@ -121,6 +120,9 @@ const PropertySection = ({
                 );
               })}
             </div>
+            <Link className="px-4" href={type == "rent" ? "/rent/properties" : "sale/properties"}>
+                <h4 className="rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 ">{type == "rent" ?t("general.components.searchbar.searchRent"):t("general.components.searchbar.searchSale")}</h4>
+              </Link>
           </div>
         }
       </div>
