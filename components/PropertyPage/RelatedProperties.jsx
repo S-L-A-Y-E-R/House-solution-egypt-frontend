@@ -167,7 +167,7 @@ export default function RelatedProperties({
       <Link href={`/${type}/${propertyType}/${location}`} className="mt-4"
         rel="noopener noreferrer"
       >
-        <button className="px-3 py-2 text-xl font-semibold text-white rounded bg-custom-blue">
+        <h4 className="px-3 py-2 text-xl font-semibold text-white rounded bg-custom-blue">
           {isArabic && (
             <>
               لمزيد من ال{propertyType} لل{type} في {location}, أضغط هنا
@@ -179,7 +179,7 @@ export default function RelatedProperties({
               Here
             </>
           )}
-        </button>
+        </h4>
       </Link>
     </div>
   );
