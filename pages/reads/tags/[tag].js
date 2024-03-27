@@ -125,7 +125,6 @@ function Tag({ initialLocale, changeLang, isArabic, titles, pages }) {
       'https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1',
     ],
   };
-
   return (
     <>
       <Head>
@@ -139,6 +138,10 @@ function Tag({ initialLocale, changeLang, isArabic, titles, pages }) {
         <meta
           name='description'
           content={meta && meta.description.slice(0, 160)}
+        />
+        <meta
+          name='keywords'
+          content={meta && meta.keywords}
         />
         <script
           type='application/ld+json'
