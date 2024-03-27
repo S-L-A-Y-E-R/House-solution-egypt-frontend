@@ -133,6 +133,10 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           name='description'
           content={meta && meta.description.slice(0, 160)}
         />
+        <meta
+          name='keywords'
+          content={meta && meta.keywords}
+        />
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
