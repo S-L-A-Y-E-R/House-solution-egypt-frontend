@@ -399,7 +399,6 @@ function PropertyDetails({
               property='og:site_name'
               content='House Point Egypt - Real Estate'
             />
-
             <meta
               property='og:image:secure_url'
               content={
@@ -411,7 +410,6 @@ function PropertyDetails({
               }
             />
             <meta name='keywords' content={keywordsOfPropeties} />
-
             <title>
               {isArabic
                 ? propertyDetails.titleAr.slice(0, 60)
@@ -437,7 +435,17 @@ function PropertyDetails({
                   : propertyDetails.title
               }
             />
-            <link rel='canonical' href={fullUrl} key='canonical' />
+            <link
+              rel='sitemap'
+              type='application/xml'
+              href={WEBSITE_BASE_URL + '/sitemap.xml'}
+            />
+            <link
+              rel='canonical'
+              href={fullUrl}
+              key='canonical'
+              title='House Point Egypt - Real Estate'
+            />
             <link
               rel='alternate'
               hrefLang='ar'
@@ -447,6 +455,7 @@ function PropertyDetails({
                     `/${type}/${propertyType}/${location}/${subArea}/${title}`
                   : `${WEBSITE_BASE_URL}/ar` + changeLang
               }
+              title='Arabic'
             />
             <link
               rel='alternate'
@@ -457,6 +466,7 @@ function PropertyDetails({
                     `/${type}/${propertyType}/${location}/${subArea}/${title}`
                   : WEBSITE_BASE_URL + changeLang
               }
+              title='English'
             />
             <script
               type='application/ld+json'
@@ -474,7 +484,6 @@ function PropertyDetails({
               type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
             />
-
             <meta
               property='og:title'
               content={
@@ -499,7 +508,6 @@ function PropertyDetails({
                   : propertyDetails.title
               }
             />
-
             <meta property='og:type' content='website' />
             {/* <meta property="og:image:width" content="300" />
           <meta property="og:image:height" content="300" /> */}
@@ -541,7 +549,6 @@ function PropertyDetails({
                 '&w=3840&q=30'
               }
             />
-
             <meta name='robots' content='index, follow' />
           </Head>
         </>

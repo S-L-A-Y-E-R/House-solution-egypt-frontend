@@ -1,18 +1,18 @@
-import QR from "@/components/Home/QR";
-import Navbar from "@/components/Navbar";
-import Searchbar from "@/components/Search/Searchbar";
-import LatestBlogs from "@/components/LatestBlogs";
-import TopFooterLinks from "@/components/TopFooterLinks";
-import Footer from "@/components/Footer";
-import { useTranslation } from "react-i18next";
-import PrimeLocations from "@/components/PrimeLocations";
-import PropertySection from "@/components/Home/PropertySection";
-import axios from "axios";
-import { API_BASE_URL, WEBSITE_BASE_URL } from "@/config";
-import Head from "next/head";
-import { useEffect, useState } from "react";
-import i18n from "@/i18n";
-import Link from "next/link";
+import QR from '@/components/Home/QR';
+import Navbar from '@/components/Navbar';
+import Searchbar from '@/components/Search/Searchbar';
+import LatestBlogs from '@/components/LatestBlogs';
+import TopFooterLinks from '@/components/TopFooterLinks';
+import Footer from '@/components/Footer';
+import { useTranslation } from 'react-i18next';
+import PrimeLocations from '@/components/PrimeLocations';
+import PropertySection from '@/components/Home/PropertySection';
+import axios from 'axios';
+import { API_BASE_URL, WEBSITE_BASE_URL } from '@/config';
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import i18n from '@/i18n';
+import Link from 'next/link';
 
 export async function getServerSideProps(context) {
   context.res.setHeader(
@@ -97,10 +97,14 @@ export default function Home({
           <Head>
             <title>{meta?.title.slice(0, 60)}</title>
             <meta name='robots' content='index, follow' />
-            <link rel='canonical' href={WEBSITE_BASE_URL} key='canonical' />
+            <link
+              rel='canonical'
+              href={WEBSITE_BASE_URL}
+              key='canonical'
+              title='House Point Egypt - Real Estate | Home'
+            />
             <meta name='description' content={meta.description.slice(0, 160)} />
             <meta name='keywords' content={meta ? meta.keywords : ''} />
-
             <script
               type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -109,7 +113,6 @@ export default function Home({
               type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
             />
-
             <meta property='og:title' content={meta.title} />
             <meta
               property='og:description'
@@ -117,7 +120,7 @@ export default function Home({
             />
             <meta
               property='og:image'
-              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta
               property='og:image:alt'
@@ -126,26 +129,31 @@ export default function Home({
             />
             <meta
               property='og:image:secure_url'
-              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta property='og:type' content='website' />
             <meta
               property='og:site_name'
               content='House Point Egypt - Real Estate'
             />
-
             <meta property='og:url' content={WEBSITE_BASE_URL} />
+            <link
+              rel='sitemap'
+              type='application/xml'
+              href={WEBSITE_BASE_URL + '/sitemap.xml'}
+            />
             <link
               rel='alternate'
               hrefLang='x-default'
               href={WEBSITE_BASE_URL + `/`}
+              title='House Point Egypt - Real Estate | Home'
             />
             <link
               rel='alternate'
               hrefLang='ar'
               href={WEBSITE_BASE_URL + `/ar/`}
+              title='House Point Egypt - Real Estate | الصفحة الرئيسية'
             />
-
             <meta name='twitter:card' content='summary' />
             <meta name='twitter:site' content='@HousePointE' />
             <meta name='twitter:title' content={meta.title} />
@@ -154,12 +162,8 @@ export default function Home({
             <meta name='twitter:description' content={meta.description} />
             <meta
               name='twitter:image'
-              content={
-                WEBSITE_BASE_URL +
-                '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
-              }
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
-
             <meta name='robots' content='index, follow' />
           </Head>
         </>
@@ -195,7 +199,7 @@ export default function Home({
               }
               type='rent'
             />
-            
+
             <PropertySection
               data={saleProperties}
               title={

@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaWhatsapp, FaHeart } from 'react-icons/fa';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
-
-import axios from "axios";
-import Link from "next/link";
+import axios from 'axios';
+import Link from 'next/link';
 
 function Properties() {
   const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
+  const isArabic = i18n.language === 'ar';
   const [properties, setProperties] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -20,7 +19,9 @@ function Properties() {
 
   const fetchProperties = async () => {
     try {
-      const response = await axios.get(`https://house-point-api.onrender.com/property?&page=${currentPage}`);
+      const response = await axios.get(
+        `https://house-point-api.onrender.com/property?&page=${currentPage}`
+      );
       const { results, properties } = response.data;
       setProperties(properties);
       setTotalPages(Math.ceil(results / 10)); // Adjust the number of properties per page here
@@ -38,161 +39,175 @@ function Properties() {
   };
 
   return (
-    <div className="mt-8">
-
-
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+    <div className='mt-8'>
+      <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6'>
         {properties.length > 0 ? (
           properties.map((property) => (
             <div
               key={property._id}
-              className="overflow-hidden transition-all duration-150 ease-out bg-white border rounded hover:shadow-xl hover:shadow-gray-200"
+              className='overflow-hidden transition-all duration-150 ease-out bg-white border rounded hover:shadow-xl hover:shadow-gray-200'
             >
               {/* Property Image */}
-              <div className="relative cursor-zoom-in">
-                <div className="aspect-[3/2] relative z-auto">
-                  <div data-rmiz-wrap="visible" style={{ width: "100%", height: "100%" }}>
-                    <Link href={`/properties/${type}/${property._id}`}
-                      rel="noopener noreferrer"
+              <div className='relative cursor-zoom-in'>
+                <div className='aspect-[3/2] relative z-auto'>
+                  <div
+                    data-rmiz-wrap='visible'
+                    style={{ width: '100%', height: '100%' }}
+                  >
+                    <Link
+                      href={`/properties/${type}/${property._id}`}
+                      rel='noreferrer'
+                      title='View Property'
                     >
                       <img
                         src={property.images}
-                        alt="Property Photo"
-                        layout="fill"
-                        style={{ width: "100%", height: "100%" }}
-                        objectFit="cover"
-                        title="Property Photo"
+                        alt='Property Photo'
+                        layout='fill'
+                        style={{ width: '100%', height: '100%' }}
+                        objectFit='cover'
+                        title='Property Photo'
                       />
                     </Link>
-                    <button aria-label="Zoom image" data-rmiz-btn-open="true"></button>
+                    <button
+                      aria-label='Zoom image'
+                      data-rmiz-btn-open='true'
+                    ></button>
                   </div>
                 </div>
 
-
-                <div className="absolute inset-0 pointer-events-none">
-                  <div className="flex flex-col justify-between h-full px-5 py-5 bg-gradient-to-t from-transparent-5 to-transparent">
-                    <div className="flex justify-between">
-                      <span className="px-3 py-1 text-xs font-semibold tracking-wider text-white uppercase bg-red-500 rounded-full bg-opacity-90">
+                <div className='absolute inset-0 pointer-events-none'>
+                  <div className='flex flex-col justify-between h-full px-5 py-5 bg-gradient-to-t from-transparent-5 to-transparent'>
+                    <div className='flex justify-between'>
+                      <span className='px-3 py-1 text-xs font-semibold tracking-wider text-white uppercase bg-red-500 rounded-full bg-opacity-90'>
                         {property.propertyType}
                       </span>
-                      <span className="px-3 py-1 text-xs font-semibold tracking-wider text-white uppercase bg-red-500 rounded-full bg-opacity-90">
+                      <span className='px-3 py-1 text-xs font-semibold tracking-wider text-white uppercase bg-red-500 rounded-full bg-opacity-90'>
                         refNumber: {property.refNumber}
                       </span>
                     </div>
-                    <Link href={`/properties/${property._id}`}
-                      rel="noopener noreferrer"
+                    <Link
+                      href={`/properties/${property._id}`}
+                      rel='noopener noreferrer'
+                      title='View Property'
                     >
-                      <div className="flex items-center">
+                      <div className='flex items-center'>
                         {[...Array(5)].map((_, index) => (
                           <svg
                             key={index}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="text-yellow-400 w-6 h-6"
+                            xmlns='http://www.w3.org/2000/svg'
+                            viewBox='0 0 24 24'
+                            fill='currentColor'
+                            className='text-yellow-400 w-6 h-6'
                           >
-                            <path d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 17.27l-5.47 3.27L7 14.41l-4-3.9h5.82L12 4l2.18 6.51H19l-4 3.9 1.47 3.14z" />
+                            <path d='M0 0h24v24H0z' fill='none' />
+                            <path d='M12 17.27l-5.47 3.27L7 14.41l-4-3.9h5.82L12 4l2.18 6.51H19l-4 3.9 1.47 3.14z' />
                           </svg>
                         ))}
                       </div>
                     </Link>
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className='flex flex-col'>
                     <Link
-                      href="https://api.whatsapp.com/send?phone=1234567890"
-                      className="text-gray-600 hover:text-gray-800"
-                      target="_blank"
-                      rel="social"
+                      href='https://api.whatsapp.com/send?phone=1234567890'
+                      className='text-gray-600 hover:text-gray-800'
+                      target='_blank'
+                      title='Share on WhatsApp'
                     >
                       <button
-                        type="button"
-                        aria-label="share"
-                        name="share"
-                        className="absolute flex items-center justify-center shadow-lg focus:outline-none right-2 bottom-20 w-18 h-16"
+                        type='button'
+                        aria-label='share'
+                        name='share'
+                        className='absolute flex items-center justify-center shadow-lg focus:outline-none right-2 bottom-20 w-18 h-16'
                       >
                         <svg
-                          aria-hidden="true"
-                          focusable="false"
-                          data-prefix="fab"
-                          data-icon="share"
-                          className="svg-inline--fa fa-whatsapp fa-lg text-gray-800 w-7 h-7"
-                          role="img"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 576 512"
+                          aria-hidden='true'
+                          focusable='false'
+                          data-prefix='fab'
+                          data-icon='share'
+                          className='svg-inline--fa fa-whatsapp fa-lg text-gray-800 w-7 h-7'
+                          role='img'
+                          xmlns='http://www.w3.org/2000/svg'
+                          viewBox='0 0 576 512'
                         >
                           <path
-                            d="M568.9 143.5l-150.9-138.2C404.8-6.773 384 3.039 384 21.84V96C241.2 97.63 128 126.1 128 260.6c0 54.3 35.2 108.1 74.08 136.2c12.14 8.781 29.42-2.238 24.94-16.46C186.7 252.2 256 224 384 223.1v74.2c0 18.82 20.84 28.59 34.02 16.51l150.9-138.2C578.4 167.8 578.4 152.2 568.9 143.5zM416 384c-17.67 0-32 14.33-32 32v31.1l-320-.0013V128h32c17.67 0 32-14.32 32-32S113.7 64 96 64H64C28.65 64 0 92.65 0 128v319.1c0 35.34 28.65 64 64 64l320-.0013c35.35 0 64-28.66 64-64V416C448 398.3 433.7 384 416 384z"
-                            fill="#095668"
+                            d='M568.9 143.5l-150.9-138.2C404.8-6.773 384 3.039 384 21.84V96C241.2 97.63 128 126.1 128 260.6c0 54.3 35.2 108.1 74.08 136.2c12.14 8.781 29.42-2.238 24.94-16.46C186.7 252.2 256 224 384 223.1v74.2c0 18.82 20.84 28.59 34.02 16.51l150.9-138.2C578.4 167.8 578.4 152.2 568.9 143.5zM416 384c-17.67 0-32 14.33-32 32v31.1l-320-.0013V128h32c17.67 0 32-14.32 32-32S113.7 64 96 64H64C28.65 64 0 92.65 0 128v319.1c0 35.34 28.65 64 64 64l320-.0013c35.35 0 64-28.66 64-64V416C448 398.3 433.7 384 416 384z'
+                            fill='#095668'
                           ></path>
                         </svg>
                       </button>
                     </Link>
 
                     <Link
-                      href="https://api.whatsapp.com/send?phone=1234567890"
-                      className="text-green-600 hover:text-green-800"
-                      target="_blank"
-                      rel="social"
+                      href='https://api.whatsapp.com/send?phone=1234567890'
+                      className='text-green-600 hover:text-green-800'
+                      target='_blank'
+                      title='Call Us'
                     >
                       <button
-                        type="button"
-                        aria-label="whatsapp"
-                        name="call us"
-                        className="absolute flex items-center justify-center shadow-lg focus:outline-none right-2 top-25 bottom-10  w-18 h-16"
+                        type='button'
+                        aria-label='whatsapp'
+                        name='call us'
+                        className='absolute flex items-center justify-center shadow-lg focus:outline-none right-2 top-25 bottom-10  w-18 h-16'
                       >
-                        <FaWhatsapp className="w-6 h-6" />
+                        <FaWhatsapp className='w-6 h-6' />
                       </button>
                     </Link>
 
-                    <Link href="#">
+                    <Link href='#' title='Add To Favorite'>
                       <button
-                        type="button"
-                        aria-label="Add To Favorite"
-                        name="Add To Favorite"
-                        className="absolute flex items-center justify-center shadow-lg focus:outline-none right-2 bottom-0 w-18 h-16"
+                        type='button'
+                        aria-label='Add To Favorite'
+                        name='Add To Favorite'
+                        className='absolute flex items-center justify-center shadow-lg focus:outline-none right-2 bottom-0 w-18 h-16'
                       >
-
                         <span
-                          className={`text-red-500 transition-all duration-300 ease-in-out ${heartFilled ? '' : 'fill-red'
-                            }`}
+                          className={`text-red-500 transition-all duration-300 ease-in-out ${
+                            heartFilled ? '' : 'fill-red'
+                          }`}
                           onMouseEnter={() => setHeartFilled(true)}
                           onMouseLeave={() => setHeartFilled(false)}
                         >
-                          <FaHeart className="w-8 h-8" />
+                          <FaHeart className='w-8 h-8' />
                         </span>
                       </button>
-
                     </Link>
                   </div>
                 </div>
               </div>
 
               {/* Property Details */}
-              <div className="relative">
-                <div className="px-5 py-5 flex items-center justify-between bg-[#095668]">
+              <div className='relative'>
+                <div className='px-5 py-5 flex items-center justify-between bg-[#095668]'>
                   <div>
-                    <Link href={`/properties/${property._id}`}
-                      rel="noopener noreferrer"
+                    <Link
+                      href={`/properties/${property._id}`}
+                      rel='noopener noreferrer'
+                      title='View Property'
                     >
-                      <h3 className="text-lg font-semibold w-30">{isArabic ? property.titleAr : property.title}</h3>
+                      <h3 className='text-lg font-semibold w-30'>
+                        {isArabic ? property.titleAr : property.title}
+                      </h3>
                     </Link>
-                    <Link href={`/properties/${property._id}`}
-                      rel="noopener noreferrer"
+                    <Link
+                      href={`/properties/${property._id}`}
+                      rel='noopener noreferrer'
+                      title='View Property'
                     >
-                      <p className="truncate w-20 mt-1 text-sm text-gray-500">
+                      <p className='truncate w-20 mt-1 text-sm text-gray-500'>
                         {isArabic ? property.locationAr : property.location}
                       </p>
                     </Link>
                   </div>
                   <div>
-                    <Link href={`/properties/${property._id}`}
-                      rel="noopener noreferrer"
+                    <Link
+                      href={`/properties/${property._id}`}
+                      rel='noopener noreferrer'
+                      title='View Property'
                     >
-                      <button className="bg-[#c5b59e] text-[#095668] mr-16 mb-4 flex flex-col items-center justify-center px-2 py-1.5 w-20 h-20 text-sm font-medium ml-3  transition-colors duration-200 transform border rounded-full border-[#c5b59e]">
+                      <button className='bg-[#c5b59e] text-[#095668] mr-16 mb-4 flex flex-col items-center justify-center px-2 py-1.5 w-20 h-20 text-sm font-medium ml-3  transition-colors duration-200 transform border rounded-full border-[#c5b59e]'>
                         <span>{property.price.toLocaleString()}</span>
-                        <span className="text-xs">EGP</span>
+                        <span className='text-xs'>EGP</span>
                       </button>
                     </Link>
                   </div>
@@ -200,45 +215,61 @@ function Properties() {
               </div>
 
               {/* Property Features */}
-              <div className="flex text-sm border-t bg-[#095668] border-[#c5b59e] divide-x divide-gray-200">
-                <Link href={`/properties/${property._id}`}
-                  rel="noopener noreferrer"
+              <div className='flex text-sm border-t bg-[#095668] border-[#c5b59e] divide-x divide-gray-200'>
+                <Link
+                  href={`/properties/${property._id}`}
+                  rel='noopener noreferrer'
+                  title='View Property'
                 >
-                  <div className="flex font-semibold items-center justify-center flex-1 ml-2 mr-4 px-2 py-3 text-black">
+                  <div className='flex font-semibold items-center justify-center flex-1 ml-2 mr-4 px-2 py-3 text-black'>
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="1em"
-                      viewBox="0 0 640 512"
-                      className="text-black"
+                      xmlns='http://www.w3.org/2000/svg'
+                      height='1em'
+                      viewBox='0 0 640 512'
+                      className='text-black'
                     >
-                      <path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z" />
+                      <path d='M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z' />
                     </svg>
-                    <span className="ml-2">{property.beds} {t('Beds')} </span>
+                    <span className='ml-2'>
+                      {property.beds} {t('Beds')}{' '}
+                    </span>
                   </div>
                 </Link>
 
-                <Link href={`/properties/${property._id}`}
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/properties/${property._id}`}
+                  rel='noopener noreferrer'
+                  title='View Property'
                 >
-                  <div className="flex font-semibold items-center justify-center flex-1 mx-4 px-2 py-3 text-black">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M96 77.3c0-7.3 5.9-13.3 13.3-13.3c3.5 0 6.9 1.4 9.4 3.9l14.9 14.9C130 91.8 128 101.7 128 112c0 19.9 7.2 38 19.2 52c-5.3 9.2-4 21.1 3.8 29c9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9c-7.9-7.9-19.8-9.1-29-3.8C246 39.2 227.9 32 208 32c-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0C66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3zM32 352v16c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V464H384v16c0 17.7 14.3 32 32 32s32-14.3 32-32V439.6c19.6-17.6 32-43.1 32-71.6V352H32z" /></svg>
+                  <div className='flex font-semibold items-center justify-center flex-1 mx-4 px-2 py-3 text-black'>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      height='1em'
+                      viewBox='0 0 512 512'
+                    >
+                      <path d='M96 77.3c0-7.3 5.9-13.3 13.3-13.3c3.5 0 6.9 1.4 9.4 3.9l14.9 14.9C130 91.8 128 101.7 128 112c0 19.9 7.2 38 19.2 52c-5.3 9.2-4 21.1 3.8 29c9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9c-7.9-7.9-19.8-9.1-29-3.8C246 39.2 227.9 32 208 32c-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0C66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3zM32 352v16c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V464H384v16c0 17.7 14.3 32 32 32s32-14.3 32-32V439.6c19.6-17.6 32-43.1 32-71.6V352H32z' />
+                    </svg>
 
-                    <span className="ml-2">{property.baths} {t('Baths')}</span>
+                    <span className='ml-2'>
+                      {property.baths} {t('Baths')}
+                    </span>
                   </div>
                 </Link>
 
-                <Link href={`/properties/${property._id}`}
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/properties/${property._id}`}
+                  rel='noopener noreferrer'
+                  title='View Property'
                 >
-                  <div className="flex font-semibold items-center justify-center flex-1 mx-4 px-2 py-3 text-black">
+                  <div className='flex font-semibold items-center justify-center flex-1 mx-4 px-2 py-3 text-black'>
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="1em"
-                      viewBox="0 0 576 512"
+                      xmlns='http://www.w3.org/2000/svg'
+                      height='1em'
+                      viewBox='0 0 576 512'
                     >
-                      <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+                      <path d='M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z' />
                     </svg>
-                    <span className="ml-2">{property.propertyArea} sqm</span>
+                    <span className='ml-2'>{property.propertyArea} sqm</span>
                   </div>
                 </Link>
               </div>
@@ -247,27 +278,27 @@ function Properties() {
         ) : (
           <p>No properties available.</p>
         )}
-
       </div>
 
       {/* Pagination */}
-      <div className="mt-8">
-        <div className="flex items-center justify-center space-x-2 md:space-x-5">
+      <div className='mt-8'>
+        <div className='flex items-center justify-center space-x-2 md:space-x-5'>
           <button
-            className="flex items-center justify-center w-10 h-10 rounded-md bg-cyan-200 text-cyan-500"
+            className='flex items-center justify-center w-10 h-10 rounded-md bg-cyan-200 text-cyan-500'
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
             {/* Previous page icon */}
           </button>
-          <div className="space-x-2 md:space-x-2.5 flex items-center">
+          <div className='space-x-2 md:space-x-2.5 flex items-center'>
             {Array.from({ length: totalPages }).map((_, index) => (
               <button
                 key={index + 1}
-                className={`flex items-center justify-center w-10 h-10 rounded-md ${currentPage === index + 1
-                  ? "text-white bg-[#095668]"
-                  : "text-[#095668] bg-gray-400"
-                  } focus:outline-none`}
+                className={`flex items-center justify-center w-10 h-10 rounded-md ${
+                  currentPage === index + 1
+                    ? 'text-white bg-[#095668]'
+                    : 'text-[#095668] bg-gray-400'
+                } focus:outline-none`}
                 onClick={() => handlePageChange(index + 1)}
               >
                 {index + 1}
@@ -275,17 +306,27 @@ function Properties() {
             ))}
           </div>
           <button
-            className="flex items-center justify-center w-10 h-10 rounded-md bg-cyan-200 text-cyan-500 focus:outline-none"
+            className='flex items-center justify-center w-10 h-10 rounded-md bg-cyan-200 text-cyan-500 focus:outline-none'
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"></path>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              className='w-6 h-6'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M9 5l7 7-7 7'
+              ></path>
             </svg>
           </button>
         </div>
       </div>
-
     </div>
   );
 }

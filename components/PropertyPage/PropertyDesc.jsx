@@ -1,7 +1,7 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
 export default function PropertyDesc({
   type,
@@ -64,48 +64,60 @@ export default function PropertyDesc({
   tagsDefault,
 }) {
   const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
+  const isArabic = i18n.language === 'ar';
 
   return (
-    <div className="w-full border-b border-l border-r text-slate-500">
-      <h3 className="w-full px-2 py-1 font-bold text-center text-white rounded-sm bg-custom-blue">
-        {t("pages.property.components.property_desc.description")}
+    <div className='w-full border-b border-l border-r text-slate-500'>
+      <h3 className='w-full px-2 py-1 font-bold text-center text-white rounded-sm bg-custom-blue'>
+        {t('pages.property.components.property_desc.description')}
       </h3>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 px-2 py-3">
-        <div className="flex items-center gap-2">
+      <div className='grid grid-cols-2 lg:grid-cols-4 gap-2 px-2 py-3'>
+        <div className='flex items-center gap-2'>
           <Image
-            src="/assets/surface.png"
-            alt="surface"
-            width="25"
-            height="25"
-            title="surface icon"
+            src='/assets/surface.png'
+            alt='surface'
+            width='25'
+            height='25'
+            title='surface icon'
           />
           <p>
-            <span className="text-lg font-semibold">{area}</span>{" "}
-            <span>{t("pages.property.components.property_desc.sqm")}</span>
+            <span className='text-lg font-semibold'>{area}</span>{' '}
+            <span>{t('pages.property.components.property_desc.sqm')}</span>
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Image src="/assets/bed.png" alt="bed" width="25" height="25"
-            title="bed icon"
+        <div className='flex items-center gap-2'>
+          <Image
+            src='/assets/bed.png'
+            alt='bed'
+            width='25'
+            height='25'
+            title='bed icon'
           />
           <p>
-            <span className="text-lg font-semibold">{bedrooms}</span>{" "}
-            {t("pages.property.components.property_desc.bedroom")}
+            <span className='text-lg font-semibold'>{bedrooms}</span>{' '}
+            {t('pages.property.components.property_desc.bedroom')}
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Image src="/assets/bath.png" alt="bath" width="25" height="25"
-            title="bath icon"
+        <div className='flex items-center gap-2'>
+          <Image
+            src='/assets/bath.png'
+            alt='bath'
+            width='25'
+            height='25'
+            title='bath icon'
           />
           <p>
-            <span className="text-lg font-semibold">{bathrooms}</span>{" "}
-            {t("pages.property.components.property_desc.bathroom")}
+            <span className='text-lg font-semibold'>{bathrooms}</span>{' '}
+            {t('pages.property.components.property_desc.bathroom')}
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Image src="/assets/couch.png" alt="couch" width="25" height="25"
-            title="couch icon"
+        <div className='flex items-center gap-2'>
+          <Image
+            src='/assets/couch.png'
+            alt='couch'
+            width='25'
+            height='25'
+            title='couch icon'
           />
           <p>
             <span>{furnitureStatus}</span>
@@ -113,493 +125,555 @@ export default function PropertyDesc({
         </div>
       </div>
       <hr />
-      <div className="p-2 my-2">
+      <div className='p-2 my-2'>
         <div
-          className="text-lg"
+          className='text-lg'
           dangerouslySetInnerHTML={{
             __html: description,
           }}
         />
       </div>
       <hr />
-      <h3 className="px-2 text-xl font-bold">
-        {t("pages.property.components.property_desc.amentias")}
+      <h3 className='px-2 text-xl font-bold'>
+        {t('pages.property.components.property_desc.amentias')}
       </h3>
-      <div className="grid grid-cols-1 gap-4 p-2 my-2 sm:grid-cols-2 lg:grid-cols-3 sm:flex-row">
+      <div className='grid grid-cols-1 gap-4 p-2 my-2 sm:grid-cols-2 lg:grid-cols-3 sm:flex-row'>
         {HDF && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/hdf.png" alt="hdf" width="25" height="25"
-              title="hdf icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/hdf.png'
+              alt='hdf'
+              width='25'
+              height='25'
+              title='hdf icon'
             />
-            {t("pages.property.components.property_desc.hdf")}
+            {t('pages.property.components.property_desc.hdf')}
           </div>
         )}
         {airConditioning && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/air.png" alt="air" width="25" height="25"
-              title="air icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/air.png'
+              alt='air'
+              width='25'
+              height='25'
+              title='air icon'
             />
-            {t("pages.property.components.property_desc.air_condition")}
+            {t('pages.property.components.property_desc.air_condition')}
           </div>
         )}
         {centralAirCondition && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/air.png" alt="air" width="25" height="25"
-              title="air icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/air.png'
+              alt='air'
+              width='25'
+              height='25'
+              title='air icon'
             />
-            {t("pages.property.components.property_desc.central_air_condition")}
+            {t('pages.property.components.property_desc.central_air_condition')}
           </div>
         )}
         {ceramics && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/tile.png" alt="tile" width="25" height="25"
-              title="tile icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/tile.png'
+              alt='tile'
+              width='25'
+              height='25'
+              title='tile icon'
             />
-            {t("pages.property.components.property_desc.ceramic")}
+            {t('pages.property.components.property_desc.ceramic')}
           </div>
         )}
         {closetoCAC && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/school.png"
-              alt="cac school"
-              width="25"
-              height="25"
-              title="cac school icon"
+              src='/assets/school.png'
+              alt='cac school'
+              width='25'
+              height='25'
+              title='cac school icon'
             />
-            {t("pages.property.components.property_desc.cac")}
+            {t('pages.property.components.property_desc.cac')}
           </div>
         )}
         {closetoFrenchSchool && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/school.png"
-              alt="french school" s
-              width="25"
-              height="25"
-              title="french school icon"
+              src='/assets/school.png'
+              alt='french school'
+              s
+              width='25'
+              height='25'
+              title='french school icon'
             />
-            {t("pages.property.components.property_desc.french")}
+            {t('pages.property.components.property_desc.french')}
           </div>
         )}
         {closetoGym && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/gym.png" alt="gym" width="25" height="25"
-              title="gym icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/gym.png'
+              alt='gym'
+              width='25'
+              height='25'
+              title='gym icon'
             />
-            {t("pages.property.components.property_desc.gym")}
+            {t('pages.property.components.property_desc.gym')}
           </div>
         )}
         {closetoMetroStation && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/metro.png" alt="metro" width="25" height="25"
-              title="metro icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/metro.png'
+              alt='metro'
+              width='25'
+              height='25'
+              title='metro icon'
             />
-            {t("pages.property.components.property_desc.metro")}
+            {t('pages.property.components.property_desc.metro')}
           </div>
         )}
         {closetoRestaurant && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/restaurant.png"
-              alt="restaurant"
-              width="25"
-              height="25"
-              title="restaurant icon" s
+              src='/assets/restaurant.png'
+              alt='restaurant'
+              width='25'
+              height='25'
+              title='restaurant icon'
+              s
             />
-            {t("pages.property.components.property_desc.restaurant")}
+            {t('pages.property.components.property_desc.restaurant')}
           </div>
         )}
         {closetoSchools && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/school.png"
-              alt="school"
-              width="25"
-              height="25"
-              title="school icon"
+              src='/assets/school.png'
+              alt='school'
+              width='25'
+              height='25'
+              title='school icon'
             />
-            {t("pages.property.components.property_desc.school")}
+            {t('pages.property.components.property_desc.school')}
           </div>
         )}
         {compound && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/compound.png"
-              alt="compound"
-              width="25"
-              height="25"
-              title="compound icon"
+              src='/assets/compound.png'
+              alt='compound'
+              width='25'
+              height='25'
+              title='compound icon'
             />
-            {t("pages.property.components.property_desc.compound")}
+            {t('pages.property.components.property_desc.compound')}
           </div>
         )}
         {fourMasterBedroom && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/bed.png" alt="bed" width="25" height="25"
-              title="bed icon"
-            />4{" "}
-            {t("pages.property.components.property_desc.master_bedroom")}
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/bed.png'
+              alt='bed'
+              width='25'
+              height='25'
+              title='bed icon'
+            />
+            4 {t('pages.property.components.property_desc.master_bedroom')}
           </div>
         )}
         {internet && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/internet.png"
-              alt="internet"
-              width="25"
-              height="25"
-              title="internet icon"
+              src='/assets/internet.png'
+              alt='internet'
+              width='25'
+              height='25'
+              title='internet icon'
             />
-            {t("pages.property.components.property_desc.internet")}
+            {t('pages.property.components.property_desc.internet')}
           </div>
         )}
         {jacuzzi && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/jacuzzi.png"
-              alt="jacuzzi"
-              width="25"
-              height="25"
+              src='/assets/jacuzzi.png'
+              alt='jacuzzi'
+              width='25'
+              height='25'
             />
-            {t("pages.property.components.property_desc.jacuzzi")}
+            {t('pages.property.components.property_desc.jacuzzi')}
           </div>
         )}
         {kitchenAppliances && (
-          <div className="flex items-center gap-2">
-            {" "}
+          <div className='flex items-center gap-2'>
+            {' '}
             <Image
-              src="/assets/kitchen.png"
-              alt="kitchen"
-              width="25"
-              height="25"
-              title="kitchen icon"
-            />{" "}
-            {t("pages.property.components.property_desc.kitchen")}
+              src='/assets/kitchen.png'
+              alt='kitchen'
+              width='25'
+              height='25'
+              title='kitchen icon'
+            />{' '}
+            {t('pages.property.components.property_desc.kitchen')}
           </div>
         )}
         {laundryRoom && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/laundry.png"
-              alt="laundry"
-              width="25"
-              height="25"
-              title="laundry icons"
+              src='/assets/laundry.png'
+              alt='laundry'
+              width='25'
+              height='25'
+              title='laundry icons'
             />
-            {t("pages.property.components.property_desc.laundry")}
+            {t('pages.property.components.property_desc.laundry')}
           </div>
         )}
         {maidsRoom && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/maid.png" alt="maid" width="25" height="25"
-              title="maid icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/maid.png'
+              alt='maid'
+              width='25'
+              height='25'
+              title='maid icon'
             />
-            {t("pages.property.components.property_desc.maid")}
+            {t('pages.property.components.property_desc.maid')}
           </div>
         )}
         {marble && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/tile.png" alt="marble" width="25" height="25"
-              title="marble icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/tile.png'
+              alt='marble'
+              width='25'
+              height='25'
+              title='marble icon'
             />
-            {t("pages.property.components.property_desc.marble")}s
+            {t('pages.property.components.property_desc.marble')}s
           </div>
         )}
         {oneBalconyView && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/balcony.png"
-              alt="balcony"
-              width="25"
-              height="25"
-              title="balcony icon"
+              src='/assets/balcony.png'
+              alt='balcony'
+              width='25'
+              height='25'
+              title='balcony icon'
             />
-            1 {t("pages.property.components.property_desc.balcony")}
+            1 {t('pages.property.components.property_desc.balcony')}
           </div>
         )}
         {oneMasterBedroom && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/bed.png" alt="bed" width="25" height="25"
-              title="bed icon"
-            />1{" "}
-            {t("pages.property.components.property_desc.master_bedroom")}
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/bed.png'
+              alt='bed'
+              width='25'
+              height='25'
+              title='bed icon'
+            />
+            1 {t('pages.property.components.property_desc.master_bedroom')}
           </div>
         )}
         {parquet && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/tile.png"
-              alt="parquet"
-              width="25"
-              height="25"
-              title="parquet icon"
+              src='/assets/tile.png'
+              alt='parquet'
+              width='25'
+              height='25'
+              title='parquet icon'
             />
-            {t("pages.property.components.property_desc.parquet")}
+            {t('pages.property.components.property_desc.parquet')}
           </div>
         )}
         {porcelain && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/tile.png"
-              alt="porcelain"
-              width="25"
-              height="25"
-              title="porcelain icons"
+              src='/assets/tile.png'
+              alt='porcelain'
+              width='25'
+              height='25'
+              title='porcelain icons'
             />
-            {t("pages.property.components.property_desc.porcelain")}
+            {t('pages.property.components.property_desc.porcelain')}
           </div>
         )}
         {privateEntrance && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/entrance.png"
-              alt="entrance"
-              width="25"
-              height="25"
-              title="entrance icon"
+              src='/assets/entrance.png'
+              alt='entrance'
+              width='25'
+              height='25'
+              title='entrance icon'
             />
-            {t("pages.property.components.property_desc.private_entrance")}
+            {t('pages.property.components.property_desc.private_entrance')}
           </div>
         )}
         {privateGarden && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/garden.png"
-              alt="garden"
-              width="25"
-              height="25"
-              title="garden icon"
+              src='/assets/garden.png'
+              alt='garden'
+              width='25'
+              height='25'
+              title='garden icon'
             />
-            {t("pages.property.components.property_desc.private_garden")}
+            {t('pages.property.components.property_desc.private_garden')}
           </div>
         )}
         {privateSwimmingPool && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/pool.png" alt="pool" width="25" height="25"
-              title="pool icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/pool.png'
+              alt='pool'
+              width='25'
+              height='25'
+              title='pool icon'
             />
-            {t("pages.property.components.property_desc.private_swimmingpool")}
+            {t('pages.property.components.property_desc.private_swimmingpool')}
           </div>
         )}
         {security && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/security.png"
-              alt="security"
-              width="25"
-              height="25"
-              title="security icon"
+              src='/assets/security.png'
+              alt='security'
+              width='25'
+              height='25'
+              title='security icon'
             />
-            {t("pages.property.components.property_desc.security")}
+            {t('pages.property.components.property_desc.security')}
           </div>
         )}
         {shoppingNerdy && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/shopping.png"
-              alt="shopping"
-              width="25"
-              height="25"
-              title="shopping icon"
+              src='/assets/shopping.png'
+              alt='shopping'
+              width='25'
+              height='25'
+              title='shopping icon'
             />
-            {t("pages.property.components.property_desc.shopping")}
+            {t('pages.property.components.property_desc.shopping')}
           </div>
         )}
         {swimmingpoolUse && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/pool.png" alt="pool" width="25" height="25"
-              title="pool icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/pool.png'
+              alt='pool'
+              width='25'
+              height='25'
+              title='pool icon'
             />
-            {t("pages.property.components.property_desc.use_swimmingpool")}
+            {t('pages.property.components.property_desc.use_swimmingpool')}
           </div>
         )}
         {threeMasterBedroom && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/bed.png" alt="bed" width="25" height="25"
-              title="bed icon"
-            />3{" "}
-            {t("pages.property.components.property_desc.master_bedroom")}
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/bed.png'
+              alt='bed'
+              width='25'
+              height='25'
+              title='bed icon'
+            />
+            3 {t('pages.property.components.property_desc.master_bedroom')}
           </div>
         )}
         {transportNerdy && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/transportation.png"
-              alt="transportation"
-              width="25"
-              height="25"
-              title="transportation icon"
+              src='/assets/transportation.png'
+              alt='transportation'
+              width='25'
+              height='25'
+              title='transportation icon'
             />
-            {t("pages.property.components.property_desc.transportation")}
+            {t('pages.property.components.property_desc.transportation')}
           </div>
         )}
         {twoBalconyView && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/balcony.png"
-              alt="balcony"
-              width="25"
-              height="25"
-              title="balcony icon"
+              src='/assets/balcony.png'
+              alt='balcony'
+              width='25'
+              height='25'
+              title='balcony icon'
             />
-            2 {t("pages.property.components.property_desc.balcony")}
+            2 {t('pages.property.components.property_desc.balcony')}
           </div>
         )}
         {twoMasterBedroom && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/bed.png" alt="bed" width="25" height="25"
-              title="bed icon"
-            />2{" "}
-            {t("pages.property.components.property_desc.master_bedroom")}
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/bed.png'
+              alt='bed'
+              width='25'
+              height='25'
+              title='bed icon'
+            />
+            2 {t('pages.property.components.property_desc.master_bedroom')}
           </div>
         )}
         {quietArea && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/quiet.png"
-              alt="quiet icon"
-              width="25"
-              height="25"
-              title="quiet icon"
+              src='/assets/quiet.png'
+              alt='quiet icon'
+              width='25'
+              height='25'
+              title='quiet icon'
             />
-            {t("pages.property.components.property_desc.quiet_area")}
+            {t('pages.property.components.property_desc.quiet_area')}
           </div>
         )}
         {officeRoom && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/office.png"
-              alt="office icon"
-              width="25"
-              height="25"
-              title="office icon"
+              src='/assets/office.png'
+              alt='office icon'
+              width='25'
+              height='25'
+              title='office icon'
             />
-            {t("pages.property.components.property_desc.office_room")}
+            {t('pages.property.components.property_desc.office_room')}
           </div>
         )}
         {builtinWardrobe && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/wardrobe.png"
-              alt="wardrobe icon"
-              width="25"
-              height="25"
-              title="wardrobe icon"
+              src='/assets/wardrobe.png'
+              alt='wardrobe icon'
+              width='25'
+              height='25'
+              title='wardrobe icon'
             />
-            {t("pages.property.components.property_desc.wardrobe")}
+            {t('pages.property.components.property_desc.wardrobe')}
           </div>
         )}
         {internetAccess && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/internet.png"
-              alt="internet icon"
-              width="25"
-              height="25"
-              title="internet icon"
+              src='/assets/internet.png'
+              alt='internet icon'
+              width='25'
+              height='25'
+              title='internet icon'
             />
-            {t("pages.property.components.property_desc.internet")}
+            {t('pages.property.components.property_desc.internet')}
           </div>
         )}
         {elevator && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/elevator.png"
-              alt="elevator icon"
-              width="25"
-              height="25"
-              title="elevator icon"
+              src='/assets/elevator.png'
+              alt='elevator icon'
+              width='25'
+              height='25'
+              title='elevator icon'
             />
-            {t("pages.property.components.property_desc.elevator")}
+            {t('pages.property.components.property_desc.elevator')}
           </div>
         )}
         {studyroom && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/study.png"
-              alt="study room icon"
-              width="25"
-              height="25"
-              title="study room icon"
+              src='/assets/study.png'
+              alt='study room icon'
+              width='25'
+              height='25'
+              title='study room icon'
             />
-            {t("pages.property.components.property_desc.studyroom")}
+            {t('pages.property.components.property_desc.studyroom')}
           </div>
         )}
         {terrace && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/terrace.png"
-              alt="terrace icon"
-              width="25"
-              height="25"
-              title="terrace icon"
+              src='/assets/terrace.png'
+              alt='terrace icon'
+              width='25'
+              height='25'
+              title='terrace icon'
             />
-            {t("pages.property.components.property_desc.terrace")}
+            {t('pages.property.components.property_desc.terrace')}
           </div>
         )}
         {surveillance && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/surveillance.png"
-              alt="surveillance icon"
-              width="25"
-              height="25"
-              title="surveillance icon"
+              src='/assets/surveillance.png'
+              alt='surveillance icon'
+              width='25'
+              height='25'
+              title='surveillance icon'
             />
-            {t("pages.property.components.property_desc.surveillance")}
+            {t('pages.property.components.property_desc.surveillance')}
           </div>
         )}
         {coveredParking && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/coveredparking.png"
-              alt="covered parking icon"
-              width="25"
-              height="25"
-              title="covered parking icon"
+              src='/assets/coveredparking.png'
+              alt='covered parking icon'
+              width='25'
+              height='25'
+              title='covered parking icon'
             />
-            {t("pages.property.components.property_desc.covered_parking")}
+            {t('pages.property.components.property_desc.covered_parking')}
           </div>
         )}
         {storage && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/storage.png"
-              alt="storage icon"
-              width="25"
-              height="25"
-              title="storage icon"
+              src='/assets/storage.png'
+              alt='storage icon'
+              width='25'
+              height='25'
+              title='storage icon'
             />
-            {t("pages.property.components.property_desc.storage")}
+            {t('pages.property.components.property_desc.storage')}
           </div>
         )}
         {sharedSwimmingPool && (
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Image
-              src="/assets/pool.png"
-              alt="pool icon"
-              width="25"
-              height="25"
-              title="pool icon"
+              src='/assets/pool.png'
+              alt='pool icon'
+              width='25'
+              height='25'
+              title='pool icon'
             />
-            {t("pages.property.components.property_desc.shared_swimming")}
+            {t('pages.property.components.property_desc.shared_swimming')}
           </div>
         )}
         {petsAllowed && (
-          <div className="flex items-center gap-2">
-            <Image src="/assets/pets.png" alt="pets" width="25" height="25"
-              title="pets icon"
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/assets/pets.png'
+              alt='pets'
+              width='25'
+              height='25'
+              title='pets icon'
             />
-            {t("pages.property.components.property_desc.pets_allowed")}
+            {t('pages.property.components.property_desc.pets_allowed')}
           </div>
         )}
       </div>
       <hr />
-      <h3 className="px-2 text-xl font-bold">
-        {t("pages.property.components.property_desc.tags")}
+      <h3 className='px-2 text-xl font-bold'>
+        {t('pages.property.components.property_desc.tags')}
       </h3>
-      <div className="flex flex-wrap gap-1 p-1 my-1">
+      <div className='flex flex-wrap gap-1 p-1 my-1'>
         {!isArabic && (
           <>
             {tagsDefault.map((tag) => {
@@ -616,15 +690,17 @@ export default function PropertyDesc({
                     tag.typeConstraint.locationAr == location))
               )
                 return (
-                  <div className="px-2 text-white rounded hover:underline bg-custom-blue">
+                  <div className='px-2 text-white rounded hover:underline bg-custom-blue'>
                     {
-                      <Link href={tag.link} className="hover:underline"
-                        rel="noopener noreferrer"
+                      <Link
+                        href={tag.link}
+                        className='hover:underline'
+                        title='tag link'
                       >
                         #
                         {tag.name
-                          .split("-")
-                          .join(" ")
+                          .split('-')
+                          .join(' ')
                           .replace(/\w\S*/g, function (txt) {
                             return (
                               txt.charAt(0).toUpperCase() +
@@ -651,15 +727,17 @@ export default function PropertyDesc({
                 tag.typeConstraint.locationAr == location
               )
                 return (
-                  <div className="px-2 text-white rounded bg-custom-blue">
+                  <div className='px-2 text-white rounded bg-custom-blue'>
                     {
-                      <Link href={tag.linkAr} className="hover:underline"
-                        rel="noopener noreferrer"
+                      <Link
+                        href={tag.linkAr}
+                        className='hover:underline'
+                        title='tag link'
                       >
                         #
                         {tag.nameAr
-                          .split("-")
-                          .join(" ")
+                          .split('-')
+                          .join(' ')
                           .replace(/\w\S*/g, function (txt) {
                             return (
                               txt.charAt(0).toUpperCase() +

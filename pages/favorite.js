@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import PropertyCard from "@/components/PropertyCard";
-import axios from "axios";
-import { API_BASE_URL, WEBSITE_BASE_URL } from "@/config";
-import Head from "next/head";
-import i18n from "@/i18n";
-import QR from "@/components/Home/QR";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import PropertyCard from '@/components/PropertyCard';
+import axios from 'axios';
+import { API_BASE_URL, WEBSITE_BASE_URL } from '@/config';
+import Head from 'next/head';
+import i18n from '@/i18n';
+import QR from '@/components/Home/QR';
 
 export async function getServerSideProps(context) {
   const { locale } = context;
   i18n.changeLanguage(locale);
 
   let link = `/`;
-  if (locale == "ar") link += `ar/`;
-  link += "favorite";
+  if (locale == 'ar') link += `ar/`;
+  link += 'favorite';
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
 
   const changeLangResponse = await axios.post(
@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
     context.query,
     {
       headers: {
-        "accept-language": locale === "en" ? "ar" : "en",
+        'accept-language': locale === 'en' ? 'ar' : 'en',
       },
     }
   );
@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
       meta: response.data.meta,
       initialLocale: locale,
       changeLang: changeLangResponse.data.url,
-      isArabic: locale == "ar" ? true : false,
+      isArabic: locale == 'ar' ? true : false,
       link,
     },
   };
@@ -61,9 +61,9 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
           setfavorites(res.data.favorites);
         })
         .catch((err) => {
-          localStorage.removeItem("user");
-          localStorage.removeItem("email");
-          localStorage.removeItem("token");
+          localStorage.removeItem('user');
+          localStorage.removeItem('email');
+          localStorage.removeItem('token');
         });
     }
   };
@@ -71,7 +71,7 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
   useEffect((e) => {
     async function fetchCurrency() {
       try {
-        const response = await axios.get(API_BASE_URL + "/utils/getcurrency");
+        const response = await axios.get(API_BASE_URL + '/utils/getcurrency');
         setLiveCurrency(response.data.currency);
       } catch (err) {
         console.log(err);
@@ -89,14 +89,14 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
   }, []);
 
   useEffect(() => {
-    setToken(localStorage.getItem("token"));
+    setToken(localStorage.getItem('token'));
   }, []);
 
   useEffect(() => {
     axios
       .get(`${API_BASE_URL}/title/single?link=${link}`, {
         headers: {
-          "accept-language": isArabic ? "ar" : "en",
+          'accept-language': isArabic ? 'ar' : 'en',
         },
       })
       .then((res) => {
@@ -104,85 +104,92 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
       });
   }, []);
 
-  const titleEN = `${propertyType && propertyType !== "properties"
-    ? t(
-      propertyType.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-    )
-    : "Property Types"
-    } ${type && type !== "for-rent-or-sale"
-      ? " For " +
-      type.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
+  const titleEN = `${
+    propertyType && propertyType !== 'properties'
+      ? t(
+          propertyType.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        )
+      : 'Property Types'
+  } ${
+    type && type !== 'for-rent-or-sale'
+      ? ' For ' +
+        type.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
+      : ''
+  }
+    ${
+      location && location !== 'location'
+        ? ' In ' +
+          location.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ''
     }
-    ${location && location !== "location"
-      ? " In " +
-      location.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    }
-    ${subArea
-      ? " , " +
-      subArea.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
+    ${
+      subArea
+        ? ' , ' +
+          subArea.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ''
     } In Cairo, Egypt`;
   const titleAR = `${t(
-    propertyType && propertyType !== "عقارات"
+    propertyType && propertyType !== 'عقارات'
       ? propertyType.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : "عقارات"
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
+      : 'عقارات'
   )}
-    ${type && type !== "للإيجار أو البيع"
-      ? " لل" +
-      type.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
+    ${
+      type && type !== 'للإيجار أو البيع'
+        ? ' لل' +
+          type.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          })
+        : ''
     }
-      ${location && location !== "منطقة"
-      ? " في " +
-      location.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    }
-      ${subArea
-      ? " في " +
-      subArea.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      })
-      : ""
-    } في القاهرة و مصر`;
+      ${
+        location && location !== 'منطقة'
+          ? ' في ' +
+            location.replace(/\w\S*/g, function (txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            })
+          : ''
+      }
+      ${
+        subArea
+          ? ' في ' +
+            subArea.replace(/\w\S*/g, function (txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            })
+          : ''
+      } في القاهرة و مصر`;
   const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": WEBSITE_BASE_URL,
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': WEBSITE_BASE_URL,
     name: isArabic ? titleAR : titleEN,
     mainEntity: {
-      "@id": "mainEntity",
+      '@id': 'mainEntity',
     },
   };
   const orgSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "House Point Egypt - Real Estate",
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'House Point Egypt - Real Estate',
     url: WEBSITE_BASE_URL,
-    logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75",
+    logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
     sameAs: [
-      "https://www.facebook.com/House-Point-Egypt-112529918222923",
-      "https://www.instagram.com/housepointegypt/",
-      "https://www.linkedin.com/in/housepointegyptrealestate",
-      "https://twitter.com/Housep0integypt",
-      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
-      "https://t.me/housepointegypt",
-      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1"
+      'https://www.facebook.com/House-Point-Egypt-112529918222923',
+      'https://www.instagram.com/housepointegypt/',
+      'https://www.linkedin.com/in/housepointegyptrealestate',
+      'https://twitter.com/Housep0integypt',
+      'https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU',
+      'https://t.me/housepointegypt',
+      'https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1',
     ],
   };
 
@@ -195,78 +202,98 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
               {`${meta ? meta.title : isArabic ? titleAR : titleEN}`}
             </title>
             <meta
-              name="description"
-              content={`${meta ? meta.description.slice(0, 160) : isArabic ? titleAR : titleEN
-                }`}
+              name='description'
+              content={`${
+                meta
+                  ? meta.description.slice(0, 160)
+                  : isArabic
+                  ? titleAR
+                  : titleEN
+              }`}
             />
-            <meta name="keywords" content={meta ? meta.keywords : ""} />
+            <meta name='keywords' content={meta ? meta.keywords : ''} />
             <link
-              rel="canonical"
-              href={WEBSITE_BASE_URL + `${isArabic ? "/ar/" : "/"}${type}`}
-              key="canonical"
+              rel='canonical'
+              href={WEBSITE_BASE_URL + `${isArabic ? '/ar/' : '/'}${type}`}
+              key='canonical'
+              title='House Point Egypt - Real Estate | Favorite'
             />
             <link
-              rel="alternate"
-              hreflang="en"
+              rel='alternate'
+              hreflang='en'
               href={WEBSITE_BASE_URL + `/${type}`}
+              title='House Point Egypt - Real Estate | Favorite'
             />
             <link
-              rel="alternate"
-              hreflang="ar"
+              rel='sitemap'
+              type='application/xml'
+              href={WEBSITE_BASE_URL + '/sitemap.xml'}
+            />
+            <link
+              rel='alternate'
+              hreflang='ar'
               href={WEBSITE_BASE_URL + `/ar/${type}`}
+              title='House Point Egypt - Real Estate | Favorite'
             />
             <link
-              rel="alternate"
-              hreflang="x-default"
+              rel='alternate'
+              hreflang='x-default'
               href={WEBSITE_BASE_URL + `/${type}`}
+              title='House Point Egypt - Real Estate | Favorite'
             />
             <script
-              type="application/ld+json"
+              type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
             <script
-              type="application/ld+json"
+              type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
             />
-            <meta property="og:title" content={isArabic ? titleAR : titleEN} />
+            <meta property='og:title' content={isArabic ? titleAR : titleEN} />
             <meta
-              property="og:description"
+              property='og:description'
               content={isArabic ? titleAR : titleEN}
             />
             <meta
-              property="og:image"
-              content={WEBSITE_BASE_URL + "/images/logohouse.png"}
+              property='og:image'
+              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
             />
-            <meta property="og:site_name" content="House Point Egypt - Real Estate" />
+            <meta
+              property='og:site_name'
+              content='House Point Egypt - Real Estate'
+            />
 
             <meta
-              property="og:image:alt"
-              content="House Point Egypt - Real Estate | Logo"
+              property='og:image:alt'
+              content='House Point Egypt - Real Estate | Logo'
             />
             <meta
-              property="og:image:secure_url"
-              content={WEBSITE_BASE_URL + "/images/logohouse.png"}
+              property='og:image:secure_url'
+              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
             />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={WEBSITE_BASE_URL + `${isArabic ? "/ar/" : "/"}${type}`} />
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:site" content="@HousePointE" />
-            <meta name="twitter:title" content={isArabic ? titleAR : titleEN} />
-            <meta name="twitter:creator" content="@HousePointE" />
-            <meta name="twitter:domain" content={WEBSITE_BASE_URL} />
+            <meta property='og:type' content='website' />
             <meta
-              name="twitter:description"
+              property='og:url'
+              content={WEBSITE_BASE_URL + `${isArabic ? '/ar/' : '/'}${type}`}
+            />
+            <meta name='twitter:card' content='summary' />
+            <meta name='twitter:site' content='@HousePointE' />
+            <meta name='twitter:title' content={isArabic ? titleAR : titleEN} />
+            <meta name='twitter:creator' content='@HousePointE' />
+            <meta name='twitter:domain' content={WEBSITE_BASE_URL} />
+            <meta
+              name='twitter:description'
               content={isArabic ? titleAR : titleEN}
             />
             <meta
-              name="twitter:image"
+              name='twitter:image'
               content={
                 WEBSITE_BASE_URL +
-                "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75"
+                '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
               }
             />
 
-            <meta name="robots" content="index, follow" />
+            <meta name='robots' content='index, follow' />
           </Head>
         </>
       }
@@ -276,64 +303,64 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
         <QR />
 
         <div>
-          <p className="text-custom-blue text-2xl font-semibold text-center mt-6">
-            {t("pages.favorite.favorite")}
+          <p className='text-custom-blue text-2xl font-semibold text-center mt-6'>
+            {t('pages.favorite.favorite')}
           </p>
 
           {!token && (
-            <p className="text-custom-blue text-xl text-center mt-6">
-              {t("pages.favorite.unauth_user")}
+            <p className='text-custom-blue text-xl text-center mt-6'>
+              {t('pages.favorite.unauth_user')}
             </p>
           )}
 
           {token && favorites.length === 0 ? (
-            <p className="text-custom-blue text-xl text-center mt-6">
-              {t("pages.favorite.empty_favorite")}
+            <p className='text-custom-blue text-xl text-center mt-6'>
+              {t('pages.favorite.empty_favorite')}
             </p>
           ) : (
-            <div className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className='grid grid-cols-1 gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
               {favorites.map((favorite) => {
                 let propertyLink = `/`;
-                if (favorite.propertyId.type === "rent") {
+                if (favorite.propertyId.type === 'rent') {
                   propertyLink =
-                    propertyLink + t("general.components.searchbar.rent");
+                    propertyLink + t('general.components.searchbar.rent');
                 } else {
                   propertyLink =
-                    propertyLink + t("general.components.searchbar.sale");
+                    propertyLink + t('general.components.searchbar.sale');
                 }
                 if (isArabic) {
                   propertyLink =
                     propertyLink +
-                    "/" +
+                    '/' +
                     favorite.propertyId.propertyType.nameAr;
                   propertyLink =
-                    propertyLink + "/" + favorite.propertyId.area.nameAr;
+                    propertyLink + '/' + favorite.propertyId.area.nameAr;
                   propertyLink =
-                    propertyLink + "/" + favorite.propertyId.subarea.nameAr;
+                    propertyLink + '/' + favorite.propertyId.subarea.nameAr;
                   propertyLink =
                     propertyLink +
-                    "/" +
+                    '/' +
                     favorite.propertyId.titleAr +
-                    "-" +
+                    '-' +
                     favorite.propertyId.refNumber;
                 } else {
                   propertyLink =
                     propertyLink +
-                    "/" +
+                    '/' +
                     favorite.propertyId?.propertyType.name?.toLowerCase();
                   propertyLink =
                     propertyLink +
-                    "/" +
+                    '/' +
                     favorite.propertyId.area.name.toLowerCase();
                   propertyLink =
                     propertyLink +
-                    "/" +
+                    '/' +
                     favorite.propertyId.subarea.name.toLowerCase();
                   propertyLink =
                     propertyLink +
-                    "/" +
+                    '/' +
                     favorite.propertyId.title.toLowerCase() +
-                    "-" +
+                    '-' +
                     favorite.propertyId.refNumber;
                 }
 
@@ -370,9 +397,9 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
                         : favorite.propertyId.furnitureStatus.name
                     }
                     type={
-                      favorite.propertyId.type == "rent"
-                        ? t("general.components.searchbar.rent")
-                        : t("general.components.searchbar.sale")
+                      favorite.propertyId.type == 'rent'
+                        ? t('general.components.searchbar.rent')
+                        : t('general.components.searchbar.sale')
                     }
                     subArea={
                       isArabic
@@ -391,8 +418,8 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
         <div
           className={
             favorites.length > 0
-              ? "mt-[30vh]"
-              : "absolute bottom-0 w-full mt-16"
+              ? 'mt-[30vh]'
+              : 'absolute bottom-0 w-full mt-16'
           }
         >
           <Footer />

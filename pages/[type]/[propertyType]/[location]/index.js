@@ -271,23 +271,30 @@ const LocationPage = ({
                 `${isArabic ? '/ar/' : '/'}${type}/${propertyType}/${location}`
               }
               key='canonical'
+              title='House Point Egypt - Real Estate'
             />
             <meta name='keywords' content={meta ? meta.keywords : ''} />
             <meta
               property='og:site_name'
               content='House Point Egypt - Real Estate'
             />
-
+            <link
+              rel='sitemap'
+              type='application/xml'
+              href={WEBSITE_BASE_URL + '/sitemap.xml'}
+            />
             <link
               rel='alternate'
               hreflang='en'
               href={WEBSITE_BASE_URL + `/${type}/${propertyType}/${location}`}
+              title='House Point Egypt - Real Estate'
             />
 
             <link
               rel='alternate'
               hreflang='x-default'
               href={WEBSITE_BASE_URL + `/${type}/${propertyType}/${location}`}
+              title='House Point Egypt - Real Estate'
             />
 
             <script

@@ -1,14 +1,14 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { API_BASE_URL } from "@/config";
-import axios from "axios";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { SwiperNextButton, SwiperPrevButton } from "./SwiperButtons";
-import PropertyCard from "../PropertyCard";
-import { useTranslation } from "react-i18next";
-import Link from "next/link";
-import { Autoplay } from "swiper/modules";
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '@/config';
+import axios from 'axios';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { SwiperNextButton, SwiperPrevButton } from './SwiperButtons';
+import PropertyCard from '../PropertyCard';
+import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
+import { Autoplay } from 'swiper/modules';
 
 export default function RelatedProperties({
   type,
@@ -25,7 +25,7 @@ export default function RelatedProperties({
   useEffect((e) => {
     async function fetchCurrency() {
       try {
-        const response = await axios.get(API_BASE_URL + "/utils/getcurrency");
+        const response = await axios.get(API_BASE_URL + '/utils/getcurrency');
         setLiveCurrency(response.data.currency);
       } catch (err) {
         console.log(err);
@@ -40,7 +40,7 @@ export default function RelatedProperties({
         queryParams.push(`propertyType=${encodeURIComponent(propertyType)}`);
       setLoading(true);
       const url = `${API_BASE_URL}/property/getproperties?${queryParams.join(
-        "&"
+        '&'
       )}`;
       try {
         const response = await axios.get(url);
@@ -48,13 +48,13 @@ export default function RelatedProperties({
         setLoading(false);
         setProperties(filteredProperties);
       } catch (error) {
-        console.error("Error fetching filtered properties:", error);
+        console.error('Error fetching filtered properties:', error);
       }
     };
     fetchFilteredProperties();
   }, []);
   return (
-    <div className="flex flex-col items-center w-full gap-2 mb-2">
+    <div className='flex flex-col items-center w-full gap-2 mb-2'>
       <Swiper
         spaceBetween={20}
         slidesPerView={4}
@@ -66,8 +66,8 @@ export default function RelatedProperties({
         loop={true}
         modules={[Autoplay]}
         navigation
-        dir={isArabic ? "rtl" : "ltr"}
-        className="w-full pt-10"
+        dir={isArabic ? 'rtl' : 'ltr'}
+        className='w-full pt-10'
         breakpoints={{
           0: {
             slidesPerView: 1,
@@ -80,12 +80,12 @@ export default function RelatedProperties({
           },
         }}
       >
-        <span slot="container-start">
-          <div className="flex items-center justify-center gap-2">
-            <div className="flex items-center gap-2">
+        <span slot='container-start'>
+          <div className='flex items-center justify-center gap-2'>
+            <div className='flex items-center gap-2'>
               <SwiperPrevButton />
-              <h2 className="text-2xl font-semibold leading-10 text-center uppercase font-heading">
-                {t("pages.property.components.related.related_properties")}
+              <h2 className='text-2xl font-semibold leading-10 text-center uppercase font-heading'>
+                {t('pages.property.components.related.related_properties')}
               </h2>
               <SwiperNextButton />
             </div>
@@ -93,31 +93,31 @@ export default function RelatedProperties({
         </span>
         {properties?.map((property, index) => {
           let propertyLink = `/`;
-          if (property.type === "rent") {
+          if (property.type === 'rent') {
             propertyLink =
-              propertyLink + t("general.components.searchbar.rent");
+              propertyLink + t('general.components.searchbar.rent');
           } else {
             propertyLink =
-              propertyLink + t("general.components.searchbar.sale");
+              propertyLink + t('general.components.searchbar.sale');
           }
           if (isArabic) {
-            propertyLink = propertyLink + "/" + property.propertyType.nameAr;
-            propertyLink = propertyLink + "/" + property.area.nameAr;
-            propertyLink = propertyLink + "/" + property.subarea.nameAr;
+            propertyLink = propertyLink + '/' + property.propertyType.nameAr;
+            propertyLink = propertyLink + '/' + property.area.nameAr;
+            propertyLink = propertyLink + '/' + property.subarea.nameAr;
             propertyLink =
-              propertyLink + "/" + property.titleAr + "-" + property.refNumber;
+              propertyLink + '/' + property.titleAr + '-' + property.refNumber;
           } else {
             propertyLink =
-              propertyLink + "/" + property.propertyType.name.toLowerCase();
+              propertyLink + '/' + property.propertyType.name.toLowerCase();
             propertyLink =
-              propertyLink + "/" + property.area.name.toLowerCase();
+              propertyLink + '/' + property.area.name.toLowerCase();
             propertyLink =
-              propertyLink + "/" + property.subarea.name.toLowerCase();
+              propertyLink + '/' + property.subarea.name.toLowerCase();
             propertyLink =
               propertyLink +
-              "/" +
+              '/' +
               property.title.toLowerCase() +
-              "-" +
+              '-' +
               property.refNumber;
           }
           return (
@@ -148,9 +148,9 @@ export default function RelatedProperties({
                     : property.furnitureStatus.name
                 }
                 type={
-                  property.type == "rent"
-                    ? t("general.components.searchbar.rent")
-                    : t("general.components.searchbar.sale")
+                  property.type == 'rent'
+                    ? t('general.components.searchbar.rent')
+                    : t('general.components.searchbar.sale')
                 }
                 subArea={
                   isArabic
@@ -164,10 +164,12 @@ export default function RelatedProperties({
           );
         })}
       </Swiper>
-      <Link href={`/${type}/${propertyType}/${location}`} className="mt-4"
-        rel="noopener noreferrer"
+      <Link
+        href={`/${type}/${propertyType}/${location}`}
+        className='mt-4'
+        title='Related Properties'
       >
-        <h4 className="px-3 py-2 text-xl font-semibold text-white rounded bg-custom-blue">
+        <h4 className='px-3 py-2 text-xl font-semibold text-white rounded bg-custom-blue'>
           {isArabic && (
             <>
               لمزيد من ال{propertyType} لل{type} في {location}, أضغط هنا

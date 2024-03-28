@@ -128,15 +128,13 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           rel='canonical'
           href={WEBSITE_BASE_URL + `/reads/topics/${topic}`}
           key='canonical'
+          title='House Point Egypt - Real Estate | Reads'
         />
         <meta
           name='description'
           content={meta && meta.description.slice(0, 160)}
         />
-        <meta
-          name='keywords'
-          content={meta && meta.keywords}
-        />
+        <meta name='keywords' content={meta && meta.keywords} />
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -152,10 +150,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
         />
         <meta
           property='og:image'
-          content={
-            WEBSITE_BASE_URL +
-            '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
-          }
+          content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
         />
         <meta
           property='og:image:alt'
@@ -163,11 +158,8 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
 '
         />
         <meta
-          property='og:image:secure_url'
-          content={
-            WEBSITE_BASE_URL +
-            '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
-          }
+          property='og:url'
+          content={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : '/reads'}
         />
         <meta property='og:type' content='website' />
         <meta
@@ -175,14 +167,21 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           content={WEBSITE_BASE_URL + `/reads/topics/${topic}`}
         />
         <link
+          rel='sitemap'
+          type='application/xml'
+          href={WEBSITE_BASE_URL + '/sitemap.xml'}
+        />
+        <link
           rel='alternate'
           hrefLang='ar'
           href={WEBSITE_BASE_URL + `/ar/reads/topics/${topic}`}
+          title='House Point Egypt - Real Estate | Reads'
         />
         <link
           rel='alternate'
           hrefLang='x-default'
           href={WEBSITE_BASE_URL + `/reads/topics/${topic}`}
+          title='House Point Egypt - Real Estate | Reads'
         />
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:site' content='@HousePointE' />
@@ -192,10 +191,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
         <meta name='twitter:description' content={meta && meta.description} />
         <meta
           name='twitter:image'
-          content={
-            WEBSITE_BASE_URL +
-            '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
-          }
+          content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
         />
 
         <meta name='robots' content='index, follow' />
@@ -239,9 +235,13 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
             queryParam={topic}
           />
         )}
-        <Link className="px-4 mb-4" href={"/"}>
-          <h4 className="rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 ">
-              { t("general.components.searchbar.searchReads")}
+        <Link
+          className='px-4 mb-4'
+          href={'/'}
+          title='House Point Egypt - Real Estate | Home Page'
+        >
+          <h4 className='rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 '>
+            {t('general.components.searchbar.searchReads')}
           </h4>
         </Link>
         <div className='mt-auto'>

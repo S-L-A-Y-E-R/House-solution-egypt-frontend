@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
-import axios from "axios";
-import { API_BASE_URL } from "@/config";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { API_BASE_URL } from '@/config';
 
 function Login() {
   const router = useRouter();
   const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const isArabic = i18n.language === 'ar';
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
 
@@ -32,7 +32,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(API_BASE_URL + "/user/signup", {
+      const response = await axios.post(API_BASE_URL + '/user/signup', {
         email,
         password,
         firstName,
@@ -40,12 +40,12 @@ function Login() {
       });
 
       // Handle the successful login response here
-      setAlertMessage("Registration successful");
-      localStorage.setItem("user", response.data.user.firstName);
-      localStorage.setItem("email", response.data.user.email);
-      localStorage.setItem("token", response.data.token);
+      setAlertMessage('Registration successful');
+      localStorage.setItem('user', response.data.user.firstName);
+      localStorage.setItem('email', response.data.user.email);
+      localStorage.setItem('token', response.data.token);
       // Route to the home page after success
-      router.push("/");
+      router.push('/');
     } catch (err) {
       setAlertMessage(err.response.data.message);
     }
@@ -53,82 +53,83 @@ function Login() {
 
   return (
     <div>
-      <div className="grid h-screen w-screen place-items-center bg-[#095668] px-4 text-sm font-medium">
-        <div className="w-full max-w-sm bg-white rounded-lg shadow">
-          <div className="mt-4">
-            <Link href="/" rel="home">
+      <div className='grid h-screen w-screen place-items-center bg-[#095668] px-4 text-sm font-medium'>
+        <div className='w-full max-w-sm bg-white rounded-lg shadow'>
+          <div className='mt-4'>
+            <Link href='/' title='House Point Egypt Home Page'>
               <span>
                 <img
-                  src="/images/HPlogo.png"
-                  alt="Logo"
-                  className="flex justify-center mt-2 px-10 cursor-pointer"
-                  title="House Point Egypt Logo"
+                  src='/images/HPlogo.png'
+                  alt='Logo'
+                  className='flex justify-center mt-2 px-10 cursor-pointer'
+                  title='House Point Egypt Logo'
                 />
               </span>
             </Link>
           </div>
 
-          <form className="p-4 md:p-5 lg:p-6" onSubmit={handleSubmit}>
-            <div className="grid gap-y-3">
+          <form className='p-4 md:p-5 lg:p-6' onSubmit={handleSubmit}>
+            <div className='grid gap-y-3'>
               <input
-                className="px-4 py-3 transition border rounded-md outline-none focus:border-purple-400 border-slate-600 text-slate-600 placeholder:text-slate-400"
-                placeholder={t("firstName")}
+                className='px-4 py-3 transition border rounded-md outline-none focus:border-purple-400 border-slate-600 text-slate-600 placeholder:text-slate-400'
+                placeholder={t('firstName')}
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
               <input
-                className="px-4 py-3 transition border rounded-md outline-none focus:border-purple-400 border-slate-600 text-slate-600 placeholder:text-slate-400"
-                placeholder={t("lastName")}
+                className='px-4 py-3 transition border rounded-md outline-none focus:border-purple-400 border-slate-600 text-slate-600 placeholder:text-slate-400'
+                placeholder={t('lastName')}
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
               <input
-                className="px-4 py-3 transition border rounded-md outline-none focus:border-purple-400 border-slate-600 text-slate-600 placeholder:text-slate-400"
-                placeholder={t("email@example.com")}
+                className='px-4 py-3 transition border rounded-md outline-none focus:border-purple-400 border-slate-600 text-slate-600 placeholder:text-slate-400'
+                placeholder={t('email@example.com')}
                 value={email}
                 onChange={handleEmailChange}
               />
-              <div className="relative">
+              <div className='relative'>
                 <input
-                  className="px-4 py-3 transition border rounded-md outline-none focus:border-purple-400 border-slate-600 text-slate-600 placeholder:text-slate-400"
-                  placeholder={t("Password")}
-                  type={showPassword ? "text" : "password"}
+                  className='px-4 py-3 transition border rounded-md outline-none focus:border-purple-400 border-slate-600 text-slate-600 placeholder:text-slate-400'
+                  placeholder={t('Password')}
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={handlePasswordChange}
                 />
                 <button
-                  className="absolute transform -translate-y-1/2 top-1/2 right-3 text-slate-600"
+                  className='absolute transform -translate-y-1/2 top-1/2 right-3 text-slate-600'
                   onClick={togglePasswordVisibility}
                 >
-                  {showPassword ? "Hide" : "Show"}
+                  {showPassword ? 'Hide' : 'Show'}
                 </button>
               </div>
 
-              <button className="flex items-center justify-center px-4 py-3 text-white transition border rounded-md gap-x-2 from-custom-blue to-custom-blue-gradient-light border-slate-600 bg-gradient-to-r">
+              <button className='flex items-center justify-center px-4 py-3 text-white transition border rounded-md gap-x-2 from-custom-blue to-custom-blue-gradient-light border-slate-600 bg-gradient-to-r'>
                 <svg
-                  style={{ color: "rgb(203, 213, 225)" }}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  fill="currentColor"
-                  className="bi bi-envelope"
-                  viewBox="0 0 16 16"
+                  style={{ color: 'rgb(203, 213, 225)' }}
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='18'
+                  height='18'
+                  fill='currentColor'
+                  className='bi bi-envelope'
+                  viewBox='0 0 16 16'
                 >
                   {/* Email icon path */}
                 </svg>
-                {isArabic ? t("Sign up with Email") : "Sign up with Email"}
+                {isArabic ? t('Sign up with Email') : 'Sign up with Email'}
               </button>
-              <div className="flex items-center px-3 my-3">
-                <hr className="w-full border-slate-600" />
-                <span className="mx-3 text-slate-500">
-                  {isArabic ? t("or") : "or"}
+              <div className='flex items-center px-3 my-3'>
+                <hr className='w-full border-slate-600' />
+                <span className='mx-3 text-slate-500'>
+                  {isArabic ? t('or') : 'or'}
                 </span>
-                <hr className="w-full border-slate-600" />
+                <hr className='w-full border-slate-600' />
               </div>
               <Link
-                href="/login"
-                className="py-2 text-center text-white rounded bg-custom-blue"
-                rel="noopener noreferrer"
+                href='/login'
+                className='py-2 text-center text-white rounded bg-custom-blue'
+                rel='noopener noreferrer'
+                title='Login to House Point Egypt'
               >
                 Login
               </Link>
@@ -136,10 +137,11 @@ function Login() {
 
             {alertMessage && (
               <div
-                className={`${alertMessage.includes("success")
-                  ? "bg-green-200 text-green-800"
-                  : "bg-red-200 text-red-800"
-                  } p-2 rounded mt-3`}
+                className={`${
+                  alertMessage.includes('success')
+                    ? 'bg-green-200 text-green-800'
+                    : 'bg-red-200 text-red-800'
+                } p-2 rounded mt-3`}
               >
                 {alertMessage}
               </div>
