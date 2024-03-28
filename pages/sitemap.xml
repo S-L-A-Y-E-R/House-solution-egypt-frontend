@@ -132,4 +132,26 @@
 			never
 		</changefreq>
 	</url>
+	<url>
+		<loc>
+			https://housepointegypt.com/signup
+		</loc>
+		<priority>
+			1.0
+		</priority>
+		<changefreq>
+			never
+		</changefreq>
+	</url>
+	<url>
+		<loc>
+			https://housepointegypt.com/ar/signup
+		</loc>
+		<priority>
+			1.0
+		</priority>
+		<changefreq>
+			never
+		</changefreq>
+	</url>
 </urlset>
