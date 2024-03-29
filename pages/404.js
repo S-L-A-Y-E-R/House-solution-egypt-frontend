@@ -1,6 +1,12 @@
-import { useRouter } from 'next/router';
-
 export default function Custom404() {
-  const router = useRouter();
-  return router.push('/');
+  return null;
 }
+
+Custom500.getInitialProps = ({ res }) => {
+  if (res) {
+    res.writeHead(302, { Location: '/' });
+    res.end();
+  }
+  return {};
+};
+s;
