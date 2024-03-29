@@ -8,7 +8,7 @@ export default function ContactHeader() {
             <div className='flex flex-col gap-4 p-2 text-lg md:text-xl'>
                 <h1 className='text-2xl font-semibold md:text-3xl'>Contact Us</h1>
                 <h2 className='flex items-center gap-2'>
-                    <BiEnvelope /> info@housepointegypt.com
+                    <BiEnvelope /> housepointegypt@gmail.com
                 </h2>
                 <h3 className='flex items-center gap-2'>
                     <BiEnvelope /> hazem@housepointegypt.com
