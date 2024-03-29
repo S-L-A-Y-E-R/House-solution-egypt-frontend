@@ -130,6 +130,7 @@ function Index(props) {
           rel='canonical'
           href={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : '/reads'}
           key='canonical'
+          title='House Point Egypt - Real Estate | Reads'
         />
         <meta name='keywords' content={meta?.keywords} />
         <meta
@@ -151,10 +152,7 @@ function Index(props) {
         />
         <meta
           property='og:image'
-          content={
-            WEBSITE_BASE_URL +
-            '/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75'
-          }
+          content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
         />
         <meta
           property='og:image:alt'
@@ -162,10 +160,7 @@ function Index(props) {
         />
         <meta
           property='og:image:secure_url'
-          content={
-            WEBSITE_BASE_URL +
-            '/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75'
-          }
+          content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
         />
         <meta property='og:type' content='website' />
         <meta
@@ -176,11 +171,18 @@ function Index(props) {
           rel='alternate'
           hrefLang='ar'
           href={WEBSITE_BASE_URL + `/ar/reads`}
+          title='House Point Egypt - Real Estate | Reads'
         />
         <link
           rel='alternate'
           hrefLang='x-default'
           href={WEBSITE_BASE_URL + '/reads'}
+          title='House Point Egypt - Real Estate | Reads'
+        />
+        <link
+          rel='sitemap'
+          type='application/xml'
+          href={WEBSITE_BASE_URL + '/sitemap.xml'}
         />
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:site' content='@HousePointE' />
@@ -190,10 +192,7 @@ function Index(props) {
         <meta name='twitter:description' content={meta && meta.description} />
         <meta
           name='twitter:image'
-          content={
-            WEBSITE_BASE_URL +
-            '/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75'
-          }
+          content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
         />
         <script
           type='application/ld+json'
@@ -255,7 +254,11 @@ function Index(props) {
             page={page}
           />
         )}
-        <Link className='px-4 mb-4' href={'/'}>
+        <Link
+          className='px-4 mb-4'
+          href={'/'}
+          title='House Point Egypt - Real Estate | Home Page'
+        >
           <h4 className='rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 '>
             {t('general.components.searchbar.searchReads')}
           </h4>

@@ -285,9 +285,14 @@ const LocationPage = ({
                 }${type}/${propertyType}/${location}/${subArea}`
               }
               key='canonical'
+              title='House Point Egypt - Real Estate'
             />
             <meta name='keywords' content={meta ? meta.keywords : ''} />
-
+            <link
+              rel='sitemap'
+              type='application/xml'
+              href={WEBSITE_BASE_URL + '/sitemap.xml'}
+            />
             <link
               rel='alternate'
               hreflang='en'
@@ -295,6 +300,7 @@ const LocationPage = ({
                 WEBSITE_BASE_URL +
                 `/${type}/${propertyType}/${location}/${subArea}`
               }
+              title='House Point Egypt - Real Estate'
             />
 
             <link
@@ -304,6 +310,7 @@ const LocationPage = ({
                 WEBSITE_BASE_URL +
                 `/${type}/${propertyType}/${location}/${subArea}`
               }
+              title='House Point Egypt - Real Estate'
             />
 
             <script

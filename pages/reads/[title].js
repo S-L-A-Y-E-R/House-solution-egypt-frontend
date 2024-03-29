@@ -136,6 +136,7 @@ function BlogDetails({
           rel='canonical'
           href={WEBSITE_BASE_URL + `/reads/${title}`}
           key='canonical'
+          title='House Point Egypt Home Page'
         />
         <meta
           name='description'
@@ -161,14 +162,21 @@ function BlogDetails({
           content={WEBSITE_BASE_URL + `/reads/${title}`}
         />
         <link
+          rel='sitemap'
+          type='application/xml'
+          href={WEBSITE_BASE_URL + '/sitemap.xml'}
+        />
+        <link
           rel='alternate'
           hrefLang='ar'
           href={WEBSITE_BASE_URL + `/ar/reads/${title}`}
+          title='House Point Egypt Home Page'
         />
         <link
           rel='alternate'
           hrefLang='x-default'
           href={WEBSITE_BASE_URL + `/reads/${title}`}
+          title='House Point Egypt Home Page'
         />
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:site' content='@HousePointE' />
@@ -192,6 +200,7 @@ function BlogDetails({
           rel='stylesheet'
           integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN'
           crossorigin='anonymous'
+          title='House Point Egypt Home Page'
         ></link>
 
         <meta name='robots' content='index, follow' />
@@ -231,6 +240,7 @@ function BlogDetails({
                             href='#'
                             className='text-gray-400 hover:text-gray-300 rtl:pl-6'
                             data-ur1313m3t='true'
+                            title='Share on Facebook'
                           >
                             <span className='sr-only'>Facebook</span>
                             <svg
@@ -250,6 +260,7 @@ function BlogDetails({
                             href='#'
                             className='text-gray-400 hover:text-gray-300'
                             data-ur1313m3t='true'
+                            title='Share on Instagram'
                           >
                             <span className='sr-only'>Instagram</span>
                             <svg
@@ -276,6 +287,7 @@ function BlogDetails({
                             href='#'
                             className='text-gray-400 hover:text-gray-300 pt-1'
                             data-ur1313m3t='true'
+                            title='Share on Twitter'
                           >
                             <span className='sr-only'>Twitter</span>
                             <svg
@@ -313,6 +325,7 @@ function BlogDetails({
                             href='#'
                             className='text-gray-400 hover:text-gray-300 rtl:pl-6'
                             data-ur1313m3t='true'
+                            title='Share on Facebook'
                           >
                             <span className='sr-only'>Facebook</span>
                             <svg
@@ -332,6 +345,7 @@ function BlogDetails({
                             href='#'
                             className='text-gray-400 hover:text-gray-300'
                             data-ur1313m3t='true'
+                            title='Share on Instagram'
                           >
                             <span className='sr-only'>Instagram</span>
                             <svg
@@ -358,6 +372,7 @@ function BlogDetails({
                             href='#'
                             className='text-gray-400 hover:text-gray-300 pt-1'
                             data-ur1313m3t='true'
+                            title='Share on Twitter'
                           >
                             <span className='sr-only'>Twitter</span>
                             <svg

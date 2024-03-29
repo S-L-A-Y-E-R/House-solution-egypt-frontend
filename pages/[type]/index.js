@@ -247,19 +247,27 @@ const TypePage = ({
             />
             <meta name='keywords' content={meta ? meta.keywords : ''} />
             <link
+              rel='sitemap'
+              type='application/xml'
+              href={WEBSITE_BASE_URL + '/sitemap.xml'}
+            />
+            <link
               rel='canonical'
               href={WEBSITE_BASE_URL + `${isArabic ? '/ar/' : '/'}${type}`}
               key='canonical'
+              title='House Point Egypt - Real Estate'
             />
             <link
               rel='alternate'
               hreflang='en'
               href={WEBSITE_BASE_URL + `/${type}`}
+              title='House Point Egypt - Real Estate'
             />
             <link
               rel='alternate'
               hreflang='x-default'
               href={WEBSITE_BASE_URL + `/${type}`}
+              title='House Point Egypt - Real Estate'
             />
             <script
               type='application/ld+json'

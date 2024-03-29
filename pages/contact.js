@@ -68,6 +68,7 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
           rel='canonical'
           href={WEBSITE_BASE_URL + isArabic ? '/ar/contact': '/contact'}
           key='canonical'
+          title='House Point Egypt - Real Estate | Contact Us'
         />
         <meta
           name='description'
@@ -89,10 +90,7 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
         />
         <meta
           property='og:image'
-          content={
-            WEBSITE_BASE_URL +
-            '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
-          }
+          content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
         />
         <meta
           property='og:image:alt'
@@ -101,10 +99,7 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
         />
         <meta
           property='og:image:secure_url'
-          content={
-            WEBSITE_BASE_URL +
-            '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
-          }
+          content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
         />
         <meta property='og:type' content='website' />s
         <meta property='og:url' content={WEBSITE_BASE_URL + '/contact'} />
@@ -112,11 +107,18 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
           rel='alternate'
           hreflang='ar'
           href={WEBSITE_BASE_URL + `/ar/contact`}
+          title='House Point Egypt - Real Estate | اتصل بنا'
         />
         <link
           rel='alternate'
           hreflang='x-default'
           href={WEBSITE_BASE_URL + '/contact'}
+          title='House Point Egypt - Real Estate | Contact Us'
+        />
+        <link
+          rel='sitemap'
+          type='application/xml'
+          href={WEBSITE_BASE_URL + '/sitemap.xml'}
         />
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:site' content='@HousePointE' />
@@ -126,19 +128,22 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
         <meta name='twitter:description' content={meta.description} />
         <meta
           name='twitter:image'
-          content={
-            WEBSITE_BASE_URL +
-            '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
-          }
+          content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
         />
         <meta name='robots' content='index, follow' />
       </Head>
       <div>
         <Navbar />
         <ContactHeader />
-        <Link className="px-4 mb-4" href={"https://www.google.com/maps/place/House+Point+Egypt/@29.951497,31.265416,16z/data=!4m6!3m5!1s0x14583807cabfbd7d:0x81e98f6ddff99809!8m2!3d29.951497!4d31.2654163!16s%2Fg%2F11scfpyfrp?hl=ar&entry=ttu"}>
-          <h4 className="rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 ">
-              { t("general.components.searchbar.searchContact")}
+        <Link
+          className='px-4 mb-4'
+          href={
+            'https://www.google.com/maps/place/House+Point+Egypt/@29.951497,31.265416,16z/data=!4m6!3m5!1s0x14583807cabfbd7d:0x81e98f6ddff99809!8m2!3d29.951497!4d31.2654163!16s%2Fg%2F11scfpyfrp?hl=ar&entry=ttu'
+          }
+          title='House Point Egypt - Real Estate | Location'
+        >
+          <h4 className='rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 '>
+            {t('general.components.searchbar.searchContact')}
           </h4>
         </Link>
         <Footer />
