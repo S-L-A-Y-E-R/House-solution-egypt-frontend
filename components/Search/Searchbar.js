@@ -283,7 +283,7 @@ function Searchbar({ showModal, setShowModal }) {
       <div className="flex flex-col items-center justify-center w-full lg:w-[90%] mx-auto  py-1 rounded-lg shadow-lg text-custom-blue lg:h-fit bg-custom-blue">
         <div className="w-full py-1">
           <div className="flex flex-col justify-between gap-2 mx-6 md:items-end md:flex-row rtl:my-8">
-            {/* <div className="md:flex gap-2 hidden">
+            <div className="md:flex gap-2 hidden">
               <button
                 onClick={handleClickRent}
                 className={`text ${
@@ -306,7 +306,7 @@ function Searchbar({ showModal, setShowModal }) {
               >
                 {t("general.components.searchbar.sale")}
               </button>
-            </div> */}
+            </div>
             <div className="md:flex hidden items-center justify-end gap-1 text-white">
               {t("general.components.searchbar.show")} (
               {countLoading ? (
