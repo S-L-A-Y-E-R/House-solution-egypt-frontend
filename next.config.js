@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-}
+};
 
 module.exports = {
-
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
@@ -16,7 +15,13 @@ module.exports = {
   },
   images: {
     // path: '/', // Update this value if your images are in a different directory
-    domains: ['th.bing.com', 'res.cloudinary.com', 'test.housepointegypt.com', '127.0.0.1:8000', 'housepointegypt.com'],
+    domains: [
+      'th.bing.com',
+      'res.cloudinary.com',
+      'test.housepointegypt.com',
+      '127.0.0.1:8000',
+      'housepointegypt.com',
+    ],
     remotePatterns: [
       {
         protocol: 'https',
@@ -34,7 +39,8 @@ module.exports = {
         hostname: 'localhost',
         port: '8000',
         pathname: '/api/uploads/properties/**',
-      }, {
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '8000',
