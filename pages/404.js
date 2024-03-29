@@ -1,12 +1,14 @@
-export default function Custom404() {
-  return null;
-}
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-Custom500.getInitialProps = ({ res }) => {
-  if (res) {
-    res.writeHead(302, { Location: '/' });
-    res.end();
-  }
-  return {};
+const Custom404 = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/');
+  }, []);
+
+  return null;
 };
-s;
+
+export default Custom404;

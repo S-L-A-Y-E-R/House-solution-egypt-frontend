@@ -1,11 +1,14 @@
-export default function Custom500() {
-  return null;
-}
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-Custom500.getInitialProps = ({ res }) => {
-  if (res) {
-    res.writeHead(302, { Location: '/' });
-    res.end();
-  }
-  return {};
+const Custom500 = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/');
+  }, []);
+
+  return null;
 };
+
+export default Custom500;
