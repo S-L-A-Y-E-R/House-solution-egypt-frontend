@@ -1051,11 +1051,11 @@ function Searchbar({ showModal, setShowModal }) {
             return (
               <div
                 key={personIdx}
-                onClick={(e) => {
-                  setSelectedPropertyType(e);
+                onClick={() => {
+                  setSelectedPropertyType(propertyType);
                   setCountState(!countState);
                 }}
-                className="border-2 border-b-4 whitespace-nowrap p-2 hover:text-white text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-2"
+                className={`border-2 border-b-4 w-fit whitespace-nowrap text-center text-base rounded-lg border-gray-200 ${selectedPropertyType ==propertyType ? "bg-custom-blue-dark text-white":"bg-[#cccccc]"} px-3 py-2`}
               >
                 {isArabic ? propertyType.nameAr : propertyType.name}
               </div>
@@ -1075,7 +1075,7 @@ function Searchbar({ showModal, setShowModal }) {
               <div
                 onClick={() => handleBedroomSelection(propertyType)}
                 key={personIdx}
-                className="border-2 whitespace-nowrap hover:text-white text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-3 py-2"
+                className={`border-2 border-b-4 w-fit whitespace-nowrap text-center text-base rounded-lg border-gray-200 ${selectedBedroom ==propertyType ? "bg-custom-blue-dark text-white":"bg-[#cccccc]"} px-3 py-2`}
               >
                 {propertyType}
               </div>
@@ -1095,7 +1095,7 @@ function Searchbar({ showModal, setShowModal }) {
               <div
                 key={personIdx}
                 onClick={() => handleBathroomSelection(propertyType)}
-                className="border-2 hover:text-white text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-3 py-2"
+                className={`border-2 border-b-4 w-fit whitespace-nowrap text-center text-base rounded-lg border-gray-200 ${selectedBathroom ==propertyType ? "bg-custom-blue-dark text-white":"bg-[#cccccc]"} px-3 py-2`}
               >
                 {propertyType}
               </div>
@@ -1111,9 +1111,6 @@ function Searchbar({ showModal, setShowModal }) {
         </div>
         <div className="flex gap-1 px-2 my-1">
           <div class=" relative mt-2 rounded-md shadow-sm">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
-              <span class="text-gray-500 sm:text-sm">$</span>
-            </div>
             <input
               type="number"
               class="w-[98%] rounded-md border-0  py-2 px-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
@@ -1122,9 +1119,6 @@ function Searchbar({ showModal, setShowModal }) {
             />
           </div>
           <div class="relative mt-2 rounded-md shadow-sm">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
-              <span class="text-gray-500 sm:text-sm">$</span>
-            </div>
             <input
               type="number"
               class="w-[98%] rounded-md border-0 py-2 px-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
@@ -1149,7 +1143,7 @@ function Searchbar({ showModal, setShowModal }) {
                   setCountState(!countState);
                 }}
                 key={personIdx}
-                className="border-2 border-b-4 hover:text-white w-fit whitespace-nowrap text-center text-base bg-[#cccccc] rounded-lg border-gray-200 hover:bg-custom-blue-dark px-3 py-2"
+                className={`border-2 border-b-4 w-fit whitespace-nowrap text-center text-base rounded-lg border-gray-200 ${selectedFinishingLevel ==propertyType ? "bg-custom-blue-dark text-white":"bg-[#cccccc]"} px-3 py-2`}
               >
                 {!isArabic ? propertyType.name : propertyType.nameAr}
               </div>
