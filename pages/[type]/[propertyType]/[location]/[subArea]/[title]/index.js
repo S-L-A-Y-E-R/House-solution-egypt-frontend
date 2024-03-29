@@ -17,11 +17,12 @@ import QR from '@/components/Home/QR';
 import Head from 'next/head';
 
 export async function getServerSideProps(context) {
+  console.log('xxxxxxxxxppppppppp');
   const { locale } = context;
   const { type, propertyType, location, title, subArea } = context.query;
-  const titleSplit = title.split('-');
-  const refNumber = titleSplit[titleSplit.length - 1];
-  titleSplit.pop();
+  const titleSplit = title?.split('-');
+  const refNumber = titleSplit && titleSplit[titleSplit?.length - 1];
+  titleSplit?.pop();
   const changeLangResponse = await axios.post(
     `${API_BASE_URL}/utils/changelang`,
     {
@@ -38,7 +39,7 @@ export async function getServerSideProps(context) {
       },
     }
   );
-  // console.log(changeLangResponse.data.url);
+   console.log(changeLangResponse.data.url);
 
   const response = await axios.get(
     `${API_BASE_URL}/property/${titleSplit.join(' ')}/${refNumber}`
@@ -74,6 +75,7 @@ function PropertyDetails({
   dateOfPropAr,
   isArabic,
 }) {
+  console.log('testtttttttttt');
   const router = useRouter();
   const { asPath } = useRouter();
   const origin =
@@ -374,6 +376,8 @@ function PropertyDetails({
     })
     .filter((e) => e != '-');
   const [showModal, setShowModal] = useState(false);
+  console.log('testttttt');
+  
   return (
     <>
       {

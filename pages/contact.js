@@ -66,7 +66,7 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
         <title>{meta && meta.title}</title>
         <link
           rel='canonical'
-          href={WEBSITE_BASE_URL + '/contact'}
+          href={WEBSITE_BASE_URL + isArabic ? '/ar/contact': '/contact'}
           key='canonical'
           title='House Point Egypt - Real Estate | Contact Us'
         />
