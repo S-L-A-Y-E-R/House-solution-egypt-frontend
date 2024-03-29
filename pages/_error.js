@@ -11,5 +11,4 @@ const Page = () => {
   return null;
 };
 
-export default Custom500;
-Page;
+export default Page;
