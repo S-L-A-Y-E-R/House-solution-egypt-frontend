@@ -17,7 +17,6 @@ import QR from '@/components/Home/QR';
 import Head from 'next/head';
 
 export async function getServerSideProps(context) {
-  console.log('xxxxxxxxxppppppppp');
   const { locale } = context;
   const { type, propertyType, location, title, subArea } = context.query;
   const titleSplit = title?.split('-');
@@ -39,7 +38,7 @@ export async function getServerSideProps(context) {
       },
     }
   );
-   console.log(changeLangResponse.data.url);
+  console.log(changeLangResponse.data.url);
 
   const response = await axios.get(
     `${API_BASE_URL}/property/${titleSplit.join(' ')}/${refNumber}`
@@ -377,7 +376,7 @@ function PropertyDetails({
     .filter((e) => e != '-');
   const [showModal, setShowModal] = useState(false);
   console.log('testttttt');
-  
+
   return (
     <>
       {

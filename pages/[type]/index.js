@@ -17,7 +17,7 @@ export async function getServerSideProps(context) {
   const { locale } = context;
 
   let link = `/`;
-  if (locale == 'ar') link = '/ar' + link;
+  if (locale == 'ar') link += `ar/`;
   if (type) link = link + type;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
 

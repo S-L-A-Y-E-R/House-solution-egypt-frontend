@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
 
   let link = `/`;
   if (locale == 'ar') link += `ar/`;
-
+  // console.log(link);ss
   if (type) link = link + type;
   if (propertyType) link = link + '/' + propertyType;
   if (location) link = link + '/' + location;
