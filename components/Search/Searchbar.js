@@ -281,9 +281,9 @@ function Searchbar({ showModal, setShowModal }) {
   if (!showModal)
     return (
       <div className="flex flex-col items-center justify-center w-full lg:w-[90%] mx-auto  py-1 rounded-lg shadow-lg text-custom-blue lg:h-fit bg-custom-blue">
-        <div className="w-full">
+        <div className="w-full py-1">
           <div className="flex flex-col justify-between gap-2 mx-6 md:items-end md:flex-row rtl:my-8">
-            <div className="flex gap-2">
+            <div className="md:flex gap-2 hidden">
               <button
                 onClick={handleClickRent}
                 className={`text ${
@@ -307,7 +307,7 @@ function Searchbar({ showModal, setShowModal }) {
                 {t("general.components.searchbar.sale")}
               </button>
             </div>
-            <div className="flex items-center justify-end gap-1 text-white">
+            <div className="md:flex hidden items-center justify-end gap-1 text-white">
               {t("general.components.searchbar.show")} (
               {countLoading ? (
                 <PulseLoader size={2} color="white" />
@@ -984,15 +984,42 @@ function Searchbar({ showModal, setShowModal }) {
             )}
           </div>
           {/* more Filter */}
-          <div>
-            <button
-              className=" max-lg:flex border-2 hidden text-white font-bold uppercase text-sm px-6  py-2 mx-auto rounded shadow hover:shadow-lg outline-none focus:outline-none my-2 ease-linear transition-all duration-150"
-              type="button"
-              onClick={() => setShowModal(true)}
-            >
-              <CiFilter size={"25"} />
-              {isArabic ? "تصفيةاكتر" : "More Filter"}
-            </button>
+          <div className="hidden max-md:flex justify-between my-2 px-5 ">
+            
+            <div className="flex gap-2">
+              <button
+                onClick={handleClickRent}
+                className={`text-sm  ${
+                  type == t("general.components.searchbar.rent")
+                    ? "bg-custom-blue-darker  border-2 border-custom-blue text-white"
+                    : "bg-white text-custom-blue"
+                } hover:shadow-lg shadow text-lg border-white border font-semibold px-3 py-1 rounded-lg`}
+                value={t("general.components.searchbar.rent")}
+              >
+                {t("general.components.searchbar.rent")}
+              </button>
+              <button
+                className={`text  text-sm capitalize ${
+                  type == t("general.components.searchbar.sale")
+                    ? "bg-custom-blue-darker  border-2 border-custom-blue text-white"
+                    : "bg-white text-custom-blue"
+                } hover:shadow-lg shadow border-white border rounded-lg font-semibold px-3 py-1`}
+                value={t("general.components.searchbar.sale")}
+                onClick={handleClickSale}
+              >
+                {t("general.components.searchbar.sale")}
+              </button>
+            </div>
+            <div>
+              <button
+                className=" max-md:flex border-1 hidden text-white font-bold text-sm p-1 text-center py-1 bg-gray-500 rounded shadow hover:shadow-lg"
+                type="button"
+                onClick={() => setShowModal(true)}
+              >
+                <CiFilter size={"25"} />
+                {isArabic ? "تصفيةاكتر" : "More Filter"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1175,6 +1202,8 @@ function Searchbar({ showModal, setShowModal }) {
             onClick={(e) => {
               setSelectedBathroom("");
               setSelectedBedroom("");
+              setSelectedFinishingLevel("");
+              setSelectedPropertyType("");
             }}
             className="w-[45%] py-2 text-center rounded-lg bg-[#cccc] "
           >
