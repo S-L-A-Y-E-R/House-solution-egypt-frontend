@@ -122,6 +122,7 @@ const LocationPage = ({
   // titles,
   link,
 }) => {
+  console.log(changeLang);
   const [titles, setTitles] = useState([]);
   const router = useRouter();
   const { type, propertyType, location, subArea } = router.query;
@@ -286,9 +287,7 @@ const LocationPage = ({
             <link
               rel="alternate"
               hreflang="ar"
-              href={
-                WEBSITE_BASE_URL + `/ar/${type}/${propertyType}/${location}`
-              }
+              href={WEBSITE_BASE_URL + '/ar/' + changeLang}
               title="House Point Egypt - Real Estate"
             />
 
