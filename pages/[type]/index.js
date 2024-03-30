@@ -259,8 +259,8 @@ const TypePage = ({
             />
             <link
               rel='alternate'
-              hreflang='en'
-              href={WEBSITE_BASE_URL + `/${type}`}
+              hreflang='ar'
+              href={WEBSITE_BASE_URL + `/ar/${type}`}
               title='House Point Egypt - Real Estate'
             />
             <link

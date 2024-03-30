@@ -296,10 +296,10 @@ const LocationPage = ({
             />
             <link
               rel='alternate'
-              hreflang='en'
+              hreflang='ar'
               href={
                 WEBSITE_BASE_URL +
-                `/${type}/${propertyType}/${location}/${subArea}`
+                `/ar/${type}/${propertyType}/${location}/${subArea}`
               }
               title='House Point Egypt - Real Estate'
             />
