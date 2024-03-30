@@ -393,7 +393,7 @@ function PropertyDetails({
             /> */}
             <meta
               property='og:image'
-              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta
               property='og:image:alt'
