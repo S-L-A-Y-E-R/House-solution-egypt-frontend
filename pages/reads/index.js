@@ -128,7 +128,7 @@ function Index(props) {
         <meta name='robots' content='noindex, nofollow' />
         <link
           rel='canonical'
-          href={WEBSITE_BASE_URL + isArabic ? '/ar/reads' : '/reads'}
+          href={WEBSITE_BASE_URL + isArabic ? '/reads' : '/reads'}
           key='canonical'
           title='House Point Egypt - Real Estate | Reads'
         />
