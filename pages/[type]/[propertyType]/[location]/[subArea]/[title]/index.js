@@ -393,7 +393,7 @@ function PropertyDetails({
             /> */}
             <meta
               property='og:image'
-              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta
               property='og:image:alt'
@@ -455,12 +455,8 @@ function PropertyDetails({
             <link
               rel='alternate'
               hrefLang='ar'
-              href={
-                initialLocale === 'ar'
-                  ? `${WEBSITE_BASE_URL}/ar` +
-                    `/${type}/${propertyType}/${location}/${subArea}/${title}`
-                  : `${WEBSITE_BASE_URL}/ar` + changeLang
-              }
+              href={WEBSITE_BASE_URL + '/ar/' + changeLang}
+      
               title='Arabic'
             />
             <link
