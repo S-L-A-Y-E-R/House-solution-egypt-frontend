@@ -74,7 +74,6 @@ function PropertyDetails({
   dateOfPropAr,
   isArabic,
 }) {
-  console.log('testtttttttttt');
   const router = useRouter();
   const { asPath } = useRouter();
   const origin =
@@ -375,8 +374,6 @@ function PropertyDetails({
     })
     .filter((e) => e != '-');
   const [showModal, setShowModal] = useState(false);
-  console.log('testttttt');
-
   return (
     <>
       {

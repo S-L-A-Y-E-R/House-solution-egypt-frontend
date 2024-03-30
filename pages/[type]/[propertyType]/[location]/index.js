@@ -369,7 +369,7 @@ const LocationPage = ({
           />
           <div
             className='hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto'
-            dangerouslySetInnerHTML={{ __html: meta.article }}
+            dangerouslySetInnerHTML={{ __html: meta?.article }}
           />
 
           <div className='mt-16'>
