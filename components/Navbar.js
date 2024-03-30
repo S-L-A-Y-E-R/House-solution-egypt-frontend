@@ -123,7 +123,7 @@ const Navbar = ({ url }) => {
                 {t('general.components.navbar.sale')}
               </span>
             </Link>
-            <Link href='/reads' title='Blogs'>
+            <Link href='/reads' title='Reads'>
               <span
                 className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none w-full block px-4 py-2 ml-2 ${
                   isArabic ? 'text-right' : ''
@@ -302,7 +302,7 @@ const Navbar = ({ url }) => {
                 </Link>
               </li>
               <li>
-                <Link href='/reads' title='Blogs'>
+                <Link href='/reads' title='Reads'>
                   <span
                     className={`text-custom-blue rounded-md text-sm font-semibold outline-none hover:text-[#095668] focus:text-[#095668] transition-all focus:bg-primary-dark focus:outline-none inline-block px-3 py-2 ${
                       isArabic ? 'text-right' : ''

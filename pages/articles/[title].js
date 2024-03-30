@@ -225,7 +225,7 @@ function BlogDetails({
                 href={`/reads/topics/${getData?.topic}`}
                 className='underline text-blue-400'
                 rel='noopener noreferrer'
-                title='Read More'
+                title={getData.topic}
               >
                 {getData.topic}
               </Link>

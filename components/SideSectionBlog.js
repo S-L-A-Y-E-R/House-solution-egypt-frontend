@@ -39,7 +39,7 @@ function SideSectionBlog() {
             selectedBlog.topic && (
               <a
                 key={selectedBlog._id}
-                title='Read more about this topic'
+                title={selectedBlog.topic}
                 className='col-12 p-[.25rem] mt-1 text-light badge bg-card text-decoration-none mb-1 text-white bg-[#095668] hover:opacity-70 rounded'
                 href={
                   i18n.language === 'ar'
@@ -79,7 +79,7 @@ function SideSectionBlog() {
               uniqueKeywordsArray.join(', ') && (
                 <a
                   key={blog._id}
-                  title='Read more about this topic'
+                  title={uniqueKeywordsArray.join(', ')}
                   className='bg-[#095668] text-white hover:opacity-70 rounded col text-light badge bg-card me-1 mb-1 text-start text-decoration-none border border-[#yourbordercolor]'
                   //   href={`/reads/${blog._id.toLowerCase().replace(/ /g, "-")}`}
                   href={`/reads/tags/${uniqueKeywordsArray

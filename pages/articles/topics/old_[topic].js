@@ -274,7 +274,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles }) {
                         <a
                           href={`//topics/${post.topic}`}
                           className='text-blue-600 underline text-sm font-semibold'
-                          title='Topic'
+                          title={post.topic}
                         >
                           {post.topic}
                         </a>

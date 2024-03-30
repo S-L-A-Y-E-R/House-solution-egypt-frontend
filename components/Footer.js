@@ -175,7 +175,7 @@ const Footer = () => {
                 <a
                   href={isArabic && link ? '/ar/' + link.linkAr : link.link}
                   className='flex items-center gap-2'
-                  title='House Point Egypt Search Icon'
+                  title={isArabic ? link.titleAr : link.title}
                 >
                   <Image
                     src='/assets/search.png'

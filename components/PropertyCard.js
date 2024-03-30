@@ -98,7 +98,7 @@ export default function PropertyCard({
 
       <Link
         href={propertyLink.toLowerCase().split(' ').join('-')}
-        title='Read More'
+        title={title}
       >
         <div
           key={id}
@@ -119,6 +119,7 @@ export default function PropertyCard({
                     alt='Property Photo'
                     placeholder='blur'
                     width={1200}
+                    s
                     height={900}
                     title='Property Photo'
                   />

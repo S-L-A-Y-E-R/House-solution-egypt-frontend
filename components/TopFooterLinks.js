@@ -44,7 +44,7 @@ function TopFooterLinks() {
               href={isArabic ? link.linkAr : link.link}
               className='flex items-center gap-2 hover:underline w-fit'
               rel='noreferer'
-              title='Read More'
+              title={isArabic ? link.titleAr : link.title}
             >
               <FaLink />
               <span className='font-semibold text-custom-blue w-fit'>

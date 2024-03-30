@@ -18,7 +18,7 @@ const Article = (props) => {
             .replaceAll(' ', '-')
             .replaceAll('?', '_qm_')}`}
           alt={post.topic}
-          title='topic'
+          title={post.topic}
         >
           {post.topic}{' '}
         </a>
@@ -54,7 +54,7 @@ const Article = (props) => {
         <div className={`${style.postCenter} ${style.btn}`}>
           <Link
             className={`${style.readMoreBtn}`}
-            title='Read More'
+            title={post.title}
             href={{
               pathname: `/reads/${post.title
                 .replaceAll('-', '_da_')
