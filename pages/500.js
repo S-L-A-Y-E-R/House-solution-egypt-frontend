@@ -5,7 +5,7 @@ const Custom500 = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/');
+    //router.push('/');
   }, []);
 
   return null;

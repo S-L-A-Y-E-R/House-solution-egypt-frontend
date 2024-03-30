@@ -285,8 +285,8 @@ const LocationPage = ({
             />
             <link
               rel='alternate'
-              hreflang='en'
-              href={WEBSITE_BASE_URL + `/${type}/${propertyType}/${location}`}
+              hreflang='ar'
+              href={WEBSITE_BASE_URL + `/ar/${type}/${propertyType}/${location}`}
               title='House Point Egypt - Real Estate'
             />
 
@@ -313,12 +313,12 @@ const LocationPage = ({
             />
             <meta
               property='og:image'
-              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
+            
             <meta
               property='og:image:alt'
-              content='House Point Egypt - Real Estate | Logo
-'
+              content='House Point Egypt - Real Estate | Logo'
             />
             <meta
               property='og:image:secure_url'
@@ -336,12 +336,9 @@ const LocationPage = ({
               name='twitter:description'
               content={isArabic ? titleAR : titleEN}
             />
-            <meta
+           <meta
               name='twitter:image'
-              content={
-                WEBSITE_BASE_URL +
-                '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
-              }
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
 
             <meta name='robots' content='index, follow' />
@@ -369,7 +366,7 @@ const LocationPage = ({
           />
           <div
             className='hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto'
-            dangerouslySetInnerHTML={{ __html: meta.article }}
+            dangerouslySetInnerHTML={{ __html: meta?.article }}
           />
 
           <div className='mt-16'>

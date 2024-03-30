@@ -74,7 +74,6 @@ function PropertyDetails({
   dateOfPropAr,
   isArabic,
 }) {
-  console.log('testtttttttttt');
   const router = useRouter();
   const { asPath } = useRouter();
   const origin =
@@ -375,8 +374,6 @@ function PropertyDetails({
     })
     .filter((e) => e != '-');
   const [showModal, setShowModal] = useState(false);
-  console.log('testttttt');
-
   return (
     <>
       {
@@ -384,7 +381,7 @@ function PropertyDetails({
           <Head>
             <meta property='og:url' content={fullUrl} />
             <meta name='robots' content='index, follow' />
-            <meta
+            {/* <meta
               property='og:image'
               content={
                 WEBSITE_BASE_URL +
@@ -393,10 +390,22 @@ function PropertyDetails({
                 propertyDetails.images[0].image +
                 '&w=3840&q=30'
               }
+            /> */}
+            <meta
+              property='og:image'
+              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
             />
             <meta
               property='og:image:alt'
               content='House Point Egypt - Real Estate | Logo'
+            />
+            <meta name='twitter:card' content='summary' />
+            <meta name='twitter:site' content='@HousePointE' />
+            <meta name='twitter:creator' content='@HousePointE' />
+            <meta name='twitter:domain' content={WEBSITE_BASE_URL} />
+            <meta
+              name='twitter:image'
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta
               property='og:site_name'
@@ -404,13 +413,7 @@ function PropertyDetails({
             />
             <meta
               property='og:image:secure_url'
-              content={
-                WEBSITE_BASE_URL +
-                '/_next/image?url=' +
-                PROPERTY_BASE_URL +
-                propertyDetails.images[0].image +
-                '&w=3840&q=30'
-              }
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta name='keywords' content={keywordsOfPropeties} />
             <title>
@@ -544,13 +547,7 @@ function PropertyDetails({
             />
             <meta
               name='twitter:image'
-              content={
-                WEBSITE_BASE_URL +
-                '/_next/image?url=' +
-                PROPERTY_BASE_URL +
-                propertyDetails.images[0].image +
-                '&w=3840&q=30'
-              }
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta name='robots' content='index, follow' />
           </Head>

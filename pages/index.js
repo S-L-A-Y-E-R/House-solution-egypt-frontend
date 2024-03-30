@@ -209,7 +209,7 @@ export default function Home({
             />
             <div
               className='hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto'
-              dangerouslySetInnerHTML={{ __html: meta.article }}
+              dangerouslySetInnerHTML={{ __html: meta?.article }}
             />
             <LatestBlogs />
             <TopFooterLinks />

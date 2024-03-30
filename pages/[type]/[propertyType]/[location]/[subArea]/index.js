@@ -296,10 +296,10 @@ const LocationPage = ({
             />
             <link
               rel='alternate'
-              hreflang='en'
+              hreflang='ar'
               href={
                 WEBSITE_BASE_URL +
-                `/${type}/${propertyType}/${location}/${subArea}`
+                `/ar/${type}/${propertyType}/${location}/${subArea}`
               }
               title='House Point Egypt - Real Estate'
             />
@@ -330,7 +330,7 @@ const LocationPage = ({
             />
             <meta
               property='og:image'
-              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta
               property='og:image:alt'
@@ -339,7 +339,7 @@ const LocationPage = ({
             />
             <meta
               property='og:image:secure_url'
-              content={WEBSITE_BASE_URL + '/images/logohouse.png'}
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
 
             <meta property='og:type' content='website' />
@@ -355,10 +355,7 @@ const LocationPage = ({
             />
             <meta
               name='twitter:image'
-              content={
-                WEBSITE_BASE_URL +
-                '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75'
-              }
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
 
             <meta name='robots' content='index, follow' />
