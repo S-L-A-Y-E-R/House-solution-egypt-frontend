@@ -110,8 +110,8 @@ const FilterSearch = ({
 
             <Link
               className='underline'
-              href={`/${type.toLowerCase()}`}
-              title='Home'
+              href={`/${type.toLowerCase()}/properties`}
+              title={type}
             >
               {type.toLowerCase().replace(/\w\S*/g, function (txt) {
                 return (
@@ -143,7 +143,7 @@ const FilterSearch = ({
                 .split('-')
                 .join(' ')}`}
               rel='propertyType'
-              title='Property Type'
+              title={type +"/" + propertyType}
             >
               {propertyType.toLowerCase().replace(/\w\S*/g, function (txt) {
                 return (
@@ -163,7 +163,7 @@ const FilterSearch = ({
                 .toLowerCase()
                 .split('-')
                 .join(' ')}/${location.toLowerCase()}`}
-              title='Location'
+              title={type +"/" + propertyType + "/" + location}
             >
               {location.toLowerCase().replace(/\w\S*/g, function (txt) {
                 return (
