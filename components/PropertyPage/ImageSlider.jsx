@@ -9,7 +9,7 @@ import Image from "next/legacy/image";
 import { Autoplay, Thumbs } from "swiper/modules";
 import { useTranslation } from "react-i18next";
 
-export default function ImageSlider({ mainimage, images, title }) {
+export default function ImageSlider({ setShowTitle, mainimage, images, title }) {
   const { t, i18n } = useTranslation();
   const [imageError, setImageError] = useState(false);
   const [select, setSelect] = useState(false);
@@ -60,6 +60,7 @@ export default function ImageSlider({ mainimage, images, title }) {
       <Popover className="relative w-full h-full">
         {({ open, close }) => (
           <>
+          {setShowTitle(open)}
             <Popover.Button
               style={{
                 "--image-url": `url(${PROPERTY_BASE_URL + images[0].image})`,
@@ -71,10 +72,11 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
               <div className="w-full bg-gray-800 p-1 pb-0 rounded">
                 <div className="flex gap-1">
                   <div
-                    className={`${images.length < 2
-                      ? "flex w-full"
-                      : "w-1/2 space-y-0.5 lg:space-y-0"
-                      }`}
+                    className={`${
+                      images.length < 2
+                        ? "flex w-full"
+                        : "w-1/2 space-y-0.5 lg:space-y-0"
+                    }`}
                   >
                     {!imageError ? (
                       <Image
@@ -86,7 +88,7 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                         className="rounded"
                         blurDataURL={mainimage.placeholder}
                         onError={() => setImageError(true)}
-                        alt="Image_Of_Property" s
+                        alt="Image_Of_Property"
                         title="Image_Of_Property"
                       />
                     ) : (
@@ -125,14 +127,15 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                         title="Image_Of_Property"
                         placeholder="blur"
                         // objectFit="cover"
-                        className="rounded" s
+                        className="rounded"
+                        s
                         width={1600}
                         height={
                           images.length < 3
                             ? 2400
                             : images.length < 4
-                              ? 1220
-                              : 810
+                            ? 1220
+                            : 810
                         }
                         blurDataURL={images[1].placeholder}
                       />
@@ -170,7 +173,8 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                           width={1600}
                           height={810}
                           blurDataURL={images[3].placeholder}
-                          alt="Image_Of_Property" s
+                          alt="Image_Of_Property"
+                          s
                           title="Image_Of_Property"
                         />
                       </div>
@@ -206,10 +210,14 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                   </div>
                   <button
                     className="absolute pt-1 top-1/2 right-2 -translate-y-1/2 z-50"
-                    onClick={(e) => close()}
+                    onClick={(e) => { setShowTitle(false); close();}}
                   >
-                    <Image src="/assets/close.png" width={40} height={40} alt="close"
-                      title="close"
+                    <Image
+                      src="/assets/close.png"
+                      width={40}
+                      height={40}
+                      alt="close"
+                      title="close Sign"
                     />
                   </button>
                 </div>
@@ -222,6 +230,7 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                           onClick={(e) => {
                             setSelectedImageIndex(index);
                             setSelect(true);
+                            setShowTitle(true)
                           }}
                         >
                           <Image
@@ -321,10 +330,11 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                           onClick={() => {
                             setSelectedImageIndex(index);
                           }}
-                          className={`rounded overflow-hidden ${selectedImageIndex === index
-                            ? "border-4 border-custom-blue"
-                            : "m-1 opacity-[50%] contrast-[100%] grayscale-[100%]"
-                            }`}
+                          className={`rounded overflow-hidden ${
+                            selectedImageIndex === index
+                              ? "border-4 border-custom-blue"
+                              : "m-1 opacity-[50%] contrast-[100%] grayscale-[100%]"
+                          }`}
                         >
                           <Image
                             src={PROPERTY_BASE_URL + image?.image}
@@ -347,7 +357,11 @@ w-full flex justify-between items-center rounded-md text-sm hover:text-opacity-1
                       className="absolute pt-1 top-1/2 right-2 -translate-y-1/2 z-50"
                       onClick={(e) => close()}
                     >
-                      <Image src="/assets/close.png" width={30} height={30} alt="close"
+                      <Image
+                        src="/assets/close.png"
+                        width={30}
+                        height={30}
+                        alt="close"
                         title="close"
                       />
                     </button>
