@@ -57,6 +57,7 @@ function BlogDetails({
   const isArabic = i18n.language === 'ar';
   const { title } = router.query;
   const [blogData, setBlogData] = useState(getData);
+  const blogTags = metaTags.split(',');
   const [relatedProperties, setRelatedProperties] = useState([]);
   const [liveCurrency, setLiveCurrency] = useState({ USD: 1, EUR: 1 });
 
@@ -100,7 +101,6 @@ function BlogDetails({
     };
     if (blogData) fetchRelatedProperties();
   }, [blogData]);
-  console.log(blogData.tag.split(',').map((tag) => console.log(tag)));
 
   const schema = {
     '@context': 'https://schema.org',
@@ -237,7 +237,7 @@ function BlogDetails({
                         {t('pages.blog.tag') + ' :'}
                       </h4>
                       <div className='mt-4 flex flex-wrap'>
-                        {blogData?.tag?.split(',').map((tag) => (
+                        {blogTags.map((tag) => (
                           <a
                             key={tag}
                             href={`/reads/tags/${tag.split(' ').join('-')}`}
@@ -335,6 +335,25 @@ function BlogDetails({
                         __html: blogData.blogText,
                       }}
                     />
+                    <hr />
+                    <div className='pb-8'>
+                      <h4 className='text-xl uppercase font-heading'>
+                        {t('pages.blog.tag') + ' :'}
+                      </h4>
+                      <div className='mt-4 flex flex-wrap'>
+                        {blogTags.map((tag) => (
+                          <a
+                            key={tag}
+                            href={`/reads/tags/${tag.split(' ').join('-')}`}
+                            className='bg-[#095668] text-white hover:opacity-70 rounded col text-light badge bg-card me-1 mb-1 text-start
+                             text-decoration-none border border-[#yourbordercolor] max-w-fit'
+                          >
+                            # {tag}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <hr />
                     <div className='pb-8'>
                       <h4 className='text-xl uppercase font-heading'>
                         {t('pages.blog.share') + ' :'}
