@@ -1,149 +1,147 @@
 {
-  "general":{
+  "general": {
     "components": {
-      "searchbar":{
-        "rent":"Rent",
-        "sale":"Sale",
-        "searchRent":"Explore More Properties For Rent in Cairo, Egypt",
-        "searchSale":"Explore More Properties For Sale in Cairo, Egypt",
-        "searchArticles":"Explore More Articles ",
-        "allsearches":"Find More Property Types For Rent In Egypt ",
-        "allsearchessale":"Find More Property Types For Sale In Egypt ",
-        "searchReads":"Explore Real Estate Rental Apartment Listings in Maadi, Cairo, Egypt ",
-        "searchContact":"More Reviews",
-        "location_searchbar_placeholder":"Search Location",
-        "no_options":"Nothing found.",
-        "all_property_type":"All Property Types",
-        "property_type":"Property",
-        "bed":"Bed",
-        "bath":"Bath",
-        "beds":"Bedrooms",
-        "baths":"Bathrooms",
-        "reset":"Reset",
-        "prices":"Prices",
-        "finish_level":"Finishing Level",
-        "all_finish_level":"Finishing",
-        "search":"Search",
-        "advanced_search":"Advanced Search",
-        "show":"Show",
-        "result":"Result",
-        "minprice":"Min. Price EGP",
-        "maxprice":"Max. Price EGP"
+      "searchbar": {
+        "rent": "Rent",
+        "sale": "Sale",
+        "searchRent": "Explore More Properties For Rent in Cairo, Egypt",
+        "searchSale": "Explore More Properties For Sale in Cairo, Egypt",
+        "searchArticles": "Explore More Articles ",
+        "allsearches": "Find More Property Types For Rent In Egypt ",
+        "allsearchessale": "Find More Property Types For Sale In Egypt ",
+        "searchReads": "Explore Real Estate Rental Apartment Listings in Maadi, Cairo, Egypt ",
+        "searchContact": "More Reviews",
+        "location_searchbar_placeholder": "Search Location",
+        "no_options": "Nothing found.",
+        "all_property_type": "All Property Types",
+        "property_type": "Property",
+        "bed": "Bed",
+        "bath": "Bath",
+        "beds": "Bedrooms",
+        "baths": "Bathrooms",
+        "reset": "Reset",
+        "prices": "Prices",
+        "finish_level": "Finishing Level",
+        "all_finish_level": "Finishing",
+        "search": "Search",
+        "advanced_search": "Advanced Search",
+        "show": "Show",
+        "result": "Result",
+        "minprice": "Min. Price EGP",
+        "maxprice": "Max. Price EGP"
       },
-      "navbar":{
-        "home":"Home",
-        "rent":"Rent",
-        "sale":"Sale",
-        "contact":"Contact Us",
-        "blogs":"Articles",
+      "navbar": {
+        "home": "Home",
+        "rent": "Rent",
+        "sale": "Sale",
+        "contact": "Contact Us",
+        "blogs": "Articles",
         "favorite": "Favorites"
       },
-      "property_card":{
-        "sqm":"Sqm",
-        "egp":"EGP",
-        "bedrooms":"Bedrooms",
-        "bathrooms":"Bathrooms",
-        "for":"For ",
-        "refnum":"Ref.No:#",
-        "month":"Monthly",
-        "share_property":"Share This Property",
-        "whatsapp_property":"Contact Us on Whatsapp",
-        "favorite_property":"Add to Favorite"
+      "property_card": {
+        "sqm": "Sqm",
+        "egp": "EGP",
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
+        "for": "For ",
+        "refnum": "Ref.No:#",
+        "month": "Monthly",
+        "share_property": "Share This Property",
+        "whatsapp_property": "Contact Us on Whatsapp",
+        "favorite_property": "Add to Favorite"
       },
-      "footer":{
-        "about_us":"About Us",
-        "new_links":"Useful Links"
+      "footer": {
+        "about_us": "About Us",
+        "new_links": "Useful Links"
       }
-
     }
   },
-  "pages":{
-    "home":{
-      "title":"Find Your New Home In Cairo, Egypt"
+  "pages": {
+    "home": {
+      "title": "Find Your New Home In Cairo, Egypt"
     },
     "favorite": {
       "favorite": "Favorites",
       "unauth_user": "Please Login",
       "empty_favorite": "No Property in Favorite"
     },
-    "property":{
-      "components":{
-        "title":{
-          "ref_num":"Reference Number",
-          "last_updated":"Last Updated"
+    "property": {
+      "components": {
+        "title": {
+          "ref_num": "Reference Number",
+          "last_updated": "Last Updated"
         },
-        "property_desc":{
-          "description":"Description",
-          "sqm":"SQM",
-          "bedroom":"Bedroom",
-          "bathroom":"Bathroom",
-          "amentias":"Property Amenities",
-          "tags":"Tags",
-          "hdf":"HDF",
-          "air_condition":"Air Conditioning",
-          "central_air_condition":"Central Air Conditioning",
-          "ceramic":"Ceramic Floor",
-          "cac":"Close to CAC",
-          "french":"Close To French School",
-          "gym":"GYM",
-          "metro":"Metro",
-          "restaurant":"Restaurant",
-          "school":"School",
-          "compound":"Compound",
-          "master_bedroom":"Master Bedroom",
-          "internet":"Internet",
-          "jacuzzi":"Jacuzzi",
-          "kitchen":"Kitchen Appliances",
-          "laundry":"Laundry Room",
-          "maid":"Maid Room",
-          "marble":"Marble",
-          "balcony":"Balcony",
-          "parquet":"Parquet Floor",
-          "porcelain":"Porcelain",
-          "private_entrance":"Private Entrance",
-          "private_garden":"Private Garden",
-          "private_swimmingpool":"Private Swimming Pool",
-          "security":"Security",
-          "shopping":"Shopping",
-          "use_swimmingpool":"Swimming Pool Use",
-          "transportation":"Transportation",
-          "quiet_area":"Quiet Area",
-          "office_room":"Office Room",
-          "wardrobe":"Wardrobe",
-          "elevator":"Elevator",
-          "studyroom":"Study Room",
-          "terrace":"Terrace",
-          "surveillance":"Surveillance",
-          "covered_parking":"Covered Parking",
-          "storage":"Storage",
-          "shared_swimming":"Shared Swimming Pool",
-          "pets_allowed":"Pets Allowed"
-
+        "property_desc": {
+          "description": "Description",
+          "sqm": "SQM",
+          "bedroom": "Bedroom",
+          "bathroom": "Bathroom",
+          "amentias": "Property Amenities",
+          "tags": "Tags",
+          "hdf": "HDF",
+          "air_condition": "Air Conditioning",
+          "central_air_condition": "Central Air Conditioning",
+          "ceramic": "Ceramic Floor",
+          "cac": "Close to CAC",
+          "french": "Close To French School",
+          "gym": "GYM",
+          "metro": "Metro",
+          "restaurant": "Restaurant",
+          "school": "School",
+          "compound": "Compound",
+          "master_bedroom": "Master Bedroom",
+          "internet": "Internet",
+          "jacuzzi": "Jacuzzi",
+          "kitchen": "Kitchen Appliances",
+          "laundry": "Laundry Room",
+          "maid": "Maid Room",
+          "marble": "Marble",
+          "balcony": "Balcony",
+          "parquet": "Parquet Floor",
+          "porcelain": "Porcelain",
+          "private_entrance": "Private Entrance",
+          "private_garden": "Private Garden",
+          "private_swimmingpool": "Private Swimming Pool",
+          "security": "Security",
+          "shopping": "Shopping",
+          "use_swimmingpool": "Swimming Pool Use",
+          "transportation": "Transportation",
+          "quiet_area": "Quiet Area",
+          "office_room": "Office Room",
+          "wardrobe": "Wardrobe",
+          "elevator": "Elevator",
+          "studyroom": "Study Room",
+          "terrace": "Terrace",
+          "surveillance": "Surveillance",
+          "covered_parking": "Covered Parking",
+          "storage": "Storage",
+          "shared_swimming": "Shared Swimming Pool",
+          "pets_allowed": "Pets Allowed"
         },
-        "contact_us":{
-          "request_property":"Request Property",
-          "call":"Call",
-          "email":"Email",
-          "whatsapp":"Whatsapp"
+        "contact_us": {
+          "request_property": "Request Property",
+          "call": "Call",
+          "email": "Email",
+          "whatsapp": "Whatsapp"
         },
-        "related":{
-          "related_properties":"Related Properties"
+        "related": {
+          "related_properties": "Related Properties"
         }
       }
     },
-    "blog":{
+    "blog": {
       "title": "OUR articles",
       "min": "MIN",
       "writter": "Written by ",
       "read_more": "Read More",
       "topics": "articles Topics",
       "tags": "articles Tags",
+      "tag": "article Tags",
       "related_properties": "Related Properties",
       "share": "Share",
       "topic": "Topic",
       "read": "read",
       "authby": " By "
-
     }
   }
 }

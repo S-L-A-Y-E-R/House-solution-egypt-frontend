@@ -100,6 +100,7 @@ function BlogDetails({
     };
     if (blogData) fetchRelatedProperties();
   }, [blogData]);
+  console.log(blogData.tag.split(',').map((tag) => console.log(tag)));
 
   const schema = {
     '@context': 'https://schema.org',
@@ -230,6 +231,25 @@ function BlogDetails({
                         __html: blogData.blogText,
                       }}
                     />
+                    <hr />
+                    <div className='pb-8'>
+                      <h4 className='text-xl uppercase font-heading'>
+                        {t('pages.blog.tag') + ' :'}
+                      </h4>
+                      <div className='mt-4 flex flex-wrap'>
+                        {blogData?.tag?.split(',').map((tag) => (
+                          <a
+                            key={tag}
+                            href={`/reads/tags/${tag.split(' ').join('-')}`}
+                            className='bg-[#095668] text-white hover:opacity-70 rounded col text-light badge bg-card me-1 mb-1 text-start
+                             text-decoration-none border border-[#yourbordercolor] max-w-fit'
+                          >
+                            # {tag}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                    <hr />
                     <div className='pb-8'>
                       <h4 className='text-xl uppercase font-heading'>
                         {t('pages.blog.share') + ' :'}
