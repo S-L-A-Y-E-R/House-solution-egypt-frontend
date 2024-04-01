@@ -95,6 +95,9 @@ function Tag({ initialLocale, changeLang, isArabic, titles, pages }) {
       .post(`${API_BASE_URL}/utils/getmeta`, { link: window.location.pathname })
       .then((response) => {
         setMeta(response.data.meta);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     //Fetch featured properties
     fetch(
@@ -229,19 +232,20 @@ function Tag({ initialLocale, changeLang, isArabic, titles, pages }) {
           <div className="w-full px-6 flex flex-col lg:flex-row flex-1">
             <div className="flex-1">
               <h1 className="ltr:text-left rtl:text-right order-1 mb-4 font-sans text-lg font-semibold sm:text-xl md:text-2xl lg:text-4xl border-b border-gray-300 pb-4">
-                Articles about{" "}
-                {tag.replaceAll("-", " ").replaceAll("_qm_", "?")}
+                #{tag.replaceAll("-", " ").replaceAll("_qm_", "?")} | House
+                Point Egypt - Real Estate
               </h1>
-              <p className="ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg">
+              <p className="ltr:text-left rtl:text-right order-1 mb-2 font-sans text-lg">
                 {titles && titles.length > 0 ? titles[0] : null}
               </p>
+              <div className="py-2" dangerouslySetInnerHTML={{ __html: meta?.article }}></div>
+              <hr className="my-1" />
               <div className={blogStyle.container}>
                 {blogPosts.map((post, index) => (
                   <Article key={index} post={post} isArabic={isArabic} />
                 ))}
               </div>
             </div>
-
             <div className="w-full lg:w-1/4 p-4 mt-10 lg:mt-0 bg-gray-200">
               {/* Left-side section */}
               {/* Add your content here */}
@@ -249,6 +253,7 @@ function Tag({ initialLocale, changeLang, isArabic, titles, pages }) {
             </div>
           </div>
         </div>
+
         {pages && page && (
           <PaginationSlide
             currentPage={currentPage}
