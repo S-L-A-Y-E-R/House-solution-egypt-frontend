@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
-import { API_BASE_URL, WEBSITE_BASE_URL } from '@/config';
+import { API_BASE_URL } from '@/config';
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === 'ar';
   const [footerLinks, setFooterLinks] = useState([]);
+  const [socialLinks, setSocialLinks] = useState([]);
   const [aboutUs, setAboutUs] = useState({
     description: '',
     descriptionAr: '',
@@ -23,10 +23,7 @@ const Footer = () => {
         console.log(error);
       }
     };
-    fetchAboutUs();
-  }, []);
 
-  useEffect(() => {
     const fetchFooterLinks = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/footerlink`);
@@ -36,7 +33,18 @@ const Footer = () => {
       }
     };
 
+    const fetchSocialLinks = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/social-media`);
+        setSocialLinks(response.data);
+      } catch (error) {
+        console.error('Error fetching social links:', error);
+      }
+    };
+
+    fetchAboutUs();
     fetchFooterLinks();
+    fetchSocialLinks();
   }, []);
 
   return (
@@ -53,11 +61,7 @@ const Footer = () => {
             }}
           />
           <div className='flex gap-2 mt-2'>
-            <a
-              href='https://www.facebook.com/House-Point-Egypt-112529918222923'
-              title='Facebook'
-              rel='noreferrer'
-            >
+            <a href={socialLinks.facebook} title='Facebook' rel='noreferrer'>
               <Image
                 src='/assets/face.png'
                 alt='facebook icon'
@@ -66,11 +70,7 @@ const Footer = () => {
                 title='House Point Egypt Facebook'
               />
             </a>
-            <a
-              href='https://www.instagram.com/housepointegypt/'
-              title='Instagram'
-              rel='noreferrer'
-            >
+            <a href={socialLinks.instagram} title='Instagram' rel='noreferrer'>
               <Image
                 src='/assets/instagram.png'
                 alt='instagram icon'
@@ -79,11 +79,7 @@ const Footer = () => {
                 title='House Point Egypt Instagram'
               />
             </a>
-            <a
-              href='https://twitter.com/Housep0integypt'
-              title='Twitter'
-              rel='noreferrer'
-            >
+            <a href={socialLinks.twitter} title='Twitter' rel='noreferrer'>
               <Image
                 src='/assets/twitter.png'
                 alt='twitter icon'
@@ -93,11 +89,7 @@ const Footer = () => {
                 s
               />
             </a>
-            <a
-              href='https://www.linkedin.com/in/housepointegyptrealestate'
-              title='Linkedin'
-              rel='noreferrer'
-            >
+            <a href={socialLinks.linkedin} title='Linkedin' rel='noreferrer'>
               <Image
                 src='/assets/linkedin.png'
                 alt='linkedin icon'
@@ -106,11 +98,7 @@ const Footer = () => {
                 title='House Point Egypt Linkedin'
               />
             </a>
-            <a
-              href='https://www.pinterest.com/housepointegypt2/'
-              title='Pinterest'
-              rel='noreferrer'
-            >
+            <a href={socialLinks.pinterest} title='Pinterest' rel='noreferrer'>
               <Image
                 src='/assets/pinterest.svg'
                 alt='Pinterest icon'
@@ -119,11 +107,7 @@ const Footer = () => {
                 title='House Point Egypt Pinterest'
               />
             </a>
-            <a
-              href='https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU'
-              title='Youtube'
-              rel='noreferrer'
-            >
+            <a href={socialLinks.youtube} title='Youtube' rel='noreferrer'>
               <Image
                 src='/assets/youtube.png'
                 alt='youtube icon'
@@ -133,7 +117,7 @@ const Footer = () => {
               />
             </a>
             <a
-              href='https://t.me/housepointegypt'
+              href={socialLinks.telegram}
               target='_blank'
               title='Telegram'
               className='mt-1'
@@ -148,7 +132,7 @@ const Footer = () => {
               />
             </a>
             <a
-              href='https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1'
+              href={socialLinks.tiktok}
               title='Tiktok'
               target='_blank'
               rel='noreferrer'

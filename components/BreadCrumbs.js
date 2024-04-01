@@ -17,6 +17,21 @@ const FilterSearch = ({
 }) => {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === 'ar';
+  const [socialLinks, setSocialLinks] = useState([]);
+
+  useEffect(() => {
+    const fetchSocialLinks = async () => {
+      try {
+        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+        setSocialLinks(data);
+      } catch (error) {
+        console.error('Error fetching social links:', error);
+      }
+    };
+
+    fetchSocialLinks();
+  }, []);
+
   const orgSchema = {
     '@context': 'https://schema.org/',
     '@type': 'BreadcrumbList',
@@ -29,13 +44,13 @@ const FilterSearch = ({
       },
     ],
     sameAs: [
-      'https://www.facebook.com/House-Point-Egypt-112529918222923',
-      'https://www.instagram.com/housepointegypt/',
-      'https://www.linkedin.com/in/housepointegyptrealestate',
-      'https://twitter.com/Housep0integypt',
-      'https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU',
-      'https://t.me/housepointegypt',
-      'https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1',
+      socialLinks.facebook,
+      socialLinks.instagram,
+      socialLinks.linkedin,
+      socialLinks.twitter,
+      socialLinks.youtube,
+      socialLinks.telegram,
+      socialLinks.tiktok,
     ],
   };
   if (type) {
@@ -143,7 +158,7 @@ const FilterSearch = ({
                 .split('-')
                 .join(' ')}`}
               rel='propertyType'
-              title={type +"/" + propertyType}
+              title={type + '/' + propertyType}
             >
               {propertyType.toLowerCase().replace(/\w\S*/g, function (txt) {
                 return (
@@ -163,7 +178,7 @@ const FilterSearch = ({
                 .toLowerCase()
                 .split('-')
                 .join(' ')}/${location.toLowerCase()}`}
-              title={type +"/" + propertyType + "/" + location}
+              title={type + '/' + propertyType + '/' + location}
             >
               {location.toLowerCase().replace(/\w\S*/g, function (txt) {
                 return (

@@ -36,6 +36,21 @@ export async function getServerSideProps(context) {
 }
 function contact({ meta, initialLocale, changeLang, isArabic }) {
   const { t, i18n } = useTranslation();
+  const [socialLinks, setSocialLinks] = useState([]);
+
+  useEffect(() => {
+    const fetchSocialLinks = async () => {
+      try {
+        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+        setSocialLinks(data);
+      } catch (error) {
+        console.error('Error fetching social links:', error);
+      }
+    };
+
+    fetchSocialLinks();
+  }, []);
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -51,13 +66,13 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
     sameAs: [
-      'https://www.facebook.com/House-Point-Egypt-112529918222923',
-      'https://www.instagram.com/housepointegypt/',
-      'https://www.linkedin.com/in/housepointegyptrealestate',
-      'https://twitter.com/Housep0integypt',
-      'https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU',
-      'https://t.me/housepointegypt',
-      'https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1',
+      socialLinks.facebook,
+      socialLinks.instagram,
+      socialLinks.linkedin,
+      socialLinks.twitter,
+      socialLinks.youtube,
+      socialLinks.telegram,
+      socialLinks.tiktok,
     ],
   };
   return (
@@ -66,7 +81,7 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
         <title>{meta && meta.title}</title>
         <link
           rel='canonical'
-          href={WEBSITE_BASE_URL + isArabic ? '/ar/contact': '/contact'}
+          href={WEBSITE_BASE_URL + isArabic ? '/ar/contact' : '/contact'}
           key='canonical'
           title='House Point Egypt - Real Estate | Contact Us'
         />

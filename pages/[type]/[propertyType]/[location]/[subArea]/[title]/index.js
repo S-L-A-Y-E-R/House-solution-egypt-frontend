@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import axios from "axios";
-import BreadCrumbs from "@/components/BreadCrumbs";
-import ImageSlider from "@/components/PropertyPage/ImageSlider";
-import PropertyDesc from "@/components/PropertyPage/PropertyDesc";
-import { API_BASE_URL, PROPERTY_BASE_URL, WEBSITE_BASE_URL } from "@/config";
-import moment, { locale } from "moment";
-import ContactUs from "@/components/PropertyPage/ContactUs";
-import Searchbar from "@/components/Search/Searchbar";
-import RelatedProperties from "@/components/PropertyPage/RelatedProperties";
-import i18n from "@/i18n";
-import QR from "@/components/Home/QR";
-import Head from "next/head";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import axios from 'axios';
+import BreadCrumbs from '@/components/BreadCrumbs';
+import ImageSlider from '@/components/PropertyPage/ImageSlider';
+import PropertyDesc from '@/components/PropertyPage/PropertyDesc';
+import { API_BASE_URL, PROPERTY_BASE_URL, WEBSITE_BASE_URL } from '@/config';
+import moment, { locale } from 'moment';
+import ContactUs from '@/components/PropertyPage/ContactUs';
+import Searchbar from '@/components/Search/Searchbar';
+import RelatedProperties from '@/components/PropertyPage/RelatedProperties';
+import i18n from '@/i18n';
+import QR from '@/components/Home/QR';
+import Head from 'next/head';
 
 export async function getServerSideProps(context) {
   const { locale } = context;
   const { type, propertyType, location, title, subArea } = context.query;
-  const titleSplit = title?.split("-");
+  const titleSplit = title?.split('-');
   const refNumber = titleSplit && titleSplit[titleSplit?.length - 1];
   titleSplit?.pop();
   const changeLangResponse = await axios.post(
@@ -29,26 +29,26 @@ export async function getServerSideProps(context) {
       propertyType,
       location,
       subArea,
-      title: titleSplit.join("-"),
+      title: titleSplit.join('-'),
       refNumber,
     },
     {
       headers: {
-        "accept-language": locale === "en" ? "ar" : "en",
+        'accept-language': locale === 'en' ? 'ar' : 'en',
       },
     }
   );
   console.log(changeLangResponse.data.url);
 
   const response = await axios.get(
-    `${API_BASE_URL}/property/${titleSplit.join(" ")}/${refNumber}`
+    `${API_BASE_URL}/property/${titleSplit.join(' ')}/${refNumber}`
   );
-  const liveCurrency = await axios.get(API_BASE_URL + "/utils/getcurrency");
-  let dateOfProp = moment(response.data.updatedAt.split("T")[0]);
+  const liveCurrency = await axios.get(API_BASE_URL + '/utils/getcurrency');
+  let dateOfProp = moment(response.data.updatedAt.split('T')[0]);
 
-  let dateOfPropAr = dateOfProp.clone().locale("ar-sa");
-  dateOfProp = dateOfProp.format("DD MMMM YYYY");
-  dateOfPropAr = dateOfPropAr.format("DD MMMM YYYY");
+  let dateOfPropAr = dateOfProp.clone().locale('ar-sa');
+  dateOfProp = dateOfProp.format('DD MMMM YYYY');
+  dateOfPropAr = dateOfPropAr.format('DD MMMM YYYY');
 
   i18n.changeLanguage(locale);
 
@@ -60,7 +60,7 @@ export async function getServerSideProps(context) {
       liveCurrency: liveCurrency.data.currency,
       dateOfProp,
       dateOfPropAr,
-      isArabic: locale == "ar" ? true : false,
+      isArabic: locale == 'ar' ? true : false,
     },
   };
 }
@@ -76,98 +76,112 @@ function PropertyDetails({
 }) {
   const router = useRouter();
   const { asPath } = useRouter();
+  const [socialLinks, setSocialLinks] = useState([]);
+
+  useEffect(() => {
+    const fetchSocialLinks = async () => {
+      try {
+        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+        setSocialLinks(data);
+      } catch (error) {
+        console.error('Error fetching social links:', error);
+      }
+    };
+
+    fetchSocialLinks();
+  }, []);
 
   const origin =
-    typeof window !== "undefined" && window.location.origin
+    typeof window !== 'undefined' && window.location.origin
       ? window.location.origin
-      : "";
-  const fullUrl = `${origin}${isArabic ? "/ar" : ""}${asPath}`;
+      : '';
+  const fullUrl = `${origin}${isArabic ? '/ar' : ''}${asPath}`;
   const { t, i18n: ii18n } = useTranslation();
   // const isArabic = i18n.language === 'ar';
   useEffect(() => {
-    if (initialLocale === "ar") {
+    if (initialLocale === 'ar') {
       i18n.changeLanguage(initialLocale);
     }
   }, []);
   const { type, propertyType, location, title, subArea } = router.query;
 
   const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": WEBSITE_BASE_URL,
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': WEBSITE_BASE_URL,
     name: isArabic ? propertyDetails.titleAr : propertyDetails.titleEn,
     mainEntity: {
-      "@id": "mainEntity",
+      '@id': 'mainEntity',
     },
   };
   const orgSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "House Point Egypt - Real Estate",
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'House Point Egypt - Real Estate',
     url: WEBSITE_BASE_URL,
-    logo: WEBSITE_BASE_URL + "/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75",
+    logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
     sameAs: [
-      "https://www.facebook.com/House-Point-Egypt-112529918222923",
-      "https://www.instagram.com/housepointegypt/",
-      "https://www.linkedin.com/in/housepointegyptrealestate",
-      "https://twitter.com/Housep0integypt",
-      "https://youtube.com/@HousepointEgypt?si=_fbbBMQSCYotsucU",
-      "https://t.me/housepointegypt",
-      "https://www.tiktok.com/@house.point.egypt?_t=8ipx657pyac&_r=1",
+      socialLinks.facebook,
+      socialLinks.instagram,
+      socialLinks.linkedin,
+      socialLinks.twitter,
+      socialLinks.youtube,
+      socialLinks.telegram,
+      socialLinks.tiktok,
     ],
   };
   const realSchema = {
-    "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    "@id": "HousePointEgyptOrganization",
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateAgent',
+    '@id': 'HousePointEgyptOrganization',
   };
   const accSchema = {
-    "@context": "https://schema.org",
-    "@type": "Accommodation",
-    "@id": "mainEntity",
+    '@context': 'https://schema.org',
+    '@type': 'Accommodation',
+    '@id': 'mainEntity',
     name: isArabic ? propertyDetails.titleAr : propertyDetails.title,
     description:
       propertyDetails && propertyDetails.descriptionAr
         ? isArabic
           ? propertyDetails.descriptionAr
-              .replaceAll("<p>", "")
-              .replaceAll("</p>", "")
-              .replaceAll("&nbsp;", " ")
+              .replaceAll('<p>', '')
+              .replaceAll('</p>', '')
+              .replaceAll('&nbsp;', ' ')
           : propertyDetails.description
-              .replaceAll("<p>", "")
-              .replaceAll("</p>", "")
-              .replaceAll("&nbsp;", " ")
+              .replaceAll('<p>', '')
+              .replaceAll('</p>', '')
+              .replaceAll('&nbsp;', ' ')
         : isArabic
         ? propertyDetails.titleAr
         : propertyDetails.title,
     image:
       WEBSITE_BASE_URL +
-      "/_next/image?url=" +
+      '/_next/image?url=' +
       PROPERTY_BASE_URL +
       propertyDetails.images[0].image +
-      "&w=3840&q=30",
+      '&w=3840&q=30',
     url:
       WEBSITE_BASE_URL +
       `${
-        isArabic ? "/ar" : ""
+        isArabic ? '/ar' : ''
       }/${type}/${propertyType}/${location}/${subArea}/${
         isArabic ? propertyDetails.titleAr : propertyDetails.title
       }`,
     tourBookingPage:
       WEBSITE_BASE_URL +
       `${
-        isArabic ? "/ar" : ""
+        isArabic ? '/ar' : ''
       }/${type}/${propertyType}/${location}/${subArea}/${
         isArabic ? propertyDetails.titleAr : propertyDetails.title
       }`,
     numberOfBathroomsTotal: propertyDetails.baths,
     numberOfBedrooms: propertyDetails.beds,
     address: {
-      "@type": "PostalAddress",
-      streetAddress: "",
-      addressLocality: "",
-      postalCode: "",
-      addressCountry: "",
+      '@type': 'PostalAddress',
+      streetAddress: '',
+      addressLocality: '',
+      postalCode: '',
+      addressCountry: '',
     },
   };
   const tagsDefault = [
@@ -198,8 +212,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}/${location}/${subArea}`,
       linkAr: `/${type}/${propertyType}/${location}/${subArea}`,
       typeConstraint: {
-        type: "rent",
-        typeAr: "إيجار",
+        type: 'rent',
+        typeAr: 'إيجار',
       },
     },
     {
@@ -208,10 +222,10 @@ function PropertyDetails({
       link: `/${type}/${propertyType}/${location}/${subArea}`,
       linkAr: `/${type}/${propertyType}/${location}/${subArea}`,
       typeConstraint: {
-        type: "rent",
-        typeAr: "إيجار",
-        location: "maadi",
-        locationAr: "المعادى",
+        type: 'rent',
+        typeAr: 'إيجار',
+        location: 'maadi',
+        locationAr: 'المعادى',
       },
     },
     {
@@ -220,10 +234,10 @@ function PropertyDetails({
       link: `/${type}/${propertyType}/${location}/${subArea}`,
       linkAr: `/${type}/${propertyType}/${location}/${subArea}`,
       typeConstraint: {
-        propertyType: "apartments",
-        propertyTypeAr: "شقق",
-        location: "maadi",
-        locationAr: "المعادى",
+        propertyType: 'apartments',
+        propertyTypeAr: 'شقق',
+        location: 'maadi',
+        locationAr: 'المعادى',
       },
     },
     {
@@ -240,8 +254,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}`,
       linkAr: `/${type}/${propertyType}`,
       typeConstraint: {
-        propertyType: "apartments",
-        propertyTypeAr: "شقق",
+        propertyType: 'apartments',
+        propertyTypeAr: 'شقق',
       },
     },
     {
@@ -250,8 +264,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}`,
       linkAr: `/${type}/${propertyType}`,
       typeConstraint: {
-        propertyType: "ground-floors",
-        propertyTypeAr: "شقق-دور-ارضي",
+        propertyType: 'ground-floors',
+        propertyTypeAr: 'شقق-دور-ارضي',
       },
     },
     {
@@ -260,8 +274,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}`,
       linkAr: `/${type}/${propertyType}`,
       typeConstraint: {
-        propertyType: "ground-floors",
-        propertyTypeAr: "شقق-دور-ارضي",
+        propertyType: 'ground-floors',
+        propertyTypeAr: 'شقق-دور-ارضي',
       },
     },
     {
@@ -270,8 +284,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}`,
       linkAr: `/${type}/${propertyType}`,
       typeConstraint: {
-        propertyType: "ground-floors",
-        propertyTypeAr: "شقق-دور-ارضي",
+        propertyType: 'ground-floors',
+        propertyTypeAr: 'شقق-دور-ارضي',
       },
     },
     {
@@ -280,8 +294,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}`,
       linkAr: `/${type}/${propertyType}`,
       typeConstraint: {
-        propertyType: "duplexes",
-        propertyTypeAr: "دوبليكس",
+        propertyType: 'duplexes',
+        propertyTypeAr: 'دوبليكس',
       },
     },
     {
@@ -290,8 +304,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}`,
       linkAr: `/${type}/${propertyType}`,
       typeConstraint: {
-        propertyType: "penthouses",
-        propertyTypeAr: "رووف",
+        propertyType: 'penthouses',
+        propertyTypeAr: 'رووف',
       },
     },
     {
@@ -300,8 +314,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}/${location}/${subArea}`,
       linkAr: `/${type}/${propertyType}/${location}/${subArea}`,
       typeConstraint: {
-        propertyType: "ground-floors",
-        propertyTypeAr: "شقق-دور-ارضي",
+        propertyType: 'ground-floors',
+        propertyTypeAr: 'شقق-دور-ارضي',
       },
     },
     {
@@ -310,8 +324,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}/${location}/${subArea}`,
       linkAr: `/${type}/${propertyType}/${location}/${subArea}`,
       typeConstraint: {
-        propertyType: "villas",
-        propertyTypeAr: "فيلات",
+        propertyType: 'villas',
+        propertyTypeAr: 'فيلات',
       },
     },
     {
@@ -320,8 +334,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}`,
       linkAr: `/${type}/${propertyType}`,
       typeConstraint: {
-        propertyType: "villas",
-        propertyTypeAr: "فيلات",
+        propertyType: 'villas',
+        propertyTypeAr: 'فيلات',
       },
     },
     {
@@ -330,8 +344,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}`,
       linkAr: `/${type}/${propertyType}`,
       typeConstraint: {
-        propertyType: "office-spaces",
-        propertyTypeAr: "مقرات-اداريه",
+        propertyType: 'office-spaces',
+        propertyTypeAr: 'مقرات-اداريه',
       },
     },
     {
@@ -340,8 +354,8 @@ function PropertyDetails({
       link: `/${type}/${propertyType}`,
       linkAr: `/${type}/${propertyType}`,
       typeConstraint: {
-        propertyType: "office-spaces",
-        propertyTypeAr: "مقرات-اداريه",
+        propertyType: 'office-spaces',
+        propertyTypeAr: 'مقرات-اداريه',
       },
     },
   ];
@@ -356,24 +370,24 @@ function PropertyDetails({
       ) {
         if (isArabic) {
           const tagged = tag.nameAr
-            .split("-")
-            .join(" ")
+            .split('-')
+            .join(' ')
             .replace(/\w\S*/g, function (txt) {
               return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
           return tagged;
         } else {
           const tagged = tag.name
-            .split("-")
-            .join(" ")
+            .split('-')
+            .join(' ')
             .replace(/\w\S*/g, function (txt) {
               return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
           return tagged;
         }
-      } else return "-";
+      } else return '-';
     })
-    .filter((e) => e != "-");
+    .filter((e) => e != '-');
   const [showModal, setShowModal] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   console.log(showTitle);
@@ -382,8 +396,8 @@ function PropertyDetails({
       {
         <>
           <Head>
-            <meta property="og:url" content={fullUrl} />
-            <meta name="robots" content="index, follow" />
+            <meta property='og:url' content={fullUrl} />
+            <meta name='robots' content='index, follow' />
             {/* <meta
               property='og:image'
               content={
@@ -395,49 +409,49 @@ function PropertyDetails({
               }
             /> */}
             <meta
-              property="og:image"
-              content={WEBSITE_BASE_URL + "/images/HPlogo.png"}
+              property='og:image'
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta
-              property="og:image:alt"
-              content="House Point Egypt - Real Estate | Logo"
+              property='og:image:alt'
+              content='House Point Egypt - Real Estate | Logo'
             />
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:site" content="@HousePointE" />
-            <meta name="twitter:creator" content="@HousePointE" />
-            <meta name="twitter:domain" content={WEBSITE_BASE_URL} />
+            <meta name='twitter:card' content='summary' />
+            <meta name='twitter:site' content='@HousePointE' />
+            <meta name='twitter:creator' content='@HousePointE' />
+            <meta name='twitter:domain' content={WEBSITE_BASE_URL} />
             <meta
-              name="twitter:image"
-              content={WEBSITE_BASE_URL + "/images/HPlogo.png"}
-            />
-            <meta
-              property="og:site_name"
-              content="House Point Egypt - Real Estate"
+              name='twitter:image'
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
             <meta
-              property="og:image:secure_url"
-              content={WEBSITE_BASE_URL + "/images/HPlogo.png"}
+              property='og:site_name'
+              content='House Point Egypt - Real Estate'
             />
-            <meta name="keywords" content={keywordsOfPropeties} />
+            <meta
+              property='og:image:secure_url'
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
+            />
+            <meta name='keywords' content={keywordsOfPropeties} />
             <title>
               {isArabic
                 ? propertyDetails.titleAr.slice(0, 60)
                 : propertyDetails.title.slice(0, 60)}
             </title>
             <meta
-              name="description"
+              name='description'
               content={
                 propertyDetails && propertyDetails.descriptionAr
                   ? isArabic
                     ? propertyDetails.descriptionAr
-                        .replaceAll("<p>", "")
-                        .replaceAll("</p>", "")
-                        .replaceAll("&nbsp;", " ")
+                        .replaceAll('<p>', '')
+                        .replaceAll('</p>', '')
+                        .replaceAll('&nbsp;', ' ')
                         .slice(0, 160)
                     : propertyDetails.description
-                        .replaceAll("<p>", "")
-                        .replaceAll("</p>", "")
-                        .replaceAll("&nbsp;", " ")
+                        .replaceAll('<p>', '')
+                        .replaceAll('</p>', '')
+                        .replaceAll('&nbsp;', ' ')
                         .slice(0, 160)
                   : isArabic
                   ? propertyDetails.titleAr
@@ -445,109 +459,109 @@ function PropertyDetails({
               }
             />
             <link
-              rel="sitemap"
-              type="application/xml"
-              href={WEBSITE_BASE_URL + "/sitemap.xml"}
+              rel='sitemap'
+              type='application/xml'
+              href={WEBSITE_BASE_URL + '/sitemap.xml'}
             />
             <link
-              rel="canonical"
+              rel='canonical'
               href={fullUrl}
-              key="canonical"
-              title="House Point Egypt - Real Estate"
+              key='canonical'
+              title='House Point Egypt - Real Estate'
             />
             <link
-              rel="alternate"
-              hrefLang="ar"
-              href={WEBSITE_BASE_URL + "/ar/" + changeLang}
-              title="Arabic"
+              rel='alternate'
+              hrefLang='ar'
+              href={WEBSITE_BASE_URL + '/ar/' + changeLang}
+              title='Arabic'
             />
             <link
-              rel="alternate"
-              hrefLang="x-default"
+              rel='alternate'
+              hrefLang='x-default'
               href={
-                initialLocale === "en"
+                initialLocale === 'en'
                   ? WEBSITE_BASE_URL +
                     `/${type}/${propertyType}/${location}/${subArea}/${title}`
                   : WEBSITE_BASE_URL + changeLang
               }
-              title="English"
+              title='English'
             />
             <script
-              type="application/ld+json"
+              type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
             <script
-              type="application/ld+json"
+              type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(realSchema) }}
             />
             <script
-              type="application/ld+json"
+              type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(accSchema) }}
             />
             <script
-              type="application/ld+json"
+              type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
             />
             <meta
-              property="og:title"
+              property='og:title'
               content={
                 isArabic ? propertyDetails.titleAr : propertyDetails.title
               }
             />
             <meta
-              property="og:description"
+              property='og:description'
               content={
                 propertyDetails && propertyDetails.descriptionAr
                   ? isArabic
                     ? propertyDetails.descriptionAr
-                        .replaceAll("<p>", "")
-                        .replaceAll("</p>", "")
-                        .replaceAll("&nbsp;", " ")
+                        .replaceAll('<p>', '')
+                        .replaceAll('</p>', '')
+                        .replaceAll('&nbsp;', ' ')
                     : propertyDetails.description
-                        .replaceAll("<p>", "")
-                        .replaceAll("</p>", "")
-                        .replaceAll("&nbsp;", " ")
+                        .replaceAll('<p>', '')
+                        .replaceAll('</p>', '')
+                        .replaceAll('&nbsp;', ' ')
                   : isArabic
                   ? propertyDetails.titleAr
                   : propertyDetails.title
               }
             />
-            <meta property="og:type" content="website" />
+            <meta property='og:type' content='website' />
             {/* <meta property="og:image:width" content="300" />
           <meta property="og:image:height" content="300" /> */}
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:site" content="@HousePointE" />
+            <meta name='twitter:card' content='summary' />
+            <meta name='twitter:site' content='@HousePointE' />
             <meta
-              name="twitter:title"
+              name='twitter:title'
               content={
                 isArabic ? propertyDetails.titleAr : propertyDetails.title
               }
             />
-            <meta name="twitter:creator" content="@HousePointE" />
-            <meta name="twitter:domain" content={WEBSITE_BASE_URL} />
+            <meta name='twitter:creator' content='@HousePointE' />
+            <meta name='twitter:domain' content={WEBSITE_BASE_URL} />
             <meta
-              name="twitter:description"
+              name='twitter:description'
               content={
                 propertyDetails && propertyDetails.descriptionAr
                   ? isArabic
                     ? propertyDetails.descriptionAr
-                        .replaceAll("<p>", "")
-                        .replaceAll("</p>", "")
-                        .replaceAll("&nbsp;", " ")
+                        .replaceAll('<p>', '')
+                        .replaceAll('</p>', '')
+                        .replaceAll('&nbsp;', ' ')
                     : propertyDetails.description
-                        .replaceAll("<p>", "")
-                        .replaceAll("</p>", "")
-                        .replaceAll("&nbsp;", " ")
+                        .replaceAll('<p>', '')
+                        .replaceAll('</p>', '')
+                        .replaceAll('&nbsp;', ' ')
                   : isArabic
                   ? propertyDetails.titleAr
                   : propertyDetails.title
               }
             />
             <meta
-              name="twitter:image"
-              content={WEBSITE_BASE_URL + "/images/HPlogo.png"}
+              name='twitter:image'
+              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
             />
-            <meta name="robots" content="index, follow" />
+            <meta name='robots' content='index, follow' />
           </Head>
         </>
       }
@@ -555,8 +569,8 @@ function PropertyDetails({
         <div>
           {!showTitle && <Navbar url={changeLang} />}
           {!showTitle && <QR />}
-          <div className="p-2 my-1">
-            <div className="p-2 md:hidden">
+          <div className='p-2 my-1'>
+            <div className='p-2 md:hidden'>
               <BreadCrumbs
                 type={type}
                 propertyType={propertyType}
@@ -567,15 +581,15 @@ function PropertyDetails({
                 }
               />
             </div>
-            <div className="px-2 py-4 mx-2 text-white rounded-md bg-custom-blue font-openSans">
-              <div className="flex flex-row flex-wrap justify-center lg:justify-between w-full mt-4">
-                <div className="w-full text-center md:w-3/4 md:text-start">
-                  <h1 className="text-2xl lg:text-4xl">
+            <div className='px-2 py-4 mx-2 text-white rounded-md bg-custom-blue font-openSans'>
+              <div className='flex flex-row flex-wrap justify-center lg:justify-between w-full mt-4'>
+                <div className='w-full text-center md:w-3/4 md:text-start'>
+                  <h1 className='text-2xl lg:text-4xl'>
                     {isArabic ? propertyDetails.titleAr : propertyDetails.title}
                   </h1>
-                  <div className="hidden md:block">
+                  <div className='hidden md:block'>
                     {!isArabic && (
-                      <h2 className="text-xs text-center lg:text-base md:text-start">
+                      <h2 className='text-xs text-center lg:text-base md:text-start'>
                         {`${propertyType} for ${type} in ${location} ${subArea} Area: ${propertyDetails.propertyArea}`.replace(
                           /\w\S*/g,
                           function (txt) {
@@ -584,8 +598,8 @@ function PropertyDetails({
                               txt.substr(1).toLowerCase()
                             );
                           }
-                        )}{" "}
-                        m<sup>2</sup> consists of{" "}
+                        )}{' '}
+                        m<sup>2</sup> consists of{' '}
                         {`${propertyDetails.beds} bedrooms ${propertyDetails.baths} bathrooms ${propertyDetails.furnitureStatus.name} 5 stars`.replace(
                           /\w\S*/g,
                           function (txt) {
@@ -598,7 +612,7 @@ function PropertyDetails({
                       </h2>
                     )}
                     {isArabic && (
-                      <h2 className="text-xs text-center lg:text-base md:text-start">
+                      <h2 className='text-xs text-center lg:text-base md:text-start'>
                         {`${propertyType} لل${type} في ${location} ${subArea} مساحة: ${propertyDetails.propertyArea}`.replace(
                           /\w\S*/g,
                           function (txt) {
@@ -607,8 +621,8 @@ function PropertyDetails({
                               txt.substr(1).toLowerCase()
                             );
                           }
-                        )}{" "}
-                        متر مربع تتكون من{" "}
+                        )}{' '}
+                        متر مربع تتكون من{' '}
                         {`${propertyDetails.beds} غرف نوم ${propertyDetails.baths} حمام ${propertyDetails.furnitureStatus.nameAr} 5 نجوم`.replace(
                           /\w\S*/g,
                           function (txt) {
@@ -622,25 +636,25 @@ function PropertyDetails({
                     )}
                   </div>
                 </div>
-                <hr className="w-full my-2 lg:hidden block" />
-                <div className="w-full md:w-auto">
-                  <div className="text-center md:text-start">
-                    <span className="mr-4 text-xl">
-                      <span className="text-3xl font-semibold">
-                        {propertyDetails.currency == "USD" &&
+                <hr className='w-full my-2 lg:hidden block' />
+                <div className='w-full md:w-auto'>
+                  <div className='text-center md:text-start'>
+                    <span className='mr-4 text-xl'>
+                      <span className='text-3xl font-semibold'>
+                        {propertyDetails.currency == 'USD' &&
                           Number(
                             propertyDetails.price * liveCurrency.USD
                           ).toLocaleString()}
-                        {propertyDetails.currency == "EUR" &&
+                        {propertyDetails.currency == 'EUR' &&
                           Number(
                             propertyDetails.price * liveCurrency.EUR
                           ).toLocaleString()}
-                        {propertyDetails.currency == "EGP" &&
+                        {propertyDetails.currency == 'EGP' &&
                           Number(propertyDetails.price).toLocaleString()}
                       </span>
                       {isArabic && <>جنية</>}
                       {!isArabic && <>EGP</>}
-                      {propertyDetails.type == "rent" && (
+                      {propertyDetails.type == 'rent' && (
                         <span>
                           {!isArabic && <span>/ Month</span>}
                           {isArabic && <span>/ شهريا</span>}
@@ -648,11 +662,11 @@ function PropertyDetails({
                       )}
                     </span>
                   </div>
-                  <div className="block md:hidden">
-                    <hr className="w-full my-2 lg:hidden sm:block" />
+                  <div className='block md:hidden'>
+                    <hr className='w-full my-2 lg:hidden sm:block' />
 
                     {!isArabic && (
-                      <h2 className="text-xs text-center lg:text-base md:text-start">
+                      <h2 className='text-xs text-center lg:text-base md:text-start'>
                         {`${propertyType} for ${type} in ${location} ${subArea} Area: ${propertyDetails.propertyArea}`.replace(
                           /\w\S*/g,
                           function (txt) {
@@ -661,8 +675,8 @@ function PropertyDetails({
                               txt.substr(1).toLowerCase()
                             );
                           }
-                        )}{" "}
-                        m<sup>2</sup> consists of{" "}
+                        )}{' '}
+                        m<sup>2</sup> consists of{' '}
                         {`${propertyDetails.beds} bedrooms ${propertyDetails.baths} bathrooms ${propertyDetails.furnitureStatus.name} 5 stars`.replace(
                           /\w\S*/g,
                           function (txt) {
@@ -675,7 +689,7 @@ function PropertyDetails({
                       </h2>
                     )}
                     {isArabic && (
-                      <h2 className="text-xs text-center lg:text-base md:text-start">
+                      <h2 className='text-xs text-center lg:text-base md:text-start'>
                         {`${propertyType} لل${type} في ${location} ${subArea} مساحة: ${propertyDetails.propertyArea}`.replace(
                           /\w\S*/g,
                           function (txt) {
@@ -684,8 +698,8 @@ function PropertyDetails({
                               txt.substr(1).toLowerCase()
                             );
                           }
-                        )}{" "}
-                        متر مربع تتكون من{" "}
+                        )}{' '}
+                        متر مربع تتكون من{' '}
                         {`${propertyDetails.beds} غرف نوم ${propertyDetails.baths} حمام ${propertyDetails.furnitureStatus.nameAr} 5 نجوم`.replace(
                           /\w\S*/g,
                           function (txt) {
@@ -698,20 +712,20 @@ function PropertyDetails({
                       </h2>
                     )}
                   </div>
-                  <div className="w-full text-center md:w-auto md:text-start">
-                    {t("pages.property.components.title.last_updated")}:{" "}
+                  <div className='w-full text-center md:w-auto md:text-start'>
+                    {t('pages.property.components.title.last_updated')}:{' '}
                     {isArabic ? dateOfPropAr : dateOfProp}
                   </div>
-                  <div className="w-full mt-2 text-2xl font-semibold text-center xs:w-full lg:text-right">
+                  <div className='w-full mt-2 text-2xl font-semibold text-center xs:w-full lg:text-right'>
                     <small>
-                      {t("pages.property.components.title.ref_num")} :{" "}
+                      {t('pages.property.components.title.ref_num')} :{' '}
                       {propertyDetails.refNumber}
                     </small>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="hidden p-2 md:block">
+            <div className='hidden p-2 md:block'>
               <BreadCrumbs
                 type={type}
                 propertyType={propertyType}
@@ -722,10 +736,10 @@ function PropertyDetails({
                 }
               />
             </div>
-            <div className="mx-2 my-4">
+            <div className='mx-2 my-4'>
               <ImageSlider
-                showTitle= {showTitle}
-                setShowTitle = {setShowTitle}
+                showTitle={showTitle}
+                setShowTitle={setShowTitle}
                 mainimage={propertyDetails.mainimage}
                 images={propertyDetails.images}
                 title={
@@ -733,8 +747,8 @@ function PropertyDetails({
                 }
               />
             </div>
-            <div className="flex flex-col w-full gap-2 mt-1 md:flex-row">
-              <div className="md:sticky z-40 transition-all fixed h-fit bg-white  bottom-0 md:w-1/3 w-full md:top-[20%]">
+            <div className='flex flex-col w-full gap-2 mt-1 md:flex-row'>
+              <div className='md:sticky z-40 transition-all fixed h-fit bg-white  bottom-0 md:w-1/3 w-full md:top-[20%]'>
                 <ContactUs
                   propertyImage={propertyDetails.images[0]}
                   propertyTitle={propertyDetails.title}
@@ -745,7 +759,7 @@ function PropertyDetails({
                   currency={propertyDetails.currency}
                 />
               </div>
-              <div className="w-full px-2 md:w-2/3">
+              <div className='w-full px-2 md:w-2/3'>
                 <PropertyDesc
                   tagsDefault={tagsDefault}
                   type={type}
@@ -818,7 +832,7 @@ function PropertyDetails({
                 />
               </div>
             </div>
-            <div className="px-2 mx-auto my-4">
+            <div className='px-2 mx-auto my-4'>
               <RelatedProperties
                 type={type}
                 propertyType={propertyType}
@@ -827,7 +841,7 @@ function PropertyDetails({
                 isArabic={isArabic}
               />
             </div>
-            <div className="p-2">
+            <div className='p-2'>
               <Searchbar setShowModal={setShowModal} showModal={showModal} />
             </div>
           </div>
