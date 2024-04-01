@@ -72,6 +72,7 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   let page =
     router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
   const [currentPage, setCurrentPage] = useState(page);
+  const [featuredProperties, setFeaturedProperties] = useState([]);
   const { t, i18n } = useTranslation();
   const { topic } = router.query;
   const [blogPosts, setBlogPosts] = useState([]);
@@ -89,6 +90,21 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
         setBlogPosts(response.data);
       })
       .catch((error) => console.log(error));
+    //Fetch featured properties
+    fetch(
+      `${API_BASE_URL}/property/getproperties?isFeatured=true&limit=4&page=4`,
+      {
+        headers: {
+          'accept-language': locale,
+        },
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setFeaturedProperties(data.properties);
+      });
   }, [currentPage]);
 
   if (!blogPosts) {
@@ -220,23 +236,27 @@ function Topic({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
           <div className='w-full px-6 flex flex-col lg:flex-row flex-1'>
             <div className='flex-1'>
               <h1 className='ltr:text-left rtl:text-right order-1 mb-4 font-sans text-lg font-semibold sm:text-xl md:text-2xl lg:text-4xl border-b border-gray-300 pb-4'>
-                Articles about{' '}
-                {topic.replaceAll('-', ' ').replaceAll('_qm_', '?')}
+                {topic.replaceAll('-', ' ').replaceAll('_qm_', '?')} | House
+                Point Egypt - Real Estate
               </h1>
-              <p className='ltr:text-left rtl:text-right order-1 mb-8 font-sans text-lg'>
+              <p className='ltr:text-left rtl:text-right order-1 mb-2 font-sans text-lg'>
                 {titles && titles.length > 0 ? titles[0] : null}
               </p>
+              <div
+                className='py-2'
+                dangerouslySetInnerHTML={{ __html: meta?.article }}
+              ></div>
+              <hr className='my-1' />
               <div className={blogStyle.container}>
                 {blogPosts.map((post, index) => (
                   <Article key={index} post={post} isArabic={isArabic} />
                 ))}
               </div>
             </div>
-
             <div className='w-full lg:w-1/4 p-4 mt-10 lg:mt-0 bg-gray-200'>
               {/* Left-side section */}
               {/* Add your content here */}
-              <SideSectionBlog />
+              <SideSectionBlog featuredProperties={featuredProperties} />
             </div>
           </div>
         </div>
