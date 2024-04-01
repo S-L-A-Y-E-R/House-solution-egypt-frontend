@@ -75,13 +75,16 @@ function Index(props) {
     router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
   const { t, i18n } = useTranslation();
   const [blogPosts, setBlogPosts] = useState([]);
+  const [findingApartmentTopics, setFindingApartmentTopics] = useState([]);
+  const [rentingApartmentTopics, setRentingApartmentTopics] = useState([]);
+  const [featuredProperties, setFeaturedProperties] = useState([]);
   const [currentPage, setCurrentPage] = useState(page);
   const { meta, initialLocale, changeLang, isArabic, titles, pages } = props;
   const locale = initialLocale || router.locale;
 
   useEffect(() => {
     // Fetch blog post data from the API
-    fetch(`${API_BASE_URL}/blog/?page=${currentPage}&limit=9`, {
+    fetch(`${API_BASE_URL}/blog/?page=7&limit=3`, {
       headers: {
         'accept-language': locale,
       },
@@ -92,6 +95,48 @@ function Index(props) {
       .then((data) => {
         // console.log(data);
         setBlogPosts(data);
+      });
+
+    //Fetch finding apartment topics
+    fetch(`${API_BASE_URL}/blog/topics/finding-an-apartment?page=1&limit=3`, {
+      headers: {
+        'accept-language': locale,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setFindingApartmentTopics(data);
+      });
+
+    //Fetch renting apartment topics
+    fetch(`${API_BASE_URL}/blog/topics/renting-an-apartment?page=1&limit=3`, {
+      headers: {
+        'accept-language': locale,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setRentingApartmentTopics(data);
+      });
+
+    //Fetch featured properties
+    fetch(
+      `${API_BASE_URL}/property/getproperties?isFeatured=true&limit=4&page=4`,
+      {
+        headers: {
+          'accept-language': locale,
+        },
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setFeaturedProperties(data.properties);
       });
   }, [currentPage]);
 
@@ -226,7 +271,26 @@ function Index(props) {
               )}
 
               <h2 className='font-bold text-2xl'>
-                {!isArabic ? 'Explore our Topics' : 'استكشف مقالاتنا'}
+                {!isArabic ? 'Finding an Apartment' : 'البحث عن شقة'}
+              </h2>
+              <hr className='my-2' />
+              <div className={blogStyle.container}>
+                {findingApartmentTopics &&
+                  findingApartmentTopics.map((post, index) => (
+                    <Article key={index} post={post} isArabic={isArabic} />
+                  ))}
+              </div>
+              <Link
+                href={`${WEBSITE_BASE_URL}/reads/topics/Finding-An-Apartment`}
+                className={`mt-6 block text-blue-500 font-semibold  ${
+                  isArabic ? 'text-left ml-20' : 'text-right mr-20'
+                }`}
+              >
+                {!isArabic ? 'View More' : 'مشاهدة المزيد'} +
+              </Link>
+
+              <h2 className='font-bold text-2xl mt-8'>
+                {!isArabic ? 'Topics' : 'مقالات'}
               </h2>
               <hr className='my-2' />
               <div className={blogStyle.container}>
@@ -235,27 +299,46 @@ function Index(props) {
                     <Article key={index} post={post} isArabic={isArabic} />
                   ))}
               </div>
+
+              <h2 className='font-bold text-2xl mt-8'>
+                {!isArabic ? 'Renting an Apartment' : 'تأجير شقة'}
+              </h2>
+              <hr className='my-2' />
+              <div className={blogStyle.container}>
+                {rentingApartmentTopics &&
+                  rentingApartmentTopics.map((post, index) => (
+                    <Article key={index} post={post} isArabic={isArabic} />
+                  ))}
+              </div>
+              <Link
+                href={`${WEBSITE_BASE_URL}/reads/topics/Renting-An-Apartment`}
+                className={`mt-6 block text-blue-500 font-semibold  ${
+                  isArabic ? 'text-left ml-20' : 'text-right mr-20'
+                }`}
+              >
+                {!isArabic ? 'View More' : 'مشاهدة المزيد'} +
+              </Link>
             </div>
 
             {blogPosts.length > 0 && (
               <div className='w-full lg:w-1/4 p-4 mt-10 lg:mt-0 bg-gray-200'>
                 {/* Left-side section */}
                 {/* Add your content here */}
-                <SideSectionBlog />
+                <SideSectionBlog featuredProperties={featuredProperties} />
               </div>
             )}
           </div>
         </div>
-        {pages && page && (
+        {/* {pages && page && (
           <PaginationSlide
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             pages={pages}
             page={page}
           />
-        )}
+        )} */}
         <Link
-          className='px-4 mb-4'
+          className='px-4 mb-4 mt-8'
           href={'/'}
           title='House Point Egypt - Real Estate | Home Page'
         >

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import PropertyCard from './PropertyCard';
 import axios from 'axios';
 import { API_BASE_URL } from '@/config';
 
-function SideSectionBlog() {
+function SideSectionBlog({ featuredProperties }) {
   const { t, i18n } = useTranslation();
   const uniqueKeywords = new Set();
   const uniqueTopics = new Map();
   const [blogsData, setBlogsData] = useState([]);
   const isArabic = i18n.language === 'ar';
+  const [liveCurrency, setLiveCurrency] = useState({ USD: 1, EUR: 1 });
 
   useEffect(() => {
     // Fetch topics data from API
@@ -22,6 +24,16 @@ function SideSectionBlog() {
         setBlogsData(response.data);
       })
       .catch((error) => console.log(error));
+
+    async function fetchCurrency() {
+      try {
+        const response = await axios.get(API_BASE_URL + '/utils/getcurrency');
+        setLiveCurrency(response.data.currency);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchCurrency();
   }, []);
 
   blogsData.forEach((blog) => {
@@ -29,7 +41,6 @@ function SideSectionBlog() {
       uniqueTopics.set(blog.topic, blog);
     }
   });
-
   return (
     <div className='mb-3 row' dir={isArabic ? 'rtl' : 'ltr'}>
       <h2 className='font-semibold text-2xl'>{t('pages.blog.topics')}</h2>
@@ -56,6 +67,89 @@ function SideSectionBlog() {
               </a>
             )
         )}
+      </div>
+
+      <div className='mt-2 p-2'>
+        <h2 className='font-semibold text-2xl'>
+          {t('pages.blog.feature_properties')}
+        </h2>
+        <div className='mt-4 flex flex-wrap'>
+          {featuredProperties.map((property) => {
+            let propertyLink = `/`;
+            if (property.type === 'rent') {
+              propertyLink =
+                propertyLink + t('general.components.searchbar.rent');
+            } else {
+              propertyLink =
+                propertyLink + t('general.components.searchbar.sale');
+            }
+            if (isArabic) {
+              propertyLink = propertyLink + '/' + property.propertyType.nameAr;
+              propertyLink = propertyLink + '/' + property.area.nameAr;
+              propertyLink = propertyLink + '/' + property.subarea.nameAr;
+              propertyLink =
+                propertyLink +
+                '/' +
+                property.titleAr +
+                '-' +
+                property.refNumber;
+            } else {
+              propertyLink =
+                propertyLink + '/' + property.propertyType.name.toLowerCase();
+              propertyLink =
+                propertyLink + '/' + property.area.name.toLowerCase();
+              propertyLink =
+                propertyLink + '/' + property.subarea.name.toLowerCase();
+              propertyLink =
+                propertyLink +
+                '/' +
+                property.title.toLowerCase() +
+                '-' +
+                property.refNumber;
+            }
+            return (
+              <PropertyCard
+                key={property._id}
+                id={property._id}
+                propertyLink={propertyLink}
+                image={property.mainimage}
+                title={isArabic ? property.titleAr : property.title}
+                location={
+                  isArabic
+                    ? property.area.nameAr
+                    : property.area.name.toLowerCase()
+                }
+                refNumber={property.refNumber}
+                price={property.price}
+                beds={property.beds}
+                bathrooms={property.baths}
+                area={property.propertyArea}
+                propertyType={
+                  isArabic
+                    ? property.propertyType.nameAr
+                    : property.propertyType.name.toLowerCase()
+                }
+                furnitureStatus={
+                  isArabic
+                    ? property.furnitureStatus.nameAr
+                    : property.furnitureStatus.name
+                }
+                type={
+                  property.type == 'rent'
+                    ? t('general.components.searchbar.rent')
+                    : t('general.components.searchbar.sale')
+                }
+                subArea={
+                  isArabic
+                    ? property.subarea.nameAr
+                    : property.subarea.name.toLowerCase()
+                }
+                currency={property.currency}
+                liveCurrency={liveCurrency}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <div className='mt-2 p-2'>
