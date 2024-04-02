@@ -58,7 +58,7 @@ function BlogDetails({
   const isArabic = i18n.language === 'ar';
   const { title } = router.query;
   const [blogData, setBlogData] = useState(getData);
-  const blogTags = metaTags.split(',');
+  const blogTags = metaKeywords.split(',');
   const [relatedProperties, setRelatedProperties] = useState([]);
   const [liveCurrency, setLiveCurrency] = useState({ USD: 1, EUR: 1 });
 
