@@ -89,7 +89,7 @@ const FilteredProperties = ({
                 {title ? title : ""}
               </h1>
               <h2 className='px-6 text-xl text-center md:px-0 md:text-start font-openSans mt-3'>
-                {!isArabic ? 'All Price, All Bedrooms, All Bathrooms, All Finishing Levels' : 'جميع الأسعار, جميع غرف نوم, جميع حمامات, جميع مستويات التشطيب'}
+                {!isArabic ? 'Explore Real Estate Rental Properties Listings in Maadi, Cairo, Egypt' : 'جميع الأسعار, جميع غرف نوم, جميع حمامات, جميع مستويات التشطيب'}
               </h2>
 
               <div className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
