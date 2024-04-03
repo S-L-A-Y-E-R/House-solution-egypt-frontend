@@ -985,7 +985,6 @@ function Searchbar({ showModal, setShowModal }) {
           </div>
           {/* more Filter */}
           <div className="hidden max-md:flex justify-between my-2 px-5 ">
-            
             <div className="flex gap-2">
               <button
                 onClick={handleClickRent}
@@ -1014,7 +1013,9 @@ function Searchbar({ showModal, setShowModal }) {
               <button
                 className=" max-md:flex border-1 hidden text-white font-bold text-sm p-1 text-center py-1 bg-gray-500 rounded shadow hover:shadow-lg"
                 type="button"
-                onClick={() => setShowModal(true)}
+                onClick={() => {
+                  setShowModal(true);
+                }}
               >
                 <CiFilter size={"25"} />
                 {isArabic ? "تصفيةاكتر" : "More Filter"}
@@ -1048,8 +1049,8 @@ function Searchbar({ showModal, setShowModal }) {
             className={`text w-[50%] ${
               type == t("general.components.searchbar.rent")
                 ? "bg-custom-blue-darker border-custom-blue text-white"
-                : "bg-slate-300 text-custom-blue"
-            } hover:shadow-lg shadow text-lg border-white border font-semibold px-5 py-1 rounded-lg`}
+                : "bg-slate-300 border-custom-blue text-custom-blue"
+            } hover:shadow-lg shadow text-lg border-custom-blue border font-semibold px-5 py-2 rounded-lg`}
             value={t("general.components.searchbar.rent")}
           >
             {t("general.components.searchbar.rent")}
@@ -1057,9 +1058,9 @@ function Searchbar({ showModal, setShowModal }) {
           <button
             className={`text w-[50%] text-lg capitalize ${
               type == t("general.components.searchbar.sale")
-                ? "bg-custom-blue-darker border-custom-blue text-white"
+                ? "bg-custom-blue-darker text-white"
                 : "bg-slate-300 text-custom-blue"
-            } hover:shadow-lg shadow border-white border rounded-lg font-semibold px-5 py-1`}
+            } hover:shadow-lg shadow border-custom-blue border rounded-lg font-semibold px-5 py-2`}
             value={t("general.components.searchbar.sale")}
             onClick={handleClickSale}
           >
@@ -1074,6 +1075,19 @@ function Searchbar({ showModal, setShowModal }) {
           </h1>
         </div>
         <div className="flex gap-1 overflow-auto px-2 my-2">
+          <div
+            onClick={() => {
+              setSelectedPropertyType("");
+              setCountState(!countState);
+            }}
+            className={`border-[1px] w-fit whitespace-nowrap text-center text-base rounded-lg border-custom-blue ${
+              selectedPropertyType == ""
+                ? "bg-custom-blue-dark text-white"
+                : "bg-[#cccccc]"
+            } px-3 py-2`}
+          >
+            {isArabic ? "جميع انواع العقارات" : "All Property Types"}
+          </div>
           {propertyTypes?.map((propertyType, personIdx) => {
             return (
               <div
@@ -1082,7 +1096,11 @@ function Searchbar({ showModal, setShowModal }) {
                   setSelectedPropertyType(propertyType);
                   setCountState(!countState);
                 }}
-                className={`border-2 border-b-4 w-fit whitespace-nowrap text-center text-base rounded-lg border-gray-200 ${selectedPropertyType ==propertyType ? "bg-custom-blue-dark text-white":"bg-[#cccccc]"} px-3 py-2`}
+                className={`border-[1px] w-fit whitespace-nowrap text-center text-base rounded-lg border-custom-blue ${
+                  selectedPropertyType == propertyType
+                    ? "bg-custom-blue-dark text-white"
+                    : "bg-[#cccccc]"
+                } px-3 py-2`}
               >
                 {isArabic ? propertyType.nameAr : propertyType.name}
               </div>
@@ -1093,7 +1111,7 @@ function Searchbar({ showModal, setShowModal }) {
         <div className="flex px-4">
           <FaBed className="my-auto mr-2" />
           <h1 className="font-semibold">
-            {t("general.components.searchbar.bed")}
+            {t("general.components.searchbar.beds")}
           </h1>
         </div>
         <div className="flex gap-1 overflow-auto px-2 my-2">
@@ -1102,7 +1120,11 @@ function Searchbar({ showModal, setShowModal }) {
               <div
                 onClick={() => handleBedroomSelection(propertyType)}
                 key={personIdx}
-                className={`border-2 border-b-4 w-fit whitespace-nowrap text-center text-base rounded-lg border-gray-200 ${selectedBedroom ==propertyType ? "bg-custom-blue-dark text-white":"bg-[#cccccc]"} px-3 py-2`}
+                className={`border-[1px] w-fit whitespace-nowrap text-center text-base rounded-lg border-custom-blue ${
+                  selectedBedroom == propertyType
+                    ? "bg-custom-blue-dark text-white"
+                    : "bg-[#cccccc]"
+                } px-3 py-2`}
               >
                 {propertyType}
               </div>
@@ -1113,7 +1135,7 @@ function Searchbar({ showModal, setShowModal }) {
         <div className="flex px-4">
           <FaBath className="my-auto mr-2" />
           <h1 className="font-semibold">
-            {t("general.components.searchbar.bath")}
+            {t("general.components.searchbar.baths")}
           </h1>
         </div>
         <div className="flex gap-1 overflow-auto px-2 my-2">
@@ -1122,7 +1144,11 @@ function Searchbar({ showModal, setShowModal }) {
               <div
                 key={personIdx}
                 onClick={() => handleBathroomSelection(propertyType)}
-                className={`border-2 border-b-4 w-fit whitespace-nowrap text-center text-base rounded-lg border-gray-200 ${selectedBathroom ==propertyType ? "bg-custom-blue-dark text-white":"bg-[#cccccc]"} px-3 py-2`}
+                className={`border-[1px] w-fit whitespace-nowrap text-center text-base rounded-lg border-custom-blue ${
+                  selectedBathroom == propertyType
+                    ? "bg-custom-blue-dark text-white"
+                    : "bg-[#cccccc]"
+                } px-3 py-2`}
               >
                 {propertyType}
               </div>
@@ -1162,6 +1188,19 @@ function Searchbar({ showModal, setShowModal }) {
           </h1>
         </div>
         <div className="flex gap-1 overflow-auto px-2 my-2">
+        <div
+            onClick={() => {
+              selectedFinishingLevel("");
+              setCountState(!countState);
+            }}
+            className={`border-[1px] w-fit whitespace-nowrap text-center text-base rounded-lg border-custom-blue ${
+              selectedFinishingLevel == ""
+                ? "bg-custom-blue-dark text-white"
+                : "bg-[#cccccc]"
+            } px-3 py-2`}
+          >
+            {isArabic ? "جميع مستويات التشطيب" : "All Finishing Levels"}
+          </div>
           {finishingLevel?.map((propertyType, personIdx) => {
             return (
               <div
@@ -1170,7 +1209,11 @@ function Searchbar({ showModal, setShowModal }) {
                   setCountState(!countState);
                 }}
                 key={personIdx}
-                className={`border-2 border-b-4 w-fit whitespace-nowrap text-center text-base rounded-lg border-gray-200 ${selectedFinishingLevel ==propertyType ? "bg-custom-blue-dark text-white":"bg-[#cccccc]"} px-3 py-2`}
+                className={`border-[1px] w-fit whitespace-nowrap text-center text-base rounded-lg border-custom-blue ${
+                  selectedFinishingLevel == propertyType
+                    ? "bg-custom-blue-dark text-white"
+                    : "bg-[#cccccc]"
+                } px-3 py-2`}
               >
                 {!isArabic ? propertyType.name : propertyType.nameAr}
               </div>
@@ -1182,7 +1225,7 @@ function Searchbar({ showModal, setShowModal }) {
           <IoBed className="my-auto mr-2" />
           <h1 className="font-semibold">Property Area</h1>
         </div>
-        <div className="flex gap-1 px-2 my-2 mb-14">
+        <div className="flex gap-1 px-2 my-2 mb-16">
           <input
             type="text"
             class="w-[50%] rounded-md border-0 py-2 px-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
@@ -1205,15 +1248,15 @@ function Searchbar({ showModal, setShowModal }) {
               setSelectedFinishingLevel("");
               setSelectedPropertyType("");
             }}
-            className="w-[45%] py-2 text-center rounded-lg bg-[#cccc] "
+            className="w-[45%] py-2 text-center border-custom-blue border-[1px]  rounded-lg bg-[#cccc] "
           >
             {t("general.components.searchbar.reset")}
           </button>
-          
+
           <button
             type="button"
             onClick={handleSearchSubmit}
-            className="w-[45%] py-2 text-white text-center rounded-lg bg-custom-blue-dark "
+            className="w-[75%] py-2 text-white text-center rounded-lg bg-custom-blue-dark "
           >
             show ({countProperties})
           </button>
