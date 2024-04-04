@@ -87,10 +87,10 @@ const FilteredProperties = ({
           {!loading && properties.length != 0 && (
             <div className="flex flex-col items-center">
               {window.location.href.includes('sale') &&<h1 className="px-6 text-3xl font-medium text-center md:px-0 md:text-start font-openSans">
-                {isArabic ? "Properties For Sale In Cairo, Egypt" : "عقارات للايجار في القاهرة, مصر"}
+                {!isArabic ? "Properties For Sale In Cairo, Egypt" : "عقارات للايجار في القاهرة, مصر"}
               </h1>  }
               {window.location.href.includes('rent') &&<h1 className="px-6 text-3xl font-medium text-center md:px-0 md:text-start font-openSans">
-                {isArabic ? "Properties For Rent In Cairo, Egypt" : "عقارات للبيع في القاهرة, مصر"}
+                {!isArabic ? "Properties For Rent In Cairo, Egypt" : "عقارات للبيع في القاهرة, مصر"}
               </h1>  }
               <h2 className='px-6 text-xl text-center md:px-0 md:text-start font-openSans mt-3'>
                 {!isArabic ? 'Explore Real Estate Rental Properties Listings in Maadi, Cairo, Egypt' : 'استكشف قوائم العقارات للإيجار في المعادي، القاهرة، مصر'}
