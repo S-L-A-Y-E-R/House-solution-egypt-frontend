@@ -67,6 +67,7 @@ const Footer = () => {
                 alt='facebook icon'
                 width='35'
                 height='35'
+                quality={30}
                 title='House Point Egypt Facebook'
               />
             </a>
@@ -76,6 +77,7 @@ const Footer = () => {
                 alt='instagram icon'
                 width='35'
                 height='35'
+                quality={30}
                 title='House Point Egypt Instagram'
               />
             </a>
@@ -85,6 +87,7 @@ const Footer = () => {
                 alt='twitter icon'
                 width='35'
                 height='35'
+                quality={30}
                 title='House Point Egypt Twitter'
                 s
               />
@@ -95,6 +98,7 @@ const Footer = () => {
                 alt='linkedin icon'
                 width='35'
                 height='35'
+                quality={30}
                 title='House Point Egypt Linkedin'
               />
             </a>
@@ -104,6 +108,7 @@ const Footer = () => {
                 alt='Pinterest icon'
                 width='35'
                 height='35'
+                quality={30}
                 title='House Point Egypt Pinterest'
               />
             </a>
@@ -113,6 +118,7 @@ const Footer = () => {
                 alt='youtube icon'
                 width='35'
                 height='35'
+                quality={30}
                 title='House Point Egypt Youtube'
               />
             </a>
@@ -128,6 +134,7 @@ const Footer = () => {
                 alt='Telegram Icon'
                 width='27'
                 height='27'
+                quality={30}
                 title='House Point Egypt Telegram'
               />
             </a>
@@ -143,6 +150,7 @@ const Footer = () => {
                 alt='Tiktok Icon'
                 width='28'
                 height='28'
+                quality={30}
                 title='House Point Egypt Tiktok'
               />
             </a>
@@ -166,6 +174,7 @@ const Footer = () => {
                     alt='search'
                     width='25'
                     height='25'
+                    quality={30}
                     title='House Point Egypt Search Icon'
                   />
                   <span>{isArabic ? link.titleAr : link.title}</span>

@@ -78,6 +78,7 @@ export default function PropertyDesc({
             alt='surface'
             width='25'
             height='25'
+            quality={30}
             title='surface icon'
           />
           <p>
@@ -91,6 +92,7 @@ export default function PropertyDesc({
             alt='bed'
             width='25'
             height='25'
+            quality={30}
             title='bed icon'
           />
           <p>
@@ -104,6 +106,7 @@ export default function PropertyDesc({
             alt='bath'
             width='25'
             height='25'
+            quality={30}
             title='bath icon'
           />
           <p>
@@ -117,6 +120,7 @@ export default function PropertyDesc({
             alt='couch'
             width='25'
             height='25'
+            quality={30}
             title='couch icon'
           />
           <p>
@@ -145,6 +149,7 @@ export default function PropertyDesc({
               alt='hdf'
               width='25'
               height='25'
+              quality={30}
               title='hdf icon'
             />
             {t('pages.property.components.property_desc.hdf')}
@@ -157,6 +162,7 @@ export default function PropertyDesc({
               alt='air'
               width='25'
               height='25'
+              quality={30}
               title='air icon'
             />
             {t('pages.property.components.property_desc.air_condition')}
@@ -169,6 +175,7 @@ export default function PropertyDesc({
               alt='air'
               width='25'
               height='25'
+              quality={30}
               title='air icon'
             />
             {t('pages.property.components.property_desc.central_air_condition')}
@@ -181,6 +188,7 @@ export default function PropertyDesc({
               alt='tile'
               width='25'
               height='25'
+              quality={30}
               title='tile icon'
             />
             {t('pages.property.components.property_desc.ceramic')}
@@ -193,6 +201,7 @@ export default function PropertyDesc({
               alt='cac school'
               width='25'
               height='25'
+              quality={30}
               title='cac school icon'
             />
             {t('pages.property.components.property_desc.cac')}
@@ -203,9 +212,9 @@ export default function PropertyDesc({
             <Image
               src='/assets/school.png'
               alt='french school'
-              s
               width='25'
               height='25'
+              quality={30}
               title='french school icon'
             />
             {t('pages.property.components.property_desc.french')}
@@ -218,6 +227,7 @@ export default function PropertyDesc({
               alt='gym'
               width='25'
               height='25'
+              quality={30}
               title='gym icon'
             />
             {t('pages.property.components.property_desc.gym')}
@@ -230,6 +240,7 @@ export default function PropertyDesc({
               alt='metro'
               width='25'
               height='25'
+              quality={30}
               title='metro icon'
             />
             {t('pages.property.components.property_desc.metro')}
@@ -242,6 +253,7 @@ export default function PropertyDesc({
               alt='restaurant'
               width='25'
               height='25'
+              quality={30}
               title='restaurant icon'
               s
             />
@@ -255,6 +267,7 @@ export default function PropertyDesc({
               alt='school'
               width='25'
               height='25'
+              quality={30}
               title='school icon'
             />
             {t('pages.property.components.property_desc.school')}
@@ -267,6 +280,7 @@ export default function PropertyDesc({
               alt='compound'
               width='25'
               height='25'
+              quality={30}
               title='compound icon'
             />
             {t('pages.property.components.property_desc.compound')}
@@ -279,6 +293,7 @@ export default function PropertyDesc({
               alt='bed'
               width='25'
               height='25'
+              quality={30}
               title='bed icon'
             />
             4 {t('pages.property.components.property_desc.master_bedroom')}
@@ -291,6 +306,7 @@ export default function PropertyDesc({
               alt='internet'
               width='25'
               height='25'
+              quality={30}
               title='internet icon'
             />
             {t('pages.property.components.property_desc.internet')}

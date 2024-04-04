@@ -78,6 +78,7 @@ export default function ContactUs({
             alt='phone'
             width='25'
             height='25'
+            quality={30}
             title='phone'
           />
           <Link href={'tel:+201221409530'} rel='noopener' title='Call Us'>
@@ -175,6 +176,7 @@ export default function ContactUs({
                   alt='email'
                   width='25'
                   height='25'
+                  quality={30}
                   title='email'
                 />
                 <span>{t('pages.property.components.contact_us.email')}</span>
@@ -197,6 +199,7 @@ export default function ContactUs({
               alt='whatsapp'
               width='25'
               height='25'
+              quality={30}
               title='whatsapp'
             />
           </button>

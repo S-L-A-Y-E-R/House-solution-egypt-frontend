@@ -64,6 +64,7 @@ const Navbar = ({ url }) => {
                 width={260}
                 height={80}
                 alt='Logo'
+                quality={30}
                 title='House Point Egypt Logo'
                 className='m-2 px-4 cursor-pointer'
               />

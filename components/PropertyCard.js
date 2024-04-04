@@ -119,7 +119,7 @@ export default function PropertyCard({
                     alt='Property Photo'
                     placeholder='blur'
                     width={1200}
-                    s
+                    quality={30}
                     height={900}
                     title='Property Photo'
                   />
@@ -152,6 +152,7 @@ export default function PropertyCard({
                         width='20'
                         height='20'
                         alt='pin'
+                        quality={30}
                         title='pin'
                       />
                       {location.replace(/\w\S*/g, function (txt) {
@@ -228,6 +229,7 @@ export default function PropertyCard({
                               src='/assets/face.png'
                               alt='facebook icon'
                               width='35'
+                              quality={30}
                               height='35'
                               title='Share on Facebook'
                             />
@@ -246,6 +248,7 @@ export default function PropertyCard({
                               alt='twitter icon'
                               width='35'
                               height='35'
+                              quality={30}
                               title='Share on Twitter'
                             />
                           </TwitterShareButton>
@@ -260,6 +263,7 @@ export default function PropertyCard({
                               alt='linkedin icon'
                               width='35'
                               height='35'
+                              quality={30}
                               title='Share on Linkedin'
                             />
                           </LinkedinShareButton>
@@ -331,6 +335,7 @@ export default function PropertyCard({
                     alt='bed'
                     width='25'
                     height='25'
+                    quality={30}
                     title='bed'
                   />{' '}
                   {beds} {t('general.components.property_card.bedrooms')}
@@ -341,6 +346,7 @@ export default function PropertyCard({
                     alt='bath'
                     width='25'
                     height='25'
+                    quality={30}
                     title='bath'
                   />{' '}
                   {bathrooms} {t('general.components.property_card.bathrooms')}
@@ -353,6 +359,7 @@ export default function PropertyCard({
                     alt='surface'
                     width='25'
                     height='25'
+                    quality={30}
                     title='surface'
                   />
                   {area}{' '}
@@ -367,6 +374,7 @@ export default function PropertyCard({
                     alt='couch'
                     width='25'
                     height='25'
+                    quality={30}
                     title='couch'
                   />
                   {furnitureStatus}{' '}
