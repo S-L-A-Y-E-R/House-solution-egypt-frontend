@@ -51,6 +51,7 @@ export async function getServerSideProps(context) {
       },
     }
   );
+  const fetchSocialLinks = await axios.get(`${API_BASE_URL}/social-media`);
 
   i18n.changeLanguage(locale);
 
@@ -62,11 +63,12 @@ export async function getServerSideProps(context) {
       changeLang: changeLangResponse.data.url,
       isArabic: locale == 'ar' ? true : false,
       pages: countPosts,
+      socialLinks: fetchSocialLinks.data,
     },
   };
 }
 
-function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
+function Tag({ meta, initialLocale, socialLinks, isArabic, titles, pages }) {
   const router = useRouter();
   let page =
     router.query.page && router.query.page > 0 ? Number(router.query.page) : 1;
@@ -93,20 +95,20 @@ function Tag({ meta, initialLocale, changeLang, isArabic, titles, pages }) {
   if (!blogPosts) {
     return <div>Loading...</div>;
   }
-  const [socialLinks, setSocialLinks] = useState([]);
+  // const [socialLinks, setSocialLinks] = useState([]);
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
-        setSocialLinks(data);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSocialLinks = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+  //       setSocialLinks(data);
+  //     } catch (error) {
+  //       console.error('Error fetching social links:', error);
+  //     }
+  //   };
 
-    fetchSocialLinks();
-  }, []);
+  //   fetchSocialLinks();
+  // }, []);
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',

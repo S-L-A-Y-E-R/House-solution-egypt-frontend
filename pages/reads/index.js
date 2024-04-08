@@ -38,6 +38,7 @@ export async function getServerSideProps(context) {
       },
     }
   );
+  const fetchSocialLinks = await axios.get(`${API_BASE_URL}/social-media`);
 
   const countPosts = await fetch(`${API_BASE_URL}/blog/count`, {
     headers: {
@@ -65,6 +66,7 @@ export async function getServerSideProps(context) {
       changeLang: changeLangResponse.data.url,
       isArabic: locale == 'ar' ? true : false,
       pages: countPosts,
+      socialLinks: fetchSocialLinks.data,
     },
   };
 }
@@ -79,7 +81,7 @@ function Index(props) {
   const [rentingApartmentTopics, setRentingApartmentTopics] = useState([]);
   const [featuredProperties, setFeaturedProperties] = useState([]);
   const [currentPage, setCurrentPage] = useState(page);
-  const { meta, initialLocale, changeLang, isArabic, titles, pages } = props;
+  const { meta, initialLocale, socialLinks, isArabic, titles, pages } = props;
   const locale = initialLocale || router.locale;
 
   useEffect(() => {
@@ -140,20 +142,20 @@ function Index(props) {
       });
   }, [currentPage]);
 
-  const [socialLinks, setSocialLinks] = useState([]);
+  // const [socialLinks, setSocialLinks] = useState([]);
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
-        setSocialLinks(data);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSocialLinks = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+  //       setSocialLinks(data);
+  //     } catch (error) {
+  //       console.error('Error fetching social links:', error);
+  //     }
+  //   };
 
-    fetchSocialLinks();
-  }, []);
+  //   fetchSocialLinks();
+  // }, []);
 
   const allBlogs = blogPosts.concat(
     findingApartmentTopics,

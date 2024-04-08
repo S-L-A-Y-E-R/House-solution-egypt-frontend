@@ -24,32 +24,34 @@ export async function getServerSideProps(context) {
     }
   );
   i18n.changeLanguage(locale);
+  const fetchSocialLinks = await axios.get(`${API_BASE_URL}/social-media`);
 
   return {
     props: {
       meta: response.data.meta,
       initialLocale: locale,
       changeLang: changeLangResponse.data.url,
+      socialLinks: fetchSocialLinks.data,
       isArabic: locale == 'ar' ? true : false,
     },
   };
 }
-function contact({ meta, initialLocale, changeLang, isArabic }) {
+function contact({ meta, initialLocale, changeLang, isArabic, socialLinks }) {
   const { t, i18n } = useTranslation();
-  const [socialLinks, setSocialLinks] = useState([]);
+  // const [socialLinks, setSocialLinks] = useState([]);
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
-        setSocialLinks(data);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSocialLinks = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+  //       setSocialLinks(data);
+  //     } catch (error) {
+  //       console.error('Error fetching social links:', error);
+  //     }
+  //   };
 
-    fetchSocialLinks();
-  }, []);
+  //   fetchSocialLinks();
+  // }, []);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -63,8 +65,8 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': 'HousePointEgyptOrganization',
     name: 'House Point Egypt - Real Estate',
+    '@id': 'HousePointEgyptOrganization',
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
     address: {
@@ -79,8 +81,8 @@ function contact({ meta, initialLocale, changeLang, isArabic }) {
     email: '	mailto:info@housepointegypt.com',
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'customer service',
       telephone: '+201221409530',
+      contactType: 'customer service',
     },
     sameAs: [
       socialLinks.facebook,

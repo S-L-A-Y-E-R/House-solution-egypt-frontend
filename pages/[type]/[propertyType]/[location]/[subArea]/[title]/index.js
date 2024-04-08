@@ -43,6 +43,7 @@ export async function getServerSideProps(context) {
   const response = await axios.get(
     `${API_BASE_URL}/property/${titleSplit.join(' ')}/${refNumber}`
   );
+  const fetchSocialLinks = await axios.get(`${API_BASE_URL}/social-media`);
   const liveCurrency = await axios.get(API_BASE_URL + '/utils/getcurrency');
   let dateOfProp = moment(response.data.updatedAt.split('T')[0]);
 
@@ -60,6 +61,7 @@ export async function getServerSideProps(context) {
       liveCurrency: liveCurrency.data.currency,
       dateOfProp,
       dateOfPropAr,
+      socialLinks: fetchSocialLinks.data,
       isArabic: locale == 'ar' ? true : false,
     },
   };
@@ -73,23 +75,24 @@ function PropertyDetails({
   dateOfProp,
   dateOfPropAr,
   isArabic,
+  socialLinks,
 }) {
   const router = useRouter();
   const { asPath } = useRouter();
-  const [socialLinks, setSocialLinks] = useState([]);
+  // const [socialLinks, setSocialLinks] = useState([]);
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
-        setSocialLinks(data);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSocialLinks = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+  //       setSocialLinks(data);
+  //     } catch (error) {
+  //       console.error('Error fetching social links:', error);
+  //     }
+  //   };
 
-    fetchSocialLinks();
-  }, []);
+  //   fetchSocialLinks();
+  // }, []);
 
   const origin =
     typeof window !== 'undefined' && window.location.origin

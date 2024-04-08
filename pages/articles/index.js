@@ -28,6 +28,7 @@ export async function getServerSideProps(context) {
       },
     }
   );
+  const fetchSocialLinks = await axios.get(`${API_BASE_URL}/social-media`);
 
   const fetchTitles = await axios.get(
     `${API_BASE_URL}/title/single?link=${link}`,
@@ -64,6 +65,7 @@ export async function getServerSideProps(context) {
       changeLang: changeLangResponse.data.url,
       isArabic: locale == 'ar' ? true : false,
       pages: countPosts,
+      socialLinks: fetchSocialLinks.data,
     },
   };
 }
@@ -75,7 +77,7 @@ function Index(props) {
   const { t, i18n } = useTranslation();
   const [blogPosts, setBlogPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(page);
-  const { meta, initialLocale, changeLang, isArabic, titles, pages } = props;
+  const { meta, initialLocale, socialLinks, isArabic, titles, pages } = props;
   const locale = initialLocale || router.locale;
 
   useEffect(() => {
@@ -93,20 +95,20 @@ function Index(props) {
       });
   }, [currentPage]);
 
-  const [socialLinks, setSocialLinks] = useState([]);
+  // const [socialLinks, setSocialLinks] = useState([]);
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
-        setSocialLinks(data);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSocialLinks = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+  //       setSocialLinks(data);
+  //     } catch (error) {
+  //       console.error('Error fetching social links:', error);
+  //     }
+  //   };
 
-    fetchSocialLinks();
-  }, []);
+  //   fetchSocialLinks();
+  // }, []);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -149,7 +151,6 @@ function Index(props) {
       socialLinks.tiktok,
     ],
   };
-
   return (
     <>
       <Head>

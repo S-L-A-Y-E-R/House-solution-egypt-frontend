@@ -26,6 +26,7 @@ export async function getServerSideProps(context) {
     .then((data) => {
       return data;
     });
+  const fetchSocialLinks = await axios.get(`${API_BASE_URL}/social-media`);
 
   return {
     props: {
@@ -39,6 +40,7 @@ export async function getServerSideProps(context) {
       metaAuthor: getData.writter,
       metaUri: title,
       getData: getData,
+      socialLinks: fetchSocialLinks.data,
     },
   };
 }
@@ -47,10 +49,9 @@ function BlogDetails({
   metaDesc,
   metaImage,
   metaKeywords,
-  metaTags,
   metaTitle,
   metaTopic,
-  metaUri,
+  socialLinks,
   getData,
 }) {
   const router = useRouter();
@@ -103,20 +104,20 @@ function BlogDetails({
     if (blogData) fetchRelatedProperties();
   }, [blogData]);
 
-  const [socialLinks, setSocialLinks] = useState([]);
+  // const [socialLinks, setSocialLinks] = useState([]);
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
-        setSocialLinks(data);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSocialLinks = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+  //       setSocialLinks(data);
+  //     } catch (error) {
+  //       console.error('Error fetching social links:', error);
+  //     }
+  //   };
 
-    fetchSocialLinks();
-  }, []);
+  //   fetchSocialLinks();
+  // }, []);
 
   const schema = {
     '@context': 'https://schema.org',

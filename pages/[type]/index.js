@@ -30,6 +30,7 @@ export async function getServerSideProps(context) {
   );
 
   i18n.changeLanguage(locale);
+  const fetchSocialLinks = await axios.get(`${API_BASE_URL}/social-media`);
 
   const changeLangResponse = await axios.post(
     `${API_BASE_URL}/utils/changelang`,
@@ -88,6 +89,7 @@ export async function getServerSideProps(context) {
       changeLang: changeLangResponse.data.url,
       isArabic: locale == 'ar' ? true : false,
       properties: filteredProperties,
+      socialLinks: fetchSocialLinks.data,
       metaProperties: responseProperties.data.meta,
       link,
     },
@@ -103,6 +105,7 @@ const TypePage = ({
   properties,
   metaProperties,
   link,
+  socialLinks,
 }) => {
   const [titles, setTitles] = useState([]);
   const router = useRouter();
@@ -125,20 +128,20 @@ const TypePage = ({
       });
   }, []);
 
-  const [socialLinks, setSocialLinks] = useState([]);
+  // const [socialLinks, setSocialLinks] = useState([]);
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
-        setSocialLinks(data);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSocialLinks = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+  //       setSocialLinks(data);
+  //     } catch (error) {
+  //       console.error('Error fetching social links:', error);
+  //     }
+  //   };
 
-    fetchSocialLinks();
-  }, []);
+  //   fetchSocialLinks();
+  // }, []);
 
   const titleEN = `${
     propertyType && propertyType !== 'properties'

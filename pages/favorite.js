@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
   if (locale == 'ar') link += `ar/`;
   link += 'favorite';
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
-
+  const fetchSocialLinks = await axios.get(`${API_BASE_URL}/social-media`);
   const changeLangResponse = await axios.post(
     `${API_BASE_URL}/utils/changelang`,
     context.query,
@@ -35,12 +35,20 @@ export async function getServerSideProps(context) {
       initialLocale: locale,
       changeLang: changeLangResponse.data.url,
       isArabic: locale == 'ar' ? true : false,
+      socialLinks: fetchSocialLinks.data,
       link,
     },
   };
 }
 
-const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
+const Favorite = ({
+  meta,
+  initialLocale,
+  changeLang,
+  isArabic,
+  link,
+  socialLinks,
+}) => {
   const [titles, setTitles] = useState([]);
   const [favorites, setfavorites] = useState([]);
   const [token, setToken] = useState(null);
@@ -104,20 +112,20 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
       });
   }, []);
 
-  const [socialLinks, setSocialLinks] = useState([]);
+  // const [socialLinks, setSocialLinks] = useState([]);
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
-        setSocialLinks(data);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSocialLinks = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+  //       setSocialLinks(data);
+  //     } catch (error) {
+  //       console.error('Error fetching social links:', error);
+  //     }
+  //   };
 
-    fetchSocialLinks();
-  }, []);
+  //   fetchSocialLinks();
+  // }, []);
 
   const titleEN = `${
     propertyType && propertyType !== 'properties'
@@ -194,8 +202,8 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': 'HousePointEgyptOrganization',
     name: 'House Point Egypt - Real Estate',
+    '@id': 'HousePointEgyptOrganization',
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
     address: {
@@ -210,8 +218,8 @@ const Favorite = ({ meta, initialLocale, changeLang, isArabic, link }) => {
     email: '	mailto:info@housepointegypt.com',
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'customer service',
       telephone: '+201221409530',
+      contactType: 'customer service',
     },
     sameAs: [
       socialLinks.facebook,
