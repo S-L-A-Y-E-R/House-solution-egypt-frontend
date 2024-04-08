@@ -44,23 +44,23 @@ export default function PropertyCard({
       : '';
   const message = `Hi, I found your property with ref: ${refNumber} on House Point. Please contact me. Thank you.
     `;
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    '@id': `ReferenceNumber:#${refNumber}`,
-    sku: `${refNumber}`,
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      price: `${price}`,
-      priceCurrency: 'EGP',
-      '@id': 'HousePointEgyptOrganization',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-    },
-  };
+  // const schema = {
+  //   '@context': 'https://schema.org',
+  //   '@type': 'Product',
+  //   '@id': `ReferenceNumber:#${refNumber}`,
+  //   sku: `${refNumber}`,
+  //   offers: {
+  //     '@type': 'Offer',
+  //     availability: 'https://schema.org/InStock',
+  //     price: `${price}`,
+  //     priceCurrency: 'EGP',
+  //     '@id': 'HousePointEgyptOrganization',
+  //   },
+  //   aggregateRating: {
+  //     '@type': 'AggregateRating',
+  //     ratingValue: '5',
+  //   },
+  // };
 
   const addToFavorite = (propertyId) => {
     if (localStorage.getItem('token')) {
@@ -83,12 +83,12 @@ export default function PropertyCard({
 
   return (
     <div key={id}>
-      <Head>
+      {/* <Head>
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
-      </Head>
+      </Head> */}
 
       <Link
         href={propertyLink.toLowerCase().split(' ').join('-')}

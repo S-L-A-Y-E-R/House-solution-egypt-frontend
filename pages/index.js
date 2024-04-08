@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import { useTranslation } from 'react-i18next';
 import PrimeLocations from '@/components/PrimeLocations';
 import PropertySection from '@/components/Home/PropertySection';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import { API_BASE_URL, WEBSITE_BASE_URL, PROPERTY_BASE_URL } from '@/config';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
@@ -146,17 +146,32 @@ export default function Home({
           `/${property.propertyType.name.toLowerCase()}/${property.area.name.toLowerCase()}/${property.subarea.name.toLowerCase()}/${property.title.toLowerCase()}-${
             property.refNumber
           }`,
-        address: 'PostalAddress',
-        address: 'organization',
-        address: `${property.area.name}`,
-        address: `${property.subarea.name}`,
-        address: 'EG',
+        address: `${property.subarea.name}, ${property.area.name}, EG`,
         telephone: '+201221409530',
         floorSize: 'QuantitativeValue',
         floorSize: 'sqm',
       };
     }),
   };
+  const propertySchema = allProperties.map((property, index) => {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      '@id': `ReferenceNumber:#${property.refNumber}`,
+      sku: `${property.refNumber}`,
+      offers: {
+        '@type': 'Offer',
+        availability: 'https://schema.org/InStock',
+        price: `${property.price}`,
+        priceCurrency: 'EGP',
+        '@id': 'HousePointEgyptOrganization',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+      },
+    };
+  });
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -180,6 +195,12 @@ export default function Home({
             <script
               type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+            />
+            <script
+              type='application/ld+json'
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(propertySchema),
+              }}
             />
             <script
               type='application/ld+json'
