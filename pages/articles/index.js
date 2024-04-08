@@ -111,7 +111,8 @@ function Index(props) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': WEBSITE_BASE_URL,
+    '@id': 'housepointegypt.com',
+    name: 'House Point Egypt - Real Estate',
     mainEntity: {
       '@id': 'mainEntity',
     },
@@ -119,10 +120,25 @@ function Index(props) {
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': 'HousePointEgyptOrganization',
     name: 'House Point Egypt - Real Estate',
     url: WEBSITE_BASE_URL,
-    logo:
-      WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2FHPlogo.png&w=256&q=75',
+    logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Maadi',
+      addressRegion: 'Cairo',
+      postalCode: '11728',
+      streetAddress:
+        ' 22 Road 9 , Maadi AI Khabiri Ash sharqeyah , Maadi , Egypt',
+      addressCountry: 'Egypt',
+    },
+    email: '	mailto:info@housepointegypt.com',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      telephone: '+201221409530',
+    },
     sameAs: [
       socialLinks.facebook,
       socialLinks.instagram,

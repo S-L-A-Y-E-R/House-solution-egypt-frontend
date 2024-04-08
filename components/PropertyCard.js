@@ -45,26 +45,20 @@ export default function PropertyCard({
   const message = `Hi, I found your property with ref: ${refNumber} on House Point. Please contact me. Thank you.
     `;
   const schema = {
-    '@context': 'https://schema.org/',
+    '@context': 'https://schema.org',
     '@type': 'Product',
-    name: title,
-    brand: {
-      '@type': 'Brand',
-      name: 'HousePointEgypt.com',
-    },
-    image: PROPERTY_BASE_URL + 'main/' + image.image,
-    sku: '1',
+    '@id': `ReferenceNumber:#${refNumber}`,
+    sku: `${refNumber}`,
     offers: {
       '@type': 'Offer',
-      priceCurrency: 'EGP',
-      price: price,
       availability: 'https://schema.org/InStock',
+      price: `${price}`,
+      priceCurrency: 'EGP',
+      '@id': 'HousePointEgyptOrganization',
     },
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '5',
-      ratingCount: '1',
-      name: 'HousePointEgypt',
     },
   };
 
