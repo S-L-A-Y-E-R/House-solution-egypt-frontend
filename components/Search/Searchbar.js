@@ -105,6 +105,7 @@ function Searchbar({ showModal, setShowModal }) {
           queryParams.push(
             `maxPropertyArea=${encodeURIComponent(selectedMaxPropertyArea)}`
           );
+          console.log(queryParams);
         const response = await axios.get(
           API_BASE_URL + `/property/count?${queryParams.join("&")}`
         );
@@ -519,7 +520,7 @@ function Searchbar({ showModal, setShowModal }) {
                                 "general.components.searchbar.all_property_type"
                               )}
                           </span>
-                          <span className="flex pr-2 pointer-events-none ">
+                          <span className="flex pr-4 pointer-events-none ">
                             <FaAngleDown name="DropDownPropertyType" />
                           </span>
                         </Listbox.Button>
@@ -1028,7 +1029,7 @@ function Searchbar({ showModal, setShowModal }) {
   else {
     return (
       <div className="flex flex-col w-full z-50 overflow-auto">
-        <div className="flex justify-between pl-3 pr-2 fixed top-0 bg-white z-10 w-full p-2">
+        <div className="flex justify-between pl-8 pr-4 fixed top-0 bg-white z-10 w-full p-2">
           <div className="flex gap-2 ">
             <IoFilter className="mt-2" />
             <div className="text-xl font-semibold">
@@ -1043,7 +1044,7 @@ function Searchbar({ showModal, setShowModal }) {
           </div>
         </div>
         <hr className="font-bold my-2" />
-        <div className="flex gap-2 justify-between pl-4 pr-2 my-2 mt-14">
+        <div className="flex gap-2 justify-between pl-8 pr-4 my-2 mt-14">
           <button
             onClick={handleClickRent}
             className={`text w-[50%] ${
@@ -1068,36 +1069,26 @@ function Searchbar({ showModal, setShowModal }) {
           </button>
         </div>
         <hr className="font-bold my-2" />
-        <div className="flex px-4">
+        <div className="flex px-8">
           <FaBuilding className="my-auto mr-2" />
           <h1 className="font-semibold">
             {t("general.components.searchbar.all_property_type")}
           </h1>
         </div>
-        <div className="flex gap-1 overflow-auto pl-4 pr-2  my-2">
-          <div
-            onClick={() => {
-              setSelectedPropertyType("");
-              setCountState(!countState);
-            }}
-            className={`border-[1px] w-fit whitespace-nowrap text-center text-base rounded-lg border-custom-blue ${
-              selectedPropertyType == ""
-                ? "bg-custom-blue-dark text-white"
-                : "bg-[#cccccc]"
-            } px-3 py-2`}
-          >
-            {isArabic ? "جميع انواع العقارات" : "All Property Types"}
-          </div>
+        <div className="flex gap-2 overflow-auto pl-8 pr-4  my-2">
           {propertyTypes?.map((propertyType, personIdx) => {
             return (
               <div
                 key={personIdx}
                 onClick={() => {
-                  setSelectedPropertyType(propertyType);
-                  setCountState(!countState);
+                  if(selectedPropertyType != "")
+                  setSelectedPropertyType(isArabic ? propertyType.nameAr : propertyType.name);
+                  else
+                  setSelectedPropertyType(null)
+                  setCountState(countState => !countState);
                 }}
                 className={`border-[1px] w-fit whitespace-nowrap text-center text-base rounded-lg border-custom-blue ${
-                  selectedPropertyType == propertyType
+                  (selectedPropertyType == (isArabic ? propertyType.nameAr : propertyType.name) || selectedPropertyType == "" && personIdx == 0)
                     ? "bg-custom-blue-dark text-white"
                     : "bg-[#cccccc]"
                 } px-3 py-2`}
@@ -1108,13 +1099,13 @@ function Searchbar({ showModal, setShowModal }) {
           })}
         </div>
         <hr className="font-bold my-2" />
-        <div className="flex pl-4 pr-2 ">
+        <div className="flex pl-8 pr-4 ">
           <FaBed className="my-auto mr-2" />
           <h1 className="font-semibold">
             {t("general.components.searchbar.beds")}
           </h1>
         </div>
-        <div className="flex gap-1 overflow-auto pl-4 pr-2 px my-2">
+        <div className="flex gap-2 overflow-auto pl-8 pr-4 px my-2">
           {[1, 2, 3, 4, 5, 6]?.map((propertyType, personIdx) => {
             return (
               <div
@@ -1132,13 +1123,13 @@ function Searchbar({ showModal, setShowModal }) {
           })}
         </div>
         <hr className="font-bold my-2" />
-        <div className="flex pl-4 pr-2 ">
+        <div className="flex pl-8 pr-4 ">
           <FaBath className="my-auto mr-2" />
           <h1 className="font-semibold">
             {t("general.components.searchbar.baths")}
           </h1>
         </div>
-        <div className="flex gap-1 overflow-auto pl-4 pr-2  my-2">
+        <div className="flex gap-2 overflow-auto pl-8 pr-4  my-2">
           {[1, 2, 3, 4, 5, 6]?.map((propertyType, personIdx) => {
             return (
               <div
@@ -1156,13 +1147,13 @@ function Searchbar({ showModal, setShowModal }) {
           })}
         </div>
         <hr className="font-bold my-2" />
-        <div className="flex pl-4 pr-2 ">
+        <div className="flex pl-8 pr-4 ">
           <FaMoneyBillWave className="my-auto mr-2" />
           <h1 className="font-semibold">
             {t("general.components.searchbar.prices")}
           </h1>
         </div>
-        <div className="flex gap-1 pl-4 pr-2  my-1">
+        <div className="flex gap-1 pl-8 pr-4  my-1">
           <div class=" relative mt-2 rounded-md shadow-sm">
             <input
               type="number"
@@ -1181,16 +1172,16 @@ function Searchbar({ showModal, setShowModal }) {
           </div>
         </div>
         <hr className="my-2" />
-        <div className="flex pl-4 pr-2 ">
+        <div className="flex pl-8 pr-4 ">
           <IoBed className="my-auto mr-2" />
           <h1 className="font-semibold">
             {t("general.components.searchbar.all_finish_level")}
           </h1>
         </div>
-        <div className="flex gap-1 overflow-auto pl-4 pr-3 my-2">
+        <div className="flex gap-2 overflow-auto pl-8 pr-3 my-2">
         <div
             onClick={() => {
-              selectedFinishingLevel("");
+              selectedFinishingLevel(null);
               setCountState(!countState);
             }}
             className={`border-[1px] w-fit whitespace-nowrap text-center text-base rounded-lg border-custom-blue ${
@@ -1205,7 +1196,9 @@ function Searchbar({ showModal, setShowModal }) {
             return (
               <div
                 onClick={(e) => {
-                  setSelectedFinishingLevel(propertyType);
+                  if(selectedFinishingLevel == "") setFinishingLevel(null);
+                  else
+                    setSelectedFinishingLevel(!isArabic ? propertyType.name : propertyType.nameAr);
                   setCountState(!countState);
                 }}
                 key={personIdx}
@@ -1221,11 +1214,11 @@ function Searchbar({ showModal, setShowModal }) {
           })}
         </div>
         <hr className="my-2" />
-        <div className="flex pl-4 pr-2 ">
+        <div className="flex pl-8 pr-4 ">
           <IoBed className="my-auto mr-2" />
           <h1 className="font-semibold">Property Area</h1>
         </div>
-        <div className="flex gap-1 pl-4 pr-2  my-2 mb-16">
+        <div className="flex gap-2 pl-8 pr-4  my-2 mb-16">
           <input
             type="text"
             class="w-[50%] rounded-md border-0 py-2 px-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
@@ -1239,7 +1232,7 @@ function Searchbar({ showModal, setShowModal }) {
             onChange={(e) => setSelectedMaxPropertyArea(e.target.value)}
           />
         </div>
-        <div className="flex justify-between pl-4 pr-2  py-2 gap-3 bg-white fixed bottom-0 w-full">
+        <div className="flex justify-between pl-8 pr-4  py-2 gap-3 bg-white fixed bottom-0 w-full">
           <button
             type="button"
             onClick={(e) => {

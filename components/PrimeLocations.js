@@ -66,7 +66,7 @@ function PrimeLocations() {
               onClick={() => handleAreaClick({ name: area.name, nameAr: area.nameAr, type: "area" })}
             >
               <span className="flex items-center">
-                <Image src="/assets/pin.png" width="20" height="20" alt="pin"
+                <Image src="/assets/pin.png" width="20" height="20" alt="pin" quality={30}
                   title='pin'
                 />
                 <span className='text-custom-blue'>{isArabic ? area.nameAr : area.name}</span>
@@ -85,7 +85,7 @@ function PrimeLocations() {
                   onClick={() => handleAreaClick({ name: subArea.subarea.name, area: area.name, nameAr: subArea.subarea.nameAr, areaAr: area.nameAr, type: "subarea" })}
                 >
                   <span className="flex items-center">
-                    <Image src="/assets/pin.png" width="20" height="20" alt="pin"
+                    <Image src="/assets/pin.png" width="20" height="20" alt="pin" quality={30}
                       title='pin'
                     />
                     <span className='text-custom-blue'>{isArabic ? subArea.subarea.nameAr : subArea.subarea.name}</span>
