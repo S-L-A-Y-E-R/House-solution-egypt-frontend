@@ -247,6 +247,54 @@ const TypePage = ({
       socialLinks.tiktok,
     ],
   };
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': '@mainEntity',
+    url: WEBSITE_BASE_URL,
+    itemListElement: properties.map((property, index) => {
+      return {
+        '@context': 'https://schema.org',
+        '@type': `${property.propertyType.name.slice(0, -1)}`,
+        '@id': `ReferenceNumber:${property.refNumber}`,
+        name: `${property.title}`,
+        image: PROPERTY_BASE_URL + 'original/' + property.mainimage.image,
+        url:
+          WEBSITE_BASE_URL +
+          `/${property.propertyType.name.toLowerCase()}/${property.area.name.toLowerCase()}/${property.subarea.name.toLowerCase()}/${property.title.toLowerCase()}-${
+            property.refNumber
+          }`,
+        tourBookingPage:
+          WEBSITE_BASE_URL +
+          `/${property.propertyType.name.toLowerCase()}/${property.area.name.toLowerCase()}/${property.subarea.name.toLowerCase()}/${property.title.toLowerCase()}-${
+            property.refNumber
+          }`,
+        address: `${property.subarea.name}, ${property.area.name}, EG`,
+        telephone: '+201221409530',
+        floorSize: 'QuantitativeValue',
+        floorSize: 'sqm',
+      };
+    }),
+  };
+  const propertySchema = properties.map((property, index) => {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      '@id': `ReferenceNumber:#${property.refNumber}`,
+      sku: `${property.refNumber}`,
+      offers: {
+        '@type': 'Offer',
+        availability: 'https://schema.org/InStock',
+        price: `${property.price}`,
+        priceCurrency: 'EGP',
+        '@id': 'HousePointEgyptOrganization',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+      },
+    };
+  });
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -310,6 +358,18 @@ const TypePage = ({
             <script
               type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+            />
+            <script
+              type='application/ld+json'
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(propertySchema),
+              }}
+            />
+            <script
+              type='application/ld+json'
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(itemListSchema),
+              }}
             />
             <meta property='og:title' content={isArabic ? titleAR : titleEN} />
             <meta
