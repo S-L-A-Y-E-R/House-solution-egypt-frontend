@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import PrimeLocations from '@/components/PrimeLocations';
 import PropertySection from '@/components/Home/PropertySection';
 import axios from 'axios';
-import { API_BASE_URL, WEBSITE_BASE_URL } from '@/config';
+import { API_BASE_URL, WEBSITE_BASE_URL, PROPERTY_BASE_URL } from '@/config';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import i18n from '@/i18n';
@@ -38,6 +38,7 @@ export async function getServerSideProps(context) {
       },
     }
   );
+  const fetchSocialLinks = await axios.get(`${API_BASE_URL}/social-media`);
   i18n.changeLanguage(locale);
 
   return {
@@ -47,6 +48,7 @@ export async function getServerSideProps(context) {
       rentProperties: fetchRent.data.properties,
       titles: fetchTitles.data.pageTitle,
       initialLocale: locale,
+      socialLinks: fetchSocialLinks.data,
     },
   };
 }
@@ -57,26 +59,27 @@ export default function Home({
   rentProperties,
   titles,
   initialLocale,
+  socialLinks,
 }) {
   const { t, i18n: ii18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(initialLocale);
   }, []);
 
-  const [socialLinks, setSocialLinks] = useState([]);
+  // const [socialLinks, setSocialLinks] = useState([]);
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const { data } = await axios.get(`${API_BASE_URL}/social-media`);
-        setSocialLinks(data);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSocialLinks = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_BASE_URL}/social-media`);
+  //       setSocialLinks(data);
+  //     } catch (error) {
+  //       console.error('Error fetching social links:', error);
+  //     }
+  //   };
 
-    fetchSocialLinks();
-  }, []);
+  //   fetchSocialLinks();
+  // }, []);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -90,8 +93,8 @@ export default function Home({
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': 'HousePointEgyptOrganization',
     name: 'House Point Egypt - Real Estate',
+    '@id': 'HousePointEgyptOrganization',
     url: WEBSITE_BASE_URL,
     logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
     address: {
@@ -106,8 +109,8 @@ export default function Home({
     email: '	mailto:info@housepointegypt.com',
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'customer service',
       telephone: '+201221409530',
+      contactType: 'customer service',
     },
     sameAs: [
       socialLinks.facebook,
@@ -118,6 +121,41 @@ export default function Home({
       socialLinks.telegram,
       socialLinks.tiktok,
     ],
+  };
+  const allProperties = [...saleProperties, ...rentProperties];
+  // console.log(allProperties);
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': '@mainEntity',
+    url: WEBSITE_BASE_URL,
+    itemListElement: allProperties.map((property, index) => {
+      return {
+        '@context': 'https://schema.org',
+        '@type': `${property.propertyType.name.slice(0, -1)}`,
+        '@id': `ReferenceNumber:${property.refNumber}`,
+        name: `${property.title}`,
+        image: PROPERTY_BASE_URL + 'original/' + property.mainimage.image,
+        url:
+          WEBSITE_BASE_URL +
+          `/${property.propertyType.name.toLowerCase()}/${property.area.name.toLowerCase()}/${property.subarea.name.toLowerCase()}/${property.title.toLowerCase()}-${
+            property.refNumber
+          }`,
+        tourBookingPage:
+          WEBSITE_BASE_URL +
+          `/${property.propertyType.name.toLowerCase()}/${property.area.name.toLowerCase()}/${property.subarea.name.toLowerCase()}/${property.title.toLowerCase()}-${
+            property.refNumber
+          }`,
+        address: 'PostalAddress',
+        address: 'organization',
+        address: `${property.area.name}`,
+        address: `${property.subarea.name}`,
+        address: 'EG',
+        telephone: '+201221409530',
+        floorSize: 'QuantitativeValue',
+        floorSize: 'sqm',
+      };
+    }),
   };
   const [showModal, setShowModal] = useState(false);
   return (
@@ -142,6 +180,12 @@ export default function Home({
             <script
               type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+            />
+            <script
+              type='application/ld+json'
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(itemListSchema),
+              }}
             />
             <meta property='og:title' content={meta.title} />
             <meta
