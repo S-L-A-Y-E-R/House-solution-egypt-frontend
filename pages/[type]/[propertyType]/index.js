@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Searchbar from '@/components/Search/Searchbar';
-import FilteredProperties from '@/components/FilteredProperties';
-import BreadCrumbs from '@/components/BreadCrumbs';
-import axios from 'axios';
-import { API_BASE_URL, WEBSITE_BASE_URL, PROPERTY_BASE_URL } from '@/config';
-import Head from 'next/head';
-import i18n from '@/i18n';
-import QR from '@/components/Home/QR';
-import Link from 'next/link';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Searchbar from "@/components/Search/Searchbar";
+import FilteredProperties from "@/components/FilteredProperties";
+import BreadCrumbs from "@/components/BreadCrumbs";
+import axios from "axios";
+import { API_BASE_URL, WEBSITE_BASE_URL, PROPERTY_BASE_URL } from "@/config";
+import Head from "next/head";
+import i18n from "@/i18n";
+import QR from "@/components/Home/QR";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
   const { type, propertyType, location, subArea, page } = context.query;
   const { locale } = context;
 
   let link = `/`;
-  if (locale == 'ar') link += `ar/`;
+  if (locale == "ar") link += `ar/`;
   // console.log(link);
   if (type) link = link + type;
-  if (propertyType) link = link + '/' + propertyType;
+  if (propertyType) link = link + "/" + propertyType;
   const response = await axios.post(`${API_BASE_URL}/utils/getmeta`, { link });
   let queryParams = [`page=${page}`];
   if (type) {
@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
   if (propertyType)
     queryParams.push(`propertyType=${encodeURIComponent(propertyType)}`);
   const countProperties = await axios.get(
-    API_BASE_URL + `/property/count?${queryParams.join('&')}`
+    API_BASE_URL + `/property/count?${queryParams.join("&")}`
   );
 
   i18n.changeLanguage(locale);
@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
     context.query,
     {
       headers: {
-        'accept-language': locale === 'en' ? 'ar' : 'en',
+        "accept-language": locale === "en" ? "ar" : "en",
       },
     }
   );
@@ -79,7 +79,7 @@ export async function getServerSideProps(context) {
     queryParams.push(`maxPropertyArea=${encodeURIComponent(maxPropertyArea)}`);
   if (tag) queryParams.push(`tag=${encodeURIComponent(tag)}`);
   if (ref) queryParams.push(`ref=${encodeURIComponent(ref)}`);
-  const url = `${API_BASE_URL}/property/getproperties?${queryParams.join('&')}`;
+  const url = `${API_BASE_URL}/property/getproperties?${queryParams.join("&")}`;
   const responseProperties = await axios.get(url);
   const filteredProperties = responseProperties.data.properties;
   return {
@@ -88,7 +88,7 @@ export async function getServerSideProps(context) {
       count: countProperties.data.count,
       initialLocale: locale,
       changeLang: changeLangResponse.data.url,
-      isArabic: locale == 'ar' ? true : false,
+      isArabic: locale == "ar" ? true : false,
       properties: filteredProperties,
       metaProperties: responseProperties.data.meta,
       socialLinks: fetchSocialLinks.data,
@@ -134,7 +134,7 @@ const PropertyTypePage = ({
     axios
       .get(`${API_BASE_URL}/title/single?link=${link}`, {
         headers: {
-          'accept-language': isArabic ? 'ar' : 'en',
+          "accept-language": isArabic ? "ar" : "en",
         },
       })
       .then((res) => {
@@ -143,98 +143,98 @@ const PropertyTypePage = ({
   }, []);
 
   const titleEN = `${
-    propertyType && propertyType !== 'properties'
+    propertyType && propertyType !== "properties"
       ? t(
           propertyType.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
           })
         )
-      : 'Property Types'
+      : "Property Types"
   } ${
-    type && type !== 'for-rent-or-sale'
-      ? ' For ' +
+    type && type !== "for-rent-or-sale"
+      ? " For " +
         type.replace(/\w\S*/g, function (txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         })
-      : ''
+      : ""
   }
     ${
-      location && location !== 'location'
-        ? ' In ' +
+      location && location !== "location"
+        ? " In " +
           location.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
           })
-        : ''
+        : ""
     }
     ${
       subArea
-        ? ' , ' +
+        ? " , " +
           subArea.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
           })
-        : ''
+        : ""
     } In Cairo, Egypt`;
   const titleAR = `${t(
-    propertyType && propertyType !== 'عقارات'
+    propertyType && propertyType !== "عقارات"
       ? propertyType.replace(/\w\S*/g, function (txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         })
-      : 'عقارات'
+      : "عقارات"
   )}
     ${
-      type && type !== 'للإيجار أو البيع'
-        ? ' لل' +
+      type && type !== "للإيجار أو البيع"
+        ? " لل" +
           type.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
           })
-        : ''
+        : ""
     }
       ${
-        location && location !== 'منطقة'
-          ? ' في ' +
+        location && location !== "منطقة"
+          ? " في " +
             location.replace(/\w\S*/g, function (txt) {
               return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             })
-          : ''
+          : ""
       }
       ${
         subArea
-          ? ' في ' +
+          ? " في " +
             subArea.replace(/\w\S*/g, function (txt) {
               return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             })
-          : ''
+          : ""
       } في القاهرة و مصر`;
   const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': 'housepointegypt.com',
-    name: 'House Point Egypt - Real Estate',
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "housepointegypt.com",
+    name: "House Point Egypt - Real Estate",
     mainEntity: {
-      '@id': 'mainEntity',
+      "@id": "mainEntity",
     },
   };
   const orgSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': 'HousePointEgyptOrganization',
-    name: 'House Point Egypt - Real Estate',
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "HousePointEgyptOrganization",
+    name: "House Point Egypt - Real Estate",
     url: WEBSITE_BASE_URL + `/${type}/${propertyType}`,
-    logo: WEBSITE_BASE_URL + '/images/HPlogo.png',
+    logo: WEBSITE_BASE_URL + "/images/HPlogo.png",
     address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Maadi',
-      addressRegion: 'Cairo',
-      postalCode: '11728',
+      "@type": "PostalAddress",
+      addressLocality: "Maadi",
+      addressRegion: "Cairo",
+      postalCode: "11728",
       streetAddress:
-        ' 22 Road 9 , Maadi AI Khabiri Ash sharqeyah , Maadi , Egypt',
-      addressCountry: 'Egypt',
+        " 22 Road 9 , Maadi AI Khabiri Ash sharqeyah , Maadi , Egypt",
+      addressCountry: "Egypt",
     },
-    email: '	mailto:info@housepointegypt.com',
+    email: "	mailto:info@housepointegypt.com",
     contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'customer service',
-      telephone: '+201221409530',
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: "+201221409530",
     },
     sameAs: [
       socialLinks.facebook,
@@ -247,17 +247,17 @@ const PropertyTypePage = ({
     ],
   };
   const itemListSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    '@id': '@mainEntity',
-    url: WEBSITE_BASE_URL + `/${type}/${propertyType}`,
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": "@mainEntity",
+    url: window.location.href,
     itemListElement: properties?.map((property, index) => {
       return {
-        '@context': 'https://schema.org',
-        '@type': `${property.propertyType.name.slice(0, -1)}`,
-        '@id': `ReferenceNumber:${property.refNumber}`,
+        "@context": "https://schema.org",
+        "@type": `${property.propertyType.name.slice(0, -1)}`,
+        "@id": `ReferenceNumber:${property.refNumber}`,
         name: `${property.title}`,
-        image: PROPERTY_BASE_URL + 'original/' + property.mainimage.image,
+        image: PROPERTY_BASE_URL + "original/" + property.mainimage.image,
         url:
           WEBSITE_BASE_URL +
           `/${property.propertyType.name.toLowerCase()}/${property.area.name.toLowerCase()}/${property.subarea.name.toLowerCase()}/${property.title.toLowerCase()}-${
@@ -269,28 +269,28 @@ const PropertyTypePage = ({
             property.refNumber
           }`,
         address: `${property.subarea.name}, ${property.area.name}, EG`,
-        telephone: '+201221409530',
-        floorSize: 'QuantitativeValue',
-        floorSize: 'sqm',
+        telephone: "+201221409530",
+        floorSize: "QuantitativeValue",
+        floorSize: "sqm",
       };
     }),
   };
   const propertySchema = properties.map((property, index) => {
     return {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      '@id': `ReferenceNumber:#${property.refNumber}`,
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "@id": `ReferenceNumber:#${property.refNumber}`,
       sku: `${property.refNumber}`,
       offers: {
-        '@type': 'Offer',
-        availability: 'https://schema.org/InStock',
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
         price: `${property.price}`,
-        priceCurrency: 'EGP',
-        '@id': 'HousePointEgyptOrganization',
+        priceCurrency: "EGP",
+        "@id": "HousePointEgyptOrganization",
       },
       aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5',
+        "@type": "AggregateRating",
+        ratingValue: "5",
       },
     };
   });
@@ -302,7 +302,7 @@ const PropertyTypePage = ({
           <Head>
             <title>
               {count +
-                ' ' +
+                " " +
                 `${
                   meta
                     ? meta.title
@@ -311,12 +311,12 @@ const PropertyTypePage = ({
                     : titleEN.slice(0, 60)
                 }`}
             </title>
-            <meta name='robots' content='index, follow' />
+            <meta name="robots" content="index, follow" />
             <meta
-              name='description'
+              name="description"
               content={
                 count +
-                ' ' +
+                " " +
                 (meta && meta.description
                   ? meta.description.slice(0, 160)
                   : isArabic
@@ -325,107 +325,107 @@ const PropertyTypePage = ({
               }
             />
             <meta
-              property='og:site_name'
-              content='House Point Egypt - Real Estate'
+              property="og:site_name"
+              content="House Point Egypt - Real Estate"
             />
             <link
-              rel='sitemap'
-              type='application/xml'
-              href={WEBSITE_BASE_URL + '/sitemap.xml'}
+              rel="sitemap"
+              type="application/xml"
+              href={WEBSITE_BASE_URL + "/sitemap.xml"}
             />
             <link
-              rel='canonical'
+              rel="canonical"
               href={
                 WEBSITE_BASE_URL +
-                `${isArabic ? '/ar/' : '/'}${type}/${propertyType}`
+                `${isArabic ? "/ar/" : "/"}${type}/${propertyType}`
               }
-              key='canonical'
-              title='House Point Egypt - Real Estate'
+              key="canonical"
+              title="House Point Egypt - Real Estate"
             />
-            <meta name='keywords' content={meta ? meta.keywords : ''} />
+            <meta name="keywords" content={meta ? meta.keywords : ""} />
 
             <link
-              rel='alternate'
-              hreflang='ar'
-              href={WEBSITE_BASE_URL + '/ar/' + changeLang}
-              title='House Point Egypt - Real Estate'
+              rel="alternate"
+              hreflang="ar"
+              href={WEBSITE_BASE_URL + "/ar/" + changeLang}
+              title="House Point Egypt - Real Estate"
             />
 
             <link
-              rel='alternate'
-              hreflang='x-default'
+              rel="alternate"
+              hreflang="x-default"
               href={
                 WEBSITE_BASE_URL +
                 `/${
-                  type === 'rent' || type === 'إيجار'
-                    ? 'rent/properties'
-                    : 'sale/properties'
+                  type === "rent" || type === "إيجار"
+                    ? "rent/properties"
+                    : "sale/properties"
                 }`
               }
-              title='House Point Egypt - Real Estate'
+              title="House Point Egypt - Real Estate"
             />
             <script
-              type='application/ld+json'
+              type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
             <script
-              type='application/ld+json'
+              type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
             />
             <script
-              type='application/ld+json'
+              type="application/ld+json"
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify(itemListSchema),
               }}
             />
             <script
-              type='application/ld+json'
+              type="application/ld+json"
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify(propertySchema),
               }}
             />
-            <meta property='og:title' content={isArabic ? titleAR : titleEN} />
+            <meta property="og:title" content={isArabic ? titleAR : titleEN} />
             <meta
-              property='og:description'
+              property="og:description"
               content={isArabic ? titleAR : titleEN}
             />
             <meta
-              property='og:image'
-              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
+              property="og:image"
+              content={WEBSITE_BASE_URL + "/images/HPlogo.png"}
             />
             <meta
-              property='og:image:alt'
-              content='House Point Egypt - Real Estate | Logo
-'
+              property="og:image:alt"
+              content="House Point Egypt - Real Estate | Logo
+"
             />
             <meta
-              property='og:image:secure_url'
-              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
+              property="og:image:secure_url"
+              content={WEBSITE_BASE_URL + "/images/HPlogo.png"}
             />
 
-            <meta property='og:type' content='website' />
+            <meta property="og:type" content="website" />
             <meta
-              property='og:url'
+              property="og:url"
               content={
                 WEBSITE_BASE_URL +
-                `${isArabic ? '/ar/' : '/'}${type}/${propertyType}`
+                `${isArabic ? "/ar/" : "/"}${type}/${propertyType}`
               }
             />
-            <meta name='twitter:card' content='summary' />
-            <meta name='twitter:site' content='@HousePointE' />
-            <meta name='twitter:title' content={isArabic ? titleAR : titleEN} />
-            <meta name='twitter:creator' content='@HousePointE' />
-            <meta name='twitter:domain' content={WEBSITE_BASE_URL} />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:site" content="@HousePointE" />
+            <meta name="twitter:title" content={isArabic ? titleAR : titleEN} />
+            <meta name="twitter:creator" content="@HousePointE" />
+            <meta name="twitter:domain" content={WEBSITE_BASE_URL} />
             <meta
-              name='twitter:description'
+              name="twitter:description"
               content={isArabic ? titleAR : titleEN}
             />
             <meta
-              name='twitter:image'
-              content={WEBSITE_BASE_URL + '/images/HPlogo.png'}
+              name="twitter:image"
+              content={WEBSITE_BASE_URL + "/images/HPlogo.png"}
             />
 
-            <meta name='robots' content='index, follow' />
+            <meta name="robots" content="index, follow" />
           </Head>
         </>
       }
@@ -433,7 +433,7 @@ const PropertyTypePage = ({
         <div>
           <Navbar url={changeLang} />
           <QR />
-          <div className='flex flex-col items-center w-full h-full p-4 mb-4 font-sans text-black bg-center bg-cover'>
+          <div className="flex flex-col items-center w-full h-full p-4 mb-4 font-sans text-black bg-center bg-cover">
             <BreadCrumbs type={type} propertyType={propertyType} />
             <Searchbar showModal={showModal} setShowModal={setShowModal} />
           </div>
@@ -442,22 +442,22 @@ const PropertyTypePage = ({
           <FilteredProperties
             properties={properties}
             title={
-              i18n.language === 'en' ? titles[0]?.title : titles[0]?.titleAr
+              i18n.language === "en" ? titles[0]?.title : titles[0]?.titleAr
             }
             meta={metaProperties}
           />
           <div
-            className='hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto'
+            className="hidden p-4 bg-slate-200 rounded-xl w-[96%] m-auto"
             dangerouslySetInnerHTML={{ __html: meta?.article }}
           />
-          <Link className='px-4' href={'/'} title='All Searches'>
-            <h4 className='rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 '>
-              {type == 'rent'
-                ? t('general.components.searchbar.allsearches')
-                : t('general.components.searchbar.allsearchessale')}
+          <Link className="px-4" href={"/"} title="All Searches">
+            <h4 className="rounded-lg m-auto bg-black text-white text-2xl p-2 text-center w-fit px-4 ">
+              {type == "rent"
+                ? t("general.components.searchbar.allsearches")
+                : t("general.components.searchbar.allsearchessale")}
             </h4>
           </Link>
-          <div className='mt-16'>
+          <div className="mt-16">
             <Footer />
           </div>
         </div>

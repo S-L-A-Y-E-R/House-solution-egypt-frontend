@@ -122,9 +122,7 @@ function PropertyDetails({
     '@type': 'Organization',
     '@id': 'HousePointEgyptOrganization',
     name: 'House Point Egypt - Real Estate',
-    url:
-      WEBSITE_BASE_URL +
-      `/${type}/${propertyType}/${location}/${subArea}/${title}`,
+    url:window.location.href,
     logo: WEBSITE_BASE_URL + '/images/HPlogo.png',
     address: {
       '@type': 'PostalAddress',
