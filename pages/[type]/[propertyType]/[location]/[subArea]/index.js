@@ -7,7 +7,7 @@ import Searchbar from '@/components/Search/Searchbar';
 import FilteredProperties from '@/components/FilteredProperties';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import axios from 'axios';
-import { API_BASE_URL, WEBSITE_BASE_URL } from '@/config';
+import { API_BASE_URL, WEBSITE_BASE_URL, PROPERTY_BASE_URL } from '@/config';
 import Head from 'next/head';
 import i18n from '@/i18n';
 import QR from '@/components/Home/QR';
@@ -272,6 +272,54 @@ const LocationPage = ({
       socialLinks.tiktok,
     ],
   };
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': '@mainEntity',
+    url: WEBSITE_BASE_URL + `/${type}/${propertyType}`,
+    itemListElement: properties?.map((property, index) => {
+      return {
+        '@context': 'https://schema.org',
+        '@type': `${property.propertyType.name.slice(0, -1)}`,
+        '@id': `ReferenceNumber:${property.refNumber}`,
+        name: `${property.title}`,
+        image: PROPERTY_BASE_URL + 'original/' + property.mainimage.image,
+        url:
+          WEBSITE_BASE_URL +
+          `/${property.propertyType.name.toLowerCase()}/${property.area.name.toLowerCase()}/${property.subarea.name.toLowerCase()}/${property.title.toLowerCase()}-${
+            property.refNumber
+          }`,
+        tourBookingPage:
+          WEBSITE_BASE_URL +
+          `/${property.propertyType.name.toLowerCase()}/${property.area.name.toLowerCase()}/${property.subarea.name.toLowerCase()}/${property.title.toLowerCase()}-${
+            property.refNumber
+          }`,
+        address: `${property.subarea.name}, ${property.area.name}, EG`,
+        telephone: '+201221409530',
+        floorSize: 'QuantitativeValue',
+        floorSize: 'sqm',
+      };
+    }),
+  };
+  const propertySchema = properties.map((property, index) => {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      '@id': `ReferenceNumber:#${property.refNumber}`,
+      sku: `${property.refNumber}`,
+      offers: {
+        '@type': 'Offer',
+        availability: 'https://schema.org/InStock',
+        price: `${property.price}`,
+        priceCurrency: 'EGP',
+        '@id': 'HousePointEgyptOrganization',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+      },
+    };
+  });
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -351,7 +399,18 @@ const LocationPage = ({
               type='application/ld+json'
               dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
             />
-
+            <script
+              type='application/ld+json'
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(itemListSchema),
+              }}
+            />
+            <script
+              type='application/ld+json'
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(propertySchema),
+              }}
+            />
             <meta property='og:title' content={isArabic ? titleAR : titleEN} />
             <meta
               property='og:description'
