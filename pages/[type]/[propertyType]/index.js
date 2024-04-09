@@ -219,8 +219,8 @@ const PropertyTypePage = ({
     '@type': 'Organization',
     '@id': 'HousePointEgyptOrganization',
     name: 'House Point Egypt - Real Estate',
-    url: WEBSITE_BASE_URL,
-    logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
+    url: WEBSITE_BASE_URL + `/${type}/${propertyType}`,
+    logo: WEBSITE_BASE_URL + '/images/HPlogo.png',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Maadi',
@@ -250,8 +250,8 @@ const PropertyTypePage = ({
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     '@id': '@mainEntity',
-    url: WEBSITE_BASE_URL,
-    itemListElement: properties.map((property, index) => {
+    url: WEBSITE_BASE_URL + `/${type}/${propertyType}`,
+    itemListElement: properties?.map((property, index) => {
       return {
         '@context': 'https://schema.org',
         '@type': `${property.propertyType.name.slice(0, -1)}`,
@@ -375,13 +375,13 @@ const PropertyTypePage = ({
             <script
               type='application/ld+json'
               dangerouslySetInnerHTML={{
-                __html: JSON.stringify(propertySchema),
+                __html: JSON.stringify(itemListSchema),
               }}
             />
             <script
               type='application/ld+json'
               dangerouslySetInnerHTML={{
-                __html: JSON.stringify(itemListSchema),
+                __html: JSON.stringify(propertySchema),
               }}
             />
             <meta property='og:title' content={isArabic ? titleAR : titleEN} />

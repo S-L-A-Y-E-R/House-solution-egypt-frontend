@@ -122,8 +122,10 @@ function PropertyDetails({
     '@type': 'Organization',
     '@id': 'HousePointEgyptOrganization',
     name: 'House Point Egypt - Real Estate',
-    url: WEBSITE_BASE_URL,
-    logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
+    url:
+      WEBSITE_BASE_URL +
+      `/${type}/${propertyType}/${location}/${subArea}/${title}`,
+    logo: WEBSITE_BASE_URL + '/images/HPlogo.png',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Maadi',

@@ -177,8 +177,8 @@ function Index(props) {
     '@type': 'Organization',
     '@id': 'HousePointEgyptOrganization',
     name: 'House Point Egypt - Real Estate',
-    url: WEBSITE_BASE_URL,
-    logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
+    url: WEBSITE_BASE_URL + '/reads',
+    logo: WEBSITE_BASE_URL + '/images/HPlogo.png',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Maadi',
@@ -204,6 +204,13 @@ function Index(props) {
       socialLinks.tiktok,
     ],
   };
+  function htmlToText(html) {
+    var temp = document.createElement('div');
+    console.log(html);
+    temp.innerHTML = html;
+    console.log(temp.textContent);
+    return temp.textContent || temp.innerText || '';
+  }
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -219,7 +226,7 @@ function Index(props) {
         dateModified: `${post.updatedAt}` || `${post.createdAt}`,
         mainEntityOfPage:
           WEBSITE_BASE_URL + `/reads/${post.title.replaceAll(' ', '-')}`,
-        description: `${post.blogText.slice(0, 160)}`,
+        description: `${htmlToText(post?.blogText).split('.')[0]}.`,
         author: `${post.writter}`,
         publisher: 'HousePointEgyptOrganization',
       };

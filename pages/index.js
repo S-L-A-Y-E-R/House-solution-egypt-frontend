@@ -96,7 +96,7 @@ export default function Home({
     name: 'House Point Egypt - Real Estate',
     '@id': 'HousePointEgyptOrganization',
     url: WEBSITE_BASE_URL,
-    logo: WEBSITE_BASE_URL + '/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75',
+    logo: WEBSITE_BASE_URL + '/images/HPlogo.png',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Maadi',
