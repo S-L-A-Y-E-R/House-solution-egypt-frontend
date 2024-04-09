@@ -176,6 +176,35 @@ function Tag({ initialLocale, socialLinks, isArabic, titles, pages }) {
       socialLinks.tiktok,
     ],
   };
+  function htmlToText(html) {
+    var temp = document.createElement('div');
+    console.log(html);
+    temp.innerHTML = html;
+    console.log(temp.textContent);
+    return temp.textContent || temp.innerText || '';
+  }
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': 'mainEntity',
+    url: WEBSITE_BASE_URL + '/reads',
+    itemListElement: blogPosts.map((post, index) => {
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'NewsArticle',
+        headline: `${post.title}`,
+        image: BLOG_IMAGE_BASE_URL + post.image,
+        datePublished: `${post.createdAt}`,
+        dateModified: `${post.updatedAt}` || `${post.createdAt}`,
+        mainEntityOfPage:
+          WEBSITE_BASE_URL + `/reads/${post.title.replaceAll(' ', '-')}`,
+        description: `${htmlToText(post?.blogText).split('.')[0]}.`,
+        author: `${post.writter}`,
+        publisher: 'HousePointEgyptOrganization',
+      };
+    }),
+  };
+
   return (
     <>
       <Head>
@@ -199,6 +228,10 @@ function Tag({ initialLocale, socialLinks, isArabic, titles, pages }) {
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
         />
         <meta property='og:title' content={meta && meta.title} />
         <meta
